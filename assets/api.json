@@ -1,0 +1,140 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "前端",
+    "version": "last"
+  },
+  "host": "yapi.yashili.com",
+  "basePath": "/mock/151",
+  "tags": [
+    {
+      "name": "公共分类",
+      "description": "公共分类"
+    }
+  ],
+  "schemes": ["http"],
+  "paths": {
+    "/editUserInfo": {
+      "post": {
+        "tags": ["公共分类"],
+        "summary": "修改用户信息",
+        "description": "",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "userName": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  },
+                  "description": "名字"
+                },
+                "age": {
+                  "type": "number",
+                  "description": "年龄"
+                },
+                "address": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  },
+                  "description": "地址"
+                }
+              },
+              "required": ["userName", "address", "age"]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "userName": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  },
+                  "description": "名字"
+                },
+                "age": {
+                  "type": "number",
+                  "description": "年龄"
+                },
+                "field_12address": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  },
+                  "description": "地址"
+                }
+              },
+              "required": ["userName", "field_12address", "age"]
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "tags": ["公共分类"],
+        "summary": "获取用户信息",
+        "description": "",
+        "parameters": [
+          {
+            "name": "username",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "description": "",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "password": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@string"
+                  }
+                },
+                "age": {
+                  "type": "string",
+                  "mock": {
+                    "mock": "@integer"
+                  }
+                }
+              },
+              "required": ["username", "password", "age"]
+            }
+          }
+        }
+      }
+    }
+  }
+}
