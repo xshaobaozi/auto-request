@@ -5,18 +5,50 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export interface EditUserInfo {
+export interface Obj {
   /**
-   * 名字
+   * 字典标识
    */
-  userName: string;
+  dictId: number;
   /**
-   * 年龄
+   * 编码
    */
-  age: number;
+  code: string;
   /**
-   * 地址
+   * 类型
    */
-  address: string;
+  type: string;
+  /**
+   * 有效范围
+   */
+  text: string;
+  /**
+   * 名称
+   */
+  scope: string;
+  /**
+   * 排号
+   */
+  rank: number;
+  /**
+   * 状态
+   */
+  status: number;
+  /**
+   * 父亲
+   */
+  parent: number;
+  /**
+   * 祖先
+   */
+  ancestors: string;
+  /**
+   * 深度
+   */
+  depth: number;
+  /**
+   * 叶子
+   */
+  terminal: number;
   [k: string]: unknown;
 }

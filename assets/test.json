@@ -1,25 +1,8 @@
 {
-  "type": "object",
-  "title": "/editUserInfo",
-  "properties": {
-    "userName": {
-      "type": "string",
-      "mock": {
-        "mock": "@string"
-      },
-      "description": "名字"
-    },
-    "age": {
-      "type": "number",
-      "description": "年龄"
-    },
-    "address": {
-      "type": "string",
-      "mock": {
-        "mock": "@string"
-      },
-      "description": "地址"
-    }
-  },
-  "required": ["userName", "address", "age"]
+  "name": "dict-id",
+  "in": "path",
+  "title": "dictId",
+  "description": "",
+  "required": true,
+  "type": "string"
 }

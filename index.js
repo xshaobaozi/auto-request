@@ -1,10 +1,8 @@
 const schema = require("./assets/api.json");
-const camelcase = require("camelcase");
 const fs = require("fs");
-const pascalCase = (str) => {
-  return camelcase(str.replace(/\//g, ""), { pascalCase: true });
-};
-const host = schema.host;
+const prettier = require("prettier");
+
+const host = schema.host || "";
 const basePath = schema.basePath;
 const schemes = schema.schemes;
 
@@ -15,68 +13,55 @@ const ExpError = (errorInfo) => {
 };
 
 const urlPre = `${schemes[0]}s://${host}${basePath}`;
-class GetMethodFactory {
-  constructor(methodInfo, methods, urlPath) {
-    this.methodInfo = methodInfo;
-    this.methods = methods;
-    const { description, consumes, tags, parameters } = methodInfo;
-    const { name, schema } = parameters[0];
-    this.description = description;
-    this.consumes = consumes;
-    this.parameters = parameters;
-    this.tags = tags;
-    this.name = name;
-    this.schema = schema;
-    this.url = urlPath;
-  }
-  handleGetParams() {
-    return this.parameters.reduce((pre, next) => {
-      pre[next.name] = next.type;
-      return pre;
-    }, {});
-  }
-  handleInstanceInfo() {
-    return {
-      method: this.methods,
-      requestParams: this.handleGetParams(),
-      url: this.url,
-    };
-  }
-}
+
 
 class PostMethodFactory {
   constructor(methodInfo, methods, urlPath) {
     this.methodInfo = methodInfo;
     this.methods = methods;
     const { description, consumes, tags, parameters } = methodInfo;
-    const { name, schema } = parameters[0];
     this.description = description;
     this.consumes = consumes;
     this.url = urlPath;
     this.parameters = parameters;
     this.tags = tags;
-    this.name = name;
-    this.schema = schema;
-    const _in = parameters.in;
-
-    if (name !== "root" && _in !== "body") {
-      throw ExpError({ name, _in });
-    }
-
-    const { properties } = schema;
+  }
+  handleGetUrl() {
+    const urlPathParams = this.parameters.filter(
+      (paramsItem) => this.parameters.in !== "body"
+    );
+    return urlPathParams.reduce((pre, next) => {
+      const name = next.name;
+      const reg = new RegExp(`{${name}}`);
+      pre = pre.replace(reg, "${" + pascalCase(name) + "}");
+      return pre;
+    }, this.url);
   }
   handleGetParams() {
-    const properties = this.schema.properties;
-    return Object.keys(properties).reduce((pre, next) => {
-      pre[next] = properties[next].type;
+    const body = this.parameters.find((paramsItem) => paramsItem.in === "body");
+    if (!body) return {};
+    return Object.keys(body).reduce((pre, next) => {
+      pre[next] = body[next].type;
       return pre;
     }, {});
+  }
+  handleCreateParams() {
+    const urlPathParams = this.parameters.filter(
+      (paramsItem) => paramsItem.in !== "body"
+    );
+    return (
+      urlPathParams.reduce((pre, next) => {
+        pre = `${pascalCase(next.name)}:any,` + pre;
+        return pre;
+      }, "") + "params: P, options?"
+    );
   }
   handleInstanceInfo() {
     return {
       method: this.methods,
       requestParams: this.handleGetParams(),
-      url: this.url,
+      url: this.handleGetUrl(),
+      params: this.handleCreateParams(),
     };
   }
 }
@@ -110,18 +95,18 @@ Object.keys(paths).forEach((urlPath) => {
 
 function createTaroRequest(req) {
   const params = {
-    url:  req.url,
+    url: req.url,
     method: req.method,
     complete: () => {},
     data: {},
   };
   return `\n
-  export const ${pascalCase(
-    params.url
-  )}${pascalCase(params.method)} = <P = unknown, T = unknown>(params: P, options?):Promise<T> => {
+  export const ${pascalCaseReplaceString(params.url)}${pascalCase(
+    params.method
+  )} = <P = unknown, T = unknown>(${req.params} ):Promise<T> => {
     return new Promise((resolve, reject) => {
       Taro.request({
-        url: '${urlPre}${params.url}',
+        url: \`${urlPre}${params.url}\`,
         method: '${params.method}',
         data: params,
         complete: (res: T) => {resolve(res)},
@@ -135,9 +120,13 @@ function createTaroRequest(req) {
 const template = `
   import Taro from '@tarojs/taro';
   \n
-`
+`;
+
+console.log(apiMap);
 const requestCode = Object.values(apiMap).reduce((pre, next) => {
   pre = pre + createTaroRequest(next);
   return pre;
 }, "");
-fs.writeFileSync("./assets/api.ts", template + requestCode);
+const prettierCode = prettier.format(template + requestCode);
+// const prettierCode = template + requestCode;
+fs.writeFileSync("./assets/api.ts", prettierCode);
