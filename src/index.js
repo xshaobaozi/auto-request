@@ -7,7 +7,6 @@ import fs from 'fs';
 import path from 'path';
 import { compile } from 'json-schema-to-typescript';
 
-
 let apiMap = {};
 Object.keys(paths).forEach((urlPath) => {
   Object.keys(paths[urlPath]).forEach((method) => {
@@ -63,7 +62,24 @@ const templateApiTs = Object.values(apiMap).reduce(
   }
 );
 
-fs.writeFileSync(path.join(__dirname, '../assets/api.ts'), prettier.format(templateApiCode));
-compile(templateApiTs, 'Api').then((ts) => {
-  fs.writeFileSync(path.join(__dirname, '../assets/api.define.ts'), ts);
-});
+const vaildFile = (filePath) => {
+  try {
+    fs.accessSync(filePath);
+  } catch (err) {
+    throw { err: err, errMessage: `${filePath}文件不存在` };
+  }
+};
+export default (sourceFile, { apiPath, apiDeclare }) => {
+  try {
+    vaildFile(sourceFile);
+    vaildFile(apiPath);
+    vaildFile(apiDeclare);
+    fs.writeFileSync(sourceFile, prettier.format(templateApiCode));
+    compile(templateApiTs, 'Api').then((ts) => {
+      fs.writeFileSync(apiPath, ts);
+    });
+    console.log('文件生成成功~');
+  } catch (err) {
+    console.log(err);
+  }
+};
