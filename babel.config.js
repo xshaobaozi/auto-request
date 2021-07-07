@@ -10,6 +10,8 @@ module.exports = (api) => {
       require('@babel/preset-env'),
       require('@babel/preset-typescript'),
     ],
-    plugins: [],
+    plugins: [
+     
+    ],
   };
 };

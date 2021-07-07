@@ -1,22 +1,12 @@
 import GetMethodFactory from './common/GetMethodFactory';
 import PostMethodFactory from './common/PostMethodFactory';
-import schema from './../assets/api.json';
-import fs from 'fs';
+import { RESPONSE } from './common/utils';
+import { paths } from './../assets/api.json';
 import prettier from 'prettier';
-import { pascalCase, pascalCaseReplaceString } from './common/utils';
+import fs from 'fs';
 import path from 'path';
+import { compile } from 'json-schema-to-typescript';
 
-const host = schema.host || '';
-const basePath = schema.basePath;
-const schemes = schema.schemes;
-
-const paths = schema.paths;
-const ExpError = (errorInfo) => {
-  const str = JSON.stringify(errorInfo);
-  console.log(`出现无法解析的错误${str}`);
-};
-
-const urlPre = `${schemes[0]}s://${host}${basePath}`;
 
 let apiMap = {};
 Object.keys(paths).forEach((urlPath) => {
@@ -27,50 +17,53 @@ Object.keys(paths).forEach((urlPath) => {
     }
     const methodInfo = paths[urlPath][method];
     if (method.toUpperCase() === 'POST') {
-      apiMap[keyName] = new PostMethodFactory(methodInfo, method, urlPath).handleInstanceInfo();
+      apiMap[keyName] = new PostMethodFactory(methodInfo, method, urlPath);
       return;
     }
-    if (method.toUpperCase() === 'GET') {
-      apiMap[keyName] = new GetMethodFactory(methodInfo, method, urlPath).handleInstanceInfo();
+    if (method.toUpperCase() !== 'POST') {
+      apiMap[keyName] = new GetMethodFactory(methodInfo, method, urlPath);
       return;
     }
   });
 });
+const importList = Object.values(apiMap).reduce((pre, next) => {
+  pre = pre + `${next.handleCteateParamsName()},${next.handleCteateParamsName(RESPONSE)},`;
+  return pre;
+}, '');
+const importTs = `import {${importList}} from './api.define'\n`;
 
-function createTaroRequest(req) {
-  const params = {
-    url: req.url,
-    method: req.method,
-    complete: () => {},
-    data: {},
-  };
-  return `\n
-  export const ${pascalCaseReplaceString(params.url)}${pascalCase(
-    params.method
-  )} = <P = unknown, T = unknown>(${req.params} ):Promise<T> => {
-    return new Promise((resolve, reject) => {
-      Taro.request({
-        url: \`${urlPre}${params.url}\`,
-        method: '${params.method}',
-        data: params,
-        complete: (res: T) => {resolve(res)},
-        fail: (err) => {reject(err)},
-        ...options,
-      })
-    })
-  }
-  `;
-}
 const template = `
   import Taro from '@tarojs/taro';
   \n
+  ${importTs}
 `;
+const templateApiCode = Object.values(apiMap).reduce((pre, next) => {
+  return pre + next.createTaroRequestTemplate();
+}, template);
 
-console.log(apiMap);
-const requestCode = Object.values(apiMap).reduce((pre, next) => {
-  pre = pre + createTaroRequest(next);
-  return pre;
-}, '');
-const prettierCode = prettier.format(template + requestCode);
-// const prettierCode = template + requestCode;
-fs.writeFileSync(path.join(__dirname, '../assets/api.ts'), prettierCode);
+const templateApiTs = Object.values(apiMap).reduce(
+  (pre, next) => {
+    const prototypeNameReq = next.handleCteateParamsName();
+    const prototypeNameRes = next.handleCteateParamsName(RESPONSE);
+    pre['properties'][prototypeNameReq] = {
+      $ref: `#/definitions/${prototypeNameReq}`,
+    };
+    pre['properties'][prototypeNameRes] = {
+      $ref: `#/definitions/${prototypeNameRes}`,
+    };
+    pre['definitions'][prototypeNameReq] = next.handleGetParams();
+    pre['definitions'][prototypeNameRes] = next.handleGetResponse();
+    return pre;
+  },
+  {
+    title: 'Api',
+    type: 'object',
+    properties: {},
+    definitions: {},
+  }
+);
+
+fs.writeFileSync(path.join(__dirname, '../assets/api.ts'), prettier.format(templateApiCode));
+compile(templateApiTs, 'Api').then((ts) => {
+  fs.writeFileSync(path.join(__dirname, '../assets/api.define.ts'), ts);
+});

@@ -1,12 +1,48 @@
 import Taro from "@tarojs/taro";
 
-export const EditUserInfoPost = <P = unknown, T = unknown>(
+import {
+  EditUserInfoPostParams,
+  EditUserInfoPostResponse,
+  LoginGetParams,
+  LoginGetResponse,
+  DictDictIditemsItemIdGetParams,
+  DictDictIditemsItemIdGetResponse,
+  DictsDictIditemsItemIdPutParams,
+  DictsDictIditemsItemIdPutResponse,
+  DictsDictIditemsItemIdDeleteParams,
+  DictsDictIditemsItemIdDeleteResponse,
+  DictsDictIditemsPostParams,
+  DictsDictIditemsPostResponse,
+  DictsDictIditemsGetParams,
+  DictsDictIditemsGetResponse,
+  DictsPostParams,
+  DictsPostResponse,
+  DictsGetParams,
+  DictsGetResponse,
+  DictsDictIdDeleteParams,
+  DictsDictIdDeleteResponse,
+  DictsDictIdPutParams,
+  DictsDictIdPutResponse,
+  DictDictIdGetParams,
+  DictDictIdGetResponse,
+  DictsDictIditemsAsPageGetParams,
+  DictsDictIditemsAsPageGetResponse,
+  DictsDictCodeitemsByCodeGetParams,
+  DictsDictCodeitemsByCodeGetResponse,
+  DictsAsPageGetParams,
+  DictsAsPageGetResponse,
+} from "./api.define";
+
+export const EditUserInfoPost = <
+  P = EditUserInfoPostParams,
+  T = EditUserInfoPostResponse
+>(
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/editUserInfo`,
+      url: `/editUserInfo`,
       method: "post",
       data: params,
       complete: (res: T) => {
@@ -20,13 +56,13 @@ export const EditUserInfoPost = <P = unknown, T = unknown>(
   });
 };
 
-export const LoginGet = <P = unknown, T = unknown>(
+export const LoginGet = <P = LoginGetParams, T = LoginGetResponse>(
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/login`,
+      url: `/login`,
       method: "get",
       data: params,
       complete: (res: T) => {
@@ -40,15 +76,18 @@ export const LoginGet = <P = unknown, T = unknown>(
   });
 };
 
-export const Dict$dictIditems$itemIdGet = <P = unknown, T = unknown>(
+export const DictDictIditemsItemIdGet = <
+  P = DictDictIditemsItemIdGetParams,
+  T = DictDictIditemsItemIdGetResponse
+>(
   ItemId: any,
   DictId: any,
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/dict/${DictId}/items/${ItemId}`,
+      url: `/dict/${DictId}/items/${ItemId}`,
       method: "get",
       data: params,
       complete: (res: T) => {
@@ -62,14 +101,67 @@ export const Dict$dictIditems$itemIdGet = <P = unknown, T = unknown>(
   });
 };
 
-export const Dicts$dictIditemsPost = <P = unknown, T = unknown>(
+export const DictsDictIditemsItemIdPut = <
+  P = DictsDictIditemsItemIdPutParams,
+  T = DictsDictIditemsItemIdPutResponse
+>(
+  ItemId: any,
   DictId: any,
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/dicts/${DictId}/items`,
+      url: `/dicts/${DictId}/items/${ItemId}`,
+      method: "put",
+      data: params,
+      complete: (res: T) => {
+        resolve(res);
+      },
+      fail: (err) => {
+        reject(err);
+      },
+      ...options,
+    });
+  });
+};
+
+export const DictsDictIditemsItemIdDelete = <
+  P = DictsDictIditemsItemIdDeleteParams,
+  T = DictsDictIditemsItemIdDeleteResponse
+>(
+  ItemId: any,
+  DictId: any,
+  params: P,
+  options?: any
+): Promise<T> => {
+  return new Promise((resolve, reject) => {
+    Taro.request({
+      url: `/dicts/${DictId}/items/${ItemId}`,
+      method: "delete",
+      data: params,
+      complete: (res: T) => {
+        resolve(res);
+      },
+      fail: (err) => {
+        reject(err);
+      },
+      ...options,
+    });
+  });
+};
+
+export const DictsDictIditemsPost = <
+  P = DictsDictIditemsPostParams,
+  T = DictsDictIditemsPostResponse
+>(
+  DictId: any,
+  params: P,
+  options?: any
+): Promise<T> => {
+  return new Promise((resolve, reject) => {
+    Taro.request({
+      url: `/dicts/${DictId}/items`,
       method: "post",
       data: params,
       complete: (res: T) => {
@@ -83,14 +175,17 @@ export const Dicts$dictIditemsPost = <P = unknown, T = unknown>(
   });
 };
 
-export const Dicts$dictIditemsGet = <P = unknown, T = unknown>(
+export const DictsDictIditemsGet = <
+  P = DictsDictIditemsGetParams,
+  T = DictsDictIditemsGetResponse
+>(
   DictId: any,
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/dicts/${DictId}/items`,
+      url: `/dicts/${DictId}/items`,
       method: "get",
       data: params,
       complete: (res: T) => {
@@ -104,13 +199,13 @@ export const Dicts$dictIditemsGet = <P = unknown, T = unknown>(
   });
 };
 
-export const DictsPost = <P = unknown, T = unknown>(
+export const DictsPost = <P = DictsPostParams, T = DictsPostResponse>(
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/dicts`,
+      url: `/dicts`,
       method: "post",
       data: params,
       complete: (res: T) => {
@@ -124,13 +219,13 @@ export const DictsPost = <P = unknown, T = unknown>(
   });
 };
 
-export const DictsGet = <P = unknown, T = unknown>(
+export const DictsGet = <P = DictsGetParams, T = DictsGetResponse>(
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/dicts`,
+      url: `/dicts`,
       method: "get",
       data: params,
       complete: (res: T) => {
@@ -144,15 +239,18 @@ export const DictsGet = <P = unknown, T = unknown>(
   });
 };
 
-export const Dict$dictIdGet = <P = unknown, T = unknown>(
+export const DictsDictIdDelete = <
+  P = DictsDictIdDeleteParams,
+  T = DictsDictIdDeleteResponse
+>(
   DictId: any,
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/dict/${DictId}`,
-      method: "get",
+      url: `/dicts/${DictId}`,
+      method: "delete",
       data: params,
       complete: (res: T) => {
         resolve(res);
@@ -165,14 +263,41 @@ export const Dict$dictIdGet = <P = unknown, T = unknown>(
   });
 };
 
-export const Dicts$dictIditemsAsPageGet = <P = unknown, T = unknown>(
+export const DictsDictIdPut = <
+  P = DictsDictIdPutParams,
+  T = DictsDictIdPutResponse
+>(
   DictId: any,
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/dicts/${DictId}/items?_as_page`,
+      url: `/dicts/${DictId}`,
+      method: "put",
+      data: params,
+      complete: (res: T) => {
+        resolve(res);
+      },
+      fail: (err) => {
+        reject(err);
+      },
+      ...options,
+    });
+  });
+};
+
+export const DictDictIdGet = <
+  P = DictDictIdGetParams,
+  T = DictDictIdGetResponse
+>(
+  DictId: any,
+  params: P,
+  options?: any
+): Promise<T> => {
+  return new Promise((resolve, reject) => {
+    Taro.request({
+      url: `/dict/${DictId}`,
       method: "get",
       data: params,
       complete: (res: T) => {
@@ -186,14 +311,41 @@ export const Dicts$dictIditemsAsPageGet = <P = unknown, T = unknown>(
   });
 };
 
-export const Dicts$dictCodeitemsByCodeGet = <P = unknown, T = unknown>(
+export const DictsDictIditemsAsPageGet = <
+  P = DictsDictIditemsAsPageGetParams,
+  T = DictsDictIditemsAsPageGetResponse
+>(
+  DictId: any,
+  params: P,
+  options?: any
+): Promise<T> => {
+  return new Promise((resolve, reject) => {
+    Taro.request({
+      url: `/dicts/${DictId}/items?_as_page`,
+      method: "get",
+      data: params,
+      complete: (res: T) => {
+        resolve(res);
+      },
+      fail: (err) => {
+        reject(err);
+      },
+      ...options,
+    });
+  });
+};
+
+export const DictsDictCodeitemsByCodeGet = <
+  P = DictsDictCodeitemsByCodeGetParams,
+  T = DictsDictCodeitemsByCodeGetResponse
+>(
   DictCode: any,
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/dicts/${DictCode}/items?_by_code`,
+      url: `/dicts/${DictCode}/items?_by_code`,
       method: "get",
       data: params,
       complete: (res: T) => {
@@ -207,13 +359,16 @@ export const Dicts$dictCodeitemsByCodeGet = <P = unknown, T = unknown>(
   });
 };
 
-export const DictsAsPageGet = <P = unknown, T = unknown>(
+export const DictsAsPageGet = <
+  P = DictsAsPageGetParams,
+  T = DictsAsPageGetResponse
+>(
   params: P,
-  options?
+  options?: any
 ): Promise<T> => {
   return new Promise((resolve, reject) => {
     Taro.request({
-      url: `https:///commons/dicts?_as_page`,
+      url: `/dicts?_as_page`,
       method: "get",
       data: params,
       complete: (res: T) => {

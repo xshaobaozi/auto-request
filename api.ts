@@ -5,4 +5,22 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-export type DictId = string;
+export interface Api {
+  EditUserInfoPostParams?: EmptyObject;
+  [k: string]: unknown;
+}
+export interface EmptyObject {
+  /**
+   * 名字
+   */
+  userName: string;
+  /**
+   * 年龄
+   */
+  age: number;
+  /**
+   * 地址
+   */
+  address: string;
+  [k: string]: unknown;
+}

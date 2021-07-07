@@ -1,8 +1,0 @@
-{
-  "name": "dict-id",
-  "in": "path",
-  "title": "dictId",
-  "description": "",
-  "required": true,
-  "type": "string"
-}
