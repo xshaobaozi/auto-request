@@ -1,13 +1,14 @@
 {
   "name": "swagger-json-schema-request",
-  "version": "1.1.0",
-  "main": "src/index.js",
+  "version": "1.2.2",
+  "main": "dist/bundle.js",
   "description": "通过Yapi JSON Schema生成接口",
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development node -r ./.erb/scripts/BabelRegister ./src/index.js",
     "publish": "npm publish",
-    "build": "rm -rf ./dist && rollup -c"
+    "build": "rm -rf ./dist && rollup -c",
+    "test": "node ./test/index.js"
   },
   "dependencies": {
     "camelcase": "^6.2.0",

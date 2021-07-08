@@ -74,17 +74,19 @@ const vaildFile = (filePath) => {
     throw { err: err, errMessage: `${filePath}文件不存在` };
   }
 };
+
+const defineFileName = (name, apiPath) => {
+  if (name) return name;
+  return `${apiPath}.define.ts`;
+};
 export default (sourceFile, { apiPath, apiDeclare }) => {
   try {
     vaildFile(sourceFile);
-    vaildFile(apiPath);
-    vaildFile(apiDeclare);
-
     const result = fs.readFileSync(sourceFile, 'utf8');
-    const { templateApiCode, templateApiTs } = createApiMap(result);
-    fs.writeFileSync(sourceFile, prettier.format(templateApiCode));
+    const { templateApiCode, templateApiTs } = createApiMap(JSON.parse(result).paths);
+    fs.writeFileSync(`${apiPath}.ts`, prettier.format(templateApiCode));
     compile(templateApiTs, 'Api').then((ts) => {
-      fs.writeFileSync(apiPath, ts);
+      fs.writeFileSync(defineFileName(apiDeclare, apiPath), ts);
     });
     console.log('文件生成成功~');
   } catch (err) {
