@@ -1,10 +1,13 @@
 {
-  "name": "json-taro",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "swagger-json-schema-request",
+  "version": "1.1.0",
+  "main": "src/index.js",
+  "description": "通过Yapi JSON Schema生成接口",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development node -r ./.erb/scripts/BabelRegister ./src/index.js"
+    "start": "cross-env NODE_ENV=development node -r ./.erb/scripts/BabelRegister ./src/index.js",
+    "publish": "npm publish",
+    "build": "rm -rf ./dist && rollup -c"
   },
   "dependencies": {
     "camelcase": "^6.2.0",
@@ -20,6 +23,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "rollup": "^2.52.8"
   }
 }

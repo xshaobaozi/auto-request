@@ -1,5 +1,4 @@
 import { pascalCase, pascalCaseReplaceString, RESPONSE, PARAMS } from './utils';
-import { compile } from 'json-schema-to-typescript';
 
 export default class GetMethodFactory {
   constructor(methodInfo, methods, urlPath) {
