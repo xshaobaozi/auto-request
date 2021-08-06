@@ -5,7 +5,8 @@
   "description": "通过Yapi JSON Schema生成接口Axios或Taro接口",
   "license": "MIT",
   "scripts": {
-    "start": "cross-env NODE_ENV=development node -r ./.erb/scripts/BabelRegister ./src/index.js --type=axios",
+    "start": "cross-env NODE_ENV=development node -r ./.erb/scripts/BabelRegister ./src/index.js",
+    "test": "cross-env NODE_ENV=development node -r ./.erb/scripts/BabelRegister ./__test/index.test.js",
     "publish": "npm publish",
     "build": "rm -rf ./dist && rollup -c",
     "build:test": "node ./example/index.js"
