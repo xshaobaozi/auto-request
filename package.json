@@ -1,15 +1,31 @@
 {
   "name": "swagger-json-schema-request",
-  "version": "1.2.6",
+  "version": "1.2.8",
   "main": "dist/bundle.js",
-  "description": "通过Yapi JSON Schema生成接口",
+  "description": "通过Yapi JSON Schema生成接口Axios或Taro接口",
   "license": "MIT",
   "scripts": {
     "start": "cross-env NODE_ENV=development node -r ./.erb/scripts/BabelRegister ./src/index.js --type=axios",
     "publish": "npm publish",
     "build": "rm -rf ./dist && rollup -c",
-    "test": "node ./test/index.js",
-    "cmd": "node ./dist/bundle.js"
+    "build:test": "node ./example/index.js"
+  },
+  "author": "xshaobaozi",
+  "bugs": {
+    "url": "https://github.com/xshaobaozi/swagger-json-to-taro/issues"
+  },
+  "homepage": "https://github.com/xshaobaozi/swagger-json-to-taro",
+  "keywords": [
+    "axios",
+    "javascript",
+    "Taro",
+    "swagger",
+    "Yapi",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xshaobaozi/swagger-json-to-taro"
   },
   "dependencies": {
     "camelcase": "^6.2.0",
