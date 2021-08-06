@@ -52,13 +52,9 @@ export default class PostMethodFactory {
   }
   renderParams() {
     if (['PUT', 'POST', 'PATCH'].includes(this.methods.toLocaleUpperCase())) {
-      return `
-        data: params
-      `
+      return `data: params`
     };
-    return `
-      params: params
-    `
+    return `params: params`
   }
   handleCreateMethodName() {
     return pascalCaseReplaceString(this.handleGetUrl()) + pascalCase(this.methods);

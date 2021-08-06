@@ -11,7 +11,7 @@ const renderTemplatePre = (type) => {
   }
   return `import axios from 'axios';`;
 };
-const createApiMap = (jsonSource, type) => {
+const createApiMap = (jsonSource, { type, host }) => {
   let apiMap = {};
   Object.keys(jsonSource).forEach((urlPath) => {
     Object.keys(jsonSource[urlPath]).forEach((method) => {
@@ -34,7 +34,7 @@ const createApiMap = (jsonSource, type) => {
     pre = pre + `${next.handleCteateParamsName()},${next.handleCteateParamsName(RESPONSE)},`;
     return pre;
   }, '');
-  const importTs = `import {${importList}} from './api.define'\n`;
+  const importTs = `import {${importList}} from './index.define'\n`;
 
   const template = `
       ${renderTemplatePre()}
@@ -42,7 +42,7 @@ const createApiMap = (jsonSource, type) => {
     ${importTs}
   `;
   const templateApiCode = Object.values(apiMap).reduce((pre, next) => {
-    return pre + next.renderRequestTemplate();
+    return pre + next.renderRequestTemplate(host);
   }, template);
 
   const templateApiTs = Object.values(apiMap).reduce(
@@ -83,15 +83,18 @@ const vaildFile = (filePath) => {
 
 const defineFileName = (name, apiPath) => {
   if (name) return name;
-  return `${apiPath}.define.ts`;
+  return `${apiPath}/index.define.ts`;
 };
 
-const createApi = (sourceFile, outputPath, { apiDeclare, type = 'axios' }) => {
+const createApi = (sourceFile, outputPath, { apiDeclare, type = 'axios', host }) => {
   try {
     vaildFile(sourceFile);
     const result = fs.readFileSync(sourceFile, 'utf8');
-    const { templateApiCode, templateApiTs } = createApiMap(JSON.parse(result).paths, type);
-    fs.writeFileSync(`${outputPath}.ts`, prettier.format(templateApiCode));
+    const { templateApiCode, templateApiTs } = createApiMap(JSON.parse(result).paths, {
+      type,
+      host,
+    });
+    fs.writeFileSync(`${outputPath}/index.ts`, prettier.format(templateApiCode));
     compile(templateApiTs, 'Api').then((ts) => {
       fs.writeFileSync(defineFileName(apiDeclare, outputPath), ts);
     });

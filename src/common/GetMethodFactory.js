@@ -83,13 +83,9 @@ export default class GetMethodFactory {
   }
   renderParams() {
     if (['PUT', 'POST', 'PATCH'].includes(this.methods.toLocaleUpperCase())) {
-      return `
-        data: data
-      `;
+      return `data: data`;
     }
-    return `
-      params: params
-    `;
+    return `params: params`;
   }
   renderRequestTemplate(urlPre) {
     if (this.fetchType === 'axios') {

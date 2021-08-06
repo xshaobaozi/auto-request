@@ -7,10 +7,11 @@
 // apiPath(必填) api生成文件
 // apiDeclare(如果不填就生成 [api文件名]define.ts) api ts定义文件 
 const path = require('path');
-const swaggerJsonSchemaRequest = require('./../dist/bundle');
+const swaggerJsonSchemaRequest = require('swagger-json-schema-request');
 
 const source = path.join(__dirname, './api.json');
-const apiPath = path.join(__dirname, './../assets/api');
-swaggerJsonSchemaRequest(source, apiPath, {});
+const apiPath = path.join(__dirname, './../api/');
+swaggerJsonSchemaRequest(source, apiPath, {type: 'axios' , host: ''});
+
 
 ```
