@@ -1,7 +1,7 @@
 import { pascalCase, pascalCaseReplaceString, RESPONSE, PARAMS } from './utils';
 
 export default class GetMethodFactory {
-  constructor(methodInfo, methods, urlPath) {
+  constructor(methodInfo, methods, urlPath, fetchType) {
     this.methodInfo = methodInfo;
     this.methods = methods;
     const { description, consumes, tags, parameters, responses } = methodInfo;
@@ -14,6 +14,7 @@ export default class GetMethodFactory {
     this.name = name;
     this.schema = schema;
     this.url = urlPath;
+    this.fetchType = fetchType;
   }
   handleCteateParamsName(str = PARAMS) {
     return `${this.handleCreateMethodName()}${str}`;
@@ -77,6 +78,36 @@ export default class GetMethodFactory {
           ...options,
         })
       })
+    }
+    `;
+  }
+  renderParams() {
+    if (['PUT', 'POST', 'PATCH'].includes(this.methods.toLocaleUpperCase())) {
+      return `
+        data: data
+      `;
+    }
+    return `
+      params: params
+    `;
+  }
+  renderRequestTemplate(urlPre) {
+    if (this.fetchType === 'axios') {
+      return this.createAxiosRequestTemplate(urlPre);
+    }
+    return this.createTaroRequestTemplate(urlPre);
+  }
+  createAxiosRequestTemplate(urlPre = '') {
+    return `\n
+    export const ${this.handleCreateMethodName()} = <P = ${`${this.handleCteateParamsName()}`}, T = ${this.handleCteateParamsName(
+      RESPONSE
+    )}>(${this.handleCreateParams()} ):Promise<T> => {
+        return axios.request({
+          url: \`${urlPre}${this.handleGetUrl()}\`,
+          method: '${this.methods}',
+          ${this.renderParams()},
+          ...options,
+        })
     }
     `;
   }

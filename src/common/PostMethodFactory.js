@@ -1,7 +1,7 @@
 import { pascalCase, pascalCaseReplaceString, RESPONSE, PARAMS } from './utils';
 
 export default class PostMethodFactory {
-  constructor(methodInfo, methods, urlPath) {
+  constructor(methodInfo, methods, urlPath, fetchType) {
     this.methodInfo = methodInfo;
     this.methods = methods;
     const { description, consumes, tags, parameters, responses } = methodInfo;
@@ -11,6 +11,7 @@ export default class PostMethodFactory {
     this.url = urlPath;
     this.parameters = parameters;
     this.tags = tags;
+    this.fetchType = fetchType;
   }
   handleGetUrl() {
     const urlPathParams = this.parameters.filter((paramsItem) => this.parameters.in !== 'body');
@@ -49,8 +50,24 @@ export default class PostMethodFactory {
       }, '') + 'params: P, options?:any'
     );
   }
+  renderParams() {
+    if (['PUT', 'POST', 'PATCH'].includes(this.methods.toLocaleUpperCase())) {
+      return `
+        data: params
+      `
+    };
+    return `
+      params: params
+    `
+  }
   handleCreateMethodName() {
     return pascalCaseReplaceString(this.handleGetUrl()) + pascalCase(this.methods);
+  }
+  renderRequestTemplate(urlPre) {
+    if (this.fetchType === 'axios') {
+      return this.createAxiosRequestTemplate(urlPre);
+    }
+    return this.createTaroRequestTemplate(urlPre);
   }
   createTaroRequestTemplate(urlPre = '') {
     return `\n
@@ -61,12 +78,26 @@ export default class PostMethodFactory {
         Taro.request({
           url: \`${urlPre}${this.handleGetUrl()}\`,
           method: '${this.methods}',
-          data: params,
+          ${this.renderParams()},
           complete: (res: T) => {resolve(res)},
           fail: (err) => {reject(err)},
           ...options,
         })
       })
+    }
+    `;
+  }
+  createAxiosRequestTemplate(urlPre = '') {
+    return `\n
+    export const ${this.handleCreateMethodName()} = <P = ${`${this.handleCteateParamsName()}`}, T = ${this.handleCteateParamsName(
+      RESPONSE
+    )}>(${this.handleCreateParams()} ):Promise<T> => {
+        return axios.request({
+          url: \`${urlPre}${this.handleGetUrl()}\`,
+          method: '${this.methods}',
+          ${this.renderParams()},
+          ...options,
+        })
     }
     `;
   }

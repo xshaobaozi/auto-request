@@ -5,7 +5,13 @@ import prettier from 'prettier';
 import fs from 'fs';
 import { compile } from 'json-schema-to-typescript';
 
-const createApiMap = (jsonSource) => {
+const renderTemplatePre = (type) => {
+  if (type === 'taro') {
+    return `import Taro from '@tarojs/taro';`;
+  }
+  return `import axios from 'axios';`;
+};
+const createApiMap = (jsonSource, type) => {
   let apiMap = {};
   Object.keys(jsonSource).forEach((urlPath) => {
     Object.keys(jsonSource[urlPath]).forEach((method) => {
@@ -15,11 +21,11 @@ const createApiMap = (jsonSource) => {
       }
       const methodInfo = jsonSource[urlPath][method];
       if (method.toUpperCase() === 'POST') {
-        apiMap[keyName] = new PostMethodFactory(methodInfo, method, urlPath);
+        apiMap[keyName] = new PostMethodFactory(methodInfo, method, urlPath, type);
         return;
       }
       if (method.toUpperCase() !== 'POST') {
-        apiMap[keyName] = new GetMethodFactory(methodInfo, method, urlPath);
+        apiMap[keyName] = new GetMethodFactory(methodInfo, method, urlPath, type);
         return;
       }
     });
@@ -31,12 +37,12 @@ const createApiMap = (jsonSource) => {
   const importTs = `import {${importList}} from './api.define'\n`;
 
   const template = `
-    import Taro from '@tarojs/taro';
+      ${renderTemplatePre()}
     \n
     ${importTs}
   `;
   const templateApiCode = Object.values(apiMap).reduce((pre, next) => {
-    return pre + next.createTaroRequestTemplate();
+    return pre + next.renderRequestTemplate();
   }, template);
 
   const templateApiTs = Object.values(apiMap).reduce(
@@ -79,17 +85,20 @@ const defineFileName = (name, apiPath) => {
   if (name) return name;
   return `${apiPath}.define.ts`;
 };
-export default (sourceFile, { apiPath, apiDeclare }) => {
+
+const createApi = (sourceFile, outputPath, { apiDeclare, type = 'axios' }) => {
   try {
     vaildFile(sourceFile);
     const result = fs.readFileSync(sourceFile, 'utf8');
-    const { templateApiCode, templateApiTs } = createApiMap(JSON.parse(result).paths);
-    fs.writeFileSync(`${apiPath}.ts`, prettier.format(templateApiCode));
+    const { templateApiCode, templateApiTs } = createApiMap(JSON.parse(result).paths, type);
+    fs.writeFileSync(`${outputPath}.ts`, prettier.format(templateApiCode));
     compile(templateApiTs, 'Api').then((ts) => {
-      fs.writeFileSync(defineFileName(apiDeclare, apiPath), ts);
+      fs.writeFileSync(defineFileName(apiDeclare, outputPath), ts);
     });
     console.log('文件生成成功~');
   } catch (err) {
     console.log(err);
   }
 };
+
+export default createApi;
