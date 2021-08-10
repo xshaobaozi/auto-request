@@ -1,6 +1,5 @@
-import fs from 'fs';
-import camelcase from 'camelcase';
-
+import * as fs from 'fs';
+const camelcase = require('camelcase')
 import {
   SwaggerParamsTags,
   SwaggerParamsPathsMethodsParams,
@@ -98,4 +97,10 @@ export const formatProperties = (reqParams: SwaggerParamsPathsMethodsParams[] = 
     pre[next.name] = next;
     return pre;
   }, {})
+}
+export const renderTsPreImport =(prePath:string, preDefine:string) => {
+  return `import {
+    ${preDefine}
+  } from '${prePath}'; \n 
+  `
 }

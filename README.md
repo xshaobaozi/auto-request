@@ -2,6 +2,7 @@
 
 通过`yapi`的 swagger json schema 生成 Taro 或 Axios 接口
 
+非`yapi`的swagger可能会出现不兼容
 ## 配置 scripts
 
 ```json
@@ -20,9 +21,13 @@
 const path = require('path');
 const swaggerJsonSchemaRequest = require('swagger-json-schema-request');
 
-const source = path.join(__dirname, './api.json');
-const apiPath = path.join(__dirname, './../api/');
-swaggerJsonSchemaRequest(source, apiPath, { type: 'axios', host: '' });
+const source = path.join(__dirname, './example/yapi.json');
+const apiPath = path.join(__dirname, './api/');
+
+const SwaggerJsonSchemaRequest = new CreateApi(source, 'axios', {host: 'https://xxxx'});
+SwaggerJsonSchemaRequest.generateFile(apiPath);
+
+
 ```
 
 生成的文件

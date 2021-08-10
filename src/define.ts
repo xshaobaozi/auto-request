@@ -13,7 +13,18 @@ export interface SwaggerParamsPathsMethods {
     tags: string[];
     summary: string;
     description: string;
-    parameters?: SwaggerParamsPathsMethodsParams[]
+    parameters?: SwaggerParamsPathsMethodsParams[];
+    responses: {
+        [key: string]: {
+            description: string;
+            schema: {
+                type: string;
+                title: string;
+                properties: any;
+                required: string[];
+            }
+        }
+    }
 }
 export interface SwaggerParamsPaths {
     [key: string]: {
@@ -39,4 +50,30 @@ export interface apiQueueParams {
 export enum CreateApiStateType {
     AXIOS = 'axios',
     TARO = 'taro',
+}
+
+export interface RequestGetState {
+    methodName: string;
+    url: string;
+    fetchType: CreateApiStateType;
+    method: string;
+    host: string;
+    schema: SwaggerParamsPathsMethods;
+    tsReq: RequestGetRenderTs;
+    tsRes: RequestGetRenderTs;
+}
+export interface RequestGetRenderTs {
+    title: string;
+    properties: any;
+    required: string[];
+}
+export interface RequestPostState {
+    methodName: string;
+    url: string;
+    fetchType: CreateApiStateType;
+    method: string;
+    host: string;
+    schema: SwaggerParamsPathsMethods;
+    tsReq: RequestGetRenderTs;
+    tsRes: RequestGetRenderTs;
 }

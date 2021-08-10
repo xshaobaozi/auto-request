@@ -1,7 +1,7 @@
-import fs from 'fs';
-import prettier from 'prettier';
+import * as fs from 'fs';
+import * as prettier from 'prettier';
 import { compile } from 'json-schema-to-typescript';
-import { readFileSync, analysiAxiosRules, analysiYapiRules, rendeFetchPre } from './utils';
+import { readFileSync, analysiAxiosRules, analysiYapiRules, rendeFetchPre, renderTsPreImport } from './utils';
 import RequestGet from './common/requestGet';
 import RequestPost from './common/requestPost';
 import {
@@ -34,6 +34,10 @@ class CreateApi {
       resultQueue: [],
     };
     this.state.inputStream = readFileSync(this.state.input);
+    this.state.options.host = this.state.options.host ?
+      this.state.options.host :
+      JSON.parse(this.state.inputStream).host || '';
+    console.log(`=====host:[${this.state.options.host}]=====\n`)
     this.state.methodsQueue = this.analysiRules(this.state.inputStream);
     this.state.resultQueue = this.generateMethod(this.state.methodsQueue);
 
@@ -43,9 +47,9 @@ class CreateApi {
     return queue.map(({ method, url, schema }) => {
       const isPost = ['post'].includes(method);
       if (isPost) {
-        return new RequestPost(method, url, schema, this.state.fetchType);
+        return new RequestPost(method, url, schema, this.state.fetchType, this.state.options.host);
       }
-      return new RequestGet(method, url, schema, this.state.fetchType);
+      return new RequestGet(method, url, schema, this.state.fetchType, this.state.options.host);
     })
   }
   // 解析规则
@@ -70,31 +74,41 @@ class CreateApi {
       type: 'object',
       properties: {},
       definitions: {},
+      preDefine: ''
     };
     return this.state.resultQueue.reduce(
       (pre, next) => {
-        const schema = next.renderTsDefine();
-        const title = schema.title;
-        // const prototypeNameRes = next.handleCteateParamsName('RESPONSE');
-        pre['properties'][title] = {
-          $ref: `#/definitions/${title}`,
+        const req = next.renderTsDefineReq();
+        const res = next.renderTsDefineRes();
+        const titleReq = req.title;
+        const titleRes = res.title;
+        pre['properties'][titleReq] = {
+          $ref: `#/definitions/${titleReq}`,
         };
-        // pre['properties'][prototypeNameRes] = {
-        //   $ref: `#/definitions/${prototypeNameRes}`,
-        // };
-        pre['definitions'][title] = schema;
-        // pre['definitions'][prototypeNameRes] = next.handleGetResponse();
+        pre['properties'][titleRes] = {
+          $ref: `#/definitions/${titleRes}`,
+        };
+     
+        pre['definitions'][titleReq] = req;
+        pre['definitions'][titleRes] = res;
+        pre.preDefine = pre.preDefine + `${titleReq},${titleRes},`
         return pre;
       }, init)
   }
   // 生成接口
   generateFile(outputPath = '') {
-    const apiStream = rendeFetchPre(this.state.fetchType) + this.handleRenderApiFile();
-
-    fs.writeFileSync(`${outputPath}/index.ts`, prettier.format(apiStream));
     const apiDefineStream = this.handleRenderApiTsFile();
+    const tsDefine = apiDefineStream.preDefine;
+    delete apiDefineStream.preDefine;
+    const definePath = './index.define';
+    const tsPreDefineStream = renderTsPreImport(definePath, tsDefine);
+
+    const apiStream = rendeFetchPre(this.state.fetchType) + tsPreDefineStream + this.handleRenderApiFile();
+
+    fs.writeFileSync(`${outputPath}/index.ts`, prettier.format(apiStream, { semi: false, parser: "typescript" }));
+
     compile(apiDefineStream, 'Api').then((ts) => {
-      fs.writeFileSync(outputPath + '/index.define.ts', ts);
+      fs.writeFileSync(outputPath + `${definePath}.ts`, ts);
     });
     console.log('文件生成成功~');
   }
