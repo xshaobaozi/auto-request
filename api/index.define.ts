@@ -5,751 +5,819 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
+/**
+ * 字典项目列表
+ */
+export type DictsDictIditemsGetResponse = {
+  /**
+   * 字典项目标识
+   */
+  id?: number;
+  /**
+   * 字典标识
+   */
+  dictId?: number;
+  /**
+   * 编码
+   */
+  code?: string;
+  /**
+   * 类型
+   */
+  type?: string;
+  /**
+   * 名称
+   */
+  text?: string;
+  /**
+   * 有效范围
+   */
+  scope?: string;
+  /**
+   * 排号
+   */
+  rank?: number;
+  /**
+   * 状态
+   */
+  status?: number;
+  /**
+   * 父亲
+   */
+  parent?: number;
+  /**
+   * 祖先
+   */
+  ancestors?: string;
+  /**
+   * 深度
+   */
+  depth?: number;
+  /**
+   * 叶子
+   */
+  terminal?: boolean;
+  /**
+   * 删除？
+   */
+  deteled?: boolean;
+  [k: string]: unknown;
+}[];
+export type DictsDictCodeitemsByCodeGetResponse = {
+  /**
+   * 字典项目标识
+   */
+  id?: number;
+  /**
+   * 字典标识
+   */
+  dictId?: number;
+  /**
+   * 编码
+   */
+  code?: string;
+  /**
+   * 类型
+   */
+  type?: string;
+  /**
+   * 名称
+   */
+  text?: string;
+  /**
+   * 有效范围
+   */
+  scope?: string;
+  /**
+   * 排号
+   */
+  rank?: number;
+  /**
+   * 状态
+   */
+  status?: number;
+  /**
+   * 父亲
+   */
+  parent?: number;
+  /**
+   * 祖先
+   */
+  ancestors?: string;
+  /**
+   * 深度
+   */
+  depth?: number;
+  /**
+   * 叶子
+   */
+  terminal?: boolean;
+  /**
+   * 删除
+   */
+  deleted?: boolean;
+  [k: string]: unknown;
+}[];
+/**
+ * 字典列表
+ */
+export type DictsGetResponse = {
+  /**
+   * 标识
+   */
+  id: number;
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  text: string;
+  /**
+   * 描述
+   */
+  description: string;
+  /**
+   * 状态
+   */
+  status: number;
+  /**
+   * 删除？
+   */
+  deleted: boolean;
+  [k: string]: unknown;
+}[];
+
 export interface Api {
-  Cmsapiv1ActioncategorymenuGetRequset?: Cmsapiv1ActioncategorymenuGetRequset;
-  Cmsapiv1ActioncategorymenuGetResponse?: Cmsapiv1ActioncategorymenuGetResponse;
-  Cmsapiv1ActionGetRequset?: Cmsapiv1ActionGetRequset;
-  Cmsapiv1ActionGetResponse?: Cmsapiv1ActionGetResponse;
-  Cmsapiv1ActionPutRequset?: Cmsapiv1ActionPutRequset;
-  Cmsapiv1ActionPutResponse?: Cmsapiv1ActionPutResponse;
-  Cmsapiv1ActionPostRequset?: Cmsapiv1ActionPostRequset;
-  Cmsapiv1ActionPostResponse?: Cmsapiv1ActionPostResponse;
-  Cmsapiv1ActionenablePutRequset?: Cmsapiv1ActionenablePutRequset;
-  Cmsapiv1ActionenablePutResponse?: Cmsapiv1ActionenablePutResponse;
-  Cmsapiv1ActionIdGetRequset?: Cmsapiv1ActionIdGetRequset;
-  Cmsapiv1ActionIdGetResponse?: Cmsapiv1ActionIdGetResponse;
-  Cmsapiv1ActionIdDeleteRequset?: Cmsapiv1ActionIdDeleteRequset;
-  Cmsapiv1ActionIdDeleteResponse?: Cmsapiv1ActionIdDeleteResponse;
-  Cmsapiv1ArticleGetRequset?: Cmsapiv1ArticleGetRequset;
-  Cmsapiv1ArticleGetResponse?: Cmsapiv1ArticleGetResponse;
-  Cmsapiv1ArticlePutRequset?: Cmsapiv1ArticlePutRequset;
-  Cmsapiv1ArticlePutResponse?: Cmsapiv1ArticlePutResponse;
-  Cmsapiv1ArticlePostRequset?: Cmsapiv1ArticlePostRequset;
-  Cmsapiv1ArticlePostResponse?: Cmsapiv1ArticlePostResponse;
-  Cmsapiv1ArticleenablePutRequset?: Cmsapiv1ArticleenablePutRequset;
-  Cmsapiv1ArticleenablePutResponse?: Cmsapiv1ArticleenablePutResponse;
-  Cmsapiv1ArticlemarkGetRequset?: Cmsapiv1ArticlemarkGetRequset;
-  Cmsapiv1ArticlemarkGetResponse?: Cmsapiv1ArticlemarkGetResponse;
-  Cmsapiv1ArticleIdGetRequset?: Cmsapiv1ArticleIdGetRequset;
-  Cmsapiv1ArticleIdGetResponse?: Cmsapiv1ArticleIdGetResponse;
-  Cmsapiv1ArticleIdDeleteRequset?: Cmsapiv1ArticleIdDeleteRequset;
-  Cmsapiv1ArticleIdDeleteResponse?: Cmsapiv1ArticleIdDeleteResponse;
-  Cmsapiv1EquipmentmenuGetRequset?: Cmsapiv1EquipmentmenuGetRequset;
-  Cmsapiv1EquipmentmenuGetResponse?: Cmsapiv1EquipmentmenuGetResponse;
-  Cmsapiv1SitemenuGetRequset?: Cmsapiv1SitemenuGetRequset;
-  Cmsapiv1SitemenuGetResponse?: Cmsapiv1SitemenuGetResponse;
-  Configapiv1ApplicationsGetRequset?: Configapiv1ApplicationsGetRequset;
-  Configapiv1ApplicationsGetResponse?: Configapiv1ApplicationsGetResponse;
-  Configapiv1ApplicationsPostRequset?: Configapiv1ApplicationsPostRequset;
-  Configapiv1ApplicationsPostResponse?: Configapiv1ApplicationsPostResponse;
-  Configapiv1ApplicationsIdPutRequset?: Configapiv1ApplicationsIdPutRequset;
-  Configapiv1ApplicationsIdPutResponse?: Configapiv1ApplicationsIdPutResponse;
-  Configapiv1ApplicationsIdDeleteRequset?: Configapiv1ApplicationsIdDeleteRequset;
-  Configapiv1ApplicationsIdDeleteResponse?: Configapiv1ApplicationsIdDeleteResponse;
-  Configapiv1ProjectCodeAppCodePropertiesCodeI18NGetRequset?: Configapiv1ProjectCodeAppCodePropertiesCodeI18NGetRequset;
-  Configapiv1ProjectCodeAppCodePropertiesCodeI18NGetResponse?: Configapiv1ProjectCodeAppCodePropertiesCodeI18NGetResponse;
-  Configapiv1ProjectsGetRequset?: Configapiv1ProjectsGetRequset;
-  Configapiv1ProjectsGetResponse?: Configapiv1ProjectsGetResponse;
-  Configapiv1ProjectsPostRequset?: Configapiv1ProjectsPostRequset;
-  Configapiv1ProjectsPostResponse?: Configapiv1ProjectsPostResponse;
-  Configapiv1ProjectsIdPutRequset?: Configapiv1ProjectsIdPutRequset;
-  Configapiv1ProjectsIdPutResponse?: Configapiv1ProjectsIdPutResponse;
-  Configapiv1ProjectsIdDeleteRequset?: Configapiv1ProjectsIdDeleteRequset;
-  Configapiv1ProjectsIdDeleteResponse?: Configapiv1ProjectsIdDeleteResponse;
-  Configapiv1PropertiesGetRequset?: Configapiv1PropertiesGetRequset;
-  Configapiv1PropertiesGetResponse?: Configapiv1PropertiesGetResponse;
-  Configapiv1PropertiesPostRequset?: Configapiv1PropertiesPostRequset;
-  Configapiv1PropertiesPostResponse?: Configapiv1PropertiesPostResponse;
-  Configapiv1Propertiesi18NGetRequset?: Configapiv1Propertiesi18NGetRequset;
-  Configapiv1Propertiesi18NGetResponse?: Configapiv1Propertiesi18NGetResponse;
-  Configapiv1Propertiesi18NPostRequset?: Configapiv1Propertiesi18NPostRequset;
-  Configapiv1Propertiesi18NPostResponse?: Configapiv1Propertiesi18NPostResponse;
-  Configapiv1Propertiesi18NIdPutRequset?: Configapiv1Propertiesi18NIdPutRequset;
-  Configapiv1Propertiesi18NIdPutResponse?: Configapiv1Propertiesi18NIdPutResponse;
-  Configapiv1Propertiesi18NIdDeleteRequset?: Configapiv1Propertiesi18NIdDeleteRequset;
-  Configapiv1Propertiesi18NIdDeleteResponse?: Configapiv1Propertiesi18NIdDeleteResponse;
-  Configapiv1PropertiesIdPutRequset?: Configapiv1PropertiesIdPutRequset;
-  Configapiv1PropertiesIdPutResponse?: Configapiv1PropertiesIdPutResponse;
-  Configapiv1PropertiesIdDeleteRequset?: Configapiv1PropertiesIdDeleteRequset;
-  Configapiv1PropertiesIdDeleteResponse?: Configapiv1PropertiesIdDeleteResponse;
-  Cmsapiv1DifficultylevelmenuGetRequset?: Cmsapiv1DifficultylevelmenuGetRequset;
-  Cmsapiv1DifficultylevelmenuGetResponse?: Cmsapiv1DifficultylevelmenuGetResponse;
-  UnauthloginPostRequset?: UnauthloginPostRequset;
-  UnauthloginPostResponse?: UnauthloginPostResponse;
-  UnauthpictureCaptchaGetRequset?: UnauthpictureCaptchaGetRequset;
-  UnauthpictureCaptchaGetResponse?: UnauthpictureCaptchaGetResponse;
-  Cmsapiv1CoursecategoryGetRequset?: Cmsapiv1CoursecategoryGetRequset;
-  Cmsapiv1CoursecategoryGetResponse?: Cmsapiv1CoursecategoryGetResponse;
-  Cmsapiv1CoursecategoryPutRequset?: Cmsapiv1CoursecategoryPutRequset;
-  Cmsapiv1CoursecategoryPutResponse?: Cmsapiv1CoursecategoryPutResponse;
-  Cmsapiv1CoursecategoryPostRequset?: Cmsapiv1CoursecategoryPostRequset;
-  Cmsapiv1CoursecategoryPostResponse?: Cmsapiv1CoursecategoryPostResponse;
-  Cmsapiv1CoursecategoryenablePutRequset?: Cmsapiv1CoursecategoryenablePutRequset;
-  Cmsapiv1CoursecategoryenablePutResponse?: Cmsapiv1CoursecategoryenablePutResponse;
-  Cmsapiv1CoursecategorymenuGetRequset?: Cmsapiv1CoursecategorymenuGetRequset;
-  Cmsapiv1CoursecategorymenuGetResponse?: Cmsapiv1CoursecategorymenuGetResponse;
-  Cmsapiv1CoursecategoryIdGetRequset?: Cmsapiv1CoursecategoryIdGetRequset;
-  Cmsapiv1CoursecategoryIdGetResponse?: Cmsapiv1CoursecategoryIdGetResponse;
-  Cmsapiv1CoursecategoryIdDeleteRequset?: Cmsapiv1CoursecategoryIdDeleteRequset;
-  Cmsapiv1CoursecategoryIdDeleteResponse?: Cmsapiv1CoursecategoryIdDeleteResponse;
-  Cmsapiv1CourseGetRequset?: Cmsapiv1CourseGetRequset;
-  Cmsapiv1CourseGetResponse?: Cmsapiv1CourseGetResponse;
-  Cmsapiv1CoursePutRequset?: Cmsapiv1CoursePutRequset;
-  Cmsapiv1CoursePutResponse?: Cmsapiv1CoursePutResponse;
-  Cmsapiv1CoursePostRequset?: Cmsapiv1CoursePostRequset;
-  Cmsapiv1CoursePostResponse?: Cmsapiv1CoursePostResponse;
-  Cmsapiv1CourseenablePutRequset?: Cmsapiv1CourseenablePutRequset;
-  Cmsapiv1CourseenablePutResponse?: Cmsapiv1CourseenablePutResponse;
-  Cmsapiv1CourseIdGetRequset?: Cmsapiv1CourseIdGetRequset;
-  Cmsapiv1CourseIdGetResponse?: Cmsapiv1CourseIdGetResponse;
-  Cmsapiv1CourseIdDeleteRequset?: Cmsapiv1CourseIdDeleteRequset;
-  Cmsapiv1CourseIdDeleteResponse?: Cmsapiv1CourseIdDeleteResponse;
-  Cmsapiv1CoursesourcemenuGetRequset?: Cmsapiv1CoursesourcemenuGetRequset;
-  Cmsapiv1CoursesourcemenuGetResponse?: Cmsapiv1CoursesourcemenuGetResponse;
-  Cmsapiv1TrainplanGetRequset?: Cmsapiv1TrainplanGetRequset;
-  Cmsapiv1TrainplanGetResponse?: Cmsapiv1TrainplanGetResponse;
-  Cmsapiv1TrainplanPutRequset?: Cmsapiv1TrainplanPutRequset;
-  Cmsapiv1TrainplanPutResponse?: Cmsapiv1TrainplanPutResponse;
-  Cmsapiv1TrainplanPostRequset?: Cmsapiv1TrainplanPostRequset;
-  Cmsapiv1TrainplanPostResponse?: Cmsapiv1TrainplanPostResponse;
-  Cmsapiv1TrainplanenablePutRequset?: Cmsapiv1TrainplanenablePutRequset;
-  Cmsapiv1TrainplanenablePutResponse?: Cmsapiv1TrainplanenablePutResponse;
-  Cmsapiv1TrainplanIdGetRequset?: Cmsapiv1TrainplanIdGetRequset;
-  Cmsapiv1TrainplanIdGetResponse?: Cmsapiv1TrainplanIdGetResponse;
-  Cmsapiv1TrainplanIdDeleteRequset?: Cmsapiv1TrainplanIdDeleteRequset;
-  Cmsapiv1TrainplanIdDeleteResponse?: Cmsapiv1TrainplanIdDeleteResponse;
-  Cmsapiv1ResourcesGetRequset?: Cmsapiv1ResourcesGetRequset;
-  Cmsapiv1ResourcesGetResponse?: Cmsapiv1ResourcesGetResponse;
-  Cmsapiv1ResourcesPutRequset?: Cmsapiv1ResourcesPutRequset;
-  Cmsapiv1ResourcesPutResponse?: Cmsapiv1ResourcesPutResponse;
-  Cmsapiv1ResourcesPostRequset?: Cmsapiv1ResourcesPostRequset;
-  Cmsapiv1ResourcesPostResponse?: Cmsapiv1ResourcesPostResponse;
-  Cmsapiv1ResourcesIdGetRequset?: Cmsapiv1ResourcesIdGetRequset;
-  Cmsapiv1ResourcesIdGetResponse?: Cmsapiv1ResourcesIdGetResponse;
-  Cmsapiv1ResourcesIdDeleteRequset?: Cmsapiv1ResourcesIdDeleteRequset;
-  Cmsapiv1ResourcesIdDeleteResponse?: Cmsapiv1ResourcesIdDeleteResponse;
-  Cmsapiv1ResourcesdescriptionGetRequset?: Cmsapiv1ResourcesdescriptionGetRequset;
-  Cmsapiv1ResourcesdescriptionGetResponse?: Cmsapiv1ResourcesdescriptionGetResponse;
-  [k: string]: unknown;
+  ShopvisitstatisticsGetRequset?: ShopvisitstatisticsGetRequset;
+  ShopvisitstatisticsGetResponse?: ShopvisitstatisticsGetResponse;
+  ShopvisitdetialsUserIdAsPageGetRequset?: ShopvisitdetialsUserIdAsPageGetRequset;
+  ShopvisitdetialsUserIdAsPageGetResponse?: ShopvisitdetialsUserIdAsPageGetResponse;
+  ShopsGetRequset?: ShopsGetRequset;
+  ShopsGetResponse?: ShopsGetResponse;
+  ShopsAsPageGetRequset?: ShopsAsPageGetRequset;
+  ShopsAsPageGetResponse?: ShopsAsPageGetResponse;
+  ShopsIdGetRequset?: ShopsIdGetRequset;
+  ShopsIdGetResponse?: ShopsIdGetResponse;
+  ShopsalesstatisticsShopIdGetRequset?: ShopsalesstatisticsShopIdGetRequset;
+  ShopsalesstatisticsShopIdGetResponse?: ShopsalesstatisticsShopIdGetResponse;
+  DictsDictIditemsGetRequset?: DictsDictIditemsGetRequset;
+  DictsDictIditemsGetResponse?: DictsDictIditemsGetResponse;
+  DictsDictCodeitemsByCodeGetRequset?: DictsDictCodeitemsByCodeGetRequset;
+  DictsDictCodeitemsByCodeGetResponse?: DictsDictCodeitemsByCodeGetResponse;
+  DictsGetRequset?: DictsGetRequset;
+  DictsGetResponse?: DictsGetResponse;
+  DivisionsIdGetRequset?: DivisionsIdGetRequset;
+  DivisionsIdGetResponse?: DivisionsIdGetResponse;
+  DivisionsGetRequset?: DivisionsGetRequset;
+  DivisionsGetResponse?: DivisionsGetResponse;
 }
-export interface Cmsapiv1ActioncategorymenuGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActioncategorymenuGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionGetRequset {
+export interface ShopvisitstatisticsGetRequset {
   /**
-   * 排序顺序-默认值：DESC，可选值DESC/ASC
+   * 年
    */
-  by?: {
+  year: string;
+  /**
+   * 月
+   */
+  month: string;
+  /**
+   * 事业部ID
+   */
+  businessUnitId?: string;
+  /**
+   * 销售大区ID
+   */
+  salesAreaId?: string;
+  /**
+   * 销售省区ID
+   */
+  salesDeptId?: string;
+  /**
+   * 销售城市群ID
+   */
+  salesGroupId?: string;
+  /**
+   * 销售区县ID
+   */
+  salesOfficeId?: string;
+}
+export interface ShopvisitstatisticsGetResponse {
+  /**
+   * 年
+   */
+  year: number;
+  /**
+   * 月
+   */
+  month: number;
+  /**
+   * 组织ID
+   */
+  orgId: number;
+  /**
+   * 组织名称
+   */
+  orgName: string;
+  /**
+   * 组织类型
+   */
+  orgType: number;
+  /**
+   * 子组织
+   */
+  subOrg: {
     [k: string]: unknown;
   };
   /**
-   * 资源名称关键字-根据资源名称进行右模糊匹配查询
+   * 当前组织的拜访统计列表
    */
-  keyword?: {
+  statisticsList: {
+    /**
+     * 销售区县ID
+     */
+    salesOfficeId: number;
+    /**
+     * 销售区县
+     */
+    salesOfficeName: string;
+    /**
+     * 用户ID
+     */
+    userId: number;
+    /**
+     * 用户名称
+     */
+    userName: string;
+    /**
+     * 计划拜访次数
+     */
+    visitNumber: number;
+    /**
+     * 实际拜访次数
+     */
+    actualVisitNumber: number;
+    /**
+     * 本月达成率
+     */
+    finishPercent: string;
     [k: string]: unknown;
-  };
+  }[];
+}
+export interface ShopvisitdetialsUserIdAsPageGetRequset {
   /**
-   * 当前页-默认值：1，最小值：1
+   * 年
    */
-  page?: {
-    [k: string]: unknown;
-  };
+  year: string;
   /**
-   * 每页显示记录数-默认值：10，最小值：0，最大值：200
+   * 月
    */
-  pageSize?: {
-    [k: string]: unknown;
-  };
+  month: string;
+}
+export interface ShopvisitdetialsUserIdAsPageGetResponse {
   /**
-   * 排序字段-默认值：updateTime，排序字段属性名：actionName/state/updateTime/mainTrainSiteName
+   * 每页数量
    */
-  sort?: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionPutRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionPutResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionPostRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionPostResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionenablePutRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionenablePutResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionIdGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionIdGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionIdDeleteRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ActionIdDeleteResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticleGetRequset {
+  size: number;
   /**
-   * 排序顺序-默认值：DESC，可选值DESC/ASC
+   * 当前页码
    */
-  by?: {
-    [k: string]: unknown;
-  };
+  current: number;
   /**
-   * 文章名称/文章标识关键字-根据资源名称进行右模糊匹配查询
+   * 总页数
    */
-  keyword?: {
-    [k: string]: unknown;
-  };
+  pages: number;
   /**
-   * 当前页-默认值：1，最小值：1
+   * 总数量
    */
-  page?: {
-    [k: string]: unknown;
-  };
+  total: number;
   /**
-   * 每页显示记录数-默认值：10，最小值：0，最大值：200
+   * 字典列表
    */
-  pageSize?: {
+  records: {
+    /**
+     * 用户ID
+     */
+    userId: number;
+    /**
+     * 门店ID
+     */
+    shopId: number;
+    /**
+     * 门店编码
+     */
+    shopCode: string;
+    /**
+     * 门店名称
+     */
+    shaopName: string;
+    /**
+     * 拜访日期
+     */
+    visitDate: string;
+    /**
+     * 拜访时间
+     */
+    startTime: string;
+    /**
+     * 离店时间
+     */
+    endTime: string;
     [k: string]: unknown;
-  };
+  }[];
+}
+export interface ShopsGetRequset {
   /**
-   * 排序字段-默认值：updateTime，排序字段属性名：articleDescribe/articleName/articleMark/state/updateTime
+   * 城市ID
    */
-  sort?: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticleGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticlePutRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticlePutResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticlePostRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticlePostResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticleenablePutRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticleenablePutResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticlemarkGetRequset {
+  cityCode: string;
   /**
-   * articleMark
+   * 区县ID
    */
-  articleMark: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticlemarkGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticleIdGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticleIdGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticleIdDeleteRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ArticleIdDeleteResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1EquipmentmenuGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1EquipmentmenuGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1SitemenuGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1SitemenuGetResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1ApplicationsGetRequset {
+  countyCode: string;
   /**
-   * projectId
+   * 门店名称
    */
-  projectId: {
-    [k: string]: unknown;
-  };
+  name?: string;
+}
+export interface ShopsGetResponse {
   /**
-   * page
+   * 门店ID
    */
-  page: {
-    [k: string]: unknown;
-  };
+  id: number;
   /**
-   * size
+   * 门店编码
    */
-  size: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
-}
-export interface Configapiv1ApplicationsGetResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1ApplicationsPostRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1ApplicationsPostResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1ApplicationsIdPutRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1ApplicationsIdPutResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1ApplicationsIdDeleteRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1ApplicationsIdDeleteResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1ProjectCodeAppCodePropertiesCodeI18NGetRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1ProjectCodeAppCodePropertiesCodeI18NGetResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1ProjectsGetRequset {
+  code: string;
   /**
-   * page
+   * 门店名称
    */
-  page: {
-    [k: string]: unknown;
-  };
+  name: string;
   /**
-   * size
+   * 是否直营
    */
-  size: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
-}
-export interface Configapiv1ProjectsGetResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1ProjectsPostRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1ProjectsPostResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1ProjectsIdPutRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1ProjectsIdPutResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1ProjectsIdDeleteRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1ProjectsIdDeleteResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1PropertiesGetRequset {
-  applicationCode?: {
-    [k: string]: unknown;
-  };
-  code?: {
-    [k: string]: unknown;
-  };
-  page: {
-    [k: string]: unknown;
-  };
-  projectCode?: {
-    [k: string]: unknown;
-  };
-  size: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
-}
-export interface Configapiv1PropertiesGetResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1PropertiesPostRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1PropertiesPostResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1Propertiesi18NGetRequset {
+  direct: boolean;
   /**
-   * 国际语言
+   * 类别
    */
-  i18n?: {
-    [k: string]: unknown;
-  };
+  category: string;
   /**
-   * 配置ID
+   * 省Id
    */
-  propertiesId?: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
-}
-export interface Configapiv1Propertiesi18NGetResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1Propertiesi18NPostRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1Propertiesi18NPostResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1Propertiesi18NIdPutRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1Propertiesi18NIdPutResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1Propertiesi18NIdDeleteRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1Propertiesi18NIdDeleteResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1PropertiesIdPutRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1PropertiesIdPutResponse {
-  [k: string]: unknown;
-}
-export interface Configapiv1PropertiesIdDeleteRequset {
-  [k: string]: unknown;
-}
-export interface Configapiv1PropertiesIdDeleteResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1DifficultylevelmenuGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1DifficultylevelmenuGetResponse {
-  [k: string]: unknown;
-}
-export interface UnauthloginPostRequset {
-  [k: string]: unknown;
-}
-export interface UnauthloginPostResponse {
-  [k: string]: unknown;
-}
-export interface UnauthpictureCaptchaGetRequset {
-  [k: string]: unknown;
-}
-export interface UnauthpictureCaptchaGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryGetRequset {
+  provinceId: number;
   /**
-   * 排序顺序-默认值：DESC，可选值DESC/ASC
+   * 省
    */
-  by?: {
-    [k: string]: unknown;
-  };
+  province: string;
   /**
-   * 当前页-默认值：1，最小值：1
+   * 城市ID
    */
-  page?: {
-    [k: string]: unknown;
-  };
+  cityId: number;
   /**
-   * 每页显示记录数-默认值：10，最小值：0，最大值：200
+   * 城市
    */
-  pageSize?: {
-    [k: string]: unknown;
-  };
+  city: string;
   /**
-   * 排序字段-默认值：updateTime，排序字段属性名：name/sortOn/updateTime
+   * 区县ID
    */
-  sort?: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryPutRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryPutResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryPostRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryPostResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryenablePutRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryenablePutResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategorymenuGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategorymenuGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryIdGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryIdGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryIdDeleteRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursecategoryIdDeleteResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CourseGetRequset {
+  countyId: number;
   /**
-   * 排序顺序-默认值：DESC，可选值DESC/ASC
+   * 区县
    */
-  by?: {
-    [k: string]: unknown;
-  };
+  county: string;
   /**
-   * 课程分类主键
+   * 详细地址
    */
-  courseCategoryId?: {
-    [k: string]: unknown;
-  };
+  address: string;
   /**
-   * 课程名称搜索关键字
+   * 经度
    */
-  keyword?: {
-    [k: string]: unknown;
-  };
+  lng: number;
   /**
-   * 当前页-默认值：1，最小值：1
+   * 纬度
    */
-  page?: {
-    [k: string]: unknown;
-  };
+  lat: number;
   /**
-   * 每页显示记录数-默认值：10，最小值：0，最大值：200
+   * 联系人
    */
-  pageSize?: {
-    [k: string]: unknown;
-  };
+  contact: string;
   /**
-   * 排序字段-默认值：updateTime，排序字段属性名：level/duration/updateTime/state
+   * 联系人手机
    */
-  sort?: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CourseGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursePutRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursePutResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursePostRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursePostResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CourseenablePutRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CourseenablePutResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CourseIdGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CourseIdGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CourseIdDeleteRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CourseIdDeleteResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursesourcemenuGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1CoursesourcemenuGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanGetRequset {
+  mobile: string;
   /**
-   * 排序顺序-默认值：DESC，可选值DESC/ASC
+   * 联系人座机
    */
-  by?: {
-    [k: string]: unknown;
-  };
+  phone: string;
   /**
-   * 名称关键字-根据资源名称进行右模糊匹配查询
+   * 描述
    */
-  keyword?: {
-    [k: string]: unknown;
-  };
+  description: string;
   /**
-   * 当前页-默认值：1，最小值：1
+   * 状态
    */
-  page?: {
-    [k: string]: unknown;
-  };
+  status: 10 | 20;
+}
+export interface ShopsAsPageGetRequset {
   /**
-   * 每页显示记录数-默认值：10，最小值：0，最大值：200
+   * 城市ID
    */
-  pageSize?: {
-    [k: string]: unknown;
-  };
+  cityCode: string;
   /**
-   * 排序字段-默认值：updateTime，排序字段属性名：trainPlanName/courseCount/sortOn/state/updateTime
+   * 区县ID
    */
-  sort?: {
-    [k: string]: unknown;
-  };
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanPutRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanPutResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanPostRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanPostResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanenablePutRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanenablePutResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanIdGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanIdGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanIdDeleteRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1TrainplanIdDeleteResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ResourcesGetRequset {
+  countyCode: string;
   /**
-   * 排序顺序-默认值：DESC，可选值DESC/ASC
+   * 门店名称
    */
-  by?: {
-    [k: string]: unknown;
-  };
+  name?: string;
   /**
-   * 资源名称关键字-根据资源名称进行右模糊匹配查询
+   * 当前页码
    */
-  keyword?: {
-    [k: string]: unknown;
-  };
+  current: string;
   /**
-   * 当前页-默认值：1，最小值：1
+   * 每页数量
    */
-  page?: {
-    [k: string]: unknown;
-  };
+  size: string;
+}
+export interface ShopsAsPageGetResponse {
   /**
-   * 每页显示记录数-默认值：10，最小值：0，最大值：200
+   * 每页数量
    */
-  pageSize?: {
-    [k: string]: unknown;
-  };
+  size: number;
   /**
-   * 资源类型-视频/图片/其他
+   * 当前页码
    */
-  resourceType?: {
-    [k: string]: unknown;
-  };
+  current: number;
   /**
-   * 排序字段-默认值：updateTime，排序字段属性名：resourceName/videoTimeLong/resourceType/updateTime
+   * 总页数
    */
-  sort?: {
+  pages: number;
+  /**
+   * 总数量
+   */
+  total: number;
+  /**
+   * 门店列表
+   */
+  records: {
+    /**
+     * 门店ID
+     */
+    id: number;
+    /**
+     * 门店编码
+     */
+    code: string;
+    /**
+     * 门店名称
+     */
+    name: string;
+    /**
+     * 是否直营
+     */
+    direct: boolean;
+    /**
+     * 类别
+     */
+    category: string;
+    /**
+     * 省Id
+     */
+    provinceId: number;
+    /**
+     * 省
+     */
+    province: string;
+    /**
+     * 城市ID
+     */
+    cityId: number;
+    /**
+     * 城市
+     */
+    city: string;
+    /**
+     * 区县ID
+     */
+    countyId: number;
+    /**
+     * 区县
+     */
+    county: string;
+    /**
+     * 详细地址
+     */
+    address: string;
+    /**
+     * 经度
+     */
+    lng: number;
+    /**
+     * 纬度
+     */
+    lat: number;
+    /**
+     * 联系人
+     */
+    contact: string;
+    /**
+     * 联系人手机
+     */
+    mobile: string;
+    /**
+     * 联系人座机
+     */
+    phone: string;
+    /**
+     * 描述
+     */
+    description: string;
+    /**
+     * 状态
+     */
+    status: number;
     [k: string]: unknown;
-  };
-  [k: string]: unknown;
+  }[];
 }
-export interface Cmsapiv1ResourcesGetResponse {
-  [k: string]: unknown;
+export interface ShopsIdGetRequset {}
+export interface ShopsIdGetResponse {
+  /**
+   * 门店ID
+   */
+  id: number;
+  /**
+   * 门店名称
+   */
+  name: string;
+  /**
+   * 是否直营
+   */
+  direct: boolean;
+  /**
+   * 类别
+   */
+  category: string;
+  /**
+   * 省Id
+   */
+  provinceId: number;
+  /**
+   * 省
+   */
+  province: string;
+  /**
+   * 城市ID
+   */
+  cityId: number;
+  /**
+   * 城市
+   */
+  city: string;
+  /**
+   * 区县ID
+   */
+  countyId: number;
+  /**
+   * 区县
+   */
+  county: string;
+  /**
+   * 详细地址
+   */
+  address: string;
+  /**
+   * 经度
+   */
+  lng: number;
+  /**
+   * 纬度
+   */
+  lat: number;
+  /**
+   * 联系人
+   */
+  contact: string;
+  /**
+   * 联系人手机
+   */
+  mobile: string;
+  /**
+   * 联系人座机
+   */
+  phone: string;
+  /**
+   * 描述
+   */
+  description: string;
+  /**
+   * 状态
+   */
+  status: number;
+  /**
+   * 销售通路
+   */
+  saleOrgPath: string;
+  /**
+   * 经销商ID
+   */
+  dealerId: number;
+  /**
+   * 经销商编码
+   */
+  dealerCode: string;
+  /**
+   * 经销商名称
+   */
+  dealerName: string;
 }
-export interface Cmsapiv1ResourcesPutRequset {
-  [k: string]: unknown;
+export interface ShopsalesstatisticsShopIdGetRequset {
+  /**
+   * 年
+   */
+  year: string;
+  /**
+   * 月
+   */
+  month: string;
 }
-export interface Cmsapiv1ResourcesPutResponse {
-  [k: string]: unknown;
+export interface ShopsalesstatisticsShopIdGetResponse {
+  /**
+   * 门店ID
+   */
+  shopId: number;
+  /**
+   * 年
+   */
+  year: number;
+  /**
+   * 月
+   */
+  month: number;
+  /**
+   * 当月入库数量
+   */
+  inStock: number;
+  /**
+   * 销量
+   */
+  saleNum: number;
+  /**
+   * 提成
+   */
+  rebateAmount: number;
+  /**
+   * 会员数
+   */
+  memberNum: number;
+  /**
+   * 新客数
+   */
+  newMemberNum: number;
+  /**
+   * 拓客数
+   */
+  customerNum: number;
 }
-export interface Cmsapiv1ResourcesPostRequset {
-  [k: string]: unknown;
+export interface DictsDictIditemsGetRequset {}
+export interface DictsDictCodeitemsByCodeGetRequset {}
+export interface DictsGetRequset {
+  /**
+   * 编码
+   */
+  code?: string;
+  /**
+   * 名称
+   */
+  text?: string;
+  /**
+   * 状态
+   */
+  status?: string;
+  /**
+   * 描述
+   */
+  description?: string;
+  /**
+   * 删除？
+   */
+  deleted?: string;
 }
-export interface Cmsapiv1ResourcesPostResponse {
-  [k: string]: unknown;
+export interface DivisionsIdGetRequset {}
+/**
+ * 行政区信息
+ */
+export interface DivisionsIdGetResponse {
+  /**
+   * 行政区ID
+   */
+  id: number;
+  /**
+   * 行政区编码
+   */
+  code: string;
+  /**
+   * 行政区名称
+   */
+  displayname: string;
+  /**
+   * 简称
+   */
+  shortname: string;
+  /**
+   * 全称
+   */
+  fullname: string;
+  /**
+   * 别名
+   */
+  alias: string;
+  /**
+   * 行政区父Id
+   */
+  parentId: number;
+  /**
+   * 层级
+   */
+  hierarchy: "1" | "2" | "3" | "4" | "5" | "6";
+  /**
+   * 排位
+   */
+  rank: number;
+  /**
+   * 状态
+   */
+  status: 10 | 20;
+  /**
+   * 经度
+   */
+  lng: number;
+  /**
+   * 纬度
+   */
+  lat: number;
+  /**
+   * 描述
+   */
+  description: string;
+  /**
+   * 祖先
+   */
+  ancestors: string;
+  /**
+   * 深度
+   */
+  depth: number;
+  /**
+   * 叶子
+   */
+  terminal: boolean;
 }
-export interface Cmsapiv1ResourcesIdGetRequset {
-  [k: string]: unknown;
+export interface DivisionsGetRequset {
+  /**
+   * 行政区编码
+   */
+  code?: string;
+  /**
+   * 行政区父Id
+   */
+  parentId?: string;
+  /**
+   * 行政区名称
+   */
+  displayname?: string;
 }
-export interface Cmsapiv1ResourcesIdGetResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ResourcesIdDeleteRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ResourcesIdDeleteResponse {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ResourcesdescriptionGetRequset {
-  [k: string]: unknown;
-}
-export interface Cmsapiv1ResourcesdescriptionGetResponse {
-  [k: string]: unknown;
+/**
+ * 行政区信息
+ */
+export interface DivisionsGetResponse {
+  /**
+   * 行政区ID
+   */
+  id: number;
+  /**
+   * 行政区编码
+   */
+  code: string;
+  /**
+   * 行政区名称
+   */
+  displayname: string;
+  /**
+   * 行政区父Id
+   */
+  parentId: number;
+  /**
+   * 层级
+   */
+  hierarchy: "1" | "2" | "3" | "4" | "5" | "6";
+  /**
+   * 排位
+   */
+  rank: number;
+  /**
+   * 状态
+   */
+  status: 10 | 20;
 }

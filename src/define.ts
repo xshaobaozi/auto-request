@@ -66,6 +66,7 @@ export interface RequestGetRenderTs {
     title: string;
     properties: any;
     required: string[];
+    additionalProperties: boolean;
 }
 export interface RequestPostState {
     methodName: string;

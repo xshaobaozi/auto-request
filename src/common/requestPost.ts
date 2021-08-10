@@ -25,12 +25,14 @@ class RequestPost {
             title: formatTsRequest(this.state.methodName),
             properties: formatProperties(reqParams),
             required: formatRequireds(reqParams),
+            additionalProperties: false,
         }
     }
     renderTsDefineRes(): RequestGetRenderTs {
         const schema = this.state.schema.responses['200'].schema;
         return {
             ...schema,
+            additionalProperties: false,
             title: formatTsResponse(this.state.methodName),
         };
     }
