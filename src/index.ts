@@ -111,7 +111,6 @@ class CreateApi {
         const res = next.state.tsRes;
         const titleReq = req.title;
         const titleRes = res.title;
-
         pre['definitions'][titleReq] = req;
         pre['properties'][titleReq] = {
           $ref: `#/definitions/${titleReq}`,
@@ -122,7 +121,6 @@ class CreateApi {
         pre['properties'][titleRes] = {
           $ref: `#/definitions/${titleRes}`,
         };
-
         pre.preDefine = pre.preDefine + `${titleReq},${titleRes},`
         return pre;
       }, init)
@@ -140,9 +138,9 @@ class CreateApi {
     const apiStream = rendeFetchPre(this.state.fetchType) + tsPreDefineStream + this.handleRenderApiFile();
 
     fs.writeFileSync(`${outputPath}/index.ts`, prettier.format(apiStream, { semi: false, parser: "typescript" }));
-    fs.writeFileSync(`${outputPath}/index.test.json`, prettier.format(JSON.stringify(apiDefineStream), { semi: false, parser: "json" }));
+    // fs.writeFileSync(`${outputPath}/index.test.json`, prettier.format(JSON.stringify(apiDefineStream), { semi: false, parser: "json" }));
 
-    compile(apiDefineStream, 'Api').then((ts) => {
+    compile(apiDefineStream as any, 'Api').then((ts) => {
       fs.writeFileSync(outputPath + `${definePath}.ts`, ts);
     });
     console.log('文件生成成功~');
