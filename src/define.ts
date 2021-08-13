@@ -22,6 +22,31 @@ export interface SwaggerParamsPathsMethodsParams {
     type?: string;
     schema?: SwaggerParamsPathsMethodsParamsSchema
 }
+
+export interface SwaggerParamsPathsMethodsResPropertiesString {
+    type: 'string';
+    description: string;
+}
+export interface SwaggerParamsPathsMethodsResPropertiesArray {
+    type: 'array';
+    items: {
+        type: 'object',
+        properties: {
+            [key: string]: SwaggerParamsPathsMethodsResPropertiesString
+        },
+        $ref?: string;
+    }
+    description: string;
+}
+export interface SwaggerParamsPathsMethodsResPropertiesObject {
+    type: 'object';
+    properties: {
+        [key: string]: SwaggerParamsPathsMethodsResPropertiesString;
+    };
+    description: string;
+    $ref?: string;
+}
+
 export interface SwaggerParamsPathsMethods {
     tags: string[];
     summary: string;
@@ -33,7 +58,11 @@ export interface SwaggerParamsPathsMethods {
             schema: {
                 type: string;
                 title: string;
-                properties: any;
+                properties: {
+                    [key: string]: SwaggerParamsPathsMethodsResPropertiesArray
+                    | SwaggerParamsPathsMethodsResPropertiesString
+                    | SwaggerParamsPathsMethodsResPropertiesObject;
+                };
                 required: string[];
             }
         }

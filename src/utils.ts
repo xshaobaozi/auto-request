@@ -99,9 +99,11 @@ export const formatProperties = (reqParams: SwaggerParamsPathsMethodsParams[] = 
     return pre;
   }, {})
 }
-export const renderTsPreImport =(prePath:string, preDefine:string) => {
+export const renderTsPreImport = (prePath: string, preDefine: string) => {
   return `import {
     ${preDefine}
   } from '${prePath}'; \n 
   `
 }
+
+export const deepCopy = (json: any) => JSON.parse(JSON.stringify(json));

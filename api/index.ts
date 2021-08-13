@@ -46,7 +46,7 @@ import {
 
 export const ApistoresGet = <
   P extends ApistoresGetRequset,
-  T extends AxiosResponse<ApistoresGetResponse>
+  T = AxiosResponse<ApistoresGetResponse>
 >(
   params: P,
   options?: any
@@ -62,7 +62,7 @@ export const ApistoresGet = <
 
 export const ApistoresPost = <
   P extends ApistoresPostRequset,
-  T extends AxiosResponse<ApistoresPostResponse>
+  T = AxiosResponse<ApistoresPostResponse>
 >(
   params: P,
   options?: any
@@ -78,7 +78,7 @@ export const ApistoresPost = <
 
 export const ApistoresStoreIdGet = <
   P extends ApistoresStoreIdGetRequset,
-  T extends AxiosResponse<ApistoresStoreIdGetResponse>
+  T = AxiosResponse<ApistoresStoreIdGetResponse>
 >(
   StoreId: any,
   params: P,
@@ -92,14 +92,10 @@ export const ApistoresStoreIdGet = <
     ...options,
   })
 }
-ApistoresStoreIdGet('12', {}).then(res => {
-  const { data } = res;
-  const { signature } = data
-  console.log(signature)
-})
+
 export const ApistoresStoreIdPut = <
   P extends ApistoresStoreIdPutRequset,
-  T extends AxiosResponse<ApistoresStoreIdPutResponse>
+  T = AxiosResponse<ApistoresStoreIdPutResponse>
 >(
   StoreId: any,
   params: P,
@@ -116,7 +112,7 @@ export const ApistoresStoreIdPut = <
 
 export const ApipointsPointIdGet = <
   P extends ApipointsPointIdGetRequset,
-  T extends AxiosResponse<ApipointsPointIdGetResponse>
+  T = AxiosResponse<ApipointsPointIdGetResponse>
 >(
   PointId: any,
   params: P,
@@ -133,7 +129,7 @@ export const ApipointsPointIdGet = <
 
 export const ApistorescountGet = <
   P extends ApistorescountGetRequset,
-  T extends AxiosResponse<ApistorescountGetResponse>
+  T = AxiosResponse<ApistorescountGetResponse>
 >(
   params: P,
   options?: any
@@ -149,7 +145,7 @@ export const ApistorescountGet = <
 
 export const ApiuserloginPost = <
   P extends ApiuserloginPostRequset,
-  T extends AxiosResponse<ApiuserloginPostResponse>
+  T = AxiosResponse<ApiuserloginPostResponse>
 >(
   params: P,
   options?: any
@@ -165,7 +161,7 @@ export const ApiuserloginPost = <
 
 export const ApiassetsuploadGet = <
   P extends ApiassetsuploadGetRequset,
-  T extends AxiosResponse<ApiassetsuploadGetResponse>
+  T = AxiosResponse<ApiassetsuploadGetResponse>
 >(
   params: P,
   options?: any
@@ -181,7 +177,7 @@ export const ApiassetsuploadGet = <
 
 export const AssetsStoreIdimagesFileIdFileNameGet = <
   P extends AssetsStoreIdimagesFileIdFileNameGetRequset,
-  T extends AxiosResponse<AssetsStoreIdimagesFileIdFileNameGetResponse>
+  T = AxiosResponse<AssetsStoreIdimagesFileIdFileNameGetResponse>
 >(
   FileName: any,
   FileId: any,
@@ -200,7 +196,7 @@ export const AssetsStoreIdimagesFileIdFileNameGet = <
 
 export const BiostoresurveyAsPageGet = <
   P extends BiostoresurveyAsPageGetRequset,
-  T extends AxiosResponse<BiostoresurveyAsPageGetResponse>
+  T = AxiosResponse<BiostoresurveyAsPageGetResponse>
 >(
   params: P,
   options?: any
@@ -216,7 +212,7 @@ export const BiostoresurveyAsPageGet = <
 
 export const ApistoresurveyIdGet = <
   P extends ApistoresurveyIdGetRequset,
-  T extends AxiosResponse<ApistoresurveyIdGetResponse>
+  T = AxiosResponse<ApistoresurveyIdGetResponse>
 >(
   Id: any,
   params: P,
@@ -233,7 +229,7 @@ export const ApistoresurveyIdGet = <
 
 export const ApistoresurveyIdDelete = <
   P extends ApistoresurveyIdDeleteRequset,
-  T extends AxiosResponse<ApistoresurveyIdDeleteResponse>
+  T = AxiosResponse<ApistoresurveyIdDeleteResponse>
 >(
   Id: any,
   params: P,
@@ -250,7 +246,7 @@ export const ApistoresurveyIdDelete = <
 
 export const ApistoresurveyPost = <
   P extends ApistoresurveyPostRequset,
-  T extends AxiosResponse<ApistoresurveyPostResponse>
+  T = AxiosResponse<ApistoresurveyPostResponse>
 >(
   params: P,
   options?: any
@@ -266,7 +262,7 @@ export const ApistoresurveyPost = <
 
 export const ApistoresurveyPut = <
   P extends ApistoresurveyPutRequset,
-  T extends AxiosResponse<ApistoresurveyPutResponse>
+  T = AxiosResponse<ApistoresurveyPutResponse>
 >(
   params: P,
   options?: any
@@ -282,7 +278,7 @@ export const ApistoresurveyPut = <
 
 export const ApistoresurveytaskpageGet = <
   P extends ApistoresurveytaskpageGetRequset,
-  T extends AxiosResponse<ApistoresurveytaskpageGetResponse>
+  T = AxiosResponse<ApistoresurveytaskpageGetResponse>
 >(
   params: P,
   options?: any
@@ -298,7 +294,7 @@ export const ApistoresurveytaskpageGet = <
 
 export const ApistoresurveytaskIdGet = <
   P extends ApistoresurveytaskIdGetRequset,
-  T extends AxiosResponse<ApistoresurveytaskIdGetResponse>
+  T = AxiosResponse<ApistoresurveytaskIdGetResponse>
 >(
   Id: any,
   params: P,
@@ -315,7 +311,7 @@ export const ApistoresurveytaskIdGet = <
 
 export const ApistoresurveytaskIdDelete = <
   P extends ApistoresurveytaskIdDeleteRequset,
-  T extends AxiosResponse<ApistoresurveytaskIdDeleteResponse>
+  T = AxiosResponse<ApistoresurveytaskIdDeleteResponse>
 >(
   Id: any,
   params: P,
@@ -332,7 +328,7 @@ export const ApistoresurveytaskIdDelete = <
 
 export const ApistoresurveytaskPost = <
   P extends ApistoresurveytaskPostRequset,
-  T extends AxiosResponse<ApistoresurveytaskPostResponse>
+  T = AxiosResponse<ApistoresurveytaskPostResponse>
 >(
   params: P,
   options?: any
@@ -348,7 +344,7 @@ export const ApistoresurveytaskPost = <
 
 export const ApistoresurveytaskPut = <
   P extends ApistoresurveytaskPutRequset,
-  T extends AxiosResponse<ApistoresurveytaskPutResponse>
+  T = AxiosResponse<ApistoresurveytaskPutResponse>
 >(
   params: P,
   options?: any
@@ -364,7 +360,7 @@ export const ApistoresurveytaskPut = <
 
 export const ApiregionRegionIdchildrenGet = <
   P extends ApiregionRegionIdchildrenGetRequset,
-  T extends AxiosResponse<ApiregionRegionIdchildrenGetResponse>
+  T = AxiosResponse<ApiregionRegionIdchildrenGetResponse>
 >(
   RegionId: any,
   params: P,
@@ -381,7 +377,7 @@ export const ApiregionRegionIdchildrenGet = <
 
 export const ApiregiontreeGet = <
   P extends ApiregiontreeGetRequset,
-  T extends AxiosResponse<ApiregiontreeGetResponse>
+  T = AxiosResponse<ApiregiontreeGetResponse>
 >(
   params: P,
   options?: any

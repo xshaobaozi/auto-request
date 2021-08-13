@@ -37,6 +37,36 @@ let mySchema = {
       title: 'ShopvisitstatisticsGetRequset',
       additionalProperties: false,
       properties: {
+        name: {
+          type: 'string',
+          description: '计划名称',
+        },
+        startTime: {
+          type: 'string',
+          description: '有效开始时间',
+        },
+        endTime: {
+          type: 'string',
+          description: '有效结束时间',
+        },
+        description: {
+          type: 'string',
+          description: '备注',
+        },
+        surveyRegions: {
+          type: 'array',
+          items: {
+            $ref: '#/definitions/ShopvisitstatisticsGetRequsetSurveyRegionsItem',
+          }
+        },
+      },
+      required: ['name', 'startTime', 'endTime', 'description'],
+    },
+    ShopvisitstatisticsGetRequsetSurveyRegionsItem: {
+      type: 'object',
+      title: 'ShopvisitstatisticsGetRequsetSurveyRegionsItem',
+      additionalProperties: false,
+      properties: {
         provinceCode: {
           type: 'string',
           description: '省份编码',
@@ -47,26 +77,9 @@ let mySchema = {
         },
         countyCode: {
           type: 'string',
-          description: '区县编码',
-        },
-        name: {
-          type: 'string',
-          description: '调研人员',
-        },
-        mobile: {
-          type: 'string',
-          description: '联系方式',
-        },
-        surveryId: {
-          type: 'number',
-          description: '调查计划id',
-        },
-        id: {
-          type: 'number',
-          description: '主键id',
+          description: '区域编码',
         },
       },
-      required: ['provinceCode', 'name', 'mobile', 'cityCode', 'countyCode', 'surveryId', 'id'],
     },
   },
 };

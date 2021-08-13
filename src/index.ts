@@ -17,7 +17,7 @@ interface CreateApiState {
     host: string;
   };
   methodsQueue: apiQueueParams[];
-  resultQueue: any[];
+  resultQueue: RequestGet[]|RequestPost[];
 }
 class CreateApi {
   state: CreateApiState;
@@ -78,19 +78,22 @@ class CreateApi {
     };
     return this.state.resultQueue.reduce(
       (pre, next) => {
-        const req = next.renderTsDefineReq();
-        const res = next.renderTsDefineRes();
+        const req = next.state.tsReq;
+        const res = next.state.tsRes;
         const titleReq = req.title;
         const titleRes = res.title;
+        
+        pre['definitions'][titleReq] = req;
         pre['properties'][titleReq] = {
           $ref: `#/definitions/${titleReq}`,
         };
+
+
+        pre['definitions'][titleRes] = res;
         pre['properties'][titleRes] = {
           $ref: `#/definitions/${titleRes}`,
         };
-
-        pre['definitions'][titleReq] = req;
-        pre['definitions'][titleRes] = res;
+        
         pre.preDefine = pre.preDefine + `${titleReq},${titleRes},`
         return pre;
       }, init)

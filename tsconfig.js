@@ -1,5 +1,26 @@
 module.exports = {
   compilerOptions: {
-    typeRoots: ["typings"],
+    target: 'es2017',
+    removeComments: false,
+    preserveConstEnums: true,
+    moduleResolution: 'node',
+    experimentalDecorators: true,
+    noImplicitAny: false,
+    allowSyntheticDefaultImports: true,
+    outDir: 'lib',
+    noUnusedLocals: true,
+    noUnusedParameters: true,
+    strictNullChecks: true,
+    sourceMap: true,
+    rootDir: '.',
+    allowJs: true,
+    resolveJsonModule: true,
+    typeRoots: ['node_modules/@types', 'global.d.ts'],
+    baseUrl: './src',
+    paths: {
+      '@/*': ['./*'],
+    },
+    exclude: ['node_modules', 'dist'],
+    typeRoots: ['typings'],
   },
 };

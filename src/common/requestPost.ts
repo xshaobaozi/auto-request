@@ -1,5 +1,19 @@
-import { SwaggerParamsPathsMethods, CreateApiStateType, RequestPostState, RequestGetRenderTs } from './../define';
-import { createMethodsName, formatUrl, filterPathParams, formatTsRequest, formatTsResponse, formatProperties, formatRequireds } from './../utils';
+import {
+    SwaggerParamsPathsMethods,
+    CreateApiStateType,
+    RequestPostState,
+    RequestGetRenderTs
+} from './../define';
+import {
+    createMethodsName,
+    formatUrl,
+    filterPathParams,
+    formatTsRequest,
+    formatTsResponse,
+    formatProperties,
+    formatRequireds,
+    deepCopy
+} from './../utils';
 
 
 class RequestPost {
@@ -35,6 +49,26 @@ class RequestPost {
             properties: formatProperties(reqParams),
             required: formatRequireds(reqParams),
             additionalProperties: true,
+        }
+    }
+    renderTsDefineResFeature() {
+        const schema = this.state.schema.responses['200'].schema;
+        const properties = [];
+        const title = formatTsResponse(this.state.methodName);
+        if (schema.type === 'object') {
+            properties.push(deepCopy(schema.properties));
+        }
+        for (const [key, value] of Object.entries(schema.properties)) {
+            if (value.type === 'array') {
+                properties.push(deepCopy(value));
+                value.items.$ref = `#/definitions/${title}${key}`;
+                delete value.items.properties;
+            }
+            if (value.type === 'object') {
+                properties.push(deepCopy(value));
+                value.$ref = `#/definitions/${title}${key}`;
+                properties.push(value);
+            }
         }
     }
     renderTsDefineRes(): RequestGetRenderTs {
