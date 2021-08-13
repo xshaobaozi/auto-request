@@ -38,6 +38,7 @@ class RequestGet {
     renderFetchRequest() {
         if (this.state.fetchType === CreateApiStateType.AXIOS) {
             return `
+                // ${this.state.schema.summary}
                 return axios.request({
                     url: \`${this.state.host}${this.state.url}\`,
                     method: '${this.state.method}',
@@ -47,6 +48,7 @@ class RequestGet {
             `
         }
         return `
+            // ${this.state.schema.summary}
             return Taro.request({
                 url: \`${this.state.host}${this.state.url}\`,
                 method: '${this.state.method}',
@@ -55,9 +57,15 @@ class RequestGet {
             })
         `
     }
+    renderAxiosRes(title) {
+        if (this.state.fetchType === 'axios') {
+            return `AxiosResponse <${title}>`
+        }
+        return title;
+    }
     renderMethod() {
         return `\n
-            export const ${this.state.methodName} = <P extends ${this.state.tsReq.title}, T extends ${this.state.tsRes.title}>(${filterPathParams(this.state.schema.parameters)}): Promise<T> => {
+            export const ${this.state.methodName} = <P extends ${this.state.tsReq.title}, T = ${this.renderAxiosRes(this.state.tsRes.title)}>(${filterPathParams(this.state.schema.parameters)}): Promise<T> => {
                 ${this.renderFetchRequest()}
             }
         

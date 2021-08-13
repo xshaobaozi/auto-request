@@ -98,7 +98,6 @@ class CreateApi {
   // 生成接口
   generateFile(outputPath = '') {
     const apiDefineStream = this.handleRenderApiTsFile();
-    console.log(JSON.stringify(apiDefineStream));
     const tsDefine = apiDefineStream.preDefine;
     delete apiDefineStream.preDefine;
     const definePath = './index.define';

@@ -21,11 +21,20 @@ class RequestPost {
     renderTsDefineReq(): RequestGetRenderTs {
         const { parameters = [] } = this.state.schema;
         const reqParams = parameters.filter((params) => params.in === 'body');
+        if (reqParams.length > 0) {
+            const [firstParams] = reqParams;
+            return {
+                title: formatTsRequest(this.state.methodName),
+                properties: firstParams.schema!.properties,
+                required: firstParams.schema!.required,
+                additionalProperties: false,
+            }
+        }
         return {
             title: formatTsRequest(this.state.methodName),
             properties: formatProperties(reqParams),
             required: formatRequireds(reqParams),
-            additionalProperties: false,
+            additionalProperties: true,
         }
     }
     renderTsDefineRes(): RequestGetRenderTs {
@@ -39,6 +48,7 @@ class RequestPost {
     renderFetchRequest() {
         if (this.state.fetchType === CreateApiStateType.AXIOS) {
             return `
+                // ${this.state.schema.summary}
                 return axios.request({
                     url: \`${this.state.host}${this.state.url}\`,
                     method: '${this.state.method}',
@@ -48,6 +58,7 @@ class RequestPost {
             `
         }
         return `
+            // ${this.state.schema.summary}
             return Taro.request({
                 url: \`${this.state.host}/${this.state.url}\`,
                 method: '${this.state.method}',
@@ -56,9 +67,15 @@ class RequestPost {
             })
         `
     }
+    renderAxiosRes(title) {
+        if (this.state.fetchType === 'axios') {
+            return `AxiosResponse <${title}>`
+        }
+        return title;
+    }
     renderMethod() {
         return `\n
-            export const ${this.state.methodName} = <P extends ${this.state.tsReq.title}, T extends ${this.state.tsRes.title} >(${filterPathParams(this.state.schema.parameters)}): Promise<T> => {
+            export const ${this.state.methodName} = <P extends ${this.state.tsReq.title}, T = ${this.renderAxiosRes(this.state.tsRes.title)}>(${filterPathParams(this.state.schema.parameters)}): Promise<T> => {
                 ${this.renderFetchRequest()}
             }
         

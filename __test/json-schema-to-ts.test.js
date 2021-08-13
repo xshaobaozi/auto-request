@@ -37,60 +37,39 @@ let mySchema = {
       title: 'ShopvisitstatisticsGetRequset',
       additionalProperties: false,
       properties: {
-        year: {
-          name: 'year',
-          in: 'query',
-          required: true,
-          description: '年',
+        provinceCode: {
           type: 'string',
+          description: '省份编码',
         },
-        month: {
-          name: 'month',
-          in: 'query',
-          required: true,
-          description: '月',
+        cityCode: {
           type: 'string',
+          description: '城市编码',
         },
-        businessUnitId: {
-          name: 'businessUnitId',
-          in: 'query',
-          required: false,
-          description: '事业部ID',
+        countyCode: {
           type: 'string',
+          description: '区县编码',
         },
-        salesAreaId: {
-          name: 'salesAreaId',
-          in: 'query',
-          required: false,
-          description: '销售大区ID',
+        name: {
           type: 'string',
+          description: '调研人员',
         },
-        salesDeptId: {
-          name: 'salesDeptId',
-          in: 'query',
-          required: false,
-          description: '销售省区ID',
+        mobile: {
           type: 'string',
+          description: '联系方式',
         },
-        salesGroupId: {
-          name: 'salesGroupId',
-          in: 'query',
-          required: false,
-          description: '销售城市群ID',
-          type: 'string',
+        surveryId: {
+          type: 'number',
+          description: '调查计划id',
         },
-        salesOfficeId: {
-          name: 'salesOfficeId',
-          in: 'query',
-          required: false,
-          description: '销售区县ID',
-          type: 'string',
+        id: {
+          type: 'number',
+          description: '主键id',
         },
       },
-      required: ['year', 'month'],
+      required: ['provinceCode', 'name', 'mobile', 'cityCode', 'countyCode', 'surveryId', 'id'],
     },
   },
 };
-compile(mySchema, 'MySchema', { unknownAny: false ,unreachableDefinitions: true}).then((ts) => {
+compile(mySchema, 'MySchema', { unknownAny: false, unreachableDefinitions: true }).then((ts) => {
   console.log(ts);
 });

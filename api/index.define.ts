@@ -6,818 +6,1354 @@
  */
 
 /**
- * 字典项目列表
+ * 对象数组
  */
-export type DictsDictIditemsGetResponse = {
+export type ApiregionRegionIdchildrenGetResponse = {
   /**
-   * 字典项目标识
-   */
-  id?: number;
-  /**
-   * 字典标识
-   */
-  dictId?: number;
-  /**
-   * 编码
-   */
-  code?: string;
-  /**
-   * 类型
-   */
-  type?: string;
-  /**
-   * 名称
-   */
-  text?: string;
-  /**
-   * 有效范围
-   */
-  scope?: string;
-  /**
-   * 排号
-   */
-  rank?: number;
-  /**
-   * 状态
-   */
-  status?: number;
-  /**
-   * 父亲
-   */
-  parent?: number;
-  /**
-   * 祖先
-   */
-  ancestors?: string;
-  /**
-   * 深度
-   */
-  depth?: number;
-  /**
-   * 叶子
-   */
-  terminal?: boolean;
-  /**
-   * 删除？
-   */
-  deteled?: boolean;
-  [k: string]: unknown;
-}[];
-export type DictsDictCodeitemsByCodeGetResponse = {
-  /**
-   * 字典项目标识
-   */
-  id?: number;
-  /**
-   * 字典标识
-   */
-  dictId?: number;
-  /**
-   * 编码
-   */
-  code?: string;
-  /**
-   * 类型
-   */
-  type?: string;
-  /**
-   * 名称
-   */
-  text?: string;
-  /**
-   * 有效范围
-   */
-  scope?: string;
-  /**
-   * 排号
-   */
-  rank?: number;
-  /**
-   * 状态
-   */
-  status?: number;
-  /**
-   * 父亲
-   */
-  parent?: number;
-  /**
-   * 祖先
-   */
-  ancestors?: string;
-  /**
-   * 深度
-   */
-  depth?: number;
-  /**
-   * 叶子
-   */
-  terminal?: boolean;
-  /**
-   * 删除
-   */
-  deleted?: boolean;
-  [k: string]: unknown;
-}[];
-/**
- * 字典列表
- */
-export type DictsGetResponse = {
-  /**
-   * 标识
+   * id
    */
   id: number;
   /**
-   * 编码
+   * 行政区域展示名称
+   */
+  displayname: string;
+  /**
+   * 行政区域编码
    */
   code: string;
   /**
-   * 名称
+   * 行政区域简称
    */
-  text: string;
+  shortname: string;
   /**
-   * 描述
+   * 行政区域全称
    */
-  description: string;
+  fullname: string;
   /**
-   * 状态
+   * 排序
+   */
+  rank: number;
+  /**
+   * 层级。1:国, 2:省, 3:市, 4:县, 5:镇, 6:村
+   */
+  hierarchy: string;
+  /**
+   * 父级id
+   */
+  parentId: string;
+  /**
+   * 状态0:禁用,1.正常
    */
   status: number;
-  /**
-   * 删除？
-   */
-  deleted: boolean;
   [k: string]: unknown;
 }[];
 
 export interface Api {
-  ShopvisitstatisticsGetRequset?: ShopvisitstatisticsGetRequset;
-  ShopvisitstatisticsGetResponse?: ShopvisitstatisticsGetResponse;
-  ShopvisitdetialsUserIdAsPageGetRequset?: ShopvisitdetialsUserIdAsPageGetRequset;
-  ShopvisitdetialsUserIdAsPageGetResponse?: ShopvisitdetialsUserIdAsPageGetResponse;
-  ShopsGetRequset?: ShopsGetRequset;
-  ShopsGetResponse?: ShopsGetResponse;
-  ShopsAsPageGetRequset?: ShopsAsPageGetRequset;
-  ShopsAsPageGetResponse?: ShopsAsPageGetResponse;
-  ShopsIdGetRequset?: ShopsIdGetRequset;
-  ShopsIdGetResponse?: ShopsIdGetResponse;
-  ShopsalesstatisticsShopIdGetRequset?: ShopsalesstatisticsShopIdGetRequset;
-  ShopsalesstatisticsShopIdGetResponse?: ShopsalesstatisticsShopIdGetResponse;
-  DictsDictIditemsGetRequset?: DictsDictIditemsGetRequset;
-  DictsDictIditemsGetResponse?: DictsDictIditemsGetResponse;
-  DictsDictCodeitemsByCodeGetRequset?: DictsDictCodeitemsByCodeGetRequset;
-  DictsDictCodeitemsByCodeGetResponse?: DictsDictCodeitemsByCodeGetResponse;
-  DictsGetRequset?: DictsGetRequset;
-  DictsGetResponse?: DictsGetResponse;
-  DivisionsIdGetRequset?: DivisionsIdGetRequset;
-  DivisionsIdGetResponse?: DivisionsIdGetResponse;
-  DivisionsGetRequset?: DivisionsGetRequset;
-  DivisionsGetResponse?: DivisionsGetResponse;
+  ApistoresGetRequset?: ApistoresGetRequset;
+  ApistoresGetResponse?: ApistoresGetResponse;
+  ApistoresPostRequset?: ApistoresPostRequset;
+  ApistoresPostResponse?: ApistoresPostResponse;
+  ApistoresStoreIdGetRequset?: ApistoresStoreIdGetRequset;
+  ApistoresStoreIdGetResponse?: ApistoresStoreIdGetResponse;
+  ApistoresStoreIdPutRequset?: ApistoresStoreIdPutRequset;
+  ApistoresStoreIdPutResponse?: ApistoresStoreIdPutResponse;
+  ApipointsPointIdGetRequset?: ApipointsPointIdGetRequset;
+  ApipointsPointIdGetResponse?: ApipointsPointIdGetResponse;
+  ApistorescountGetRequset?: ApistorescountGetRequset;
+  ApistorescountGetResponse?: ApistorescountGetResponse;
+  ApiuserloginPostRequset?: ApiuserloginPostRequset;
+  ApiuserloginPostResponse?: ApiuserloginPostResponse;
+  ApiassetsuploadGetRequset?: ApiassetsuploadGetRequset;
+  ApiassetsuploadGetResponse?: ApiassetsuploadGetResponse;
+  AssetsStoreIdimagesFileIdFileNameGetRequset?: AssetsStoreIdimagesFileIdFileNameGetRequset;
+  AssetsStoreIdimagesFileIdFileNameGetResponse?: AssetsStoreIdimagesFileIdFileNameGetResponse;
+  BiostoresurveyAsPageGetRequset?: BiostoresurveyAsPageGetRequset;
+  BiostoresurveyAsPageGetResponse?: BiostoresurveyAsPageGetResponse;
+  ApistoresurveyIdGetRequset?: ApistoresurveyIdGetRequset;
+  ApistoresurveyIdGetResponse?: ApistoresurveyIdGetResponse;
+  ApistoresurveyIdDeleteRequset?: ApistoresurveyIdDeleteRequset;
+  ApistoresurveyIdDeleteResponse?: ApistoresurveyIdDeleteResponse;
+  ApistoresurveyPostRequset?: ApistoresurveyPostRequset;
+  ApistoresurveyPostResponse?: ApistoresurveyPostResponse;
+  ApistoresurveyPutRequset?: ApistoresurveyPutRequset;
+  ApistoresurveyPutResponse?: ApistoresurveyPutResponse;
+  ApistoresurveytaskpageGetRequset?: ApistoresurveytaskpageGetRequset;
+  ApistoresurveytaskpageGetResponse?: ApistoresurveytaskpageGetResponse;
+  ApistoresurveytaskIdGetRequset?: ApistoresurveytaskIdGetRequset;
+  ApistoresurveytaskIdGetResponse?: ApistoresurveytaskIdGetResponse;
+  ApistoresurveytaskIdDeleteRequset?: ApistoresurveytaskIdDeleteRequset;
+  ApistoresurveytaskIdDeleteResponse?: ApistoresurveytaskIdDeleteResponse;
+  ApistoresurveytaskPostRequset?: ApistoresurveytaskPostRequset;
+  ApistoresurveytaskPostResponse?: ApistoresurveytaskPostResponse;
+  ApistoresurveytaskPutRequset?: ApistoresurveytaskPutRequset;
+  ApistoresurveytaskPutResponse?: ApistoresurveytaskPutResponse;
+  ApiregionRegionIdchildrenGetRequset?: ApiregionRegionIdchildrenGetRequset;
+  ApiregionRegionIdchildrenGetResponse?: ApiregionRegionIdchildrenGetResponse;
+  ApiregiontreeGetRequset?: ApiregiontreeGetRequset;
+  ApiregiontreeGetResponse?: ApiregiontreeGetResponse;
 }
-export interface ShopvisitstatisticsGetRequset {
+export interface ApistoresGetRequset {
   /**
-   * 年
-   */
-  year: string;
-  /**
-   * 月
-   */
-  month: string;
-  /**
-   * 事业部ID
-   */
-  businessUnitId?: string;
-  /**
-   * 销售大区ID
-   */
-  salesAreaId?: string;
-  /**
-   * 销售省区ID
-   */
-  salesDeptId?: string;
-  /**
-   * 销售城市群ID
-   */
-  salesGroupId?: string;
-  /**
-   * 销售区县ID
-   */
-  salesOfficeId?: string;
-}
-export interface ShopvisitstatisticsGetResponse {
-  /**
-   * 年
-   */
-  year: number;
-  /**
-   * 月
-   */
-  month: number;
-  /**
-   * 组织ID
-   */
-  orgId: number;
-  /**
-   * 组织名称
-   */
-  orgName: string;
-  /**
-   * 组织类型
-   */
-  orgType: number;
-  /**
-   * 子组织
-   */
-  subOrg: {
-    [k: string]: unknown;
-  };
-  /**
-   * 当前组织的拜访统计列表
-   */
-  statisticsList: {
-    /**
-     * 销售区县ID
-     */
-    salesOfficeId: number;
-    /**
-     * 销售区县
-     */
-    salesOfficeName: string;
-    /**
-     * 用户ID
-     */
-    userId: number;
-    /**
-     * 用户名称
-     */
-    userName: string;
-    /**
-     * 计划拜访次数
-     */
-    visitNumber: number;
-    /**
-     * 实际拜访次数
-     */
-    actualVisitNumber: number;
-    /**
-     * 本月达成率
-     */
-    finishPercent: string;
-    [k: string]: unknown;
-  }[];
-}
-export interface ShopvisitdetialsUserIdAsPageGetRequset {
-  /**
-   * 年
-   */
-  year: string;
-  /**
-   * 月
-   */
-  month: string;
-}
-export interface ShopvisitdetialsUserIdAsPageGetResponse {
-  /**
-   * 每页数量
-   */
-  size: number;
-  /**
-   * 当前页码
-   */
-  current: number;
-  /**
-   * 总页数
-   */
-  pages: number;
-  /**
-   * 总数量
-   */
-  total: number;
-  /**
-   * 字典列表
-   */
-  records: {
-    /**
-     * 用户ID
-     */
-    userId: number;
-    /**
-     * 门店ID
-     */
-    shopId: number;
-    /**
-     * 门店编码
-     */
-    shopCode: string;
-    /**
-     * 门店名称
-     */
-    shaopName: string;
-    /**
-     * 拜访日期
-     */
-    visitDate: string;
-    /**
-     * 拜访时间
-     */
-    startTime: string;
-    /**
-     * 离店时间
-     */
-    endTime: string;
-    [k: string]: unknown;
-  }[];
-}
-export interface ShopsGetRequset {
-  /**
-   * 城市ID
-   */
-  cityCode: string;
-  /**
-   * 区县ID
-   */
-  countyCode: string;
-  /**
-   * 门店名称
-   */
-  name?: string;
-}
-export interface ShopsGetResponse {
-  /**
-   * 门店ID
-   */
-  id: number;
-  /**
-   * 门店编码
-   */
-  code: string;
-  /**
-   * 门店名称
-   */
-  name: string;
-  /**
-   * 是否直营
-   */
-  direct: boolean;
-  /**
-   * 类别
-   */
-  category: string;
-  /**
-   * 省Id
-   */
-  provinceId: number;
-  /**
-   * 省
-   */
-  province: string;
-  /**
-   * 城市ID
-   */
-  cityId: number;
-  /**
-   * 城市
-   */
-  city: string;
-  /**
-   * 区县ID
-   */
-  countyId: number;
-  /**
-   * 区县
-   */
-  county: string;
-  /**
-   * 详细地址
-   */
-  address: string;
-  /**
-   * 经度
-   */
-  lng: number;
-  /**
-   * 纬度
-   */
-  lat: number;
-  /**
-   * 联系人
-   */
-  contact: string;
-  /**
-   * 联系人手机
+   * 手机号码
    */
   mobile: string;
   /**
-   * 联系人座机
+   * 0:区域待办, 1:区域已办 3:个人已办
    */
-  phone: string;
+  status: string;
   /**
-   * 描述
-   */
-  description: string;
-  /**
-   * 状态
-   */
-  status: 10 | 20;
-}
-export interface ShopsAsPageGetRequset {
-  /**
-   * 城市ID
-   */
-  cityCode: string;
-  /**
-   * 区县ID
-   */
-  countyCode: string;
-  /**
-   * 门店名称
+   * 门店名称(模糊查询)
    */
   name?: string;
   /**
-   * 当前页码
+   * 当前页
    */
   current: string;
   /**
    * 每页数量
    */
   size: string;
+  /**
+   * 经度
+   */
+  lng: string;
+  /**
+   * 纬度
+   */
+  lat: string;
 }
-export interface ShopsAsPageGetResponse {
+export interface ApistoresGetResponse {
+  /**
+   * 每页数量
+   */
+  size?: number;
+  /**
+   * 当前页
+   */
+  current?: number;
+  /**
+   * 总页数
+   */
+  pages?: number;
+  /**
+   * 总数量
+   */
+  total?: number;
+  records?: {
+    " id"?: number;
+    /**
+     * 门店名字
+     */
+    name?: string;
+    /**
+     * 地址
+     */
+    address?: string;
+    /**
+     * 省编码
+     */
+    provinceCode?: string;
+    /**
+     * 省份
+     */
+    provinceName?: string;
+    /**
+     * 城市编码
+     */
+    cityCode?: string;
+    /**
+     * 城市名称
+     */
+    cityName?: string;
+    /**
+     * 区县编码
+     */
+    countyCode?: string;
+    /**
+     * 区县名称
+     */
+    countyName?: string;
+    /**
+     * 经度
+     */
+    lng?: number;
+    /**
+     * 纬度
+     */
+    lat?: number;
+    /**
+     * 标签
+     */
+    tags?: string;
+    /**
+     * 分类
+     */
+    categories?: string;
+    /**
+     * 备注
+     */
+    remark?: string;
+    /**
+     * 来源
+     */
+    source?: number;
+    /**
+     * 特征编码
+     */
+    signature?: string;
+    /**
+     * 距离
+     */
+    distance?: string;
+    [k: string]: unknown;
+  }[];
+}
+export interface ApistoresPostRequset {
+  /**
+   * 特征编码(新建门店传-1)
+   */
+  signature: string;
+  /**
+   * 门店名称
+   */
+  name?: string;
+  /**
+   * 详细地址
+   */
+  address?: string;
+  /**
+   * 联系电话
+   */
+  telephones?: string;
+  /**
+   * 省名称
+   */
+  provinceName?: string;
+  /**
+   * 市名称
+   */
+  cityName?: string;
+  /**
+   * 县名称
+   */
+  countyName?: string;
+  /**
+   * 县编码
+   */
+  countyCode?: string;
+  /**
+   * 经度
+   */
+  lng?: string;
+  /**
+   * 纬度
+   */
+  lat?: string;
+  /**
+   * 标签
+   */
+  tags?: string;
+  /**
+   * 类别。{10:医院, 20:商圈, 30:街区, 40:社区}
+   */
+  categories?: string;
+  /**
+   * 层级。{1:国, 2:省, 3:市, 4:县, 5:镇, 6:村}
+   */
+  hierarchy?: number;
+  /**
+   * 连锁？{0:否, 1:是}
+   */
+  chain?: boolean;
+  /**
+   * 更新人
+   */
+  updateTel?: string;
+  /**
+   * 开业日期
+   */
+  openingDate?: string;
+  /**
+   * 备注
+   */
+  remark?: string;
+  /**
+   * 创建所用时间
+   */
+  duration?: number;
+  /**
+   * 状态。0: 无效, 1: 有效但不售奶粉, 3: 有效且经营奶粉, 7：合作/有效并且经营奶粉并且合作}
+   */
+  status?: number;
+  /**
+   * 门店招牌文件ID
+   */
+  logoFileIds?: {
+    /**
+     * 文件标识
+     */
+    fileId?: string;
+    /**
+     * 文件名称
+     */
+    name?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 奶粉照片文件ID
+   */
+  milkFileIds?: {
+    /**
+     * 文件标识
+     */
+    fileId?: string;
+    /**
+     * 文件名称
+     */
+    name?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店照片文件ID
+   */
+  storeFileIds?: {
+    /**
+     * 文件标识
+     */
+    fileId?: string;
+    /**
+     * 文件名称
+     */
+    name?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店其它信息
+   */
+  addition?: {
+    /**
+     * 增值服务。{10:游泳馆, 20:产后中心, 30:游乐中心, 40:其它项目, 50: 无}
+     */
+    incrementServices?: string;
+    /**
+     * 店员区间。{10:2人以下, 20:2-4人, 30:4-6人, 40:6人以上}
+     */
+    clerkRange?: string;
+    /**
+     * 面积区间。{10:50平以下, 20:50-100平, 30:100-200平, 40:200平以上}
+     */
+    areaRange?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店连锁信息
+   */
+  storeChain?: {
+    /**
+     * 连锁店名称
+     */
+    name?: string;
+    /**
+     * 连锁店数量
+     */
+    quantity?: number;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店营业信息
+   */
+  business?: {
+    /**
+     * 整体月均营业额（万）
+     */
+    overallTurnover?: number;
+    /**
+     * 奶粉月均营业额（万）
+     */
+    milkTurnover?: number;
+    /**
+     * 奶粉货架数量
+     */
+    milkShelfQuantity?: number;
+    /**
+     * 奶粉容量（月）。{10:5万以下, 20:5-10万, 30:10-20万, 40:20万以上}
+     */
+    milkCapacity?: number;
+    /**
+     * 主营品牌。{10:国产品牌, 20:进口品牌}
+     */
+    coreBrands?: number;
+    /**
+     * 经营品牌（友商）。{1010:飞鹤—星飞帆, 1510:君乐宝—乐畅, 2010:伊利—珍护A2, 2510:贝因美—可睿欣, 3010:澳优—能力多, 3510:惠氏—启赋HMO, 4010:美赞臣—铂睿A2, 4510:海普诺凯—荷致, 5010:雅培—菁挚, 5510:圣元-优博瑞慕, 9900:其他}
+     */
+    thirdBrands?: string;
+    /**
+     * 经营品牌（自有）。{1010:瑞哺恩-菁珀, 1015:瑞哺恩-有机, 1020:瑞哺恩-亲悠, 1025:瑞哺恩-亲儿适, 1030:瑞哺恩-亲儿硕, 1035: 瑞哺恩-初颖, 1040: 瑞哺恩-雅士利, 1510:多美滋-优衡多, 2010:Arla-有机, 2015:Arla-蓝曦, 2020:Arla-美力滋}
+     */
+    ownBrands?: string;
+    /**
+     * 形象布建。{10:形象专柜, 20:灯箱, 30:橱窗, 40:无}
+     */
+    decorate?: string;
+    [k: string]: unknown;
+  };
+}
+export interface ApistoresPostResponse {}
+export interface ApistoresStoreIdGetRequset {}
+export interface ApistoresStoreIdGetResponse {
+  /**
+   * 特征编码
+   */
+  signature?: string;
+  /**
+   * 名称
+   */
+  name?: string;
+  /**
+   * 详细地址
+   */
+  address?: string;
+  /**
+   * 联系电话
+   */
+  telephones?: string;
+  /**
+   * 省编码
+   */
+  provinceCode?: string;
+  /**
+   * 省名称
+   */
+  provinceName?: string;
+  /**
+   * 市编码
+   */
+  cityCode?: string;
+  /**
+   * 市名称
+   */
+  cityName?: string;
+  /**
+   * 县编码
+   */
+  countyCode?: string;
+  /**
+   * 县名称
+   */
+  countyName?: string;
+  /**
+   * 经度
+   */
+  lng?: number;
+  /**
+   * 纬度
+   */
+  lat?: number;
+  /**
+   * 标签
+   */
+  tags?: string;
+  /**
+   * 类别。{10:医院, 20:商圈, 30:街区, 40:社区}
+   */
+  categories?: string;
+  /**
+   * 层级。{1:国, 2:省, 3:市, 4:县, 5:镇, 6:村}
+   */
+  hierarchy?: number;
+  /**
+   * 合作？{0:否, 1:是}
+   */
+  own?: boolean;
+  /**
+   * 直营？{0:否, 1:是}
+   */
+  direct?: boolean;
+  /**
+   * 连锁？{0:否, 1:是}
+   */
+  chain?: boolean;
+  /**
+   * 开业日期
+   */
+  openingDate?: string;
+  /**
+   * 备注
+   */
+  remark?: string;
+  /**
+   * 来源。{10:高德,  20:百度, 30:SFA}
+   */
+  source?: number;
+  /**
+   * 状态。{0: 无效, 1: 有效但不售奶粉, 3: 有效且经营奶粉, 7：合作/有效并且经营奶粉并且合作}
+   */
+  status?: number;
+  /**
+   * 是否完成门店调查
+   */
+  finish?: boolean;
+  /**
+   * 创建人
+   */
+  creator?: string;
+  /**
+   * 门店招牌文件ID
+   */
+  logoFileIds?: {
+    /**
+     * 文件标识
+     */
+    fileId?: string;
+    /**
+     * 文件名称
+     */
+    name?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 奶粉照片文件ID
+   */
+  milkFileIds?: {
+    /**
+     * 文件标识
+     */
+    fileId?: string;
+    /**
+     * 文件名称
+     */
+    name?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店照片文件ID
+   */
+  storeFileIds?: {
+    /**
+     * 文件标识
+     */
+    fileId?: string;
+    /**
+     * 文件名称
+     */
+    name?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店其它信息
+   */
+  addition?: {
+    /**
+     * 增值服务。{10:游泳馆, 20:产后中心, 30:游乐中心, 40:其它项目}
+     */
+    incrementServices?: string;
+    /**
+     * 店员区间。{10:2人以下, 20:2-4人, 30:4-6人, 40:6人以上}
+     */
+    clerkRange?: number;
+    /**
+     * 面积区间。{10:50平以下, 20:50-100平, 30:100-200平, 40:200平以上}
+     */
+    areaRange?: number;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店连锁信息
+   */
+  storeChain?: {
+    /**
+     * 连锁店名称
+     */
+    name?: string;
+    /**
+     * 连锁店数量
+     */
+    quantity?: number;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店营业信息
+   */
+  business?: {
+    /**
+     * 整体月均营业额（万）
+     */
+    overallTurnover?: number;
+    /**
+     * 奶粉月均营业额（万）
+     */
+    milkTurnover?: number;
+    /**
+     * 奶粉货架数量
+     */
+    milkShelfQuantity?: number;
+    /**
+     * 奶粉容量（月）。{10:5万以下, 20:5-10万, 30:10-20万, 40:20万以上}
+     */
+    milkCapacity?: number;
+    /**
+     * 主营品牌。{10:国产品牌, 20:进口品牌}
+     */
+    coreBrands?: number;
+    /**
+     * 经营品牌（友商）。{1010:飞鹤—星飞帆, 1510:君乐宝—乐畅, 2010:伊利—珍护A2, 2510:贝因美—可睿欣, 3010:澳优—能力多, 3510:惠氏—启赋HMO, 4010:美赞臣—铂睿A2, 4510:海普诺凯—荷致, 5010:雅培—菁挚, 5510:圣元-优博瑞慕, 9900:其他}
+     */
+    thirdBrands?: string;
+    /**
+     * 经营品牌（自有）。{1010:瑞哺恩-菁珀, 1015:瑞哺恩-有机, 1020:瑞哺恩-亲悠, 1025:瑞哺恩-亲儿适, 1030:瑞哺恩-亲儿硕, 1035: 瑞哺恩-初颖, 1040: 瑞哺恩-雅士利, 1510:多美滋-优衡多, 2010:Arla-有机, 2015:Arla-蓝曦, 2020:Arla-美力滋}
+     */
+    ownBrands?: string;
+    /**
+     * 形象布建。{10:形象专柜, 20:灯箱, 30:橱窗, 40:无}
+     */
+    decorate?: string;
+    [k: string]: unknown;
+  };
+}
+export interface ApistoresStoreIdPutRequset {
+  /**
+   * 特征编码
+   */
+  signature: string;
+  /**
+   * 门店名称
+   */
+  name?: string;
+  /**
+   * 详细地址
+   */
+  address?: string;
+  /**
+   * 联系电话
+   */
+  telephones?: string;
+  /**
+   * 省名称
+   */
+  provinceName?: string;
+  /**
+   * 市名称
+   */
+  cityName?: string;
+  /**
+   * 县名称
+   */
+  countyName?: string;
+  /**
+   * 县编码
+   */
+  countyCode?: string;
+  /**
+   * 经度
+   */
+  lng?: string;
+  /**
+   * 纬度
+   */
+  lat?: string;
+  /**
+   * 标签
+   */
+  tags?: string;
+  /**
+   * 类别。{10:医院, 20:商圈, 30:街区, 40:社区}
+   */
+  categories?: string;
+  /**
+   * 层级。{1:国, 2:省, 3:市, 4:县, 5:镇, 6:村}
+   */
+  hierarchy?: number;
+  /**
+   * 直营？{0:否, 1:是}
+   */
+  direct?: number;
+  /**
+   * 连锁？{0:否, 1:是}
+   */
+  chain?: boolean;
+  /**
+   * 更新人
+   */
+  updateTel?: string;
+  /**
+   * 开业日期
+   */
+  openingDate?: string;
+  /**
+   * 备注
+   */
+  remark?: string;
+  /**
+   * 创建所用时间
+   */
+  duration?: number;
+  /**
+   * 状态。0: 无效, 1: 有效但不售奶粉, 3: 有效且经营奶粉, 7：合作/有效并且经营奶粉并且合作}
+   */
+  status?: number;
+  /**
+   * 门店招牌文件ID
+   */
+  logoFileIds?: {
+    /**
+     * 文件标识
+     */
+    fileId?: string;
+    /**
+     * 文件名称
+     */
+    name?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 奶粉照片文件ID
+   */
+  milkFileIds?: {
+    /**
+     * 文件标识
+     */
+    fileId?: string;
+    /**
+     * 文件名称
+     */
+    name?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店照片文件ID
+   */
+  storeFileIds?: {
+    /**
+     * 文件标识
+     */
+    fileId?: string;
+    /**
+     * 文件名称
+     */
+    name?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店其它信息
+   */
+  addition?: {
+    /**
+     * 增值服务。{10:游泳馆, 20:产后中心, 30:游乐中心, 40:其它项目}
+     */
+    incrementServices?: string;
+    /**
+     * 店员区间。{10:2人以下, 20:2-4人, 30:4-6人, 40:6人以上}
+     */
+    clerkRange?: string;
+    /**
+     * 面积区间。{10:50平以下, 20:50-100平, 30:100-200平, 40:200平以上}
+     */
+    areaRange?: string;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店营业信息
+   */
+  storeChain?: {
+    /**
+     * 连锁店名称
+     */
+    name?: string;
+    /**
+     * 连锁店数量
+     */
+    quantity?: number;
+    [k: string]: unknown;
+  };
+  /**
+   * 门店连锁信息
+   */
+  business?: {
+    /**
+     * 整体月均营业额（万）
+     */
+    overallTurnover?: number;
+    /**
+     * 奶粉月均营业额（万）
+     */
+    milkTurnover?: number;
+    /**
+     * 奶粉货架数量
+     */
+    milkShelfQuantity?: number;
+    /**
+     * 奶粉容量（月）。{10:5万以下, 20:5-10万, 30:10-20万, 40:20万以上}
+     */
+    milkCapacity?: number;
+    /**
+     * 主营品牌。{10:国产品牌, 20:进口品牌}
+     */
+    coreBrands?: number;
+    /**
+     * 经营品牌（友商）。{1010:飞鹤—星飞帆, 1510:君乐宝—乐畅, 2010:伊利—珍护A2, 2510:贝因美—可睿欣, 3010:澳优—能力多, 3510:惠氏—启赋HMO, 4010:美赞臣—铂睿A2, 4510:海普诺凯—荷致, 5010:雅培—菁挚, 5510:圣元-优博瑞慕, 9900:其他}
+     */
+    thirdBrands?: string;
+    /**
+     * 经营品牌（自有）。{1010:瑞哺恩-菁珀, 1015:瑞哺恩-有机, 1020:瑞哺恩-亲悠, 1025:瑞哺恩-亲儿适, 1030:瑞哺恩-亲儿硕, 1035: 瑞哺恩-初颖, 1040: 瑞哺恩-雅士利, 1510:多美滋-优衡多, 2010:Arla-有机, 2015:Arla-蓝曦, 2020:Arla-美力滋}
+     */
+    ownBrands?: string;
+    /**
+     * 形象布建。{10:形象专柜, 20:灯箱, 30:橱窗, 40:无}
+     */
+    decorate?: string;
+    [k: string]: unknown;
+  };
+}
+export interface ApistoresStoreIdPutResponse {}
+export interface ApipointsPointIdGetRequset {}
+export interface ApipointsPointIdGetResponse {
+  /**
+   * 特征编码
+   */
+  signature?: string;
+  /**
+   * 名称
+   */
+  name?: string;
+  /**
+   * 详细地址
+   */
+  address?: string;
+  /**
+   * 联系电话
+   */
+  telephones?: string;
+  /**
+   * 省编码
+   */
+  provinceCode?: string;
+  /**
+   * 省名称
+   */
+  provinceName?: string;
+  /**
+   * 市编码
+   */
+  cityCode?: string;
+  /**
+   * 市名称
+   */
+  cityName?: string;
+  /**
+   * 县编码
+   */
+  countyCode?: string;
+  /**
+   * 县名称
+   */
+  countyName?: string;
+  /**
+   * 经度
+   */
+  lng?: number;
+  /**
+   * 纬度
+   */
+  lat?: number;
+  /**
+   * 标签
+   */
+  tags?: string;
+  /**
+   * 类别。{10:医院, 20:商圈, 30:街区, 40:社区}
+   */
+  categories?: string;
+  /**
+   * 层级。{1:国, 2:省, 3:市, 4:县, 5:镇, 6:村}
+   */
+  hierarchy?: null;
+  chain?: null;
+  openingDate?: null;
+  remark?: null;
+  /**
+   * 状态。{0: 无效, 1: 有效但不售奶粉, 3: 有效且经营奶粉, 7：合作/有效并且经营奶粉并且合作}
+   */
+  status?: null;
+  /**
+   * 是否已完成
+   */
+  finish?: boolean;
+}
+export interface ApistorescountGetRequset {
+  /**
+   * 手机号码
+   */
+  mobile: string;
+}
+export interface ApistorescountGetResponse {
+  /**
+   * 区域代办数量
+   */
+  areaUndoNum?: number;
+  /**
+   * 区域已完成
+   */
+  areaFinishNum?: number;
+  /**
+   * 我的已完成
+   */
+  mineFinishNum?: number;
+}
+export interface ApiuserloginPostRequset {
+  [k: string]: unknown;
+}
+export interface ApiuserloginPostResponse {}
+export interface ApiassetsuploadGetRequset {
+  /**
+   * 文件
+   */
+  file: string;
+  /**
+   * 操作人
+   */
+  updateTel: string;
+}
+export interface ApiassetsuploadGetResponse {
+  /**
+   * 文件名
+   */
+  name?: string;
+  /**
+   * 文件ID
+   */
+  fileId?: string;
+  /**
+   * 路径
+   */
+  path?: string;
+}
+export interface AssetsStoreIdimagesFileIdFileNameGetRequset {}
+export interface AssetsStoreIdimagesFileIdFileNameGetResponse {}
+export interface BiostoresurveyAsPageGetRequset {
+  /**
+   * 调查计划名称(模糊查询)
+   */
+  name?: string;
+  /**
+   * 0:已结束;1.正在进行中
+   */
+  status?: string;
+  /**
+   * 当前页(不传默认1)
+   */
+  number?: string;
+  /**
+   * 每页数量(不传默认10)
+   */
+  size?: string;
+}
+export interface BiostoresurveyAsPageGetResponse {
   /**
    * 每页数量
    */
   size: number;
   /**
-   * 当前页码
+   * 当前页
    */
-  current: number;
+  number: number;
   /**
    * 总页数
    */
-  pages: number;
+  totalPages: number;
   /**
    * 总数量
    */
-  total: number;
-  /**
-   * 门店列表
-   */
-  records: {
+  totalElements: number;
+  content: {
     /**
-     * 门店ID
+     * id
      */
     id: number;
     /**
-     * 门店编码
-     */
-    code: string;
-    /**
-     * 门店名称
+     * 调查计划名称
      */
     name: string;
     /**
-     * 是否直营
+     * 有效开始日期
      */
-    direct: boolean;
+    startTime: string;
     /**
-     * 类别
+     * 有效结束日期
      */
-    category: string;
+    endTime: string;
     /**
-     * 省Id
+     * 备注
      */
-    provinceId: number;
+    description?: string;
     /**
-     * 省
+     * 0:已结束;1.正在进行中
      */
-    province: string;
-    /**
-     * 城市ID
-     */
-    cityId: number;
-    /**
-     * 城市
-     */
-    city: string;
-    /**
-     * 区县ID
-     */
-    countyId: number;
-    /**
-     * 区县
-     */
-    county: string;
-    /**
-     * 详细地址
-     */
-    address: string;
-    /**
-     * 经度
-     */
-    lng: number;
-    /**
-     * 纬度
-     */
-    lat: number;
-    /**
-     * 联系人
-     */
-    contact: string;
-    /**
-     * 联系人手机
-     */
-    mobile: string;
-    /**
-     * 联系人座机
-     */
-    phone: string;
-    /**
-     * 描述
-     */
-    description: string;
-    /**
-     * 状态
-     */
-    status: number;
+    status?: number;
     [k: string]: unknown;
   }[];
 }
-export interface ShopsIdGetRequset {}
-export interface ShopsIdGetResponse {
+export interface ApistoresurveyIdGetRequset {}
+export interface ApistoresurveyIdGetResponse {
   /**
-   * 门店ID
+   * id
    */
   id: number;
   /**
-   * 门店名称
+   * 调查计划名称
    */
   name: string;
   /**
-   * 是否直营
+   * 有效开始日期
    */
-  direct: boolean;
+  startTime: string;
   /**
-   * 类别
+   * 有效结束日期
    */
-  category: string;
+  endTime: string;
   /**
-   * 省Id
+   * 备注
    */
-  provinceId: number;
+  description: string;
   /**
-   * 省
+   * 0:已结束;1.正在进行中
    */
-  province: string;
+  status: string;
   /**
-   * 城市ID
+   * 调查区域
    */
-  cityId: number;
+  surveyRegions: {
+    /**
+     * 省份编码
+     */
+    provinceCode: string;
+    /**
+     * 城市编码
+     */
+    cityCode: string;
+    /**
+     * 区县编码
+     */
+    countyCode: string;
+    [k: string]: unknown;
+  }[];
+}
+export interface ApistoresurveyIdDeleteRequset {}
+export interface ApistoresurveyIdDeleteResponse {}
+export interface ApistoresurveyPostRequset {
   /**
-   * 城市
+   * 计划名称
    */
-  city: string;
+  name: string;
   /**
-   * 区县ID
+   * 有效开始时间
    */
-  countyId: number;
+  startTime: string;
   /**
-   * 区县
+   * 有效结束时间
    */
-  county: string;
+  endTime: string;
   /**
-   * 详细地址
+   * 备注
    */
-  address: string;
+  description: string;
   /**
-   * 经度
+   * 调查区域
    */
-  lng: number;
+  surveyRegions?: {
+    /**
+     * 省份编码
+     */
+    provinceCode: string;
+    /**
+     * 城市编码
+     */
+    cityCode: string;
+    /**
+     * 区域编码
+     */
+    countyCode: string;
+    [k: string]: unknown;
+  }[];
+}
+export interface ApistoresurveyPostResponse {}
+export interface ApistoresurveyPutRequset {
   /**
-   * 纬度
+   * 计划名称
    */
-  lat: number;
+  name: string;
   /**
-   * 联系人
+   * 主键id
    */
-  contact: string;
+  id: number;
   /**
-   * 联系人手机
+   * 有效开始时间
+   */
+  startTime: string;
+  /**
+   * 有效结束时间
+   */
+  endTime: string;
+  /**
+   * 调查区域
+   */
+  surveyRegions?: {
+    /**
+     * 省份编码
+     */
+    provinceCode: string;
+    /**
+     * 城市编码
+     */
+    cityCode: string;
+    /**
+     * 区县编码
+     */
+    countyCode: string;
+    [k: string]: unknown;
+  }[];
+}
+export interface ApistoresurveyPutResponse {}
+export interface ApistoresurveytaskpageGetRequset {
+  /**
+   * 调查计划id
+   */
+  surveyId: string;
+  /**
+   * 省份编码
+   */
+  provinceCode?: string;
+  /**
+   * 城市编码
+   */
+  cityCode?: string;
+  /**
+   * 区县编码
+   */
+  countyCode?: string;
+  /**
+   * 当前页(不传默认1)
+   */
+  number?: string;
+  /**
+   * 每页数量(不传默认10)
+   */
+  size?: string;
+  /**
+   * 调研人员(模糊查询)
+   */
+  name?: string;
+  /**
+   * 联系方式(模糊查询)
+   */
+  mobile?: string;
+}
+export interface ApistoresurveytaskpageGetResponse {
+  /**
+   * 每页数量
+   */
+  size: number;
+  /**
+   * 当前页
+   */
+  number: number;
+  /**
+   * 总页数
+   */
+  totalPages: number;
+  /**
+   * 总数量
+   */
+  totalElements: number;
+  content: {
+    /**
+     * id
+     */
+    " id": number;
+    /**
+     * 省份编码
+     */
+    provinceCode: string;
+    /**
+     * 省份名称
+     */
+    provinceName: string;
+    /**
+     * 城市编码
+     */
+    cityCode: string;
+    /**
+     * 城市名称
+     */
+    cityName: string;
+    /**
+     * 区县编码
+     */
+    countyCode: string;
+    /**
+     * 区县名称
+     */
+    countyName: string;
+    /**
+     * 调研人员
+     */
+    name: string;
+    /**
+     * 联系方式
+     */
+    mobile: string;
+    /**
+     * 调查计划id
+     */
+    surveyId: string;
+    [k: string]: unknown;
+  }[];
+}
+export interface ApistoresurveytaskIdGetRequset {}
+export interface ApistoresurveytaskIdGetResponse {
+  /**
+   * id
+   */
+  " id": number;
+  /**
+   * 省份编码
+   */
+  provinceCode: string;
+  /**
+   * 省份名称
+   */
+  provinceName: string;
+  /**
+   * 城市编码
+   */
+  cityCode: string;
+  /**
+   * 城市名称
+   */
+  cityName: string;
+  /**
+   * 区县编码
+   */
+  countyCode: string;
+  /**
+   * 区县名称
+   */
+  countyName: string;
+  /**
+   * 调研人员
+   */
+  name: string;
+  /**
+   * 联系方式
    */
   mobile: string;
   /**
-   * 联系人座机
+   * 调查计划id
    */
-  phone: string;
-  /**
-   * 描述
-   */
-  description: string;
-  /**
-   * 状态
-   */
-  status: number;
-  /**
-   * 销售通路
-   */
-  saleOrgPath: string;
-  /**
-   * 经销商ID
-   */
-  dealerId: number;
-  /**
-   * 经销商编码
-   */
-  dealerCode: string;
-  /**
-   * 经销商名称
-   */
-  dealerName: string;
+  surveyId: string;
 }
-export interface ShopsalesstatisticsShopIdGetRequset {
+export interface ApistoresurveytaskIdDeleteRequset {}
+export interface ApistoresurveytaskIdDeleteResponse {}
+export interface ApistoresurveytaskPostRequset {
   /**
-   * 年
+   * 省份编码
    */
-  year: string;
+  provinceCode: string;
   /**
-   * 月
+   * 城市编码
    */
-  month: string;
+  cityCode: string;
+  /**
+   * 区县编码
+   */
+  countyCode: string;
+  /**
+   * 调研人员
+   */
+  name: string;
+  /**
+   * 联系方式
+   */
+  mobile: string;
+  /**
+   * 调查计划id
+   */
+  surveryId: number;
 }
-export interface ShopsalesstatisticsShopIdGetResponse {
+export interface ApistoresurveytaskPostResponse {}
+export interface ApistoresurveytaskPutRequset {
   /**
-   * 门店ID
+   * 省份编码
    */
-  shopId: number;
+  provinceCode: string;
   /**
-   * 年
+   * 城市编码
    */
-  year: number;
+  cityCode: string;
   /**
-   * 月
+   * 区县编码
    */
-  month: number;
+  countyCode: string;
   /**
-   * 当月入库数量
+   * 调研人员
    */
-  inStock: number;
+  name: string;
   /**
-   * 销量
+   * 联系方式
    */
-  saleNum: number;
+  mobile: string;
   /**
-   * 提成
+   * 调查计划id
    */
-  rebateAmount: number;
+  surveryId: number;
   /**
-   * 会员数
+   * 主键id
    */
-  memberNum: number;
-  /**
-   * 新客数
-   */
-  newMemberNum: number;
-  /**
-   * 拓客数
-   */
-  customerNum: number;
+  id: number;
 }
-export interface DictsDictIditemsGetRequset {}
-export interface DictsDictCodeitemsByCodeGetRequset {}
-export interface DictsGetRequset {
+export interface ApistoresurveytaskPutResponse {}
+export interface ApiregionRegionIdchildrenGetRequset {}
+export interface ApiregiontreeGetRequset {}
+export interface ApiregiontreeGetResponse {
   /**
-   * 编码
-   */
-  code?: string;
-  /**
-   * 名称
-   */
-  text?: string;
-  /**
-   * 状态
-   */
-  status?: string;
-  /**
-   * 描述
-   */
-  description?: string;
-  /**
-   * 删除？
-   */
-  deleted?: string;
-}
-export interface DivisionsIdGetRequset {}
-/**
- * 行政区信息
- */
-export interface DivisionsIdGetResponse {
-  /**
-   * 行政区ID
+   * id
    */
   id: number;
   /**
-   * 行政区编码
-   */
-  code: string;
-  /**
-   * 行政区名称
+   * 行政区域展示名称
    */
   displayname: string;
   /**
-   * 简称
+   * 行政区域编码
+   */
+  code: string;
+  /**
+   * 行政区域简称
    */
   shortname: string;
   /**
-   * 全称
+   * 行政区域全称
    */
   fullname: string;
   /**
-   * 别名
-   */
-  alias: string;
-  /**
-   * 行政区父Id
-   */
-  parentId: number;
-  /**
-   * 层级
-   */
-  hierarchy: "1" | "2" | "3" | "4" | "5" | "6";
-  /**
-   * 排位
+   * 排序
    */
   rank: number;
   /**
-   * 状态
+   * 层级。1:国, 2:省, 3:市, 4:县, 5:镇, 6:村
    */
-  status: 10 | 20;
+  hierarchy: string;
   /**
-   * 经度
+   * 父级id
    */
-  lng: number;
+  parentId: string;
   /**
-   * 纬度
+   * 状态0:禁用,1.正常
    */
-  lat: number;
+  status: number;
   /**
-   * 描述
+   * 子节点
    */
-  description: string;
-  /**
-   * 祖先
-   */
-  ancestors: string;
-  /**
-   * 深度
-   */
-  depth: number;
-  /**
-   * 叶子
-   */
-  terminal: boolean;
-}
-export interface DivisionsGetRequset {
-  /**
-   * 行政区编码
-   */
-  code?: string;
-  /**
-   * 行政区父Id
-   */
-  parentId?: string;
-  /**
-   * 行政区名称
-   */
-  displayname?: string;
-}
-/**
- * 行政区信息
- */
-export interface DivisionsGetResponse {
-  /**
-   * 行政区ID
-   */
-  id: number;
-  /**
-   * 行政区编码
-   */
-  code: string;
-  /**
-   * 行政区名称
-   */
-  displayname: string;
-  /**
-   * 行政区父Id
-   */
-  parentId: number;
-  /**
-   * 层级
-   */
-  hierarchy: "1" | "2" | "3" | "4" | "5" | "6";
-  /**
-   * 排位
-   */
-  rank: number;
-  /**
-   * 状态
-   */
-  status: 10 | 20;
+  children: {
+    [k: string]: unknown;
+  }[];
 }

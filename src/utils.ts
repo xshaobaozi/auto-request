@@ -8,6 +8,7 @@ import {
   SwaggerParams,
   apiQueueParams,
   CreateApiStateType,
+  SwaggerParamsPathsMethodsParamsSchema,
 } from './define';
 
 // 读取入口文件
@@ -81,7 +82,7 @@ export const rendeFetchPre = (type: CreateApiStateType) => {
   if (type === CreateApiStateType.TARO) {
     return `import Taro from '@tarojs/taro';\n`;
   }
-  return `import axios from 'axios';\n`;
+  return `import axios, {AxiosResponse} from 'axios';\n`;
 }
 export const formatTsRequest = (name: string) => {
   return `${name}Requset`

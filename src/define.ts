@@ -2,12 +2,25 @@ export interface SwaggerParamsTags {
     name: string;
     description: string;
 }
+
+export interface SwaggerParamsPathsMethodsParamsSchema {
+    $schema: string;
+    type: 'object';
+    properties: {
+        [key: string]: {
+            description: string;
+            type: string;
+        }
+    };
+    required: string[];
+}
 export interface SwaggerParamsPathsMethodsParams {
     name: string;
     in: 'body' | 'query' | 'path';
-    required: boolean;
-    description: string;
-    type: string;
+    required?: boolean;
+    description?: string;
+    type?: string;
+    schema?: SwaggerParamsPathsMethodsParamsSchema
 }
 export interface SwaggerParamsPathsMethods {
     tags: string[];
