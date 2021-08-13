@@ -45,8 +45,7 @@ class CreateApi {
   // 生成接口类型
   generateMethod(queue: apiQueueParams[]) {
     return queue.map(({ method, url, schema }) => {
-      const isPost = ['post'].includes(method);
-      if (isPost) {
+      if (['post', 'put'].includes(method)) {
         return new RequestPost(method, url, schema, this.state.fetchType, this.state.options.host);
       }
       return new RequestGet(method, url, schema, this.state.fetchType, this.state.options.host);
@@ -89,7 +88,7 @@ class CreateApi {
         pre['properties'][titleRes] = {
           $ref: `#/definitions/${titleRes}`,
         };
-     
+
         pre['definitions'][titleReq] = req;
         pre['definitions'][titleRes] = res;
         pre.preDefine = pre.preDefine + `${titleReq},${titleRes},`
