@@ -47,6 +47,16 @@ export interface SwaggerParamsPathsMethodsResPropertiesObject {
     $ref?: string;
 }
 
+export interface SwaggerParamsPathsMethodsSchema {
+    type: string;
+    title: string;
+    properties: {
+        [key: string]: SwaggerParamsPathsMethodsResPropertiesArray
+        | SwaggerParamsPathsMethodsResPropertiesString
+        | SwaggerParamsPathsMethodsResPropertiesObject;
+    };
+    required: string[];
+}
 export interface SwaggerParamsPathsMethods {
     tags: string[];
     summary: string;
@@ -55,16 +65,7 @@ export interface SwaggerParamsPathsMethods {
     responses: {
         [key: string]: {
             description: string;
-            schema: {
-                type: string;
-                title: string;
-                properties: {
-                    [key: string]: SwaggerParamsPathsMethodsResPropertiesArray
-                    | SwaggerParamsPathsMethodsResPropertiesString
-                    | SwaggerParamsPathsMethodsResPropertiesObject;
-                };
-                required: string[];
-            }
+            schema: SwaggerParamsPathsMethodsSchema;
         }
     }
 }
@@ -103,6 +104,8 @@ export interface RequestGetState {
     schema: SwaggerParamsPathsMethods;
     tsReq: RequestGetRenderTs;
     tsRes: RequestGetRenderTs;
+    ReqTsTitle: string;
+    ResTsTitle: string;
 }
 export interface RequestGetRenderTs {
     title: string;
@@ -119,4 +122,6 @@ export interface RequestPostState {
     schema: SwaggerParamsPathsMethods;
     tsReq: RequestGetRenderTs;
     tsRes: RequestGetRenderTs;
+    ReqTsTitle: string;
+    ResTsTitle: string;
 }

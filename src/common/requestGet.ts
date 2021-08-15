@@ -1,5 +1,16 @@
-import { SwaggerParamsPathsMethods, CreateApiStateType, RequestGetState, RequestGetRenderTs } from './../define';
-import { createMethodsName, formatUrl, filterPathParams, formatTsRequest, formatTsResponse, formatProperties, formatRequireds } from './../utils';
+import { SwaggerParamsPathsMethods, CreateApiStateType, RequestGetState, RequestGetRenderTs, SwaggerParamsPathsMethodsSchema } from './../define';
+import {
+    createMethodsName,
+    formatUrl,
+    filterPathParams,
+    formatTsRequest,
+    formatTsResponse,
+    formatProperties,
+    formatRequireds,
+    deepCopy,
+    createTypeDefineObj,
+    pascalCase
+} from './../utils';
 
 class RequestGet {
     state: RequestGetState;
@@ -13,9 +24,15 @@ class RequestGet {
             host: host,
             tsRes: null,
             tsReq: null,
+            ReqTsTitle: '',
+            ResTsTitle: '',
         }
         this.state.tsReq = this.renderTsDefineReq();
-        this.state.tsRes = this.renderTsDefineRes();
+
+        const responseTsList = this.renderTsDefineResFeature();
+        const requestTsList = this.renderTsDefineReqFeature();
+        this.state.ReqTsTitle = (requestTsList[0] && requestTsList[0].key) || 'any'
+        this.state.ResTsTitle = (responseTsList[0] && responseTsList[0].key) || 'any'
     }
     renderTsDefineReq(): RequestGetRenderTs {
         const { parameters = [] } = this.state.schema;
@@ -27,13 +44,41 @@ class RequestGet {
             additionalProperties: false,
         }
     }
-    renderTsDefineRes(): RequestGetRenderTs {
-        const schema = this.state.schema.responses['200'].schema;
-        return {
-            ...schema,
-            additionalProperties: false,
-            title: formatTsResponse(this.state.methodName),
-        };
+    renderTsDefineReqFeature() {
+        const { parameters = [] } = this.state.schema;
+        const reqParams = parameters.filter((params) => params.in === 'query');
+        const title = formatTsRequest(this.state.methodName);
+        const properties = formatProperties(reqParams)
+        const required = formatRequireds(reqParams);
+        const reqList = [];
+        const req = createTypeDefineObj(title, properties, 'object', required)
+        reqList.push(req);
+        return reqList;
+    }
+    renderTsDefineResFeature() {
+        const schema = deepCopy(this.state.schema.responses['200'].schema) as SwaggerParamsPathsMethodsSchema;
+        const properties = [];
+        const title = formatTsResponse(this.state.methodName);
+        if (schema.type === 'object') {
+            properties.push(createTypeDefineObj(title, schema.properties, schema.type));
+        }
+        if (schema.properties === undefined) { return properties; }
+        for (const [key, value] of Object.entries(schema.properties)) {
+            const pascalCaseKey = pascalCase(key);
+            if (value.type === 'array') {
+                // properties.push(deepCopy(value));
+                properties.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.items.properties), value.items.type));
+                delete value.items.properties;
+                Object.assign(value.items, {
+                    $ref: `#/definitions/${title}${pascalCaseKey}`
+                })
+            }
+            if (value.type === 'object') {
+                properties.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.properties), value.type));
+            }
+        }
+
+        return properties;
     }
     renderFetchRequest() {
         if (this.state.fetchType === CreateApiStateType.AXIOS) {
@@ -65,7 +110,7 @@ class RequestGet {
     }
     renderMethod() {
         return `\n
-            export const ${this.state.methodName} = <P extends ${this.state.tsReq.title}, T = ${this.renderAxiosRes(this.state.tsRes.title)}>(${filterPathParams(this.state.schema.parameters)}): Promise<T> => {
+            export const ${this.state.methodName} = <P extends ${this.state.ReqTsTitle}, T = ${this.renderAxiosRes(this.state.ResTsTitle)}>(${filterPathParams(this.state.schema.parameters)}): Promise<T> => {
                 ${this.renderFetchRequest()}
             }
         

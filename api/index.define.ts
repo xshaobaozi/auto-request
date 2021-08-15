@@ -5,92 +5,210 @@
  * and run json-schema-to-typescript to regenerate this file.
  */
 
-/**
- * 对象数组
- */
-export type ApiregionRegionIdchildrenGetResponse = {
-  /**
-   * id
-   */
-  id: number;
-  /**
-   * 行政区域展示名称
-   */
-  displayname: string;
-  /**
-   * 行政区域编码
-   */
-  code: string;
-  /**
-   * 行政区域简称
-   */
-  shortname: string;
-  /**
-   * 行政区域全称
-   */
-  fullname: string;
-  /**
-   * 排序
-   */
-  rank: number;
-  /**
-   * 层级。1:国, 2:省, 3:市, 4:县, 5:镇, 6:村
-   */
-  hierarchy: string;
-  /**
-   * 父级id
-   */
-  parentId: string;
-  /**
-   * 状态0:禁用,1.正常
-   */
-  status: number;
-  [k: string]: unknown;
-}[];
-
 export interface Api {
-  ApistoresGetRequset?: ApistoresGetRequset;
   ApistoresGetResponse?: ApistoresGetResponse;
-  ApistoresPostRequset?: ApistoresPostRequset;
+  ApistoresGetResponseRecords?: ApistoresGetResponseRecords1;
+  ApistoresGetRequset?: ApistoresGetRequset;
   ApistoresPostResponse?: ApistoresPostResponse;
-  ApistoresStoreIdGetRequset?: ApistoresStoreIdGetRequset;
+  ApistoresPostRequset?: ApistoresPostRequset;
   ApistoresStoreIdGetResponse?: ApistoresStoreIdGetResponse;
+  ApistoresStoreIdGetResponseLogoFileIds?: ApistoresStoreIdGetResponseLogoFileIds;
+  ApistoresStoreIdGetResponseMilkFileIds?: ApistoresStoreIdGetResponseMilkFileIds;
+  ApistoresStoreIdGetResponseStoreFileIds?: ApistoresStoreIdGetResponseStoreFileIds;
+  ApistoresStoreIdGetResponseAddition?: ApistoresStoreIdGetResponseAddition;
+  ApistoresStoreIdGetResponseStoreChain?: ApistoresStoreIdGetResponseStoreChain;
+  ApistoresStoreIdGetResponseBusiness?: ApistoresStoreIdGetResponseBusiness;
+  ApistoresStoreIdGetRequset?: ApistoresStoreIdGetRequset;
   ApistoresStoreIdPutRequset?: ApistoresStoreIdPutRequset;
-  ApistoresStoreIdPutResponse?: ApistoresStoreIdPutResponse;
-  ApipointsPointIdGetRequset?: ApipointsPointIdGetRequset;
   ApipointsPointIdGetResponse?: ApipointsPointIdGetResponse;
-  ApistorescountGetRequset?: ApistorescountGetRequset;
+  ApipointsPointIdGetRequset?: ApipointsPointIdGetRequset;
   ApistorescountGetResponse?: ApistorescountGetResponse;
-  ApiuserloginPostRequset?: ApiuserloginPostRequset;
+  ApistorescountGetRequset?: ApistorescountGetRequset;
   ApiuserloginPostResponse?: ApiuserloginPostResponse;
-  ApiassetsuploadGetRequset?: ApiassetsuploadGetRequset;
   ApiassetsuploadGetResponse?: ApiassetsuploadGetResponse;
-  AssetsStoreIdimagesFileIdFileNameGetRequset?: AssetsStoreIdimagesFileIdFileNameGetRequset;
+  ApiassetsuploadGetRequset?: ApiassetsuploadGetRequset;
   AssetsStoreIdimagesFileIdFileNameGetResponse?: AssetsStoreIdimagesFileIdFileNameGetResponse;
-  BiostoresurveyAsPageGetRequset?: BiostoresurveyAsPageGetRequset;
+  AssetsStoreIdimagesFileIdFileNameGetRequset?: AssetsStoreIdimagesFileIdFileNameGetRequset;
   BiostoresurveyAsPageGetResponse?: BiostoresurveyAsPageGetResponse;
-  ApistoresurveyIdGetRequset?: ApistoresurveyIdGetRequset;
+  BiostoresurveyAsPageGetResponseContent?: BiostoresurveyAsPageGetResponseContent1;
+  BiostoresurveyAsPageGetRequset?: BiostoresurveyAsPageGetRequset;
   ApistoresurveyIdGetResponse?: ApistoresurveyIdGetResponse;
-  ApistoresurveyIdDeleteRequset?: ApistoresurveyIdDeleteRequset;
+  ApistoresurveyIdGetResponseSurveyRegions?: ApistoresurveyIdGetResponseSurveyRegions1;
+  ApistoresurveyIdGetRequset?: ApistoresurveyIdGetRequset;
   ApistoresurveyIdDeleteResponse?: ApistoresurveyIdDeleteResponse;
-  ApistoresurveyPostRequset?: ApistoresurveyPostRequset;
-  ApistoresurveyPostResponse?: ApistoresurveyPostResponse;
-  ApistoresurveyPutRequset?: ApistoresurveyPutRequset;
+  ApistoresurveyIdDeleteRequset?: ApistoresurveyIdDeleteRequset;
+  BiostoresurveyPostResponse?: BiostoresurveyPostResponse;
+  BiostoresurveyPostRequset?: BiostoresurveyPostRequset;
   ApistoresurveyPutResponse?: ApistoresurveyPutResponse;
-  ApistoresurveytaskpageGetRequset?: ApistoresurveytaskpageGetRequset;
+  ApistoresurveyPutRequset?: ApistoresurveyPutRequset;
   ApistoresurveytaskpageGetResponse?: ApistoresurveytaskpageGetResponse;
-  ApistoresurveytaskIdGetRequset?: ApistoresurveytaskIdGetRequset;
+  ApistoresurveytaskpageGetResponseContent?: ApistoresurveytaskpageGetResponseContent1;
+  ApistoresurveytaskpageGetRequset?: ApistoresurveytaskpageGetRequset;
   ApistoresurveytaskIdGetResponse?: ApistoresurveytaskIdGetResponse;
-  ApistoresurveytaskIdDeleteRequset?: ApistoresurveytaskIdDeleteRequset;
+  ApistoresurveytaskIdGetRequset?: ApistoresurveytaskIdGetRequset;
   ApistoresurveytaskIdDeleteResponse?: ApistoresurveytaskIdDeleteResponse;
-  ApistoresurveytaskPostRequset?: ApistoresurveytaskPostRequset;
+  ApistoresurveytaskIdDeleteRequset?: ApistoresurveytaskIdDeleteRequset;
   ApistoresurveytaskPostResponse?: ApistoresurveytaskPostResponse;
-  ApistoresurveytaskPutRequset?: ApistoresurveytaskPutRequset;
+  ApistoresurveytaskPostRequset?: ApistoresurveytaskPostRequset;
   ApistoresurveytaskPutResponse?: ApistoresurveytaskPutResponse;
+  ApistoresurveytaskPutRequset?: ApistoresurveytaskPutRequset;
   ApiregionRegionIdchildrenGetRequset?: ApiregionRegionIdchildrenGetRequset;
-  ApiregionRegionIdchildrenGetResponse?: ApiregionRegionIdchildrenGetResponse;
-  ApiregiontreeGetRequset?: ApiregiontreeGetRequset;
-  ApiregiontreeGetResponse?: ApiregiontreeGetResponse;
+  BioregiontreeGetResponse?: BioregiontreeGetResponse;
+  BioregiontreeGetResponseChildren?: BioregiontreeGetResponseChildren1;
+  BioregiontreeGetRequset?: BioregiontreeGetRequset;
+}
+export interface ApistoresGetResponse {
+  /**
+   * 每页数量
+   */
+  size?: number;
+  /**
+   * 当前页
+   */
+  current?: number;
+  /**
+   * 总页数
+   */
+  pages?: number;
+  /**
+   * 总数量
+   */
+  total?: number;
+  records?: ApistoresGetResponseRecords[];
+}
+export interface ApistoresGetResponseRecords {
+  " id"?: number;
+  /**
+   * 门店名字
+   */
+  name?: string;
+  /**
+   * 地址
+   */
+  address?: string;
+  /**
+   * 省编码
+   */
+  provinceCode?: string;
+  /**
+   * 省份
+   */
+  provinceName?: string;
+  /**
+   * 城市编码
+   */
+  cityCode?: string;
+  /**
+   * 城市名称
+   */
+  cityName?: string;
+  /**
+   * 区县编码
+   */
+  countyCode?: string;
+  /**
+   * 区县名称
+   */
+  countyName?: string;
+  /**
+   * 经度
+   */
+  lng?: number;
+  /**
+   * 纬度
+   */
+  lat?: number;
+  /**
+   * 标签
+   */
+  tags?: string;
+  /**
+   * 分类
+   */
+  categories?: string;
+  /**
+   * 备注
+   */
+  remark?: string;
+  /**
+   * 来源
+   */
+  source?: number;
+  /**
+   * 特征编码
+   */
+  signature?: string;
+  /**
+   * 距离
+   */
+  distance?: string;
+}
+export interface ApistoresGetResponseRecords1 {
+  " id"?: number;
+  /**
+   * 门店名字
+   */
+  name?: string;
+  /**
+   * 地址
+   */
+  address?: string;
+  /**
+   * 省编码
+   */
+  provinceCode?: string;
+  /**
+   * 省份
+   */
+  provinceName?: string;
+  /**
+   * 城市编码
+   */
+  cityCode?: string;
+  /**
+   * 城市名称
+   */
+  cityName?: string;
+  /**
+   * 区县编码
+   */
+  countyCode?: string;
+  /**
+   * 区县名称
+   */
+  countyName?: string;
+  /**
+   * 经度
+   */
+  lng?: number;
+  /**
+   * 纬度
+   */
+  lat?: number;
+  /**
+   * 标签
+   */
+  tags?: string;
+  /**
+   * 分类
+   */
+  categories?: string;
+  /**
+   * 备注
+   */
+  remark?: string;
+  /**
+   * 来源
+   */
+  source?: number;
+  /**
+   * 特征编码
+   */
+  signature?: string;
+  /**
+   * 距离
+   */
+  distance?: string;
 }
 export interface ApistoresGetRequset {
   /**
@@ -122,92 +240,7 @@ export interface ApistoresGetRequset {
    */
   lat: string;
 }
-export interface ApistoresGetResponse {
-  /**
-   * 每页数量
-   */
-  size?: number;
-  /**
-   * 当前页
-   */
-  current?: number;
-  /**
-   * 总页数
-   */
-  pages?: number;
-  /**
-   * 总数量
-   */
-  total?: number;
-  records?: {
-    " id"?: number;
-    /**
-     * 门店名字
-     */
-    name?: string;
-    /**
-     * 地址
-     */
-    address?: string;
-    /**
-     * 省编码
-     */
-    provinceCode?: string;
-    /**
-     * 省份
-     */
-    provinceName?: string;
-    /**
-     * 城市编码
-     */
-    cityCode?: string;
-    /**
-     * 城市名称
-     */
-    cityName?: string;
-    /**
-     * 区县编码
-     */
-    countyCode?: string;
-    /**
-     * 区县名称
-     */
-    countyName?: string;
-    /**
-     * 经度
-     */
-    lng?: number;
-    /**
-     * 纬度
-     */
-    lat?: number;
-    /**
-     * 标签
-     */
-    tags?: string;
-    /**
-     * 分类
-     */
-    categories?: string;
-    /**
-     * 备注
-     */
-    remark?: string;
-    /**
-     * 来源
-     */
-    source?: number;
-    /**
-     * 特征编码
-     */
-    signature?: string;
-    /**
-     * 距离
-     */
-    distance?: string;
-    [k: string]: unknown;
-  }[];
-}
+export interface ApistoresPostResponse {}
 export interface ApistoresPostRequset {
   /**
    * 特征编码(新建门店传-1)
@@ -398,8 +431,6 @@ export interface ApistoresPostRequset {
     [k: string]: unknown;
   };
 }
-export interface ApistoresPostResponse {}
-export interface ApistoresStoreIdGetRequset {}
 export interface ApistoresStoreIdGetResponse {
   /**
    * 特征编码
@@ -610,6 +641,95 @@ export interface ApistoresStoreIdGetResponse {
     [k: string]: unknown;
   };
 }
+export interface ApistoresStoreIdGetResponseLogoFileIds {
+  /**
+   * 文件标识
+   */
+  fileId?: string;
+  /**
+   * 文件名称
+   */
+  name?: string;
+}
+export interface ApistoresStoreIdGetResponseMilkFileIds {
+  /**
+   * 文件标识
+   */
+  fileId?: string;
+  /**
+   * 文件名称
+   */
+  name?: string;
+}
+export interface ApistoresStoreIdGetResponseStoreFileIds {
+  /**
+   * 文件标识
+   */
+  fileId?: string;
+  /**
+   * 文件名称
+   */
+  name?: string;
+}
+export interface ApistoresStoreIdGetResponseAddition {
+  /**
+   * 增值服务。{10:游泳馆, 20:产后中心, 30:游乐中心, 40:其它项目}
+   */
+  incrementServices?: string;
+  /**
+   * 店员区间。{10:2人以下, 20:2-4人, 30:4-6人, 40:6人以上}
+   */
+  clerkRange?: number;
+  /**
+   * 面积区间。{10:50平以下, 20:50-100平, 30:100-200平, 40:200平以上}
+   */
+  areaRange?: number;
+}
+export interface ApistoresStoreIdGetResponseStoreChain {
+  /**
+   * 连锁店名称
+   */
+  name?: string;
+  /**
+   * 连锁店数量
+   */
+  quantity?: number;
+}
+export interface ApistoresStoreIdGetResponseBusiness {
+  /**
+   * 整体月均营业额（万）
+   */
+  overallTurnover?: number;
+  /**
+   * 奶粉月均营业额（万）
+   */
+  milkTurnover?: number;
+  /**
+   * 奶粉货架数量
+   */
+  milkShelfQuantity?: number;
+  /**
+   * 奶粉容量（月）。{10:5万以下, 20:5-10万, 30:10-20万, 40:20万以上}
+   */
+  milkCapacity?: number;
+  /**
+   * 主营品牌。{10:国产品牌, 20:进口品牌}
+   */
+  coreBrands?: number;
+  /**
+   * 经营品牌（友商）。{1010:飞鹤—星飞帆, 1510:君乐宝—乐畅, 2010:伊利—珍护A2, 2510:贝因美—可睿欣, 3010:澳优—能力多, 3510:惠氏—启赋HMO, 4010:美赞臣—铂睿A2, 4510:海普诺凯—荷致, 5010:雅培—菁挚, 5510:圣元-优博瑞慕, 9900:其他}
+   */
+  thirdBrands?: string;
+  /**
+   * 经营品牌（自有）。{1010:瑞哺恩-菁珀, 1015:瑞哺恩-有机, 1020:瑞哺恩-亲悠, 1025:瑞哺恩-亲儿适, 1030:瑞哺恩-亲儿硕, 1035: 瑞哺恩-初颖, 1040: 瑞哺恩-雅士利, 1510:多美滋-优衡多, 2010:Arla-有机, 2015:Arla-蓝曦, 2020:Arla-美力滋}
+   */
+  ownBrands?: string;
+  /**
+   * 形象布建。{10:形象专柜, 20:灯箱, 30:橱窗, 40:无}
+   */
+  decorate?: string;
+}
+export interface ApistoresStoreIdGetRequset {}
 export interface ApistoresStoreIdPutRequset {
   /**
    * 特征编码
@@ -804,8 +924,6 @@ export interface ApistoresStoreIdPutRequset {
     [k: string]: unknown;
   };
 }
-export interface ApistoresStoreIdPutResponse {}
-export interface ApipointsPointIdGetRequset {}
 export interface ApipointsPointIdGetResponse {
   /**
    * 特征编码
@@ -879,12 +997,7 @@ export interface ApipointsPointIdGetResponse {
    */
   finish?: boolean;
 }
-export interface ApistorescountGetRequset {
-  /**
-   * 手机号码
-   */
-  mobile: string;
-}
+export interface ApipointsPointIdGetRequset {}
 export interface ApistorescountGetResponse {
   /**
    * 区域代办数量
@@ -899,20 +1012,13 @@ export interface ApistorescountGetResponse {
    */
   mineFinishNum?: number;
 }
-export interface ApiuserloginPostRequset {
-  [k: string]: unknown;
+export interface ApistorescountGetRequset {
+  /**
+   * 手机号码
+   */
+  mobile: string;
 }
 export interface ApiuserloginPostResponse {}
-export interface ApiassetsuploadGetRequset {
-  /**
-   * 文件
-   */
-  file: string;
-  /**
-   * 操作人
-   */
-  updateTel: string;
-}
 export interface ApiassetsuploadGetResponse {
   /**
    * 文件名
@@ -927,73 +1033,38 @@ export interface ApiassetsuploadGetResponse {
    */
   path?: string;
 }
-export interface AssetsStoreIdimagesFileIdFileNameGetRequset {}
-export interface AssetsStoreIdimagesFileIdFileNameGetResponse {}
-export interface BiostoresurveyAsPageGetRequset {
+export interface ApiassetsuploadGetRequset {
   /**
-   * 调查计划名称(模糊查询)
+   * 文件
    */
-  name?: string;
+  file: string;
   /**
-   * 0:已结束;1.正在进行中
+   * 操作人
    */
-  status?: string;
-  /**
-   * 当前页(不传默认1)
-   */
-  number?: string;
-  /**
-   * 每页数量(不传默认10)
-   */
-  size?: string;
+  updateTel: string;
 }
+export interface AssetsStoreIdimagesFileIdFileNameGetResponse {}
+export interface AssetsStoreIdimagesFileIdFileNameGetRequset {}
 export interface BiostoresurveyAsPageGetResponse {
   /**
    * 每页数量
    */
-  size: number;
+  size?: number;
   /**
    * 当前页
    */
-  number: number;
+  number?: number;
   /**
    * 总页数
    */
-  totalPages: number;
+  totalPages?: number;
   /**
    * 总数量
    */
-  totalElements: number;
-  content: {
-    /**
-     * id
-     */
-    id: number;
-    /**
-     * 调查计划名称
-     */
-    name: string;
-    /**
-     * 有效开始日期
-     */
-    startTime: string;
-    /**
-     * 有效结束日期
-     */
-    endTime: string;
-    /**
-     * 备注
-     */
-    description?: string;
-    /**
-     * 0:已结束;1.正在进行中
-     */
-    status?: number;
-    [k: string]: unknown;
-  }[];
+  totalElements?: number;
+  content?: BiostoresurveyAsPageGetResponseContent[];
 }
-export interface ApistoresurveyIdGetRequset {}
-export interface ApistoresurveyIdGetResponse {
+export interface BiostoresurveyAsPageGetResponseContent {
   /**
    * id
    */
@@ -1013,33 +1084,119 @@ export interface ApistoresurveyIdGetResponse {
   /**
    * 备注
    */
-  description: string;
+  description?: string;
   /**
    * 0:已结束;1.正在进行中
    */
-  status: string;
+  status?: number;
+}
+export interface BiostoresurveyAsPageGetResponseContent1 {
+  /**
+   * id
+   */
+  id?: number;
+  /**
+   * 调查计划名称
+   */
+  name?: string;
+  /**
+   * 有效开始日期
+   */
+  startTime?: string;
+  /**
+   * 有效结束日期
+   */
+  endTime?: string;
+  /**
+   * 备注
+   */
+  description?: string;
+  /**
+   * 0:已结束;1.正在进行中
+   */
+  status?: number;
+}
+export interface BiostoresurveyAsPageGetRequset {
+  /**
+   * 调查计划名称(模糊查询)
+   */
+  name?: string;
+  /**
+   * 0:已结束;1.正在进行中
+   */
+  status?: string;
+  /**
+   * 当前页(不传默认1)
+   */
+  number?: string;
+  /**
+   * 每页数量(不传默认10)
+   */
+  size?: string;
+}
+export interface ApistoresurveyIdGetResponse {
+  /**
+   * id
+   */
+  id?: number;
+  /**
+   * 调查计划名称
+   */
+  name?: string;
+  /**
+   * 有效开始日期
+   */
+  startTime?: string;
+  /**
+   * 有效结束日期
+   */
+  endTime?: string;
+  /**
+   * 备注
+   */
+  description?: string;
+  /**
+   * 0:已结束;1.正在进行中
+   */
+  status?: string;
   /**
    * 调查区域
    */
-  surveyRegions: {
-    /**
-     * 省份编码
-     */
-    provinceCode: string;
-    /**
-     * 城市编码
-     */
-    cityCode: string;
-    /**
-     * 区县编码
-     */
-    countyCode: string;
-    [k: string]: unknown;
-  }[];
+  surveyRegions?: ApistoresurveyIdGetResponseSurveyRegions[];
 }
-export interface ApistoresurveyIdDeleteRequset {}
+export interface ApistoresurveyIdGetResponseSurveyRegions {
+  /**
+   * 省份编码
+   */
+  provinceCode: string;
+  /**
+   * 城市编码
+   */
+  cityCode: string;
+  /**
+   * 区县编码
+   */
+  countyCode: string;
+}
+export interface ApistoresurveyIdGetResponseSurveyRegions1 {
+  /**
+   * 省份编码
+   */
+  provinceCode?: string;
+  /**
+   * 城市编码
+   */
+  cityCode?: string;
+  /**
+   * 区县编码
+   */
+  countyCode?: string;
+}
+export interface ApistoresurveyIdGetRequset {}
 export interface ApistoresurveyIdDeleteResponse {}
-export interface ApistoresurveyPostRequset {
+export interface ApistoresurveyIdDeleteRequset {}
+export interface BiostoresurveyPostResponse {}
+export interface BiostoresurveyPostRequset {
   /**
    * 计划名称
    */
@@ -1075,7 +1232,7 @@ export interface ApistoresurveyPostRequset {
     [k: string]: unknown;
   }[];
 }
-export interface ApistoresurveyPostResponse {}
+export interface ApistoresurveyPutResponse {}
 export interface ApistoresurveyPutRequset {
   /**
    * 计划名称
@@ -1112,104 +1269,26 @@ export interface ApistoresurveyPutRequset {
     [k: string]: unknown;
   }[];
 }
-export interface ApistoresurveyPutResponse {}
-export interface ApistoresurveytaskpageGetRequset {
-  /**
-   * 调查计划id
-   */
-  surveyId: string;
-  /**
-   * 省份编码
-   */
-  provinceCode?: string;
-  /**
-   * 城市编码
-   */
-  cityCode?: string;
-  /**
-   * 区县编码
-   */
-  countyCode?: string;
-  /**
-   * 当前页(不传默认1)
-   */
-  number?: string;
-  /**
-   * 每页数量(不传默认10)
-   */
-  size?: string;
-  /**
-   * 调研人员(模糊查询)
-   */
-  name?: string;
-  /**
-   * 联系方式(模糊查询)
-   */
-  mobile?: string;
-}
 export interface ApistoresurveytaskpageGetResponse {
   /**
    * 每页数量
    */
-  size: number;
+  size?: number;
   /**
    * 当前页
    */
-  number: number;
+  number?: number;
   /**
    * 总页数
    */
-  totalPages: number;
+  totalPages?: number;
   /**
    * 总数量
    */
-  totalElements: number;
-  content: {
-    /**
-     * id
-     */
-    " id": number;
-    /**
-     * 省份编码
-     */
-    provinceCode: string;
-    /**
-     * 省份名称
-     */
-    provinceName: string;
-    /**
-     * 城市编码
-     */
-    cityCode: string;
-    /**
-     * 城市名称
-     */
-    cityName: string;
-    /**
-     * 区县编码
-     */
-    countyCode: string;
-    /**
-     * 区县名称
-     */
-    countyName: string;
-    /**
-     * 调研人员
-     */
-    name: string;
-    /**
-     * 联系方式
-     */
-    mobile: string;
-    /**
-     * 调查计划id
-     */
-    surveyId: string;
-    [k: string]: unknown;
-  }[];
+  totalElements?: number;
+  content?: ApistoresurveytaskpageGetResponseContent[];
 }
-export interface ApistoresurveytaskIdGetRequset {}
-export interface ApistoresurveytaskIdGetResponse {
+export interface ApistoresurveytaskpageGetResponseContent {
   /**
    * id
    */
@@ -1251,8 +1330,128 @@ export interface ApistoresurveytaskIdGetResponse {
    */
   surveyId: string;
 }
-export interface ApistoresurveytaskIdDeleteRequset {}
+export interface ApistoresurveytaskpageGetResponseContent1 {
+  /**
+   * id
+   */
+  " id"?: number;
+  /**
+   * 省份编码
+   */
+  provinceCode?: string;
+  /**
+   * 省份名称
+   */
+  provinceName?: string;
+  /**
+   * 城市编码
+   */
+  cityCode?: string;
+  /**
+   * 城市名称
+   */
+  cityName?: string;
+  /**
+   * 区县编码
+   */
+  countyCode?: string;
+  /**
+   * 区县名称
+   */
+  countyName?: string;
+  /**
+   * 调研人员
+   */
+  name?: string;
+  /**
+   * 联系方式
+   */
+  mobile?: string;
+  /**
+   * 调查计划id
+   */
+  surveyId?: string;
+}
+export interface ApistoresurveytaskpageGetRequset {
+  /**
+   * 调查计划id
+   */
+  surveyId: string;
+  /**
+   * 省份编码
+   */
+  provinceCode?: string;
+  /**
+   * 城市编码
+   */
+  cityCode?: string;
+  /**
+   * 区县编码
+   */
+  countyCode?: string;
+  /**
+   * 当前页(不传默认1)
+   */
+  number?: string;
+  /**
+   * 每页数量(不传默认10)
+   */
+  size?: string;
+  /**
+   * 调研人员(模糊查询)
+   */
+  name?: string;
+  /**
+   * 联系方式(模糊查询)
+   */
+  mobile?: string;
+}
+export interface ApistoresurveytaskIdGetResponse {
+  /**
+   * id
+   */
+  id?: number;
+  /**
+   * 省份编码
+   */
+  provinceCode?: string;
+  /**
+   * 省份名称
+   */
+  provinceName?: string;
+  /**
+   * 城市编码
+   */
+  cityCode?: string;
+  /**
+   * 城市名称
+   */
+  cityName?: string;
+  /**
+   * 区县编码
+   */
+  countyCode?: string;
+  /**
+   * 区县名称
+   */
+  countyName?: string;
+  /**
+   * 调研人员
+   */
+  name?: string;
+  /**
+   * 联系方式
+   */
+  mobile?: string;
+  /**
+   * 调查计划id
+   */
+  surveyId?: string;
+}
+export interface ApistoresurveytaskIdGetRequset {}
 export interface ApistoresurveytaskIdDeleteResponse {}
+export interface ApistoresurveytaskIdDeleteRequset {}
+export interface ApistoresurveytaskPostResponse {}
 export interface ApistoresurveytaskPostRequset {
   /**
    * 省份编码
@@ -1279,7 +1478,7 @@ export interface ApistoresurveytaskPostRequset {
    */
   surveryId: number;
 }
-export interface ApistoresurveytaskPostResponse {}
+export interface ApistoresurveytaskPutResponse {}
 export interface ApistoresurveytaskPutRequset {
   /**
    * 省份编码
@@ -1310,50 +1509,52 @@ export interface ApistoresurveytaskPutRequset {
    */
   id: number;
 }
-export interface ApistoresurveytaskPutResponse {}
 export interface ApiregionRegionIdchildrenGetRequset {}
-export interface ApiregiontreeGetRequset {}
-export interface ApiregiontreeGetResponse {
+export interface BioregiontreeGetResponse {
   /**
    * id
    */
-  id: number;
+  id?: number;
   /**
    * 行政区域展示名称
    */
-  displayname: string;
+  displayname?: string;
   /**
    * 行政区域编码
    */
-  code: string;
+  code?: string;
   /**
    * 行政区域简称
    */
-  shortname: string;
+  shortname?: string;
   /**
    * 行政区域全称
    */
-  fullname: string;
+  fullname?: string;
   /**
    * 排序
    */
-  rank: number;
+  rank?: number;
   /**
    * 层级。1:国, 2:省, 3:市, 4:县, 5:镇, 6:村
    */
-  hierarchy: string;
+  hierarchy?: string;
   /**
    * 父级id
    */
-  parentId: string;
+  parent?: string;
   /**
    * 状态0:禁用,1.正常
    */
-  status: number;
+  status?: number;
   /**
    * 子节点
    */
-  children: {
-    [k: string]: unknown;
-  }[];
+  children?: BioregiontreeGetResponseChildren[];
 }
+/**
+ * 与root属性一致
+ */
+export interface BioregiontreeGetResponseChildren {}
+export interface BioregiontreeGetResponseChildren1 {}
+export interface BioregiontreeGetRequset {}

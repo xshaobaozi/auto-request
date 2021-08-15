@@ -1,47 +1,55 @@
 import axios, { AxiosResponse } from "axios"
 import {
-  ApistoresGetRequset,
   ApistoresGetResponse,
-  ApistoresPostRequset,
+  ApistoresGetResponseRecords,
+  ApistoresGetRequset,
   ApistoresPostResponse,
-  ApistoresStoreIdGetRequset,
+  ApistoresPostRequset,
   ApistoresStoreIdGetResponse,
+  ApistoresStoreIdGetResponseLogoFileIds,
+  ApistoresStoreIdGetResponseMilkFileIds,
+  ApistoresStoreIdGetResponseStoreFileIds,
+  ApistoresStoreIdGetResponseAddition,
+  ApistoresStoreIdGetResponseStoreChain,
+  ApistoresStoreIdGetResponseBusiness,
+  ApistoresStoreIdGetRequset,
   ApistoresStoreIdPutRequset,
-  ApistoresStoreIdPutResponse,
-  ApipointsPointIdGetRequset,
   ApipointsPointIdGetResponse,
-  ApistorescountGetRequset,
+  ApipointsPointIdGetRequset,
   ApistorescountGetResponse,
-  ApiuserloginPostRequset,
+  ApistorescountGetRequset,
   ApiuserloginPostResponse,
-  ApiassetsuploadGetRequset,
   ApiassetsuploadGetResponse,
-  AssetsStoreIdimagesFileIdFileNameGetRequset,
+  ApiassetsuploadGetRequset,
   AssetsStoreIdimagesFileIdFileNameGetResponse,
-  BiostoresurveyAsPageGetRequset,
+  AssetsStoreIdimagesFileIdFileNameGetRequset,
   BiostoresurveyAsPageGetResponse,
-  ApistoresurveyIdGetRequset,
+  BiostoresurveyAsPageGetResponseContent,
+  BiostoresurveyAsPageGetRequset,
   ApistoresurveyIdGetResponse,
-  ApistoresurveyIdDeleteRequset,
+  ApistoresurveyIdGetResponseSurveyRegions,
+  ApistoresurveyIdGetRequset,
   ApistoresurveyIdDeleteResponse,
-  ApistoresurveyPostRequset,
-  ApistoresurveyPostResponse,
-  ApistoresurveyPutRequset,
+  ApistoresurveyIdDeleteRequset,
+  BiostoresurveyPostResponse,
+  BiostoresurveyPostRequset,
   ApistoresurveyPutResponse,
-  ApistoresurveytaskpageGetRequset,
+  ApistoresurveyPutRequset,
   ApistoresurveytaskpageGetResponse,
-  ApistoresurveytaskIdGetRequset,
+  ApistoresurveytaskpageGetResponseContent,
+  ApistoresurveytaskpageGetRequset,
   ApistoresurveytaskIdGetResponse,
-  ApistoresurveytaskIdDeleteRequset,
+  ApistoresurveytaskIdGetRequset,
   ApistoresurveytaskIdDeleteResponse,
-  ApistoresurveytaskPostRequset,
+  ApistoresurveytaskIdDeleteRequset,
   ApistoresurveytaskPostResponse,
-  ApistoresurveytaskPutRequset,
+  ApistoresurveytaskPostRequset,
   ApistoresurveytaskPutResponse,
+  ApistoresurveytaskPutRequset,
   ApiregionRegionIdchildrenGetRequset,
-  ApiregionRegionIdchildrenGetResponse,
-  ApiregiontreeGetRequset,
-  ApiregiontreeGetResponse,
+  BioregiontreeGetResponse,
+  BioregiontreeGetResponseChildren,
+  BioregiontreeGetRequset,
 } from "./index.define"
 
 export const ApistoresGet = <
@@ -95,7 +103,7 @@ export const ApistoresStoreIdGet = <
 
 export const ApistoresStoreIdPut = <
   P extends ApistoresStoreIdPutRequset,
-  T = AxiosResponse<ApistoresStoreIdPutResponse>
+  T = AxiosResponse<any>
 >(
   StoreId: any,
   params: P,
@@ -144,7 +152,7 @@ export const ApistorescountGet = <
 }
 
 export const ApiuserloginPost = <
-  P extends ApiuserloginPostRequset,
+  P extends any,
   T = AxiosResponse<ApiuserloginPostResponse>
 >(
   params: P,
@@ -244,16 +252,16 @@ export const ApistoresurveyIdDelete = <
   })
 }
 
-export const ApistoresurveyPost = <
-  P extends ApistoresurveyPostRequset,
-  T = AxiosResponse<ApistoresurveyPostResponse>
+export const BiostoresurveyPost = <
+  P extends BiostoresurveyPostRequset,
+  T = AxiosResponse<BiostoresurveyPostResponse>
 >(
   params: P,
   options?: any
 ): Promise<T> => {
   // 新建_调查计划
   return axios.request({
-    url: `https://yapi.yashili.com/mock/178/api/store/survey`,
+    url: `https://yapi.yashili.com/mock/178/bio/store/survey`,
     method: "post",
     data: params,
     ...options,
@@ -360,7 +368,7 @@ export const ApistoresurveytaskPut = <
 
 export const ApiregionRegionIdchildrenGet = <
   P extends ApiregionRegionIdchildrenGetRequset,
-  T = AxiosResponse<ApiregionRegionIdchildrenGetResponse>
+  T = AxiosResponse<any>
 >(
   RegionId: any,
   params: P,
@@ -375,16 +383,16 @@ export const ApiregionRegionIdchildrenGet = <
   })
 }
 
-export const ApiregiontreeGet = <
-  P extends ApiregiontreeGetRequset,
-  T = AxiosResponse<ApiregiontreeGetResponse>
+export const BioregiontreeGet = <
+  P extends BioregiontreeGetRequset,
+  T = AxiosResponse<BioregiontreeGetResponse>
 >(
   params: P,
   options?: any
 ): Promise<T> => {
   // 查询_行政区域(树形)
   return axios.request({
-    url: `https://yapi.yashili.com/mock/178/api/region/tree`,
+    url: `https://yapi.yashili.com/mock/178/bio/region/tree`,
     method: "get",
     params: params,
     ...options,

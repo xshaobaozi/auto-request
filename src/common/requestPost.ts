@@ -2,7 +2,8 @@ import {
     SwaggerParamsPathsMethods,
     CreateApiStateType,
     RequestPostState,
-    RequestGetRenderTs
+    RequestGetRenderTs,
+    SwaggerParamsPathsMethodsSchema
 } from './../define';
 import {
     createMethodsName,
@@ -12,7 +13,9 @@ import {
     formatTsResponse,
     formatProperties,
     formatRequireds,
-    deepCopy
+    deepCopy,
+    createTypeDefineObj,
+    pascalCase
 } from './../utils';
 
 
@@ -28,9 +31,29 @@ class RequestPost {
             host: host,
             tsReq: null,
             tsRes: null,
+            ReqTsTitle: '',
+            ResTsTitle: '',
         }
         this.state.tsReq = this.renderTsDefineReq();
-        this.state.tsRes = this.renderTsDefineRes();
+        const responseTsList = this.renderTsDefineResFeature()
+        const reqTsList = this.renderTsDefineReqFeature()
+        this.state.ReqTsTitle = (reqTsList[0] && reqTsList[0].key) || 'any'
+        this.state.ResTsTitle = (responseTsList[0] && responseTsList[0].key) || 'any'
+    }
+    renderTsDefineReqFeature() {
+        const { parameters = [] } = this.state.schema;
+        const reqParams = parameters.filter((params) => params.in === 'body');
+        if (reqParams.length === 0) {
+            return [];
+        }
+        const [firstParams] = reqParams;
+        const title = formatTsRequest(this.state.methodName);
+        const properties = firstParams.schema!.properties
+        const required = firstParams.schema!.required;
+        const reqList = [];
+        const req = createTypeDefineObj(title, properties, 'object', required)
+        reqList.push(req);
+        return reqList;
     }
     renderTsDefineReq(): RequestGetRenderTs {
         const { parameters = [] } = this.state.schema;
@@ -52,32 +75,29 @@ class RequestPost {
         }
     }
     renderTsDefineResFeature() {
-        const schema = this.state.schema.responses['200'].schema;
+        const schema = deepCopy(this.state.schema.responses['200'].schema) as SwaggerParamsPathsMethodsSchema;
         const properties = [];
         const title = formatTsResponse(this.state.methodName);
         if (schema.type === 'object') {
-            properties.push(deepCopy(schema.properties));
+            properties.push(createTypeDefineObj(title, schema.properties, schema.type));
         }
+        if (schema.properties === undefined) { return properties; }
         for (const [key, value] of Object.entries(schema.properties)) {
+            const pascalCaseKey = pascalCase(key);
             if (value.type === 'array') {
-                properties.push(deepCopy(value));
-                value.items.$ref = `#/definitions/${title}${key}`;
+                // properties.push(deepCopy(value));
+                properties.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.items.properties), value.items.type));
                 delete value.items.properties;
+                Object.assign(value.items, {
+                    $ref: `#/definitions/${title}${pascalCaseKey}`
+                })
             }
             if (value.type === 'object') {
-                properties.push(deepCopy(value));
-                value.$ref = `#/definitions/${title}${key}`;
-                properties.push(value);
+                properties.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.properties), value.type));
             }
         }
-    }
-    renderTsDefineRes(): RequestGetRenderTs {
-        const schema = this.state.schema.responses['200'].schema;
-        return {
-            ...schema,
-            additionalProperties: false,
-            title: formatTsResponse(this.state.methodName),
-        };
+
+        return properties;
     }
     renderFetchRequest() {
         if (this.state.fetchType === CreateApiStateType.AXIOS) {
@@ -109,7 +129,7 @@ class RequestPost {
     }
     renderMethod() {
         return `\n
-            export const ${this.state.methodName} = <P extends ${this.state.tsReq.title}, T = ${this.renderAxiosRes(this.state.tsRes.title)}>(${filterPathParams(this.state.schema.parameters)}): Promise<T> => {
+            export const ${this.state.methodName} = <P extends ${this.state.ReqTsTitle}, T = ${this.renderAxiosRes(this.state.ResTsTitle)}>(${filterPathParams(this.state.schema.parameters)}): Promise<T> => {
                 ${this.renderFetchRequest()}
             }
         

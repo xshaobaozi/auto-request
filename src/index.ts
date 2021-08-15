@@ -8,6 +8,7 @@ import {
   apiQueueParams,
   CreateApiStateType,
 } from './define';
+import { keyFor } from 'core-js/fn/symbol';
 
 interface CreateApiState {
   input: string;
@@ -17,7 +18,7 @@ interface CreateApiState {
     host: string;
   };
   methodsQueue: apiQueueParams[];
-  resultQueue: RequestGet[]|RequestPost[];
+  resultQueue: RequestGet[] | RequestPost[];
 }
 class CreateApi {
   state: CreateApiState;
@@ -67,6 +68,34 @@ class CreateApi {
       return pre;
     }, '');
   }
+  handleRenderApiTsFileFeature() {
+    const init = {
+      title: 'Api',
+      type: 'object',
+      properties: {},
+      definitions: {},
+      additionalProperties: false,
+      preDefine: ''
+    };
+    return this.state.resultQueue.reduce((pre, next) => {
+      const tsQueue = (next as RequestPost).renderTsDefineResFeature();
+      tsQueue.forEach(item => {
+        const { key, propertiesKey, definitionsKey } = item;
+        pre.properties[key] = propertiesKey;
+        pre.definitions[key] = definitionsKey;
+        pre.preDefine = pre.preDefine + `${key},`
+      })
+
+      const tsQueueReq = (next as RequestGet).renderTsDefineReqFeature();
+      tsQueueReq.forEach(item => {
+        const { key, propertiesKey, definitionsKey } = item;
+        pre.properties[key] = propertiesKey;
+        pre.definitions[key] = definitionsKey;
+        pre.preDefine = pre.preDefine + `${key},`
+      })
+      return pre;
+    }, init);
+  }
   handleRenderApiTsFile() {
     const init = {
       title: 'Api',
@@ -82,7 +111,7 @@ class CreateApi {
         const res = next.state.tsRes;
         const titleReq = req.title;
         const titleRes = res.title;
-        
+
         pre['definitions'][titleReq] = req;
         pre['properties'][titleReq] = {
           $ref: `#/definitions/${titleReq}`,
@@ -93,14 +122,16 @@ class CreateApi {
         pre['properties'][titleRes] = {
           $ref: `#/definitions/${titleRes}`,
         };
-        
+
         pre.preDefine = pre.preDefine + `${titleReq},${titleRes},`
         return pre;
       }, init)
   }
   // 生成接口
   generateFile(outputPath = '') {
-    const apiDefineStream = this.handleRenderApiTsFile();
+    const apiDefineStream = this.handleRenderApiTsFileFeature();
+    // console.log(JSON.stringify(mock));
+    // const apiDefineStream = this.handleRenderApiTsFile();
     const tsDefine = apiDefineStream.preDefine;
     delete apiDefineStream.preDefine;
     const definePath = './index.define';
@@ -109,6 +140,7 @@ class CreateApi {
     const apiStream = rendeFetchPre(this.state.fetchType) + tsPreDefineStream + this.handleRenderApiFile();
 
     fs.writeFileSync(`${outputPath}/index.ts`, prettier.format(apiStream, { semi: false, parser: "typescript" }));
+    fs.writeFileSync(`${outputPath}/index.test.json`, prettier.format(JSON.stringify(apiDefineStream), { semi: false, parser: "json" }));
 
     compile(apiDefineStream, 'Api').then((ts) => {
       fs.writeFileSync(outputPath + `${definePath}.ts`, ts);

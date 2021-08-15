@@ -107,3 +107,19 @@ export const renderTsPreImport = (prePath: string, preDefine: string) => {
 }
 
 export const deepCopy = (json: any) => JSON.parse(JSON.stringify(json));
+
+export const createTypeDefineObj = (title: string, properties: any, type: string, required?: any) => {
+  return {
+    key: title,
+    propertiesKey: {
+      $ref: `#/definitions/${title}`
+    },
+    definitionsKey: {
+      title: title,
+      type: type,
+      additionalProperties: false,
+      properties: properties,
+      required: required,
+    }
+  }
+}
