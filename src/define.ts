@@ -10,6 +10,14 @@ export interface SwaggerParamsPathsMethodsParamsSchema {
         [key: string]: {
             description: string;
             type: string;
+            items: {
+                type: string;
+                properties: {
+                    [key: string]: SwaggerParamsTags;
+                };
+                required: string[];
+                description:string;
+            }
         }
     };
     required: string[];

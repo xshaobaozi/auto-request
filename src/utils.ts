@@ -80,7 +80,7 @@ export const filterPathParams = (parameters: SwaggerParamsPathsMethodsParams[] =
 
 export const rendeFetchPre = (type: CreateApiStateType) => {
   if (type === CreateApiStateType.TARO) {
-    return `import Taro from '@tarojs/taro';\n`;
+    return `import Taro, { RequestTask } from '@tarojs/taro';\n`;
   }
   return `import axios, {AxiosResponse} from 'axios';\n`;
 }

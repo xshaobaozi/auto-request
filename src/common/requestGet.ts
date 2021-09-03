@@ -108,9 +108,15 @@ class RequestGet {
         }
         return title;
     }
+    renderPromiseType() {
+        if (this.state.fetchType === 'axios') {
+            return 'Promise<T>';
+        }
+        return `RequestTask <T>`
+    }
     renderMethod() {
         return `\n
-            export const ${this.state.methodName} = <P extends ${this.state.ReqTsTitle}, T = ${this.renderAxiosRes(this.state.ResTsTitle)}>(${filterPathParams(this.state.schema.parameters)}): Promise<T> => {
+            export const ${this.state.methodName} = <P extends ${this.state.ReqTsTitle}, T = ${this.renderAxiosRes(this.state.ResTsTitle)}>(${filterPathParams(this.state.schema.parameters)}): ${this.renderPromiseType()} => {
                 ${this.renderFetchRequest()}
             }
         

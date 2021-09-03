@@ -53,6 +53,19 @@ class RequestPost {
         const reqList = [];
         const req = createTypeDefineObj(title, properties, 'object', required)
         reqList.push(req);
+        for(let [key, value] of Object.entries(firstParams.schema!.properties)) {
+            const pascalCaseKey = pascalCase(key);
+            if (value.type === 'array') {
+                reqList.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.items.properties), value.items.type));
+                delete value.items.properties;
+                Object.assign(value.items, {
+                    $ref: `#/definitions/${title}${pascalCaseKey}`
+                })
+            }
+            // if (value.type === 'object') {
+            //     reqList.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.properties), value.type));
+            // }
+        }
         return reqList;
     }
     renderTsDefineReq(): RequestGetRenderTs {
@@ -127,9 +140,15 @@ class RequestPost {
         }
         return title;
     }
+    renderPromiseType() {
+        if (this.state.fetchType === 'axios') {
+            return 'Promise<T>';
+        }
+        return `RequestTask <T>`
+    }
     renderMethod() {
         return `\n
-            export const ${this.state.methodName} = <P extends ${this.state.ReqTsTitle}, T = ${this.renderAxiosRes(this.state.ResTsTitle)}>(${filterPathParams(this.state.schema.parameters)}): Promise<T> => {
+            export const ${this.state.methodName} = <P extends ${this.state.ReqTsTitle}, T = ${this.renderAxiosRes(this.state.ResTsTitle)}>(${filterPathParams(this.state.schema.parameters)}): ${this.renderPromiseType()} => {
                 ${this.renderFetchRequest()}
             }
         
