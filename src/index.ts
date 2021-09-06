@@ -8,7 +8,6 @@ import {
   apiQueueParams,
   CreateApiStateType,
 } from './define';
-import { keyFor } from 'core-js/fn/symbol';
 
 interface CreateApiState {
   input: string;

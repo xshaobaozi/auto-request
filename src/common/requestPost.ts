@@ -17,23 +17,12 @@ import {
     createTypeDefineObj,
     pascalCase
 } from './../utils';
+import BaseRequest from './base';
 
-
-class RequestPost {
+class RequestPost extends BaseRequest {
     state: RequestPostState;
     constructor(method: string, url: string, schema: SwaggerParamsPathsMethods, fetchType: CreateApiStateType, host: string) {
-        this.state = {
-            methodName: createMethodsName(url, method, schema.parameters),
-            url: formatUrl(schema.parameters, url),
-            fetchType: fetchType,
-            method: method,
-            schema: schema,
-            host: host,
-            tsReq: null,
-            tsRes: null,
-            ReqTsTitle: '',
-            ResTsTitle: '',
-        }
+        super(method, url, schema, fetchType, host);
         this.state.tsReq = this.renderTsDefineReq();
         const responseTsList = this.renderTsDefineResFeature()
         const reqTsList = this.renderTsDefineReqFeature()
@@ -53,7 +42,7 @@ class RequestPost {
         const reqList = [];
         const req = createTypeDefineObj(title, properties, 'object', required)
         reqList.push(req);
-        for(let [key, value] of Object.entries(firstParams.schema!.properties)) {
+        for (let [key, value] of Object.entries(firstParams.schema!.properties)) {
             const pascalCaseKey = pascalCase(key);
             if (value.type === 'array') {
                 reqList.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.items.properties), value.items.type));
@@ -113,45 +102,27 @@ class RequestPost {
         return properties;
     }
     renderFetchRequest() {
+        const { schema, host, url, method } = this.state;
+        const { summary } = schema;
         if (this.state.fetchType === CreateApiStateType.AXIOS) {
             return `
-                // ${this.state.schema.summary}
+                // ${summary}
                 return axios.request({
-                    url: \`${this.state.host}${this.state.url}\`,
-                    method: '${this.state.method}',
+                    url: \`${host}${url}\`,
+                    method: '${method}',
                     data: params,
                     ...options, 
                 })
             `
         }
         return `
-            // ${this.state.schema.summary}
+            // ${summary}
             return Taro.request({
-                url: \`${this.state.host}/${this.state.url}\`,
-                method: '${this.state.method}',
+                url: \`${host}/${url}\`,
+                method: '${method}',
                 data: params,
                 ...options, 
             })
-        `
-    }
-    renderAxiosRes(title) {
-        if (this.state.fetchType === 'axios') {
-            return `AxiosResponse <${title}>`
-        }
-        return title;
-    }
-    renderPromiseType() {
-        if (this.state.fetchType === 'axios') {
-            return 'Promise<T>';
-        }
-        return `RequestTask <T>`
-    }
-    renderMethod() {
-        return `\n
-            export const ${this.state.methodName} = <P extends ${this.state.ReqTsTitle}, T = ${this.renderAxiosRes(this.state.ResTsTitle)}>(${filterPathParams(this.state.schema.parameters)}): ${this.renderPromiseType()} => {
-                ${this.renderFetchRequest()}
-            }
-        
         `
     }
 }

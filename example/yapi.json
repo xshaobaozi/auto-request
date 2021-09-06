@@ -1,21 +1,13 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "门店通",
+    "title": "前端",
     "version": "last"
   },
-  "basePath": "/",
+  "basePath": "/commons",
   "tags": [
     {
-      "name": "公共分类",
-      "description": "公共分类"
-    },
-    {
-      "name": "门店调查",
-      "description": null
-    },
-    {
-      "name": "行政区域",
+      "name": "swagger",
       "description": null
     }
   ],
@@ -23,61 +15,33 @@
     "http"
   ],
   "paths": {
-    "/api/stores": {
+    "/member/{id-key}/path": {
       "get": {
         "tags": [
-          "公共分类"
+          "swagger"
         ],
-        "summary": "根据手机查询门店(列表)",
+        "summary": "多层级",
         "description": "",
         "parameters": [
           {
-            "name": "mobile",
-            "in": "query",
+            "name": "id-key",
+            "in": "path",
+            "description": "",
             "required": true,
-            "description": "手机号码",
-            "type": "string"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": true,
-            "description": "0:区域待办, 1:区域已办 3:个人已办",
             "type": "string"
           },
           {
             "name": "name",
             "in": "query",
-            "required": false,
-            "description": "门店名称(模糊查询)",
+            "required": true,
+            "description": "姓名",
             "type": "string"
           },
           {
-            "name": "current",
+            "name": "password",
             "in": "query",
             "required": true,
-            "description": "当前页",
-            "type": "string"
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "required": true,
-            "description": "每页数量",
-            "type": "string"
-          },
-          {
-            "name": "lng",
-            "in": "query",
-            "required": true,
-            "description": "经度",
-            "type": "string"
-          },
-          {
-            "name": "lat",
-            "in": "query",
-            "required": true,
-            "description": "纬度",
+            "description": "密码",
             "type": "string"
           }
         ],
@@ -85,1905 +49,118 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
               "type": "object",
+              "title": "empty object",
               "properties": {
-                "size": {
-                  "type": "integer",
-                  "description": "每页数量"
+                "name": {
+                  "type": "string",
+                  "description": "姓名"
                 },
-                "current": {
-                  "type": "integer",
-                  "description": "当前页"
-                },
-                "pages": {
-                  "type": "integer",
-                  "description": "总页数"
-                },
-                "total": {
-                  "type": "integer",
-                  "description": "总数量"
-                },
-                "records": {
+                "address": {
                   "type": "array",
                   "items": {
                     "type": "object",
                     "properties": {
-                      " id": {
-                        "type": "number"
-                      },
-                      "name": {
+                      "city": {
                         "type": "string",
-                        "description": "门店名字"
+                        "description": "城市"
                       },
-                      "address": {
+                      "qu": {
                         "type": "string",
-                        "description": "地址"
+                        "description": "区"
                       },
-                      "provinceCode": {
+                      "menpai": {
                         "type": "string",
-                        "description": "省编码"
-                      },
-                      "provinceName": {
-                        "type": "string",
-                        "description": "省份"
-                      },
-                      "cityCode": {
-                        "type": "string",
-                        "description": "城市编码"
-                      },
-                      "cityName": {
-                        "type": "string",
-                        "description": "城市名称"
-                      },
-                      "countyCode": {
-                        "type": "string",
-                        "description": "区县编码"
-                      },
-                      "countyName": {
-                        "type": "string",
-                        "description": "区县名称"
-                      },
-                      "lng": {
-                        "type": "integer",
-                        "description": "经度"
-                      },
-                      "lat": {
-                        "type": "integer",
-                        "description": "纬度"
-                      },
-                      "tags": {
-                        "type": "string",
-                        "description": "标签"
-                      },
-                      "categories": {
-                        "type": "string",
-                        "description": "分类"
-                      },
-                      "remark": {
-                        "type": "string",
-                        "description": "备注"
-                      },
-                      "source": {
-                        "type": "integer",
-                        "description": "来源"
-                      },
-                      "signature": {
-                        "type": "string",
-                        "description": "特征编码"
-                      },
-                      "distance": {
-                        "type": "string",
-                        "description": "距离"
+                        "description": "门派"
                       }
+                    },
+                    "required": [
+                      "city",
+                      "qu",
+                      "menpai"
+                    ]
+                  },
+                  "description": "地址列表"
+                },
+                "info": {
+                  "type": "object",
+                  "properties": {
+                    "age": {
+                      "type": "number",
+                      "description": "年龄"
+                    },
+                    "body": {
+                      "type": "object",
+                      "properties": {
+                        "height": {
+                          "type": "string",
+                          "description": "身高"
+                        },
+                        "体重": {
+                          "type": "string",
+                          "description": "体重"
+                        }
+                      },
+                      "description": "身体信息",
+                      "required": [
+                        "height",
+                        "体重"
+                      ]
                     }
-                  }
+                  },
+                  "required": [
+                    "age",
+                    "body"
+                  ]
                 }
-              }
+              },
+              "required": [
+                "name",
+                "address",
+                "info"
+              ]
             }
           }
         }
-      },
+      }
+    },
+    "/member/update": {
       "post": {
         "tags": [
-          "公共分类"
+          "swagger"
         ],
-        "summary": "新建一个门店",
+        "summary": "多层级_post",
         "description": "",
         "consumes": [
           "application/json"
         ],
-        "parameters": [
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "signature": {
-                  "type": "string",
-                  "description": "特征编码(新建门店传-1)"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "门店名称"
-                },
-                "address": {
-                  "type": "string",
-                  "description": "详细地址"
-                },
-                "telephones": {
-                  "type": "string",
-                  "description": "联系电话"
-                },
-                "provinceName": {
-                  "type": "string",
-                  "description": "省名称"
-                },
-                "cityName": {
-                  "type": "string",
-                  "description": "市名称"
-                },
-                "countyName": {
-                  "type": "string",
-                  "description": "县名称"
-                },
-                "countyCode": {
-                  "type": "string",
-                  "description": "县编码"
-                },
-                "lng": {
-                  "type": "string",
-                  "description": "经度"
-                },
-                "lat": {
-                  "type": "string",
-                  "description": "纬度"
-                },
-                "tags": {
-                  "type": "string",
-                  "description": "标签"
-                },
-                "categories": {
-                  "type": "string",
-                  "description": "类别。{10:医院, 20:商圈, 30:街区, 40:社区}"
-                },
-                "hierarchy": {
-                  "type": "number",
-                  "description": "层级。{1:国, 2:省, 3:市, 4:县, 5:镇, 6:村}"
-                },
-                "chain": {
-                  "type": "boolean",
-                  "description": "连锁？{0:否, 1:是}"
-                },
-                "updateTel": {
-                  "type": "string",
-                  "description": "更新人"
-                },
-                "openingDate": {
-                  "type": "string",
-                  "description": "开业日期"
-                },
-                "remark": {
-                  "type": "string",
-                  "description": "备注"
-                },
-                "duration": {
-                  "type": "number",
-                  "description": "创建所用时间"
-                },
-                "status": {
-                  "type": "number",
-                  "description": "状态。0: 无效, 1: 有效但不售奶粉, 3: 有效且经营奶粉, 7：合作/有效并且经营奶粉并且合作}"
-                },
-                "logoFileIds": {
-                  "type": "object",
-                  "properties": {
-                    "fileId": {
-                      "type": "string",
-                      "description": "文件标识"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "文件名称"
-                    }
-                  },
-                  "description": "门店招牌文件ID"
-                },
-                "milkFileIds": {
-                  "type": "object",
-                  "properties": {
-                    "fileId": {
-                      "type": "string",
-                      "description": "文件标识"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "文件名称"
-                    }
-                  },
-                  "description": "奶粉照片文件ID"
-                },
-                "storeFileIds": {
-                  "type": "object",
-                  "properties": {
-                    "fileId": {
-                      "type": "string",
-                      "description": "文件标识"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "文件名称"
-                    }
-                  },
-                  "description": "门店照片文件ID"
-                },
-                "addition": {
-                  "type": "object",
-                  "properties": {
-                    "incrementServices": {
-                      "type": "string",
-                      "description": "增值服务。{10:游泳馆, 20:产后中心, 30:游乐中心, 40:其它项目, 50: 无}"
-                    },
-                    "clerkRange": {
-                      "type": "string",
-                      "description": "店员区间。{10:2人以下, 20:2-4人, 30:4-6人, 40:6人以上}"
-                    },
-                    "areaRange": {
-                      "type": "string",
-                      "description": "面积区间。{10:50平以下, 20:50-100平, 30:100-200平, 40:200平以上}"
-                    }
-                  },
-                  "description": "门店其它信息"
-                },
-                "storeChain": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "description": "连锁店名称"
-                    },
-                    "quantity": {
-                      "type": "number",
-                      "description": "连锁店数量"
-                    }
-                  },
-                  "description": "门店连锁信息"
-                },
-                "business": {
-                  "type": "object",
-                  "properties": {
-                    "overallTurnover": {
-                      "type": "integer",
-                      "description": "整体月均营业额（万）"
-                    },
-                    "milkTurnover": {
-                      "type": "integer",
-                      "description": "奶粉月均营业额（万）"
-                    },
-                    "milkShelfQuantity": {
-                      "type": "integer",
-                      "description": "奶粉货架数量"
-                    },
-                    "milkCapacity": {
-                      "type": "integer",
-                      "description": "奶粉容量（月）。{10:5万以下, 20:5-10万, 30:10-20万, 40:20万以上}"
-                    },
-                    "coreBrands": {
-                      "type": "integer",
-                      "description": "主营品牌。{10:国产品牌, 20:进口品牌}"
-                    },
-                    "thirdBrands": {
-                      "type": "string",
-                      "description": "经营品牌（友商）。{1010:飞鹤—星飞帆, 1510:君乐宝—乐畅, 2010:伊利—珍护A2, 2510:贝因美—可睿欣, 3010:澳优—能力多, 3510:惠氏—启赋HMO, 4010:美赞臣—铂睿A2, 4510:海普诺凯—荷致, 5010:雅培—菁挚, 5510:圣元-优博瑞慕, 9900:其他}"
-                    },
-                    "ownBrands": {
-                      "type": "string",
-                      "description": "经营品牌（自有）。{1010:瑞哺恩-菁珀, 1015:瑞哺恩-有机, 1020:瑞哺恩-亲悠, 1025:瑞哺恩-亲儿适, 1030:瑞哺恩-亲儿硕, 1035: 瑞哺恩-初颖, 1040: 瑞哺恩-雅士利, 1510:多美滋-优衡多, 2010:Arla-有机, 2015:Arla-蓝曦, 2020:Arla-美力滋}"
-                    },
-                    "decorate": {
-                      "type": "string",
-                      "description": "形象布建。{10:形象专柜, 20:灯箱, 30:橱窗, 40:无}"
-                    }
-                  },
-                  "description": "门店营业信息"
-                }
-              },
-              "required": [
-                "signature"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "title": "empty object",
-              "properties": {}
-            }
-          }
-        }
-      }
-    },
-    "/api/stores/{store-id}": {
-      "get": {
-        "tags": [
-          "公共分类"
-        ],
-        "summary": "获取门店信息",
-        "description": "",
-        "parameters": [
-          {
-            "name": "store-id",
-            "in": "path",
-            "description": "门店ID",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "signature": {
-                  "type": "string",
-                  "description": "特征编码"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "名称"
-                },
-                "address": {
-                  "type": "string",
-                  "description": "详细地址"
-                },
-                "telephones": {
-                  "type": "string",
-                  "description": "联系电话"
-                },
-                "provinceCode": {
-                  "type": "string",
-                  "description": "省编码"
-                },
-                "provinceName": {
-                  "type": "string",
-                  "description": "省名称"
-                },
-                "cityCode": {
-                  "type": "string",
-                  "description": "市编码"
-                },
-                "cityName": {
-                  "type": "string",
-                  "description": "市名称"
-                },
-                "countyCode": {
-                  "type": "string",
-                  "description": "县编码"
-                },
-                "countyName": {
-                  "type": "string",
-                  "description": "县名称"
-                },
-                "lng": {
-                  "type": "number",
-                  "description": "经度"
-                },
-                "lat": {
-                  "type": "number",
-                  "description": "纬度"
-                },
-                "tags": {
-                  "type": "string",
-                  "description": "标签"
-                },
-                "categories": {
-                  "type": "string",
-                  "description": "类别。{10:医院, 20:商圈, 30:街区, 40:社区}"
-                },
-                "hierarchy": {
-                  "type": "integer",
-                  "description": "层级。{1:国, 2:省, 3:市, 4:县, 5:镇, 6:村}"
-                },
-                "own": {
-                  "type": "boolean",
-                  "description": "合作？{0:否, 1:是}"
-                },
-                "direct": {
-                  "type": "boolean",
-                  "description": "直营？{0:否, 1:是}"
-                },
-                "chain": {
-                  "type": "boolean",
-                  "description": "连锁？{0:否, 1:是}"
-                },
-                "openingDate": {
-                  "type": "string",
-                  "description": "开业日期"
-                },
-                "remark": {
-                  "type": "string",
-                  "description": "备注"
-                },
-                "source": {
-                  "type": "integer",
-                  "description": "来源。{10:高德,  20:百度, 30:SFA}"
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "状态。{0: 无效, 1: 有效但不售奶粉, 3: 有效且经营奶粉, 7：合作/有效并且经营奶粉并且合作}"
-                },
-                "finish": {
-                  "type": "boolean",
-                  "description": "是否完成门店调查"
-                },
-                "creator": {
-                  "type": "string",
-                  "description": "创建人"
-                },
-                "logoFileIds": {
-                  "type": "object",
-                  "properties": {
-                    "fileId": {
-                      "type": "string",
-                      "description": "文件标识"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "文件名称"
-                    }
-                  },
-                  "description": "门店招牌文件ID"
-                },
-                "milkFileIds": {
-                  "type": "object",
-                  "properties": {
-                    "fileId": {
-                      "type": "string",
-                      "description": "文件标识"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "文件名称"
-                    }
-                  },
-                  "description": "奶粉照片文件ID"
-                },
-                "storeFileIds": {
-                  "type": "object",
-                  "properties": {
-                    "fileId": {
-                      "type": "string",
-                      "description": "文件标识"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "文件名称"
-                    }
-                  },
-                  "description": "门店照片文件ID"
-                },
-                "addition": {
-                  "type": "object",
-                  "properties": {
-                    "incrementServices": {
-                      "type": "string",
-                      "description": "增值服务。{10:游泳馆, 20:产后中心, 30:游乐中心, 40:其它项目}"
-                    },
-                    "clerkRange": {
-                      "type": "number",
-                      "description": "店员区间。{10:2人以下, 20:2-4人, 30:4-6人, 40:6人以上}"
-                    },
-                    "areaRange": {
-                      "type": "number",
-                      "description": "面积区间。{10:50平以下, 20:50-100平, 30:100-200平, 40:200平以上}"
-                    }
-                  },
-                  "description": "门店其它信息"
-                },
-                "storeChain": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "description": "连锁店名称"
-                    },
-                    "quantity": {
-                      "type": "number",
-                      "description": "连锁店数量"
-                    }
-                  },
-                  "description": "门店连锁信息"
-                },
-                "business": {
-                  "type": "object",
-                  "properties": {
-                    "overallTurnover": {
-                      "type": "number",
-                      "description": "整体月均营业额（万）"
-                    },
-                    "milkTurnover": {
-                      "type": "number",
-                      "description": "奶粉月均营业额（万）"
-                    },
-                    "milkShelfQuantity": {
-                      "type": "number",
-                      "description": "奶粉货架数量"
-                    },
-                    "milkCapacity": {
-                      "type": "number",
-                      "description": "奶粉容量（月）。{10:5万以下, 20:5-10万, 30:10-20万, 40:20万以上}"
-                    },
-                    "coreBrands": {
-                      "type": "number",
-                      "description": "主营品牌。{10:国产品牌, 20:进口品牌}"
-                    },
-                    "thirdBrands": {
-                      "type": "string",
-                      "description": "经营品牌（友商）。{1010:飞鹤—星飞帆, 1510:君乐宝—乐畅, 2010:伊利—珍护A2, 2510:贝因美—可睿欣, 3010:澳优—能力多, 3510:惠氏—启赋HMO, 4010:美赞臣—铂睿A2, 4510:海普诺凯—荷致, 5010:雅培—菁挚, 5510:圣元-优博瑞慕, 9900:其他}"
-                    },
-                    "ownBrands": {
-                      "type": "string",
-                      "description": "经营品牌（自有）。{1010:瑞哺恩-菁珀, 1015:瑞哺恩-有机, 1020:瑞哺恩-亲悠, 1025:瑞哺恩-亲儿适, 1030:瑞哺恩-亲儿硕, 1035: 瑞哺恩-初颖, 1040: 瑞哺恩-雅士利, 1510:多美滋-优衡多, 2010:Arla-有机, 2015:Arla-蓝曦, 2020:Arla-美力滋}"
-                    },
-                    "decorate": {
-                      "type": "string",
-                      "description": "形象布建。{10:形象专柜, 20:灯箱, 30:橱窗, 40:无}"
-                    }
-                  },
-                  "description": "门店营业信息"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "公共分类"
-        ],
-        "summary": "修改一个门店",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "store-id",
-            "in": "path",
-            "description": "门店ID",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "signature": {
-                  "type": "string",
-                  "description": "特征编码"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "门店名称"
-                },
-                "address": {
-                  "type": "string",
-                  "description": "详细地址"
-                },
-                "telephones": {
-                  "type": "string",
-                  "description": "联系电话"
-                },
-                "provinceName": {
-                  "type": "string",
-                  "description": "省名称"
-                },
-                "cityName": {
-                  "type": "string",
-                  "description": "市名称"
-                },
-                "countyName": {
-                  "type": "string",
-                  "description": "县名称"
-                },
-                "countyCode": {
-                  "type": "string",
-                  "description": "县编码"
-                },
-                "lng": {
-                  "type": "string",
-                  "description": "经度"
-                },
-                "lat": {
-                  "type": "string",
-                  "description": "纬度"
-                },
-                "tags": {
-                  "type": "string",
-                  "description": "标签"
-                },
-                "categories": {
-                  "type": "string",
-                  "description": "类别。{10:医院, 20:商圈, 30:街区, 40:社区}"
-                },
-                "hierarchy": {
-                  "type": "number",
-                  "description": "层级。{1:国, 2:省, 3:市, 4:县, 5:镇, 6:村}"
-                },
-                "direct": {
-                  "type": "number",
-                  "description": "直营？{0:否, 1:是}"
-                },
-                "chain": {
-                  "type": "boolean",
-                  "description": "连锁？{0:否, 1:是}"
-                },
-                "updateTel": {
-                  "type": "string",
-                  "description": "更新人"
-                },
-                "openingDate": {
-                  "type": "string",
-                  "description": "开业日期"
-                },
-                "remark": {
-                  "type": "string",
-                  "description": "备注"
-                },
-                "duration": {
-                  "type": "number",
-                  "description": "创建所用时间"
-                },
-                "status": {
-                  "type": "number",
-                  "description": "状态。0: 无效, 1: 有效但不售奶粉, 3: 有效且经营奶粉, 7：合作/有效并且经营奶粉并且合作}"
-                },
-                "logoFileIds": {
-                  "type": "object",
-                  "properties": {
-                    "fileId": {
-                      "type": "string",
-                      "description": "文件标识"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "文件名称"
-                    }
-                  },
-                  "description": "门店招牌文件ID"
-                },
-                "milkFileIds": {
-                  "type": "object",
-                  "properties": {
-                    "fileId": {
-                      "type": "string",
-                      "description": "文件标识"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "文件名称"
-                    }
-                  },
-                  "description": "奶粉照片文件ID"
-                },
-                "storeFileIds": {
-                  "type": "object",
-                  "properties": {
-                    "fileId": {
-                      "type": "string",
-                      "description": "文件标识"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "文件名称"
-                    }
-                  },
-                  "description": "门店照片文件ID"
-                },
-                "addition": {
-                  "type": "object",
-                  "properties": {
-                    "incrementServices": {
-                      "type": "string",
-                      "description": "增值服务。{10:游泳馆, 20:产后中心, 30:游乐中心, 40:其它项目}"
-                    },
-                    "clerkRange": {
-                      "type": "string",
-                      "description": "店员区间。{10:2人以下, 20:2-4人, 30:4-6人, 40:6人以上}"
-                    },
-                    "areaRange": {
-                      "type": "string",
-                      "description": "面积区间。{10:50平以下, 20:50-100平, 30:100-200平, 40:200平以上}"
-                    }
-                  },
-                  "description": "门店其它信息"
-                },
-                "storeChain": {
-                  "type": "object",
-                  "properties": {
-                    "name": {
-                      "type": "string",
-                      "description": "连锁店名称"
-                    },
-                    "quantity": {
-                      "type": "number",
-                      "description": "连锁店数量"
-                    }
-                  },
-                  "description": "门店营业信息"
-                },
-                "business": {
-                  "type": "object",
-                  "properties": {
-                    "overallTurnover": {
-                      "type": "number",
-                      "description": "整体月均营业额（万）"
-                    },
-                    "milkTurnover": {
-                      "type": "number",
-                      "description": "奶粉月均营业额（万）"
-                    },
-                    "milkShelfQuantity": {
-                      "type": "number",
-                      "description": "奶粉货架数量"
-                    },
-                    "milkCapacity": {
-                      "type": "number",
-                      "description": "奶粉容量（月）。{10:5万以下, 20:5-10万, 30:10-20万, 40:20万以上}"
-                    },
-                    "coreBrands": {
-                      "type": "number",
-                      "description": "主营品牌。{10:国产品牌, 20:进口品牌}"
-                    },
-                    "thirdBrands": {
-                      "type": "string",
-                      "description": "经营品牌（友商）。{1010:飞鹤—星飞帆, 1510:君乐宝—乐畅, 2010:伊利—珍护A2, 2510:贝因美—可睿欣, 3010:澳优—能力多, 3510:惠氏—启赋HMO, 4010:美赞臣—铂睿A2, 4510:海普诺凯—荷致, 5010:雅培—菁挚, 5510:圣元-优博瑞慕, 9900:其他}"
-                    },
-                    "ownBrands": {
-                      "type": "string",
-                      "description": "经营品牌（自有）。{1010:瑞哺恩-菁珀, 1015:瑞哺恩-有机, 1020:瑞哺恩-亲悠, 1025:瑞哺恩-亲儿适, 1030:瑞哺恩-亲儿硕, 1035: 瑞哺恩-初颖, 1040: 瑞哺恩-雅士利, 1510:多美滋-优衡多, 2010:Arla-有机, 2015:Arla-蓝曦, 2020:Arla-美力滋}"
-                    },
-                    "decorate": {
-                      "type": "string",
-                      "description": "形象布建。{10:形象专柜, 20:灯箱, 30:橱窗, 40:无}"
-                    }
-                  },
-                  "description": "门店连锁信息"
-                }
-              },
-              "required": [
-                "signature"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {}
-          }
-        }
-      }
-    },
-    "/api/points/{point-id}": {
-      "get": {
-        "tags": [
-          "公共分类"
-        ],
-        "summary": "获取门店信息(地点)",
-        "description": "",
-        "parameters": [
-          {
-            "name": "point-id",
-            "in": "path",
-            "description": "地点ID",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "signature": {
-                  "type": "string",
-                  "description": "特征编码"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "名称"
-                },
-                "address": {
-                  "type": "string",
-                  "description": "详细地址"
-                },
-                "telephones": {
-                  "type": "string",
-                  "description": "联系电话"
-                },
-                "provinceCode": {
-                  "type": "string",
-                  "description": "省编码"
-                },
-                "provinceName": {
-                  "type": "string",
-                  "description": "省名称"
-                },
-                "cityCode": {
-                  "type": "string",
-                  "description": "市编码"
-                },
-                "cityName": {
-                  "type": "string",
-                  "description": "市名称"
-                },
-                "countyCode": {
-                  "type": "string",
-                  "description": "县编码"
-                },
-                "countyName": {
-                  "type": "string",
-                  "description": "县名称"
-                },
-                "lng": {
-                  "type": "number",
-                  "description": "经度"
-                },
-                "lat": {
-                  "type": "number",
-                  "description": "纬度"
-                },
-                "tags": {
-                  "type": "string",
-                  "description": "标签"
-                },
-                "categories": {
-                  "type": "string",
-                  "description": "类别。{10:医院, 20:商圈, 30:街区, 40:社区}"
-                },
-                "hierarchy": {
-                  "type": "null",
-                  "description": "层级。{1:国, 2:省, 3:市, 4:县, 5:镇, 6:村}"
-                },
-                "chain": {
-                  "type": "null"
-                },
-                "openingDate": {
-                  "type": "null"
-                },
-                "remark": {
-                  "type": "null"
-                },
-                "status": {
-                  "type": "null",
-                  "description": "状态。{0: 无效, 1: 有效但不售奶粉, 3: 有效且经营奶粉, 7：合作/有效并且经营奶粉并且合作}"
-                },
-                "finish": {
-                  "type": "boolean",
-                  "description": "是否已完成"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/stores/count": {
-      "get": {
-        "tags": [
-          "公共分类"
-        ],
-        "summary": "统计门店",
-        "description": "",
-        "parameters": [
-          {
-            "name": "mobile",
-            "in": "query",
-            "required": true,
-            "description": "手机号码",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "areaUndoNum": {
-                  "type": "number",
-                  "description": "区域代办数量"
-                },
-                "areaFinishNum": {
-                  "type": "number",
-                  "description": "区域已完成"
-                },
-                "mineFinishNum": {
-                  "type": "number",
-                  "description": "我的已完成"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/api/user/login": {
-      "post": {
-        "tags": [
-          "公共分类"
-        ],
-        "summary": "登录",
-        "description": "",
-        "consumes": [
-          "multipart/form-data"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "title": "empty object",
-              "properties": {}
-            }
-          }
-        }
-      }
-    },
-    "/api/assets/upload": {
-      "get": {
-        "tags": [
-          "公共分类"
-        ],
-        "summary": "上传图片",
-        "description": "",
-        "parameters": [
-          {
-            "name": "file",
-            "in": "query",
-            "required": true,
-            "description": "文件",
-            "type": "string"
-          },
-          {
-            "name": "updateTel",
-            "in": "query",
-            "required": true,
-            "description": "操作人",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "文件名"
-                },
-                "fileId": {
-                  "type": "string",
-                  "description": "文件ID"
-                },
-                "path": {
-                  "type": "string",
-                  "description": "路径"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/assets/{store-id}/images/{file-id}/{file-name}": {
-      "get": {
-        "tags": [
-          "公共分类"
-        ],
-        "summary": "图片访问",
-        "description": "",
-        "parameters": [
-          {
-            "name": "store-id",
-            "in": "path",
-            "description": "门店ID",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "file-id",
-            "in": "path",
-            "description": "文件ID",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "file-name",
-            "in": "path",
-            "description": "文件名称",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "title": "empty object",
-              "properties": {}
-            }
-          }
-        }
-      }
-    },
-    "/bio/store/survey?_as_page": {
-      "get": {
-        "tags": [
-          "门店调查"
-        ],
-        "summary": "查询_调查计划)(分页)",
-        "description": "",
         "parameters": [
           {
             "name": "name",
             "in": "query",
-            "required": false,
-            "description": "调查计划名称(模糊查询)",
-            "type": "string"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "description": "0:已结束;1.正在进行中",
-            "type": "string"
-          },
-          {
-            "name": "number",
-            "in": "query",
-            "required": false,
-            "description": "当前页(不传默认1)",
-            "type": "string"
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "required": false,
-            "description": "每页数量(不传默认10)",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "size": {
-                  "type": "integer",
-                  "description": "每页数量"
-                },
-                "number": {
-                  "type": "integer",
-                  "description": "当前页",
-                  "exclusiveMinimum": false,
-                  "minimum": 0,
-                  "maximum": 100
-                },
-                "totalPages": {
-                  "type": "integer",
-                  "description": "总页数"
-                },
-                "totalElements": {
-                  "type": "integer",
-                  "description": "总数量",
-                  "minimum": 0,
-                  "maximum": 100
-                },
-                "content": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "number",
-                        "description": "id"
-                      },
-                      "name": {
-                        "type": "string",
-                        "description": "调查计划名称"
-                      },
-                      "startTime": {
-                        "type": "string",
-                        "description": "有效开始日期"
-                      },
-                      "endTime": {
-                        "type": "string",
-                        "description": "有效结束日期"
-                      },
-                      "description": {
-                        "type": "string",
-                        "description": "备注"
-                      },
-                      "status": {
-                        "type": "integer",
-                        "description": "0:已结束;1.正在进行中"
-                      }
-                    },
-                    "required": [
-                      "id",
-                      "name",
-                      "startTime",
-                      "endTime"
-                    ]
-                  }
-                }
-              },
-              "required": [
-                "size",
-                "number",
-                "totalPages",
-                "totalElements",
-                "content"
-              ]
-            }
-          }
-        }
-      }
-    },
-    "/api/store/survey/{id}": {
-      "get": {
-        "tags": [
-          "门店调查"
-        ],
-        "summary": "查询_调查计划(单个明细)",
-        "description": "{\n  \" id\": 1,\n  \"name\": \"门店调查\",\n  \"startTime\": \"2020-01-01\",\n  \"endTime\": \"2021-01-01\",\n  \"description\": \"备注\",\n  \"status\": \"1\",\n  \"surveyRegions\": [\n        {\n              \"provinceCode\": \"100000\",\n              \"cityCode\": \"100100\",\n              \"countyCode\": \"100101\"\n        },\n        {\n              \"provinceCode\": \"200000\",\n              \"cityCode\": \"200100\",\n              \"countyCode\": \"200101\"\n        }\n  ]\n}",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
             "required": true,
+            "description": "姓名",
             "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "description": "密码",
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
             "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
               "type": "object",
+              "title": "empty object",
               "properties": {
                 "id": {
-                  "type": "number",
-                  "description": "id"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "调查计划名称"
-                },
-                "startTime": {
-                  "type": "string",
-                  "description": "有效开始日期"
-                },
-                "endTime": {
-                  "type": "string",
-                  "description": "有效结束日期"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "备注"
-                },
-                "status": {
-                  "type": "string",
-                  "description": "0:已结束;1.正在进行中"
-                },
-                "surveyRegions": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "provinceCode": {
-                        "type": "string",
-                        "description": "省份编码"
-                      },
-                      "cityCode": {
-                        "type": "string",
-                        "description": "城市编码"
-                      },
-                      "countyCode": {
-                        "type": "string",
-                        "description": "区县编码"
-                      }
-                    },
-                    "required": [
-                      "provinceCode",
-                      "cityCode",
-                      "countyCode"
-                    ]
-                  },
-                  "description": "调查区域"
+                  "type": "string"
                 }
               },
               "required": [
-                "id",
-                "name",
-                "startTime",
-                "endTime",
-                "description",
-                "status",
-                "surveyRegions"
-              ]
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "门店调查"
-        ],
-        "summary": "删除_调查计划",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {}
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "title": "empty object",
-              "properties": {}
-            }
-          }
-        }
-      }
-    },
-    "/bio/store/survey": {
-      "post": {
-        "tags": [
-          "门店调查"
-        ],
-        "summary": "新建_调查计划",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "计划名称"
-                },
-                "startTime": {
-                  "type": "string",
-                  "description": "有效开始时间"
-                },
-                "endTime": {
-                  "type": "string",
-                  "description": "有效结束时间"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "备注"
-                },
-                "surveyRegions": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "provinceCode": {
-                        "type": "string",
-                        "description": "省份编码"
-                      },
-                      "cityCode": {
-                        "type": "string",
-                        "description": "城市编码"
-                      },
-                      "countyCode": {
-                        "type": "string",
-                        "description": "区域编码"
-                      }
-                    },
-                    "required": [
-                      "provinceCode",
-                      "cityCode",
-                      "countyCode"
-                    ],
-                    "description": "行政区域对象"
-                  },
-                  "description": "调查区域"
-                }
-              },
-              "required": [
-                "name",
-                "startTime",
-                "endTime",
-                "description"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "title": "empty object",
-              "properties": {}
-            }
-          }
-        }
-      }
-    },
-    "/api/store/survey": {
-      "put": {
-        "tags": [
-          "门店调查"
-        ],
-        "summary": "修改_调查计划",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "计划名称"
-                },
-                "id": {
-                  "type": "number",
-                  "description": "主键id"
-                },
-                "startTime": {
-                  "type": "string",
-                  "description": "有效开始时间"
-                },
-                "endTime": {
-                  "type": "string",
-                  "description": "有效结束时间"
-                },
-                "surveyRegions": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "provinceCode": {
-                        "type": "string",
-                        "description": "省份编码"
-                      },
-                      "cityCode": {
-                        "type": "string",
-                        "description": "城市编码"
-                      },
-                      "countyCode": {
-                        "type": "string",
-                        "description": "区县编码"
-                      }
-                    },
-                    "required": [
-                      "provinceCode",
-                      "cityCode",
-                      "countyCode"
-                    ]
-                  },
-                  "description": "调查区域"
-                }
-              },
-              "required": [
-                "name",
-                "id",
-                "startTime",
-                "endTime"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "title": "empty object",
-              "properties": {}
-            }
-          }
-        }
-      }
-    },
-    "/api/store/surveytask/page": {
-      "get": {
-        "tags": [
-          "门店调查"
-        ],
-        "summary": "查询_区域人员分配(分页)",
-        "description": "",
-        "parameters": [
-          {
-            "name": "surveyId",
-            "in": "query",
-            "required": true,
-            "description": "调查计划id",
-            "type": "string"
-          },
-          {
-            "name": "provinceCode",
-            "in": "query",
-            "required": false,
-            "description": "省份编码",
-            "type": "string"
-          },
-          {
-            "name": "cityCode",
-            "in": "query",
-            "required": false,
-            "description": "城市编码",
-            "type": "string"
-          },
-          {
-            "name": "countyCode",
-            "in": "query",
-            "required": false,
-            "description": "区县编码",
-            "type": "string"
-          },
-          {
-            "name": "number",
-            "in": "query",
-            "required": false,
-            "description": "当前页(不传默认1)",
-            "type": "string"
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "required": false,
-            "description": "每页数量(不传默认10)",
-            "type": "string"
-          },
-          {
-            "name": "name",
-            "in": "query",
-            "required": false,
-            "description": "调研人员(模糊查询)",
-            "type": "string"
-          },
-          {
-            "name": "mobile",
-            "in": "query",
-            "required": false,
-            "description": "联系方式(模糊查询)",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "size": {
-                  "type": "integer",
-                  "description": "每页数量"
-                },
-                "number": {
-                  "type": "integer",
-                  "description": "当前页"
-                },
-                "totalPages": {
-                  "type": "integer",
-                  "description": "总页数"
-                },
-                "totalElements": {
-                  "type": "integer",
-                  "description": "总数量"
-                },
-                "content": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      " id": {
-                        "type": "number",
-                        "description": "id"
-                      },
-                      "provinceCode": {
-                        "type": "string",
-                        "description": "省份编码"
-                      },
-                      "provinceName": {
-                        "type": "string",
-                        "description": "省份名称"
-                      },
-                      "cityCode": {
-                        "type": "string",
-                        "description": "城市编码"
-                      },
-                      "cityName": {
-                        "type": "string",
-                        "description": "城市名称"
-                      },
-                      "countyCode": {
-                        "type": "string",
-                        "description": "区县编码"
-                      },
-                      "countyName": {
-                        "type": "string",
-                        "description": "区县名称"
-                      },
-                      "name": {
-                        "type": "string",
-                        "description": "调研人员"
-                      },
-                      "mobile": {
-                        "type": "string",
-                        "description": "联系方式"
-                      },
-                      "surveyId": {
-                        "type": "string",
-                        "description": "调查计划id"
-                      }
-                    },
-                    "required": [
-                      " id",
-                      "provinceCode",
-                      "cityName",
-                      "countyCode",
-                      "countyName",
-                      "provinceName",
-                      "cityCode",
-                      "name",
-                      "mobile",
-                      "surveyId"
-                    ]
-                  }
-                }
-              },
-              "required": [
-                "size",
-                "number",
-                "totalPages",
-                "totalElements",
-                "content"
-              ]
-            }
-          }
-        }
-      }
-    },
-    "/api/store/surveytask/{id}": {
-      "get": {
-        "tags": [
-          "门店调查"
-        ],
-        "summary": "查询_区域人员分配(单个明细)",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "provinceCode": {
-                  "type": "string",
-                  "description": "省份编码"
-                },
-                "cityCode": {
-                  "type": "string",
-                  "description": "城市编码"
-                },
-                "countyCode": {
-                  "type": "string",
-                  "description": "区县编码"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "调研人员"
-                },
-                "mobile": {
-                  "type": "string",
-                  "description": "联系方式"
-                },
-                "surveryId": {
-                  "type": "number",
-                  "description": "调查计划id"
-                }
-              },
-              "required": [
-                "provinceCode",
-                "name",
-                "mobile",
-                "cityCode",
-                "countyCode",
-                "surveryId"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "number",
-                  "description": "id"
-                },
-                "provinceCode": {
-                  "type": "string",
-                  "description": "省份编码"
-                },
-                "provinceName": {
-                  "type": "string",
-                  "description": "省份名称"
-                },
-                "cityCode": {
-                  "type": "string",
-                  "description": "城市编码"
-                },
-                "cityName": {
-                  "type": "string",
-                  "description": "城市名称"
-                },
-                "countyCode": {
-                  "type": "string",
-                  "description": "区县编码"
-                },
-                "countyName": {
-                  "type": "string",
-                  "description": "区县名称"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "调研人员"
-                },
-                "mobile": {
-                  "type": "string",
-                  "description": "联系方式"
-                },
-                "surveyId": {
-                  "type": "string",
-                  "description": "调查计划id"
-                }
-              },
-              "required": [
-                "id",
-                "provinceCode",
-                "cityName",
-                "countyCode",
-                "countyName",
-                "provinceName",
-                "cityCode",
-                "name",
-                "mobile",
-                "surveyId"
-              ]
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "门店调查"
-        ],
-        "summary": "删除_区域人员分配",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {}
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "title": "empty object",
-              "properties": {}
-            }
-          }
-        }
-      }
-    },
-    "/api/store/surveytask": {
-      "post": {
-        "tags": [
-          "门店调查"
-        ],
-        "summary": "新建_区域人员分配",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "provinceCode": {
-                  "type": "string",
-                  "description": "省份编码"
-                },
-                "cityCode": {
-                  "type": "string",
-                  "description": "城市编码"
-                },
-                "countyCode": {
-                  "type": "string",
-                  "description": "区县编码"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "调研人员"
-                },
-                "mobile": {
-                  "type": "string",
-                  "description": "联系方式"
-                },
-                "surveryId": {
-                  "type": "number",
-                  "description": "调查计划id"
-                }
-              },
-              "required": [
-                "provinceCode",
-                "name",
-                "mobile",
-                "cityCode",
-                "countyCode",
-                "surveryId"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "title": "empty object",
-              "properties": {}
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "门店调查"
-        ],
-        "summary": "修改_区域人员分配",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "provinceCode": {
-                  "type": "string",
-                  "description": "省份编码"
-                },
-                "cityCode": {
-                  "type": "string",
-                  "description": "城市编码"
-                },
-                "countyCode": {
-                  "type": "string",
-                  "description": "区县编码"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "调研人员"
-                },
-                "mobile": {
-                  "type": "string",
-                  "description": "联系方式"
-                },
-                "surveryId": {
-                  "type": "number",
-                  "description": "调查计划id"
-                },
-                "id": {
-                  "type": "number",
-                  "description": "主键id"
-                }
-              },
-              "required": [
-                "provinceCode",
-                "name",
-                "mobile",
-                "cityCode",
-                "countyCode",
-                "surveryId",
                 "id"
               ]
             }
@@ -1995,163 +172,73 @@
             "schema": {
               "type": "object",
               "title": "empty object",
-              "properties": {}
-            }
-          }
-        }
-      }
-    },
-    "/api/region/{region-id}/children": {
-      "get": {
-        "tags": [
-          "行政区域"
-        ],
-        "summary": "查询_根据id查询下级区域",
-        "description": "",
-        "parameters": [
-          {
-            "name": "region-id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number",
-                    "description": "id"
-                  },
-                  "displayname": {
-                    "type": "string",
-                    "description": "行政区域展示名称"
-                  },
-                  "code": {
-                    "type": "string",
-                    "description": "行政区域编码"
-                  },
-                  "shortname": {
-                    "type": "string",
-                    "description": "行政区域简称"
-                  },
-                  "fullname": {
-                    "type": "string",
-                    "description": "行政区域全称"
-                  },
-                  "rank": {
-                    "type": "integer",
-                    "description": "排序"
-                  },
-                  "hierarchy": {
-                    "type": "string",
-                    "description": "层级。1:国, 2:省, 3:市, 4:县, 5:镇, 6:村"
-                  },
-                  "parentId": {
-                    "type": "string",
-                    "description": "父级id"
-                  },
-                  "status": {
-                    "type": "integer",
-                    "description": "状态0:禁用,1.正常"
-                  }
-                },
-                "required": [
-                  "id",
-                  "displayname",
-                  "code",
-                  "shortname",
-                  "fullname",
-                  "rank",
-                  "hierarchy",
-                  "parentId",
-                  "status"
-                ]
-              },
-              "description": "对象数组"
-            }
-          }
-        }
-      }
-    },
-    "/bio/region/tree": {
-      "get": {
-        "tags": [
-          "行政区域"
-        ],
-        "summary": "查询_行政区域(树形)",
-        "description": "{\n  \"id\": \"1\",\n  \"displayname\": \"广东省\",\n  \"code\": \"200000\",\n  \"shortname\": \"\",\n  \"fullname\": \"\",\n  \"rank\": 10,\n  \"status\": 1,\n  \"hierarchy\": \"1\",\n  \"parent\": \"1\",\n   \"children\": [\n            {\n                  \"id\": \"2\",\n                  \"displayname\": \"广州市\",\n                  \"code\": \"200100\",\n                  \"shortname\": \"\",\n                  \"fullname\": \"\",\n                  \"rank\": 10,\n                  \"status\": 1,\n                  \"hierarchy\": \"2\",\n                  \"parent\": \"2\",\n                   \"children\": [\n                                             {\n                                                                 \"id\": \"3\",\n                                                                  \"displayname\": \"天河区\",\n                                                                   \"code\": \"200101\",\n                                                                  \"shortname\": \"\",\n                                                                  \"fullname\": \"\",\n                                                                  \"rank\": 10,\n                                                                  \"status\": 1,\n                                                                  \"hierarchy\": \"3\",\n                                                                  \"parent\": \"2\",\n                                                                   \"children\": [],\n                                                },\n                                                {\n                                                                 \"id\": \"4\",\n                                                                  \"displayname\": \"荔湾区\",\n                                                                   \"code\": \"200102\",\n                                                                  \"shortname\": \"\",\n                                                                  \"fullname\": \"\",\n                                                                  \"rank\": 10,\n                                                                  \"status\": 1,\n                                                                  \"hierarchy\": \"3\",\n                                                                  \"parentId\": \"2\",\n                                                                   \"children\": [],\n                                                }\n                                         ],\n                }\n\n],\n}",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "title": "empty object",
               "properties": {
-                "id": {
-                  "type": "number",
-                  "description": "id"
-                },
-                "displayname": {
+                "name": {
                   "type": "string",
-                  "description": "行政区域展示名称"
+                  "description": "姓名"
                 },
-                "code": {
-                  "type": "string",
-                  "description": "行政区域编码"
-                },
-                "shortname": {
-                  "type": "string",
-                  "description": "行政区域简称"
-                },
-                "fullname": {
-                  "type": "string",
-                  "description": "行政区域全称"
-                },
-                "rank": {
-                  "type": "integer",
-                  "description": "排序"
-                },
-                "hierarchy": {
-                  "type": "string",
-                  "description": "层级。1:国, 2:省, 3:市, 4:县, 5:镇, 6:村"
-                },
-                "parent": {
-                  "type": "string",
-                  "description": "父级id"
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "状态0:禁用,1.正常"
-                },
-                "children": {
+                "address": {
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "properties": {},
-                    "description": "与root属性一致"
+                    "properties": {
+                      "city": {
+                        "type": "string",
+                        "description": "城市"
+                      },
+                      "qu": {
+                        "type": "string",
+                        "description": "区"
+                      },
+                      "menpai": {
+                        "type": "string",
+                        "description": "门派"
+                      }
+                    },
+                    "required": [
+                      "city",
+                      "qu",
+                      "menpai"
+                    ]
                   },
-                  "description": "子节点"
+                  "description": "地址列表"
+                },
+                "info": {
+                  "type": "object",
+                  "properties": {
+                    "age": {
+                      "type": "number",
+                      "description": "年龄"
+                    },
+                    "body": {
+                      "type": "object",
+                      "properties": {
+                        "height": {
+                          "type": "string",
+                          "description": "身高"
+                        },
+                        "体重": {
+                          "type": "string",
+                          "description": "体重"
+                        }
+                      },
+                      "description": "身体信息",
+                      "required": [
+                        "height",
+                        "体重"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "age",
+                    "body"
+                  ]
                 }
               },
               "required": [
-                "id",
-                "displayname",
-                "code",
-                "shortname",
-                "fullname",
-                "rank",
-                "status",
-                "children",
-                "hierarchy",
-                "parent"
+                "name",
+                "address",
+                "info"
               ]
             }
           }
