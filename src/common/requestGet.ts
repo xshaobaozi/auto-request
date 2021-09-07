@@ -74,7 +74,7 @@ class RequestGet extends BaseRequest {
             return Taro.request({
                 url: \`${host}${url}\`,
                 method: '${method}',
-                params: params,
+                data: params,
                 ...options, 
             })
         `
