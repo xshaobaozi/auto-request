@@ -1,7 +1,7 @@
 const path = require('path');
 const CreateApi = require('./../dist/bundle');
 
-const source = path.join(__dirname, './yapi.json');
+const source = path.join(__dirname, './test.json');
 const apiPath = path.join(__dirname, './../api/');
 
 const SwaggerJsonSchemaRequest = new CreateApi(source, 'axios', {

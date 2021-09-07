@@ -16,7 +16,7 @@ export interface SwaggerParamsPathsMethodsParamsSchema {
                     [key: string]: SwaggerParamsTags;
                 };
                 required: string[];
-                description:string;
+                description: string;
             }
         }
     };
@@ -130,6 +130,23 @@ export interface RequestPostState {
     schema: SwaggerParamsPathsMethods;
     tsReq: RequestGetRenderTs;
     tsRes: RequestGetRenderTs;
-    ReqTsTitle: string;
-    ResTsTitle: string;
+}
+
+export interface RequestGetPropertiesString {
+    type: 'string';
+    description: string;
+}
+export interface RequestGetPropertiesObject {
+    type: 'object';
+    properties: RequestGetProperties;
+    description: string;
+    required: string[];
+}
+export interface RequestGetPropertiesArray {
+    type: 'array';
+    description: string;
+    items:  RequestGetPropertiesObject;
+}
+export interface RequestGetProperties {
+    [key: string]: RequestGetPropertiesString | RequestGetPropertiesArray | RequestGetPropertiesObject;
 }

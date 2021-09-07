@@ -17,10 +17,15 @@ export interface Api {
   ProductsGetRequset?: ProductsGetRequset;
   ShopsGetRequset?: ShopsGetRequset;
   ShopsIdGetResponse?: ShopsIdGetResponse;
-  ShopsIdGetResponseBaseInfo?: ShopsIdGetResponseBaseInfo;
-  ShopsIdGetResponseMemberInfo?: ShopsIdGetResponseMemberInfo;
-  ShopsIdGetResponseSalesData?: ShopsIdGetResponseSalesData;
-  ShopsIdGetResponseActivityInfo?: ShopsIdGetResponseActivityInfo;
+  ShopsIdGetResponseBaseInfo?: ShopsIdGetResponseBaseInfo1;
+  ShopsIdGetResponseMemberInfo?: ShopsIdGetResponseMemberInfo1;
+  ShopsIdGetResponseSalesData?: ShopsIdGetResponseSalesData1;
+  ShopsIdGetResponseSalesDataMontSalesData?: ShopsIdGetResponseSalesDataMontSalesData1;
+  ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList?: ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList1;
+  ShopsIdGetResponseSalesDataYearSalesData?: ShopsIdGetResponseSalesDataYearSalesData1;
+  ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList?: ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList1;
+  ShopsIdGetResponseActivityInfo?: ShopsIdGetResponseActivityInfo1;
+  ShopsIdGetResponseActivityInfoActivityList?: ShopsIdGetResponseActivityInfoActivityList1;
   ShopsIdGetRequset?: ShopsIdGetRequset;
   VisitsummaryEmployeeIdGetResponse?: VisitsummaryEmployeeIdGetResponse;
   VisitsummaryEmployeeIdGetRequset?: VisitsummaryEmployeeIdGetRequset;
@@ -60,98 +65,98 @@ export interface DivisionsIdGetResponse {
   /**
    * 行政区ID
    */
-  id?: number;
+  id: number;
   /**
    * 行政区编码
    */
-  code?: string;
+  code: string;
   /**
    * 行政区名称
    */
-  displayname?: string;
+  displayname: string;
   /**
    * 简称
    */
-  shortname?: string;
+  shortname: string;
   /**
    * 全称
    */
-  fullname?: string;
+  fullname: string;
   /**
    * 别名
    */
-  alias?: string;
+  alias: string;
   /**
    * 行政区父Id
    */
-  parentId?: number;
+  parentId: number;
   /**
    * 层级
    */
-  hierarchy?: "1" | "2" | "3" | "4" | "5" | "6";
+  hierarchy: "1" | "2" | "3" | "4" | "5" | "6";
   /**
    * 排位
    */
-  rank?: number;
+  rank: number;
   /**
    * 状态
    */
-  status?: 10 | 20;
+  status: 10 | 20;
   /**
    * 经度
    */
-  lng?: number;
+  lng: number;
   /**
    * 纬度
    */
-  lat?: number;
+  lat: number;
   /**
    * 描述
    */
-  description?: string;
+  description: string;
   /**
    * 祖先
    */
-  ancestors?: string;
+  ancestors: string;
   /**
    * 深度
    */
-  depth?: number;
+  depth: number;
   /**
    * 叶子
    */
-  terminal?: boolean;
+  terminal: boolean;
 }
 export interface DivisionsIdGetRequset {}
 export interface DivisionsGetResponse {
   /**
    * 行政区ID
    */
-  id?: number;
+  id: number;
   /**
    * 行政区编码
    */
-  code?: string;
+  code: string;
   /**
    * 行政区名称
    */
-  displayname?: string;
+  displayname: string;
   /**
    * 行政区父Id
    */
-  parentId?: number;
+  parentId: number;
   /**
    * 层级
    */
-  hierarchy?: "1" | "2" | "3" | "4" | "5" | "6";
+  hierarchy: "1" | "2" | "3" | "4" | "5" | "6";
   /**
    * 排位
    */
-  rank?: number;
+  rank: number;
   /**
    * 状态
    */
-  status?: 10 | 20;
+  status: 10 | 20;
 }
 export interface DivisionsGetRequset {
   /**
@@ -205,282 +210,291 @@ export interface ShopsGetRequset {
   alarmStatuses?: string;
 }
 export interface ShopsIdGetResponse {
-  /**
-   * 门店基本信息
-   */
-  baseInfo?: {
-    /**
-     * 门店ID
-     */
-    id: number;
-    /**
-     * 门店编码
-     */
-    code: string;
-    /**
-     * 门店名称
-     */
-    name: string;
-    /**
-     * 省份编码
-     */
-    provinceCode: string;
-    /**
-     * 省份
-     */
-    province: string;
-    /**
-     * 城市编码
-     */
-    cityCode: string;
-    /**
-     * 城市
-     */
-    city: string;
-    /**
-     * 区县编码
-     */
-    areaCode: string;
-    /**
-     * 区县
-     */
-    area: string;
-    /**
-     * 详细地址
-     */
-    address: string;
-    /**
-     * 门店等级。10:A, 20:B, 30:C, 40:D
-     */
-    level: number;
-    /**
-     * 合作时间
-     */
-    effectiveDate: string;
-    /**
-     * 关联经理员工编码
-     */
-    employeeCode: string;
-    /**
-     * 关联经理员工姓名
-     */
-    employeeName: string;
-    /**
-     * 导购员
-     */
-    shoppingGuide: string;
-    /**
-     * 导购员电话
-     */
-    shoppingGuidePhone: string;
-    [k: string]: unknown;
-  };
-  /**
-   * 会员信息
-   */
-  memberInfo?: {
-    /**
-     * 当月新客数
-     */
-    monthNewMemberNum: number;
-    /**
-     * 年累计新客数
-     */
-    yearNewMemberNum: number;
-    [k: string]: unknown;
-  };
-  /**
-   * 销售数据
-   */
-  salesData?: {
-    /**
-     * 月销售数据
-     */
-    montSalesData: {
-      /**
-       * 总数
-       */
-      totalNum: number;
-      /**
-       * 总金额
-       */
-      totalAmount: number;
-      /**
-       * 产品销售数据列表
-       */
-      productSalesDataList: {
-        /**
-         * 产品编码
-         */
-        productCode: string;
-        /**
-         * 产品名称
-         */
-        productName: string;
-        /**
-         * 总数
-         */
-        totalNum: number;
-        /**
-         * 总金额
-         */
-        totalAmount: number;
-        [k: string]: unknown;
-      }[];
-      [k: string]: unknown;
-    };
-    /**
-     * 年销售数据
-     */
-    yearSalesData: {
-      /**
-       * 总数
-       */
-      totalNum: number;
-      /**
-       * 总金额
-       */
-      totalAmount: number;
-      /**
-       * 产品销售数据列表
-       */
-      productSalesDataList: {
-        /**
-         * 产品编码
-         */
-        productCode: string;
-        /**
-         * 产品名称
-         */
-        productName: string;
-        /**
-         * 总数
-         */
-        totalNum: string;
-        /**
-         * 总金额
-         */
-        totalAmount: string;
-        [k: string]: unknown;
-      }[];
-      [k: string]: unknown;
-    };
-    [k: string]: unknown;
-  };
-  /**
-   * 活动信息
-   */
-  activityInfo?: {
-    /**
-     * 年累计活动数
-     */
-    yearActivityNum: string;
-    /**
-     * 活动列表
-     */
-    activityList: {
-      /**
-       * 活动名称
-       */
-      activityName: string;
-      /**
-       * 开始时间
-       */
-      startTime: string;
-      /**
-       * 结束时间
-       */
-      endTime: string;
-      /**
-       * 是否为当月活动，1为当月活动，0为上个月活动
-       */
-      currentMonthActivity: number;
-      [k: string]: unknown;
-    }[];
-    [k: string]: unknown;
-  };
+  baseInfo: ShopsIdGetResponseBaseInfo;
+  memberInfo: ShopsIdGetResponseMemberInfo;
+  salesData: ShopsIdGetResponseSalesData;
+  activityInfo: ShopsIdGetResponseActivityInfo;
 }
+/**
+ * 门店基本信息
+ */
 export interface ShopsIdGetResponseBaseInfo {
   /**
    * 门店ID
    */
-  id?: number;
+  id: number;
   /**
    * 门店编码
    */
-  code?: string;
+  code: string;
   /**
    * 门店名称
    */
-  name?: string;
+  name: string;
   /**
    * 省份编码
    */
-  provinceCode?: string;
+  provinceCode: string;
   /**
    * 省份
    */
-  province?: string;
+  province: string;
   /**
    * 城市编码
    */
-  cityCode?: string;
+  cityCode: string;
   /**
    * 城市
    */
-  city?: string;
+  city: string;
   /**
    * 区县编码
    */
-  areaCode?: string;
+  areaCode: string;
   /**
    * 区县
    */
-  area?: string;
+  area: string;
   /**
    * 详细地址
    */
-  address?: string;
+  address: string;
   /**
    * 门店等级。10:A, 20:B, 30:C, 40:D
    */
-  level?: number;
+  level: number;
   /**
    * 合作时间
    */
-  effectiveDate?: string;
+  effectiveDate: string;
   /**
    * 关联经理员工编码
    */
-  employeeCode?: string;
+  employeeCode: string;
   /**
    * 关联经理员工姓名
    */
-  employeeName?: string;
+  employeeName: string;
   /**
    * 导购员
    */
-  shoppingGuide?: string;
+  shoppingGuide: string;
   /**
    * 导购员电话
    */
-  shoppingGuidePhone?: string;
+  shoppingGuidePhone: string;
 }
+/**
+ * 会员信息
+ */
 export interface ShopsIdGetResponseMemberInfo {
   /**
    * 当月新客数
    */
-  monthNewMemberNum?: number;
+  monthNewMemberNum: number;
   /**
    * 年累计新客数
    */
-  yearNewMemberNum?: number;
+  yearNewMemberNum: number;
 }
+/**
+ * 销售数据
+ */
 export interface ShopsIdGetResponseSalesData {
+  montSalesData: ShopsIdGetResponseSalesDataMontSalesData;
+  yearSalesData: ShopsIdGetResponseSalesDataYearSalesData;
+}
+/**
+ * 月销售数据
+ */
+export interface ShopsIdGetResponseSalesDataMontSalesData {
+  /**
+   * 总数
+   */
+  totalNum: number;
+  /**
+   * 总金额
+   */
+  totalAmount: number;
+  /**
+   * 产品销售数据列表
+   */
+  productSalesDataList: ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList[];
+}
+/**
+ * 产品销售数据
+ */
+export interface ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList {
+  /**
+   * 产品编码
+   */
+  productCode: string;
+  /**
+   * 产品名称
+   */
+  productName: string;
+  /**
+   * 总数
+   */
+  totalNum: number;
+  /**
+   * 总金额
+   */
+  totalAmount: number;
+}
+/**
+ * 年销售数据
+ */
+export interface ShopsIdGetResponseSalesDataYearSalesData {
+  /**
+   * 总数
+   */
+  totalNum: number;
+  /**
+   * 总金额
+   */
+  totalAmount: number;
+  /**
+   * 产品销售数据列表
+   */
+  productSalesDataList: ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList[];
+}
+/**
+ * 产品销售数据
+ */
+export interface ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList {
+  /**
+   * 产品编码
+   */
+  productCode: string;
+  /**
+   * 产品名称
+   */
+  productName: string;
+  /**
+   * 总数
+   */
+  totalNum: string;
+  /**
+   * 总金额
+   */
+  totalAmount: string;
+}
+/**
+ * 活动信息
+ */
+export interface ShopsIdGetResponseActivityInfo {
+  /**
+   * 年累计活动数
+   */
+  yearActivityNum: string;
+  /**
+   * 活动列表
+   */
+  activityList: ShopsIdGetResponseActivityInfoActivityList[];
+}
+/**
+ * 活动对象
+ */
+export interface ShopsIdGetResponseActivityInfoActivityList {
+  /**
+   * 活动名称
+   */
+  activityName: string;
+  /**
+   * 开始时间
+   */
+  startTime: string;
+  /**
+   * 结束时间
+   */
+  endTime: string;
+  /**
+   * 是否为当月活动，1为当月活动，0为上个月活动
+   */
+  currentMonthActivity: number;
+}
+export interface ShopsIdGetResponseBaseInfo1 {
+  /**
+   * 门店ID
+   */
+  id: number;
+  /**
+   * 门店编码
+   */
+  code: string;
+  /**
+   * 门店名称
+   */
+  name: string;
+  /**
+   * 省份编码
+   */
+  provinceCode: string;
+  /**
+   * 省份
+   */
+  province: string;
+  /**
+   * 城市编码
+   */
+  cityCode: string;
+  /**
+   * 城市
+   */
+  city: string;
+  /**
+   * 区县编码
+   */
+  areaCode: string;
+  /**
+   * 区县
+   */
+  area: string;
+  /**
+   * 详细地址
+   */
+  address: string;
+  /**
+   * 门店等级。10:A, 20:B, 30:C, 40:D
+   */
+  level: number;
+  /**
+   * 合作时间
+   */
+  effectiveDate: string;
+  /**
+   * 关联经理员工编码
+   */
+  employeeCode: string;
+  /**
+   * 关联经理员工姓名
+   */
+  employeeName: string;
+  /**
+   * 导购员
+   */
+  shoppingGuide: string;
+  /**
+   * 导购员电话
+   */
+  shoppingGuidePhone: string;
+}
+export interface ShopsIdGetResponseMemberInfo1 {
+  /**
+   * 当月新客数
+   */
+  monthNewMemberNum: number;
+  /**
+   * 年累计新客数
+   */
+  yearNewMemberNum: number;
+}
+export interface ShopsIdGetResponseSalesData1 {
   /**
    * 月销售数据
    */
-  montSalesData?: {
+  montSalesData: {
     /**
      * 总数
      */
@@ -516,7 +530,7 @@ export interface ShopsIdGetResponseSalesData {
   /**
    * 年销售数据
    */
-  yearSalesData?: {
+  yearSalesData: {
     /**
      * 总数
      */
@@ -550,15 +564,115 @@ export interface ShopsIdGetResponseSalesData {
     [k: string]: unknown;
   };
 }
-export interface ShopsIdGetResponseActivityInfo {
+export interface ShopsIdGetResponseSalesDataMontSalesData1 {
+  /**
+   * 总数
+   */
+  totalNum: number;
+  /**
+   * 总金额
+   */
+  totalAmount: number;
+  /**
+   * 产品销售数据列表
+   */
+  productSalesDataList: {
+    /**
+     * 产品编码
+     */
+    productCode: string;
+    /**
+     * 产品名称
+     */
+    productName: string;
+    /**
+     * 总数
+     */
+    totalNum: number;
+    /**
+     * 总金额
+     */
+    totalAmount: number;
+    [k: string]: unknown;
+  }[];
+}
+export interface ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList1 {
+  /**
+   * 产品编码
+   */
+  productCode: string;
+  /**
+   * 产品名称
+   */
+  productName: string;
+  /**
+   * 总数
+   */
+  totalNum: number;
+  /**
+   * 总金额
+   */
+  totalAmount: number;
+}
+export interface ShopsIdGetResponseSalesDataYearSalesData1 {
+  /**
+   * 总数
+   */
+  totalNum: number;
+  /**
+   * 总金额
+   */
+  totalAmount: number;
+  /**
+   * 产品销售数据列表
+   */
+  productSalesDataList: {
+    /**
+     * 产品编码
+     */
+    productCode: string;
+    /**
+     * 产品名称
+     */
+    productName: string;
+    /**
+     * 总数
+     */
+    totalNum: string;
+    /**
+     * 总金额
+     */
+    totalAmount: string;
+    [k: string]: unknown;
+  }[];
+}
+export interface ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList1 {
+  /**
+   * 产品编码
+   */
+  productCode: string;
+  /**
+   * 产品名称
+   */
+  productName: string;
+  /**
+   * 总数
+   */
+  totalNum: string;
+  /**
+   * 总金额
+   */
+  totalAmount: string;
+}
+export interface ShopsIdGetResponseActivityInfo1 {
   /**
    * 年累计活动数
    */
-  yearActivityNum?: string;
+  yearActivityNum: string;
   /**
    * 活动列表
    */
-  activityList?: {
+  activityList: {
     /**
      * 活动名称
      */
@@ -578,28 +692,46 @@ export interface ShopsIdGetResponseActivityInfo {
     [k: string]: unknown;
   }[];
 }
+export interface ShopsIdGetResponseActivityInfoActivityList1 {
+  /**
+   * 活动名称
+   */
+  activityName: string;
+  /**
+   * 开始时间
+   */
+  startTime: string;
+  /**
+   * 结束时间
+   */
+  endTime: string;
+  /**
+   * 是否为当月活动，1为当月活动，0为上个月活动
+   */
+  currentMonthActivity: number;
+}
 export interface ShopsIdGetRequset {}
 export interface VisitsummaryEmployeeIdGetResponse {
   /**
    * 员工编号
    */
-  employeeCode?: string;
+  employeeCode: string;
   /**
    * 员工名字
    */
-  employeeName?: string;
+  employeeName: string;
   /**
    * 目标数
    */
-  targetNumber?: number;
+  targetNumber: number;
   /**
    * 拜访数
    */
-  visitNumber?: number;
+  visitNumber: number;
   /**
    * 完成率
    */
-  completionRate?: number;
+  completionRate: number;
 }
 export interface VisitsummaryEmployeeIdGetRequset {
   /**
@@ -619,23 +751,23 @@ export interface VisitdetialsEmployeeIdAsPageGetResponse {
   /**
    * 每页数量
    */
-  size?: number;
+  size: number;
   /**
    * 当前页码
    */
-  current?: number;
+  current: number;
   /**
    * 总页数
    */
-  pages?: number;
+  pages: number;
   /**
    * 总数量
    */
-  total?: number;
+  total: number;
   /**
    * 字典列表
    */
-  records?: VisitdetialsEmployeeIdAsPageGetResponseRecords[];
+  records: VisitdetialsEmployeeIdAsPageGetResponseRecords[];
 }
 export interface VisitdetialsEmployeeIdAsPageGetResponseRecords {
   /**
@@ -675,35 +807,35 @@ export interface VisitdetialsEmployeeIdAsPageGetResponseRecords1 {
   /**
    * 员工ID
    */
-  employeeId?: number;
+  employeeId: number;
   /**
    * 客户ID
    */
-  customerId?: number;
+  customerId: number;
   /**
    * 客户编码
    */
-  customerCode?: string;
+  customerCode: string;
   /**
    * 客户名称
    */
-  customerName?: string;
+  customerName: string;
   /**
    * 客户类别 10:门店, 20:经销商
    */
-  customerCategory?: string;
+  customerCategory: string;
   /**
    * 拜访日期
    */
-  visitDate?: string;
+  visitDate: string;
   /**
    * 拜访时间
    */
-  startTime?: string;
+  startTime: string;
   /**
    * 离店时间
    */
-  endTime?: string;
+  endTime: string;
 }
 export interface VisitdetialsEmployeeIdAsPageGetRequset {
   /**
@@ -745,31 +877,31 @@ export interface VisitemployeestatisticsGetResponse {
   /**
    * 销售组织编码
    */
-  code?: string;
+  code: string;
   /**
    * 销售组织名称
    */
-  name?: string;
+  name: string;
   /**
    * 销售组织层级
    */
-  hierarchy?: number;
+  hierarchy: number;
   /**
    * 目标数
    */
-  targetNumber?: number;
+  targetNumber: number;
   /**
    * 拜访数
    */
-  visitNumber?: number;
+  visitNumber: number;
   /**
    * 完成率
    */
-  completionRate?: number;
+  completionRate: number;
   /**
    * 员工拜访统计列表
    */
-  employeeStatisticsList?: VisitemployeestatisticsGetResponseEmployeeStatisticsList[];
+  employeeStatisticsList: VisitemployeestatisticsGetResponseEmployeeStatisticsList[];
 }
 /**
  * 员工拜访统计
@@ -804,27 +936,27 @@ export interface VisitemployeestatisticsGetResponseEmployeeStatisticsList1 {
   /**
    * 员工编码
    */
-  employeeCode?: string;
+  employeeCode: string;
   /**
    * 员工姓名
    */
-  employeeName?: string;
+  employeeName: string;
   /**
    * 目标数
    */
-  targetNumber?: number;
+  targetNumber: number;
   /**
    * 拜访数
    */
-  visitNumber?: number;
+  visitNumber: number;
   /**
    * 完成率
    */
-  completionRate?: number;
+  completionRate: number;
   /**
    * 员工ID
    */
-  employeeId?: string;
+  employeeId: string;
 }
 export interface VisitemployeestatisticsGetRequset {
   /**

@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as prettier from 'prettier';
 import { compile } from 'json-schema-to-typescript';
-import { readFileSync, analysiAxiosRules, analysiYapiRules, rendeFetchPre, renderTsPreImport } from './utils';
+import { readFileSync, analysiAxiosRules, analysiYapiRules, rendeFetchPre, renderTsPreImport, log } from './utils';
 import RequestGet from './common/requestGet';
 import RequestPost from './common/requestPost';
 import {
@@ -17,7 +17,8 @@ interface CreateApiState {
     host: string;
   };
   methodsQueue: apiQueueParams[];
-  resultQueue: RequestGet[] | RequestPost[];
+  // resultQueue: RequestGet[] | RequestPost[];
+  resultQueue: any[];
 }
 class CreateApi {
   state: CreateApiState;

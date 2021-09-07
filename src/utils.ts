@@ -9,6 +9,8 @@ import {
   apiQueueParams,
   CreateApiStateType,
   SwaggerParamsPathsMethodsParamsSchema,
+  RequestGetProperties,
+  RequestGetPropertiesObject,
 } from './define';
 
 // 读取入口文件
@@ -123,3 +125,41 @@ export const createTypeDefineObj = (title: string, properties: any, type: string
     }
   }
 }
+
+interface createTypeDefineObjParams {
+  title: string;
+  properties: any;
+  type: string,
+  required?: any
+}
+// 处理response的properties
+export const deepFormatResponse = (preProperties: RequestGetPropertiesObject, schemas: any[] = [], createTypeDefineObjParams: createTypeDefineObjParams) => {
+  const { title, properties, type, required } = createTypeDefineObjParams;
+  if (!preProperties.properties) { return; }
+  for (const [key, value] of Object.entries(preProperties.properties)) {
+    const pascalCaseKey = pascalCase(key);
+    const refTitle = `${title}${pascalCaseKey}`;
+    const paramsProperties = Object.assign(createTypeDefineObjParams, { title: refTitle });
+    if (value.type === 'string') {
+      continue;
+    }
+    if (value.type === 'object') {
+      const schemaItem = createTypeDefineObj(refTitle, deepCopy(value.properties), type, value.required);
+      schemas.push(schemaItem);
+      Object.assign(value, {
+        $ref: `#/definitions/${refTitle}`
+      })
+      deepFormatResponse(value, schemas, paramsProperties);
+    }
+    if (value.type === 'array') {
+      const schemaItem = createTypeDefineObj(refTitle, deepCopy(value.items.properties), type, value.items.required);
+      schemas.push(schemaItem);
+      delete value.items.properties;
+      Object.assign(value.items, {
+        $ref: `#/definitions/${refTitle}`
+      })
+      deepFormatResponse(value.items, schemas, paramsProperties);
+    }
+  }
+};
+export const log = (data) => console.log(JSON.stringify(data));

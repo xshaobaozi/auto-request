@@ -1,7 +1,8 @@
 import {
     RequestPostState,
     SwaggerParamsPathsMethods,
-    CreateApiStateType
+    CreateApiStateType,
+    RequestGetRenderTs
 } from './../define';
 import { createMethodsName, formatUrl, filterPathParams } from './../utils';
 
@@ -17,10 +18,10 @@ abstract class BaseRequest {
             host: host,
             tsReq: null,
             tsRes: null,
-            ReqTsTitle: '',
-            ResTsTitle: '',
         }
+        this.state.tsReq = this.renderTsDefineReq();
     }
+    abstract renderTsDefineReq(): RequestGetRenderTs;
     renderAxiosRes(title) {
         if (this.state.fetchType === 'axios') {
             return `AxiosResponse <${title}>`

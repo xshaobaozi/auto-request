@@ -1,4 +1,4 @@
-import { SwaggerParamsPathsMethods, CreateApiStateType, RequestGetState, RequestGetRenderTs, SwaggerParamsPathsMethodsSchema } from './../define';
+import { SwaggerParamsPathsMethods, CreateApiStateType, RequestGetState, RequestGetRenderTs, SwaggerParamsPathsMethodsSchema, RequestGetPropertiesObject } from './../define';
 import {
     filterPathParams,
     formatTsRequest,
@@ -7,7 +7,9 @@ import {
     formatRequireds,
     deepCopy,
     createTypeDefineObj,
-    pascalCase
+    pascalCase,
+    log,
+    deepFormatResponse,
 } from './../utils';
 import BaseRequest from './base';
 
@@ -15,11 +17,6 @@ class RequestGet extends BaseRequest {
     state: RequestGetState;
     constructor(method: string, url: string, schema: SwaggerParamsPathsMethods, fetchType: CreateApiStateType, host: string) {
         super(method, url, schema, fetchType, host)
-        this.state.tsReq = this.renderTsDefineReq();
-        // const responseTsList = this.renderTsDefineResFeature();
-        // const requestTsList = this.renderTsDefineReqFeature();
-        // this.state.ReqTsTitle = (requestTsList[0] && requestTsList[0].key) || 'any'
-        // this.state.ResTsTitle = (responseTsList[0] && responseTsList[0].key) || 'any'
     }
     renderTsDefineReq(): RequestGetRenderTs {
         const { parameters = [] } = this.state.schema;
@@ -43,27 +40,13 @@ class RequestGet extends BaseRequest {
         return reqList;
     }
     renderTsDefineResFeature() {
-        const schema = deepCopy(this.state.schema.responses['200'].schema) as SwaggerParamsPathsMethodsSchema;
+        const schema = deepCopy(this.state.schema.responses['200'].schema) as RequestGetPropertiesObject;
         const properties = [];
         const title = formatTsResponse(this.state.methodName);
         if (schema.type === 'object') {
-            properties.push(createTypeDefineObj(title, schema.properties, schema.type));
+            properties.push(createTypeDefineObj(title, schema.properties, schema.type, schema.required));
         }
-        if (schema.properties === undefined) { return properties; }
-        for (const [key, value] of Object.entries(schema.properties)) {
-            const pascalCaseKey = pascalCase(key);
-            if (value.type === 'array') {
-                // properties.push(deepCopy(value));
-                properties.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.items.properties), value.items.type));
-                delete value.items.properties;
-                Object.assign(value.items, {
-                    $ref: `#/definitions/${title}${pascalCaseKey}`
-                })
-            }
-            if (value.type === 'object') {
-                properties.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.properties), value.type));
-            }
-        }
+        deepFormatResponse(schema, properties, { title: title, properties: schema.properties, type: schema.type });
 
         return properties;
     }
