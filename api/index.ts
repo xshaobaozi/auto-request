@@ -1,14 +1,22 @@
-import axios, { AxiosResponse } from "axios"
+import Taro, { RequestTask } from "@tarojs/taro"
 import {
+  DictsDictIditemsGetResponse,
   DictsDictIditemsGetRequset,
+  DictsDictCodeitemsByCodeGetResponse,
   DictsDictCodeitemsByCodeGetRequset,
+  DictsGetResponse,
   DictsGetRequset,
   DivisionsIdGetResponse,
   DivisionsIdGetRequset,
   DivisionsGetResponse,
   DivisionsGetRequset,
+  OrganizationsGetResponse,
+  OrganizationsGetResponseSubOrganizationList,
   OrganizationsGetRequset,
+  ProductsGetResponse,
   ProductsGetRequset,
+  ShopsGetResponse,
+  ShopsGetResponseAlarmList,
   ShopsGetRequset,
   ShopsIdGetResponse,
   ShopsIdGetResponseBaseInfo,
@@ -21,11 +29,13 @@ import {
   ShopsIdGetResponseActivityInfo,
   ShopsIdGetResponseActivityInfoActivityList,
   ShopsIdGetRequset,
-  VisitsummaryEmployeeIdGetResponse,
-  VisitsummaryEmployeeIdGetRequset,
-  VisitdetialsEmployeeIdAsPageGetResponse,
-  VisitdetialsEmployeeIdAsPageGetResponseRecords,
-  VisitdetialsEmployeeIdAsPageGetRequset,
+  VisitsummaryEmployeeCodeGetResponse,
+  VisitsummaryEmployeeCodeGetRequset,
+  VisitdetialsEmployeeCodeAsPageGetResponse,
+  VisitdetialsEmployeeCodeAsPageGetResponseRecords,
+  VisitdetialsEmployeeCodeAsPageGetRequset,
+  VisitorganizationstatisticsGetResponse,
+  VisitorganizationstatisticsGetResponseSubOrgStatisticsList,
   VisitorganizationstatisticsGetRequset,
   VisitemployeestatisticsGetResponse,
   VisitemployeestatisticsGetResponseEmployeeStatisticsList,
@@ -34,14 +44,14 @@ import {
 
 export const DictsDictIditemsGet = <
   P extends DictsDictIditemsGetRequset,
-  T = AxiosResponse<any>
+  T = DictsDictIditemsGetResponse[]
 >(
   DictId: any,
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 获取多个字典项目（列表）
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/dicts/${DictId}/items`,
     method: "get",
     params: params,
@@ -51,14 +61,14 @@ export const DictsDictIditemsGet = <
 
 export const DictsDictCodeitemsByCodeGet = <
   P extends DictsDictCodeitemsByCodeGetRequset,
-  T = AxiosResponse<any>
+  T = DictsDictCodeitemsByCodeGetResponse[]
 >(
   DictCode: any,
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 获取多个字典项目（列表）
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/dicts/${DictCode}/items?_by_code`,
     method: "get",
     params: params,
@@ -66,12 +76,12 @@ export const DictsDictCodeitemsByCodeGet = <
   })
 }
 
-export const DictsGet = <P extends DictsGetRequset, T = AxiosResponse<any>>(
+export const DictsGet = <P extends DictsGetRequset, T = DictsGetResponse[]>(
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 获取多个数据字典（列表）
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/dicts`,
     method: "get",
     params: params,
@@ -81,14 +91,14 @@ export const DictsGet = <P extends DictsGetRequset, T = AxiosResponse<any>>(
 
 export const DivisionsIdGet = <
   P extends DivisionsIdGetRequset,
-  T = AxiosResponse<DivisionsIdGetResponse>
+  T = DivisionsIdGetResponse
 >(
   Id: any,
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 获取行政区划信息
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/divisions/${Id}`,
     method: "get",
     params: params,
@@ -98,13 +108,13 @@ export const DivisionsIdGet = <
 
 export const DivisionsGet = <
   P extends DivisionsGetRequset,
-  T = AxiosResponse<DivisionsGetResponse>
+  T = DivisionsGetResponse
 >(
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 获取行政区划列表
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/divisions`,
     method: "get",
     params: params,
@@ -114,13 +124,13 @@ export const DivisionsGet = <
 
 export const OrganizationsGet = <
   P extends OrganizationsGetRequset,
-  T = AxiosResponse<any>
+  T = OrganizationsGetResponse[]
 >(
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 组织列表
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/organizations`,
     method: "get",
     params: params,
@@ -130,13 +140,13 @@ export const OrganizationsGet = <
 
 export const ProductsGet = <
   P extends ProductsGetRequset,
-  T = AxiosResponse<any>
+  T = ProductsGetResponse[]
 >(
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 产品列表
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/products`,
     method: "get",
     params: params,
@@ -144,12 +154,12 @@ export const ProductsGet = <
   })
 }
 
-export const ShopsGet = <P extends ShopsGetRequset, T = AxiosResponse<any>>(
+export const ShopsGet = <P extends ShopsGetRequset, T = ShopsGetResponse[]>(
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 门店列表
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/shops`,
     method: "get",
     params: params,
@@ -157,16 +167,13 @@ export const ShopsGet = <P extends ShopsGetRequset, T = AxiosResponse<any>>(
   })
 }
 
-export const ShopsIdGet = <
-  P extends ShopsIdGetRequset,
-  T = AxiosResponse<ShopsIdGetResponse>
->(
+export const ShopsIdGet = <P extends ShopsIdGetRequset, T = ShopsIdGetResponse>(
   Id: any,
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 门店详情
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/shops/${Id}`,
     method: "get",
     params: params,
@@ -174,34 +181,34 @@ export const ShopsIdGet = <
   })
 }
 
-export const VisitsummaryEmployeeIdGet = <
-  P extends VisitsummaryEmployeeIdGetRequset,
-  T = AxiosResponse<VisitsummaryEmployeeIdGetResponse>
+export const VisitsummaryEmployeeCodeGet = <
+  P extends VisitsummaryEmployeeCodeGetRequset,
+  T = VisitsummaryEmployeeCodeGetResponse
 >(
-  EmployeeId: any,
+  EmployeeCode: any,
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 获取某个用户的拜访汇总
-  return axios.request({
-    url: `https://yapi.yashili.com/mock/178/visit/summary/${EmployeeId}`,
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178/visit/summary/${EmployeeCode}`,
     method: "get",
     params: params,
     ...options,
   })
 }
 
-export const VisitdetialsEmployeeIdAsPageGet = <
-  P extends VisitdetialsEmployeeIdAsPageGetRequset,
-  T = AxiosResponse<VisitdetialsEmployeeIdAsPageGetResponse>
+export const VisitdetialsEmployeeCodeAsPageGet = <
+  P extends VisitdetialsEmployeeCodeAsPageGetRequset,
+  T = VisitdetialsEmployeeCodeAsPageGetResponse
 >(
-  EmployeeId: any,
+  EmployeeCode: any,
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 获取某个用户的拜访明细
-  return axios.request({
-    url: `https://yapi.yashili.com/mock/178/visit/detials/${EmployeeId}?_as_page`,
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178/visit/detials/${EmployeeCode}?_as_page`,
     method: "get",
     params: params,
     ...options,
@@ -210,13 +217,13 @@ export const VisitdetialsEmployeeIdAsPageGet = <
 
 export const VisitorganizationstatisticsGet = <
   P extends VisitorganizationstatisticsGetRequset,
-  T = AxiosResponse<any>
+  T = VisitorganizationstatisticsGetResponse[]
 >(
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 销售组织拜访统计
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/visit/organization/statistics`,
     method: "get",
     params: params,
@@ -226,13 +233,13 @@ export const VisitorganizationstatisticsGet = <
 
 export const VisitemployeestatisticsGet = <
   P extends VisitemployeestatisticsGetRequset,
-  T = AxiosResponse<VisitemployeestatisticsGetResponse>
+  T = VisitemployeestatisticsGetResponse
 >(
   params: P,
   options?: any
-): Promise<T> => {
+): RequestTask<T> => {
   // 员工拜访统计
-  return axios.request({
+  return Taro.request({
     url: `https://yapi.yashili.com/mock/178/visit/employee/statistics`,
     method: "get",
     params: params,

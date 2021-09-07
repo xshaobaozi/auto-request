@@ -23,10 +23,11 @@ abstract class BaseRequest {
     }
     abstract renderTsDefineReq(): RequestGetRenderTs;
     renderAxiosRes(title) {
+        const isArray = this.state.schema.responses['200'].schema.type === 'array'?'[]':'';
         if (this.state.fetchType === 'axios') {
-            return `AxiosResponse <${title}>`
+            return `AxiosResponse <${title}${isArray}>`
         }
-        return title;
+        return `${title}${isArray}`;
     }
     renderPromiseType() {
         if (this.state.fetchType === 'axios') {

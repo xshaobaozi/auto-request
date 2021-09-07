@@ -43,10 +43,15 @@ class RequestGet extends BaseRequest {
         const schema = deepCopy(this.state.schema.responses['200'].schema) as RequestGetPropertiesObject;
         const properties = [];
         const title = formatTsResponse(this.state.methodName);
-        if (schema.type === 'object') {
+        if (['object'].includes(schema.type)) {
             properties.push(createTypeDefineObj(title, schema.properties, schema.type, schema.required));
+            deepFormatResponse(schema, properties, { title: title, properties: schema.properties, type: schema.type });
         }
-        deepFormatResponse(schema, properties, { title: title, properties: schema.properties, type: schema.type });
+        if (['array'].includes(schema.type)) {
+            const schemaArray = (schema as any).items;
+            properties.push(createTypeDefineObj(title, schemaArray.properties, schemaArray.type, schemaArray.required));
+            deepFormatResponse(schemaArray, properties, { title: title, properties: schemaArray.properties, type: schemaArray.type });
+        }
 
         return properties;
     }

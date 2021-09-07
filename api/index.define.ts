@@ -6,15 +6,23 @@
  */
 
 export interface Api {
+  DictsDictIditemsGetResponse?: DictsDictIditemsGetResponse;
   DictsDictIditemsGetRequset?: DictsDictIditemsGetRequset;
+  DictsDictCodeitemsByCodeGetResponse?: DictsDictCodeitemsByCodeGetResponse;
   DictsDictCodeitemsByCodeGetRequset?: DictsDictCodeitemsByCodeGetRequset;
+  DictsGetResponse?: DictsGetResponse;
   DictsGetRequset?: DictsGetRequset;
   DivisionsIdGetResponse?: DivisionsIdGetResponse;
   DivisionsIdGetRequset?: DivisionsIdGetRequset;
   DivisionsGetResponse?: DivisionsGetResponse;
   DivisionsGetRequset?: DivisionsGetRequset;
+  OrganizationsGetResponse?: OrganizationsGetResponse;
+  OrganizationsGetResponseSubOrganizationList?: OrganizationsGetResponseSubOrganizationList1;
   OrganizationsGetRequset?: OrganizationsGetRequset;
+  ProductsGetResponse?: ProductsGetResponse;
   ProductsGetRequset?: ProductsGetRequset;
+  ShopsGetResponse?: ShopsGetResponse;
+  ShopsGetResponseAlarmList?: ShopsGetResponseAlarmList1;
   ShopsGetRequset?: ShopsGetRequset;
   ShopsIdGetResponse?: ShopsIdGetResponse;
   ShopsIdGetResponseBaseInfo?: ShopsIdGetResponseBaseInfo1;
@@ -27,18 +35,154 @@ export interface Api {
   ShopsIdGetResponseActivityInfo?: ShopsIdGetResponseActivityInfo1;
   ShopsIdGetResponseActivityInfoActivityList?: ShopsIdGetResponseActivityInfoActivityList1;
   ShopsIdGetRequset?: ShopsIdGetRequset;
-  VisitsummaryEmployeeIdGetResponse?: VisitsummaryEmployeeIdGetResponse;
-  VisitsummaryEmployeeIdGetRequset?: VisitsummaryEmployeeIdGetRequset;
-  VisitdetialsEmployeeIdAsPageGetResponse?: VisitdetialsEmployeeIdAsPageGetResponse;
-  VisitdetialsEmployeeIdAsPageGetResponseRecords?: VisitdetialsEmployeeIdAsPageGetResponseRecords1;
-  VisitdetialsEmployeeIdAsPageGetRequset?: VisitdetialsEmployeeIdAsPageGetRequset;
+  VisitsummaryEmployeeCodeGetResponse?: VisitsummaryEmployeeCodeGetResponse;
+  VisitsummaryEmployeeCodeGetRequset?: VisitsummaryEmployeeCodeGetRequset;
+  VisitdetialsEmployeeCodeAsPageGetResponse?: VisitdetialsEmployeeCodeAsPageGetResponse;
+  VisitdetialsEmployeeCodeAsPageGetResponseRecords?: VisitdetialsEmployeeCodeAsPageGetResponseRecords1;
+  VisitdetialsEmployeeCodeAsPageGetRequset?: VisitdetialsEmployeeCodeAsPageGetRequset;
+  VisitorganizationstatisticsGetResponse?: VisitorganizationstatisticsGetResponse;
+  VisitorganizationstatisticsGetResponseSubOrgStatisticsList?: VisitorganizationstatisticsGetResponseSubOrgStatisticsList1;
   VisitorganizationstatisticsGetRequset?: VisitorganizationstatisticsGetRequset;
   VisitemployeestatisticsGetResponse?: VisitemployeestatisticsGetResponse;
   VisitemployeestatisticsGetResponseEmployeeStatisticsList?: VisitemployeestatisticsGetResponseEmployeeStatisticsList1;
   VisitemployeestatisticsGetRequset?: VisitemployeestatisticsGetRequset;
 }
+export interface DictsDictIditemsGetResponse {
+  /**
+   * 字典项目标识
+   */
+  id?: number;
+  /**
+   * 字典标识
+   */
+  dictId?: number;
+  /**
+   * 编码
+   */
+  code?: string;
+  /**
+   * 类型
+   */
+  type?: string;
+  /**
+   * 名称
+   */
+  text?: string;
+  /**
+   * 有效范围
+   */
+  scope?: string;
+  /**
+   * 排号
+   */
+  rank?: number;
+  /**
+   * 状态
+   */
+  status?: number;
+  /**
+   * 父亲
+   */
+  parent?: number;
+  /**
+   * 祖先
+   */
+  ancestors?: string;
+  /**
+   * 深度
+   */
+  depth?: number;
+  /**
+   * 叶子
+   */
+  terminal?: boolean;
+  /**
+   * 删除？
+   */
+  deteled?: boolean;
+}
 export interface DictsDictIditemsGetRequset {}
+export interface DictsDictCodeitemsByCodeGetResponse {
+  /**
+   * 字典项目标识
+   */
+  id?: number;
+  /**
+   * 字典标识
+   */
+  dictId?: number;
+  /**
+   * 编码
+   */
+  code?: string;
+  /**
+   * 类型
+   */
+  type?: string;
+  /**
+   * 名称
+   */
+  text?: string;
+  /**
+   * 有效范围
+   */
+  scope?: string;
+  /**
+   * 排号
+   */
+  rank?: number;
+  /**
+   * 状态
+   */
+  status?: number;
+  /**
+   * 父亲
+   */
+  parent?: number;
+  /**
+   * 祖先
+   */
+  ancestors?: string;
+  /**
+   * 深度
+   */
+  depth?: number;
+  /**
+   * 叶子
+   */
+  terminal?: boolean;
+  /**
+   * 删除
+   */
+  deleted?: boolean;
+}
 export interface DictsDictCodeitemsByCodeGetRequset {}
+export interface DictsGetResponse {
+  /**
+   * 标识
+   */
+  id: number;
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  text: string;
+  /**
+   * 描述
+   */
+  description: string;
+  /**
+   * 状态
+   */
+  status: number;
+  /**
+   * 删除？
+   */
+  deleted: boolean;
+}
 export interface DictsGetRequset {
   /**
    * 编码
@@ -172,6 +316,103 @@ export interface DivisionsGetRequset {
    */
   displayname?: string;
 }
+export interface OrganizationsGetResponse {
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 层级
+   */
+  hierarchy: string;
+  /**
+   * 父编码
+   */
+  parentCode: string;
+  /**
+   * 所有祖先（英文逗号分割）
+   */
+  ancestors: string;
+  /**
+   * 是否叶子（0-否；1-是）
+   */
+  terminal: number;
+  /**
+   * 状态
+   */
+  status: number;
+  /**
+   * 子组织列表
+   */
+  subOrganizationList: OrganizationsGetResponseSubOrganizationList[];
+}
+/**
+ * 组织对象
+ */
+export interface OrganizationsGetResponseSubOrganizationList {
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 层级
+   */
+  hierarchy: string;
+  /**
+   * 父编码
+   */
+  parentCode: string;
+  /**
+   * 所有祖先（英文逗号分割）
+   */
+  ancestors: string;
+  /**
+   * 是否叶子（0-否；1-是）
+   */
+  terminal: number;
+  /**
+   * 状态
+   */
+  status: number;
+}
+export interface OrganizationsGetResponseSubOrganizationList1 {
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 层级
+   */
+  hierarchy: string;
+  /**
+   * 父编码
+   */
+  parentCode: string;
+  /**
+   * 所有祖先（英文逗号分割）
+   */
+  ancestors: string;
+  /**
+   * 是否叶子（0-否；1-是）
+   */
+  terminal: number;
+  /**
+   * 状态
+   */
+  status: number;
+}
 export interface OrganizationsGetRequset {
   /**
    * 销售组织编码
@@ -182,7 +423,111 @@ export interface OrganizationsGetRequset {
    */
   includeChild: string;
 }
+export interface ProductsGetResponse {
+  /**
+   * 产品ID
+   */
+  id: number;
+  /**
+   * 产品编码
+   */
+  code: string;
+  /**
+   * 产品名称
+   */
+  name: string;
+  /**
+   * 产品图片
+   */
+  pictureUrl: string;
+}
 export interface ProductsGetRequset {}
+export interface ShopsGetResponse {
+  /**
+   * 门店ID
+   */
+  id: number;
+  /**
+   * 门店编码
+   */
+  code: string;
+  /**
+   * 门店名称
+   */
+  name: string;
+  /**
+   * 省编码
+   */
+  provinceCode: string;
+  /**
+   * 省
+   */
+  provinceName: string;
+  /**
+   * 城市编码
+   */
+  cityCode: string;
+  /**
+   * 城市
+   */
+  cityName: string;
+  /**
+   * 区县编码
+   */
+  countyCode: string;
+  /**
+   * 区县
+   */
+  countyName: string;
+  /**
+   * 详细地址
+   */
+  address: string;
+  /**
+   * 经度
+   */
+  lng: number;
+  /**
+   * 纬度
+   */
+  lat: number;
+  /**
+   * 距离，单位米
+   */
+  distance: number;
+  /**
+   * 门店等级 10:A, 20:B, 30:C, 40:D
+   */
+  level: number;
+  /**
+   * 预警状态(0-7)  0：无预警；>0:有预警
+   */
+  alarmStatus: number;
+  /**
+   * 预警列表
+   */
+  alarmList?: ShopsGetResponseAlarmList[];
+}
+export interface ShopsGetResponseAlarmList {
+  /**
+   * 1.销量增幅大于50% 2.超过30天未拜访的门店  4.无动销门店
+   */
+  alarmCode: number;
+  /**
+   * 预警描述
+   */
+  alarmDesc?: string;
+}
+export interface ShopsGetResponseAlarmList1 {
+  /**
+   * 1.销量增幅大于50% 2.超过30天未拜访的门店  4.无动销门店
+   */
+  alarmCode: number;
+  /**
+   * 预警描述
+   */
+  alarmDesc?: string;
+}
 export interface ShopsGetRequset {
   /**
    * 门店名称.模糊匹配.
@@ -711,7 +1056,7 @@ export interface ShopsIdGetResponseActivityInfoActivityList1 {
   currentMonthActivity: number;
 }
 export interface ShopsIdGetRequset {}
-export interface VisitsummaryEmployeeIdGetResponse {
+export interface VisitsummaryEmployeeCodeGetResponse {
   /**
    * 员工编号
    */
@@ -733,7 +1078,7 @@ export interface VisitsummaryEmployeeIdGetResponse {
    */
   completionRate: number;
 }
-export interface VisitsummaryEmployeeIdGetRequset {
+export interface VisitsummaryEmployeeCodeGetRequset {
   /**
    * 年
    */
@@ -747,7 +1092,7 @@ export interface VisitsummaryEmployeeIdGetRequset {
    */
   customerCategory: string;
 }
-export interface VisitdetialsEmployeeIdAsPageGetResponse {
+export interface VisitdetialsEmployeeCodeAsPageGetResponse {
   /**
    * 每页数量
    */
@@ -767,9 +1112,9 @@ export interface VisitdetialsEmployeeIdAsPageGetResponse {
   /**
    * 字典列表
    */
-  records: VisitdetialsEmployeeIdAsPageGetResponseRecords[];
+  records: VisitdetialsEmployeeCodeAsPageGetResponseRecords[];
 }
-export interface VisitdetialsEmployeeIdAsPageGetResponseRecords {
+export interface VisitdetialsEmployeeCodeAsPageGetResponseRecords {
   /**
    * 员工ID
    */
@@ -803,7 +1148,7 @@ export interface VisitdetialsEmployeeIdAsPageGetResponseRecords {
    */
   endTime: string;
 }
-export interface VisitdetialsEmployeeIdAsPageGetResponseRecords1 {
+export interface VisitdetialsEmployeeCodeAsPageGetResponseRecords1 {
   /**
    * 员工ID
    */
@@ -837,7 +1182,7 @@ export interface VisitdetialsEmployeeIdAsPageGetResponseRecords1 {
    */
   endTime: string;
 }
-export interface VisitdetialsEmployeeIdAsPageGetRequset {
+export interface VisitdetialsEmployeeCodeAsPageGetRequset {
   /**
    * 年
    */
@@ -850,6 +1195,103 @@ export interface VisitdetialsEmployeeIdAsPageGetRequset {
    * 客户类别 10:门店, 20:经销商
    */
   customerCategory: string;
+}
+export interface VisitorganizationstatisticsGetResponse {
+  /**
+   * 销售组织编码
+   */
+  code: string;
+  /**
+   * 销售组织名称
+   */
+  name: string;
+  /**
+   * 销售组织层级
+   */
+  hierarchy: string;
+  /**
+   * 目标数
+   */
+  targetNumber: number;
+  /**
+   * 拜访数
+   */
+  visitNumber: number;
+  /**
+   * 完成率
+   */
+  completionRate: number;
+  /**
+   * 是否叶子节点
+   */
+  terminal: boolean;
+  /**
+   * 子组织拜访统计列表
+   */
+  subOrgStatisticsList?: VisitorganizationstatisticsGetResponseSubOrgStatisticsList[];
+}
+/**
+ * 组织拜访统计
+ */
+export interface VisitorganizationstatisticsGetResponseSubOrgStatisticsList {
+  /**
+   * 销售组织编码
+   */
+  code: string;
+  /**
+   * 销售组织名称
+   */
+  name: string;
+  /**
+   * 销售组织层级
+   */
+  hierarchy: string;
+  /**
+   * 是否叶子节点
+   */
+  terminal: boolean;
+  /**
+   * 目标数
+   */
+  targetNumber: number;
+  /**
+   * 拜访数
+   */
+  visitNumber: number;
+  /**
+   * 完成率
+   */
+  completionRate: number;
+}
+export interface VisitorganizationstatisticsGetResponseSubOrgStatisticsList1 {
+  /**
+   * 销售组织编码
+   */
+  code: string;
+  /**
+   * 销售组织名称
+   */
+  name: string;
+  /**
+   * 销售组织层级
+   */
+  hierarchy: string;
+  /**
+   * 是否叶子节点
+   */
+  terminal: boolean;
+  /**
+   * 目标数
+   */
+  targetNumber: number;
+  /**
+   * 拜访数
+   */
+  visitNumber: number;
+  /**
+   * 完成率
+   */
+  completionRate: number;
 }
 export interface VisitorganizationstatisticsGetRequset {
   /**

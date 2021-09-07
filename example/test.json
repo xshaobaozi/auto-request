@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "业代通",
+    "title": "业代端BIO",
     "version": "last"
   },
   "basePath": "/",
@@ -31,14 +31,20 @@
       "description": "拜访模块"
     }
   ],
-  "schemes": ["http"],
+  "schemes": [
+    "http"
+  ],
   "paths": {
     "/dicts/{dict-id}/items": {
       "get": {
-        "tags": ["数据字典"],
+        "tags": [
+          "数据字典"
+        ],
         "summary": "获取多个字典项目（列表）",
         "description": "",
-        "consumes": ["application/json"],
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "dict-id",
@@ -83,7 +89,10 @@
                   "description": "每页显示数目"
                 }
               },
-              "required": ["current", "size"]
+              "required": [
+                "current",
+                "size"
+              ]
             }
           }
         ],
@@ -159,10 +168,14 @@
     },
     "/dicts/{dict-code}/items?_by_code": {
       "get": {
-        "tags": ["数据字典"],
+        "tags": [
+          "数据字典"
+        ],
         "summary": "获取多个字典项目（列表）",
         "description": "",
-        "consumes": ["application/json"],
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "dict-code",
@@ -207,7 +220,10 @@
                   "description": "每页显示数目"
                 }
               },
-              "required": ["current", "size"]
+              "required": [
+                "current",
+                "size"
+              ]
             }
           }
         ],
@@ -280,10 +296,14 @@
     },
     "/dicts": {
       "get": {
-        "tags": ["数据字典"],
+        "tags": [
+          "数据字典"
+        ],
         "summary": "获取多个数据字典（列表）",
         "description": "",
-        "consumes": ["application/json"],
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
             "name": "code",
@@ -356,7 +376,10 @@
                   "description": "每页显示数目"
                 }
               },
-              "required": ["current", "size"]
+              "required": [
+                "current",
+                "size"
+              ]
             }
           }
         ],
@@ -394,7 +417,14 @@
                   }
                 },
                 "description": "字典",
-                "required": ["id", "code", "text", "description", "status", "deleted"]
+                "required": [
+                  "id",
+                  "code",
+                  "text",
+                  "description",
+                  "status",
+                  "deleted"
+                ]
               },
               "description": "字典列表"
             }
@@ -404,7 +434,9 @@
     },
     "/divisions/{id}": {
       "get": {
-        "tags": ["行政区划"],
+        "tags": [
+          "行政区划"
+        ],
         "summary": "获取行政区划信息",
         "description": "",
         "parameters": [
@@ -456,7 +488,14 @@
                 "hierarchy": {
                   "type": "string",
                   "description": "层级",
-                  "enum": ["1", "2", "3", "4", "5", "6"],
+                  "enum": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6"
+                  ],
                   "enumDesc": "1:国, 2:省, 3:市, 4:县, 5:镇, 6:村"
                 },
                 "rank": {
@@ -467,7 +506,10 @@
                 "status": {
                   "type": "integer",
                   "description": "状态",
-                  "enum": [10, 20]
+                  "enum": [
+                    10,
+                    20
+                  ]
                 },
                 "lng": {
                   "type": "number",
@@ -524,7 +566,9 @@
     },
     "/divisions": {
       "get": {
-        "tags": ["行政区划"],
+        "tags": [
+          "行政区划"
+        ],
         "summary": "获取行政区划列表",
         "description": "",
         "parameters": [
@@ -578,7 +622,14 @@
                 "hierarchy": {
                   "type": "string",
                   "description": "层级",
-                  "enum": ["1", "2", "3", "4", "5", "6"],
+                  "enum": [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6"
+                  ],
                   "enumDesc": "1:国, 2:省, 3:市, 4:县, 5:镇, 6:村"
                 },
                 "rank": {
@@ -589,11 +640,22 @@
                 "status": {
                   "type": "integer",
                   "description": "状态",
-                  "enum": [10, 20]
+                  "enum": [
+                    10,
+                    20
+                  ]
                 }
               },
               "description": "行政区信息",
-              "required": ["id", "code", "parentId", "displayname", "hierarchy", "status", "rank"]
+              "required": [
+                "id",
+                "code",
+                "parentId",
+                "displayname",
+                "hierarchy",
+                "status",
+                "rank"
+              ]
             }
           }
         }
@@ -601,7 +663,9 @@
     },
     "/organizations": {
       "get": {
-        "tags": ["组织机构"],
+        "tags": [
+          "组织机构"
+        ],
         "summary": "组织列表",
         "description": "",
         "parameters": [
@@ -722,7 +786,9 @@
     },
     "/products": {
       "get": {
-        "tags": ["产品模块"],
+        "tags": [
+          "产品模块"
+        ],
         "summary": "产品列表",
         "description": "",
         "parameters": [],
@@ -751,7 +817,12 @@
                     "description": "产品图片"
                   }
                 },
-                "required": ["id", "code", "name", "pictureUrl"]
+                "required": [
+                  "id",
+                  "code",
+                  "name",
+                  "pictureUrl"
+                ]
               }
             }
           }
@@ -760,7 +831,9 @@
     },
     "/shops": {
       "get": {
-        "tags": ["门店模块"],
+        "tags": [
+          "门店模块"
+        ],
         "summary": "门店列表",
         "description": "",
         "parameters": [
@@ -874,9 +947,9 @@
                     "type": "integer",
                     "description": "门店等级 10:A, 20:B, 30:C, 40:D"
                   },
-                  "alarmFlag": {
+                  "alarmStatus": {
                     "type": "integer",
-                    "description": "预警标识  0：无预警；1:有预警"
+                    "description": "预警状态(0-7)  0：无预警；>0:有预警"
                   },
                   "alarmList": {
                     "type": "array",
@@ -892,7 +965,9 @@
                           "description": "预警描述"
                         }
                       },
-                      "required": ["alarmCode"]
+                      "required": [
+                        "alarmCode"
+                      ]
                     },
                     "description": "预警列表"
                   }
@@ -910,7 +985,7 @@
                   "lng",
                   "lat",
                   "code",
-                  "alarmFlag",
+                  "alarmStatus",
                   "level",
                   "distance"
                 ]
@@ -922,7 +997,9 @@
     },
     "/shops/{id}": {
       "get": {
-        "tags": ["门店模块"],
+        "tags": [
+          "门店模块"
+        ],
         "summary": "门店详情",
         "description": "",
         "parameters": [
@@ -1041,7 +1118,10 @@
                     }
                   },
                   "description": "会员信息",
-                  "required": ["monthNewMemberNum", "yearNewMemberNum"]
+                  "required": [
+                    "monthNewMemberNum",
+                    "yearNewMemberNum"
+                  ]
                 },
                 "salesData": {
                   "type": "object",
@@ -1079,13 +1159,22 @@
                                 "description": "总金额"
                               }
                             },
-                            "required": ["productCode", "productName", "totalNum", "totalAmount"],
+                            "required": [
+                              "productCode",
+                              "productName",
+                              "totalNum",
+                              "totalAmount"
+                            ],
                             "description": "产品销售数据"
                           },
                           "description": "产品销售数据列表"
                         }
                       },
-                      "required": ["totalNum", "totalAmount", "productSalesDataList"],
+                      "required": [
+                        "totalNum",
+                        "totalAmount",
+                        "productSalesDataList"
+                      ],
                       "description": "月销售数据"
                     },
                     "yearSalesData": {
@@ -1122,17 +1211,29 @@
                               }
                             },
                             "description": "产品销售数据",
-                            "required": ["productCode", "productName", "totalNum", "totalAmount"]
+                            "required": [
+                              "productCode",
+                              "productName",
+                              "totalNum",
+                              "totalAmount"
+                            ]
                           },
                           "description": "产品销售数据列表"
                         }
                       },
                       "description": "年销售数据",
-                      "required": ["totalNum", "totalAmount", "productSalesDataList"]
+                      "required": [
+                        "totalNum",
+                        "totalAmount",
+                        "productSalesDataList"
+                      ]
                     }
                   },
                   "description": "销售数据",
-                  "required": ["montSalesData", "yearSalesData"]
+                  "required": [
+                    "montSalesData",
+                    "yearSalesData"
+                  ]
                 },
                 "activityInfo": {
                   "type": "object",
@@ -1175,25 +1276,35 @@
                     }
                   },
                   "description": "活动信息",
-                  "required": ["yearActivityNum", "activityList"]
+                  "required": [
+                    "yearActivityNum",
+                    "activityList"
+                  ]
                 }
               },
-              "required": ["baseInfo", "activityInfo", "memberInfo", "salesData"]
+              "required": [
+                "baseInfo",
+                "activityInfo",
+                "memberInfo",
+                "salesData"
+              ]
             }
           }
         }
       }
     },
-    "/visit/summary/{employeeId}": {
+    "/visit/summary/{employeeCode}": {
       "get": {
-        "tags": ["拜访模块"],
+        "tags": [
+          "拜访模块"
+        ],
         "summary": "获取某个用户的拜访汇总",
         "description": "",
         "parameters": [
           {
-            "name": "employeeId",
+            "name": "employeeCode",
             "in": "path",
-            "description": "员工ID",
+            "description": "",
             "required": true,
             "type": "string"
           },
@@ -1258,16 +1369,18 @@
         }
       }
     },
-    "/visit/detials/{employeeId}?_as_page": {
+    "/visit/detials/{employeeCode}?_as_page": {
       "get": {
-        "tags": ["拜访模块"],
+        "tags": [
+          "拜访模块"
+        ],
         "summary": "获取某个用户的拜访明细",
         "description": "",
         "parameters": [
           {
-            "name": "employeeId",
+            "name": "employeeCode",
             "in": "path",
-            "description": "员工ID",
+            "description": "",
             "required": true,
             "type": "string"
           },
@@ -1367,7 +1480,13 @@
                   "description": "字典列表"
                 }
               },
-              "required": ["size", "current", "pages", "total", "records"]
+              "required": [
+                "size",
+                "current",
+                "pages",
+                "total",
+                "records"
+              ]
             }
           }
         }
@@ -1375,7 +1494,9 @@
     },
     "/visit/organization/statistics": {
       "get": {
-        "tags": ["拜访模块"],
+        "tags": [
+          "拜访模块"
+        ],
         "summary": "销售组织拜访统计",
         "description": "",
         "parameters": [
@@ -1516,7 +1637,9 @@
     },
     "/visit/employee/statistics": {
       "get": {
-        "tags": ["拜访模块"],
+        "tags": [
+          "拜访模块"
+        ],
         "summary": "员工拜访统计",
         "description": "",
         "parameters": [
