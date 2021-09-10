@@ -1,4 +1,4 @@
-import Taro, { RequestTask } from "@tarojs/taro"
+import axios, { AxiosResponse } from "axios"
 import {
   LoginPostResponse,
   LoginPostRequset,
@@ -43,13 +43,16 @@ import {
   AdminordersOrderIdsendOutPostRequset,
 } from "./index.define"
 
-export const LoginPost = <P extends LoginPostRequset, T = LoginPostResponse>(
+export const LoginPost = <
+  P extends LoginPostRequset,
+  T = AxiosResponse<LoginPostResponse>
+>(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 登录
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178//login`,
+  return axios.request({
+    url: `https://yapi.yashili.com/mock/178/login`,
     method: "post",
     data: params,
     ...options,
@@ -58,14 +61,14 @@ export const LoginPost = <P extends LoginPostRequset, T = LoginPostResponse>(
 
 export const VerificationsPost = <
   P extends VerificationsPostRequset,
-  T = VerificationsPostResponse
+  T = AxiosResponse<VerificationsPostResponse>
 >(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 新增验证码
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178//verifications`,
+  return axios.request({
+    url: `https://yapi.yashili.com/mock/178/verifications`,
     method: "post",
     data: params,
     ...options,
@@ -74,30 +77,30 @@ export const VerificationsPost = <
 
 export const RegionsAsTreeGet = <
   P extends RegionsAsTreeGetRequset,
-  T = RegionsAsTreeGetResponse
+  T = AxiosResponse<RegionsAsTreeGetResponse>
 >(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 获取行政区域（树形）
-  return Taro.request({
+  return axios.request({
     url: `https://yapi.yashili.com/mock/178/regions?_as_tree`,
     method: "get",
-    data: params,
+    params: params,
     ...options,
   })
 }
 
 export const ProfilesPost = <
   P extends ProfilesPostRequset,
-  T = ProfilesPostResponse
+  T = AxiosResponse<ProfilesPostResponse>
 >(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 新增我的信息
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178//profiles`,
+  return axios.request({
+    url: `https://yapi.yashili.com/mock/178/profiles`,
     method: "post",
     data: params,
     ...options,
@@ -106,89 +109,95 @@ export const ProfilesPost = <
 
 export const AddressesGet = <
   P extends AddressesGetRequset,
-  T = AddressesGetResponse[]
+  T = AxiosResponse<AddressesGetResponse[]>
 >(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 获取我的地址
-  return Taro.request({
+  return axios.request({
     url: `https://yapi.yashili.com/mock/178/addresses`,
     method: "get",
-    data: params,
+    params: params,
     ...options,
   })
 }
 
 export const CardsCardCodestatesPost = <
   P extends any,
-  T = CardsCardCodestatesPostResponse
+  T = AxiosResponse<CardsCardCodestatesPostResponse>
 >(
   CardCode: any,
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 新增卡片状态？
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178//cards/${CardCode}/states`,
+  return axios.request({
+    url: `https://yapi.yashili.com/mock/178/cards/${CardCode}/states`,
     method: "post",
     data: params,
     ...options,
   })
 }
 
-export const CardsGet = <P extends CardsGetRequset, T = CardsGetResponse[]>(
+export const CardsGet = <
+  P extends CardsGetRequset,
+  T = AxiosResponse<CardsGetResponse[]>
+>(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 获取我的卡片
-  return Taro.request({
+  return axios.request({
     url: `https://yapi.yashili.com/mock/178/cards`,
     method: "get",
-    data: params,
+    params: params,
     ...options,
   })
 }
 
 export const ProductsGet = <
   P extends ProductsGetRequset,
-  T = ProductsGetResponse[]
+  T = AxiosResponse<ProductsGetResponse[]>
 >(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 获取商品列表（根据卡种主键）
-  return Taro.request({
+  return axios.request({
     url: `https://yapi.yashili.com/mock/178/products`,
     method: "get",
-    data: params,
+    params: params,
     ...options,
   })
 }
 
 export const OrdersAsPageGet = <
   P extends OrdersAsPageGetRequset,
-  T = OrdersAsPageGetResponse
+  T = AxiosResponse<OrdersAsPageGetResponse>
 >(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 获取用户订单列表（分页）
-  return Taro.request({
+  return axios.request({
     url: `https://yapi.yashili.com/mock/178/orders?_as_page`,
     method: "get",
-    data: params,
+    params: params,
     ...options,
   })
 }
 
-export const OrdersPost = <P extends OrdersPostRequset, T = OrdersPostResponse>(
+export const OrdersPost = <
+  P extends OrdersPostRequset,
+  T = AxiosResponse<OrdersPostResponse>
+>(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 创建一个订单
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178//orders`,
+  return axios.request({
+    url: `https://yapi.yashili.com/mock/178/orders`,
     method: "post",
     data: params,
     ...options,
@@ -197,15 +206,15 @@ export const OrdersPost = <P extends OrdersPostRequset, T = OrdersPostResponse>(
 
 export const AdmincardsCardIdstatesPost = <
   P extends AdmincardsCardIdstatesPostRequset,
-  T = AdmincardsCardIdstatesPostResponse
+  T = AxiosResponse<AdmincardsCardIdstatesPostResponse>
 >(
   CardId: any,
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 审核卡片
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178//admin/cards/${CardId}/states/{}`,
+  return axios.request({
+    url: `https://yapi.yashili.com/mock/178/admin/cards/${CardId}/states/{}`,
     method: "post",
     data: params,
     ...options,
@@ -214,79 +223,79 @@ export const AdmincardsCardIdstatesPost = <
 
 export const AdmincardsAsPageGet = <
   P extends AdmincardsAsPageGetRequset,
-  T = AdmincardsAsPageGetResponse
+  T = AxiosResponse<AdmincardsAsPageGetResponse>
 >(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 获取卡片（分页）
-  return Taro.request({
+  return axios.request({
     url: `https://yapi.yashili.com/mock/178/admin/cards?_as_page`,
     method: "get",
-    data: params,
+    params: params,
     ...options,
   })
 }
 
 export const AdminordersAsPageGet = <
   P extends AdminordersAsPageGetRequset,
-  T = AdminordersAsPageGetResponse
+  T = AxiosResponse<AdminordersAsPageGetResponse>
 >(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 获取订单列表（分页）
-  return Taro.request({
+  return axios.request({
     url: `https://yapi.yashili.com/mock/178/admin/orders?_as_page`,
     method: "get",
-    data: params,
+    params: params,
     ...options,
   })
 }
 
 export const AdminexportCardGet = <
   P extends AdminexportCardGetRequset,
-  T = AdminexportCardGetResponse
+  T = AxiosResponse<AdminexportCardGetResponse>
 >(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 导出卡片审核
-  return Taro.request({
+  return axios.request({
     url: `https://yapi.yashili.com/mock/178/admin/export-card`,
     method: "get",
-    data: params,
+    params: params,
     ...options,
   })
 }
 
 export const AdminexportOrderGet = <
   P extends AdminexportOrderGetRequset,
-  T = AdminexportOrderGetResponse
+  T = AxiosResponse<AdminexportOrderGetResponse>
 >(
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 导出发货订单
-  return Taro.request({
+  return axios.request({
     url: `https://yapi.yashili.com/mock/178/admin/export-order`,
     method: "get",
-    data: params,
+    params: params,
     ...options,
   })
 }
 
 export const AdminordersOrderIdsendOutPost = <
   P extends AdminordersOrderIdsendOutPostRequset,
-  T = AdminordersOrderIdsendOutPostResponse
+  T = AxiosResponse<AdminordersOrderIdsendOutPostResponse>
 >(
   OrderId: any,
   params: P,
   options?: any
-): RequestTask<T> => {
+): Promise<T> => {
   // 发货
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178//admin/orders/${OrderId}/send-out`,
+  return axios.request({
+    url: `https://yapi.yashili.com/mock/178/admin/orders/${OrderId}/send-out`,
     method: "post",
     data: params,
     ...options,

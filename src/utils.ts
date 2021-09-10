@@ -12,7 +12,7 @@ import {
   RequestGetProperties,
   RequestGetPropertiesObject,
 } from './define';
-import deepClone from 'deep-clone';
+const deepClone = require('deep-clone');
 
 // 读取入口文件
 export const readFileSync = (source) => {
