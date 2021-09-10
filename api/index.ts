@@ -1,139 +1,151 @@
 import Taro, { RequestTask } from "@tarojs/taro"
 import {
-  DictsDictIditemsGetResponse,
-  DictsDictIditemsGetRequset,
-  DictsDictCodeitemsByCodeGetResponse,
-  DictsDictCodeitemsByCodeGetRequset,
-  DictsGetResponse,
-  DictsGetRequset,
-  DivisionsIdGetResponse,
-  DivisionsIdGetRequset,
-  DivisionsGetResponse,
-  DivisionsGetRequset,
-  OrganizationsGetResponse,
-  OrganizationsGetResponseSubOrganizationList,
-  OrganizationsGetRequset,
+  LoginPostResponse,
+  LoginPostRequset,
+  VerificationsPostResponse,
+  VerificationsPostRequset,
+  RegionsAsTreeGetResponse,
+  RegionsAsTreeGetResponseChildren,
+  RegionsAsTreeGetRequset,
+  ProfilesPostResponse,
+  ProfilesPostRequset,
+  ProfilesPostRequsetBadies,
+  ProfilesPostRequsetAddresses,
+  AddressesGetResponse,
+  AddressesGetRequset,
+  CardsCardCodestatesPostResponse,
+  CardsGetResponse,
+  CardsGetResponseAccount,
+  CardsGetRequset,
   ProductsGetResponse,
+  ProductsGetResponseSkus,
   ProductsGetRequset,
-  ShopsGetResponse,
-  ShopsGetResponseAlarmList,
-  ShopsGetRequset,
-  ShopsIdGetResponse,
-  ShopsIdGetResponseBaseInfo,
-  ShopsIdGetResponseMemberInfo,
-  ShopsIdGetResponseSalesData,
-  ShopsIdGetResponseSalesDataMontSalesData,
-  ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList,
-  ShopsIdGetResponseSalesDataYearSalesData,
-  ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList,
-  ShopsIdGetResponseActivityInfo,
-  ShopsIdGetResponseActivityInfoActivityList,
-  ShopsIdGetRequset,
-  VisitsummaryEmployeeCodeGetResponse,
-  VisitsummaryEmployeeCodeGetRequset,
-  VisitdetialsEmployeeCodeAsPageGetResponse,
-  VisitdetialsEmployeeCodeAsPageGetResponseRecords,
-  VisitdetialsEmployeeCodeAsPageGetRequset,
-  VisitorganizationstatisticsGetResponse,
-  VisitorganizationstatisticsGetResponseSubOrgStatisticsList,
-  VisitorganizationstatisticsGetRequset,
-  VisitemployeestatisticsGetResponse,
-  VisitemployeestatisticsGetResponseEmployeeStatisticsList,
-  VisitemployeestatisticsGetRequset,
+  OrdersAsPageGetResponse,
+  OrdersAsPageGetResponseContent,
+  OrdersAsPageGetRequset,
+  OrdersPostResponse,
+  OrdersPostRequset,
+  OrdersPostRequsetSkus,
+  AdmincardsCardIdstatesPostResponse,
+  AdmincardsCardIdstatesPostRequset,
+  AdmincardsAsPageGetResponse,
+  AdmincardsAsPageGetResponseContent,
+  AdmincardsAsPageGetResponseSort,
+  AdmincardsAsPageGetRequset,
+  AdminordersAsPageGetResponse,
+  AdminordersAsPageGetResponseContent,
+  AdminordersAsPageGetRequset,
+  AdminexportCardGetResponse,
+  AdminexportCardGetRequset,
+  AdminexportOrderGetResponse,
+  AdminexportOrderGetRequset,
+  AdminordersOrderIdsendOutPostResponse,
+  AdminordersOrderIdsendOutPostRequset,
 } from "./index.define"
 
-export const DictsDictIditemsGet = <
-  P extends DictsDictIditemsGetRequset,
-  T = DictsDictIditemsGetResponse[]
->(
-  DictId: any,
+export const LoginPost = <P extends LoginPostRequset, T = LoginPostResponse>(
   params: P,
   options?: any
 ): RequestTask<T> => {
-  // 获取多个字典项目（列表）
+  // 登录
   return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/dicts/${DictId}/items`,
-    method: "get",
-    params: params,
+    url: `https://yapi.yashili.com/mock/178//login`,
+    method: "post",
+    data: params,
     ...options,
   })
 }
 
-export const DictsDictCodeitemsByCodeGet = <
-  P extends DictsDictCodeitemsByCodeGetRequset,
-  T = DictsDictCodeitemsByCodeGetResponse[]
->(
-  DictCode: any,
-  params: P,
-  options?: any
-): RequestTask<T> => {
-  // 获取多个字典项目（列表）
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/dicts/${DictCode}/items?_by_code`,
-    method: "get",
-    params: params,
-    ...options,
-  })
-}
-
-export const DictsGet = <P extends DictsGetRequset, T = DictsGetResponse[]>(
-  params: P,
-  options?: any
-): RequestTask<T> => {
-  // 获取多个数据字典（列表）
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/dicts`,
-    method: "get",
-    params: params,
-    ...options,
-  })
-}
-
-export const DivisionsIdGet = <
-  P extends DivisionsIdGetRequset,
-  T = DivisionsIdGetResponse
->(
-  Id: any,
-  params: P,
-  options?: any
-): RequestTask<T> => {
-  // 获取行政区划信息
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/divisions/${Id}`,
-    method: "get",
-    params: params,
-    ...options,
-  })
-}
-
-export const DivisionsGet = <
-  P extends DivisionsGetRequset,
-  T = DivisionsGetResponse
+export const VerificationsPost = <
+  P extends VerificationsPostRequset,
+  T = VerificationsPostResponse
 >(
   params: P,
   options?: any
 ): RequestTask<T> => {
-  // 获取行政区划列表
+  // 新增验证码
   return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/divisions`,
-    method: "get",
-    params: params,
+    url: `https://yapi.yashili.com/mock/178//verifications`,
+    method: "post",
+    data: params,
     ...options,
   })
 }
 
-export const OrganizationsGet = <
-  P extends OrganizationsGetRequset,
-  T = OrganizationsGetResponse[]
+export const RegionsAsTreeGet = <
+  P extends RegionsAsTreeGetRequset,
+  T = RegionsAsTreeGetResponse
 >(
   params: P,
   options?: any
 ): RequestTask<T> => {
-  // 组织列表
+  // 获取行政区域（树形）
   return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/organizations`,
+    url: `https://yapi.yashili.com/mock/178/regions?_as_tree`,
     method: "get",
-    params: params,
+    data: params,
+    ...options,
+  })
+}
+
+export const ProfilesPost = <
+  P extends ProfilesPostRequset,
+  T = ProfilesPostResponse
+>(
+  params: P,
+  options?: any
+): RequestTask<T> => {
+  // 新增我的信息
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178//profiles`,
+    method: "post",
+    data: params,
+    ...options,
+  })
+}
+
+export const AddressesGet = <
+  P extends AddressesGetRequset,
+  T = AddressesGetResponse[]
+>(
+  params: P,
+  options?: any
+): RequestTask<T> => {
+  // 获取我的地址
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178/addresses`,
+    method: "get",
+    data: params,
+    ...options,
+  })
+}
+
+export const CardsCardCodestatesPost = <
+  P extends any,
+  T = CardsCardCodestatesPostResponse
+>(
+  CardCode: any,
+  params: P,
+  options?: any
+): RequestTask<T> => {
+  // 新增卡片状态？
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178//cards/${CardCode}/states`,
+    method: "post",
+    data: params,
+    ...options,
+  })
+}
+
+export const CardsGet = <P extends CardsGetRequset, T = CardsGetResponse[]>(
+  params: P,
+  options?: any
+): RequestTask<T> => {
+  // 获取我的卡片
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178/cards`,
+    method: "get",
+    data: params,
     ...options,
   })
 }
@@ -145,104 +157,138 @@ export const ProductsGet = <
   params: P,
   options?: any
 ): RequestTask<T> => {
-  // 产品列表
+  // 获取商品列表（根据卡种主键）
   return Taro.request({
     url: `https://yapi.yashili.com/mock/178/products`,
     method: "get",
-    params: params,
+    data: params,
     ...options,
   })
 }
 
-export const ShopsGet = <P extends ShopsGetRequset, T = ShopsGetResponse[]>(
-  params: P,
-  options?: any
-): RequestTask<T> => {
-  // 门店列表
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/shops`,
-    method: "get",
-    params: params,
-    ...options,
-  })
-}
-
-export const ShopsIdGet = <P extends ShopsIdGetRequset, T = ShopsIdGetResponse>(
-  Id: any,
-  params: P,
-  options?: any
-): RequestTask<T> => {
-  // 门店详情
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/shops/${Id}`,
-    method: "get",
-    params: params,
-    ...options,
-  })
-}
-
-export const VisitsummaryEmployeeCodeGet = <
-  P extends VisitsummaryEmployeeCodeGetRequset,
-  T = VisitsummaryEmployeeCodeGetResponse
->(
-  EmployeeCode: any,
-  params: P,
-  options?: any
-): RequestTask<T> => {
-  // 获取某个用户的拜访汇总
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/visit/summary/${EmployeeCode}`,
-    method: "get",
-    params: params,
-    ...options,
-  })
-}
-
-export const VisitdetialsEmployeeCodeAsPageGet = <
-  P extends VisitdetialsEmployeeCodeAsPageGetRequset,
-  T = VisitdetialsEmployeeCodeAsPageGetResponse
->(
-  EmployeeCode: any,
-  params: P,
-  options?: any
-): RequestTask<T> => {
-  // 获取某个用户的拜访明细
-  return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/visit/detials/${EmployeeCode}?_as_page`,
-    method: "get",
-    params: params,
-    ...options,
-  })
-}
-
-export const VisitorganizationstatisticsGet = <
-  P extends VisitorganizationstatisticsGetRequset,
-  T = VisitorganizationstatisticsGetResponse[]
+export const OrdersAsPageGet = <
+  P extends OrdersAsPageGetRequset,
+  T = OrdersAsPageGetResponse
 >(
   params: P,
   options?: any
 ): RequestTask<T> => {
-  // 销售组织拜访统计
+  // 获取用户订单列表（分页）
   return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/visit/organization/statistics`,
+    url: `https://yapi.yashili.com/mock/178/orders?_as_page`,
     method: "get",
-    params: params,
+    data: params,
     ...options,
   })
 }
 
-export const VisitemployeestatisticsGet = <
-  P extends VisitemployeestatisticsGetRequset,
-  T = VisitemployeestatisticsGetResponse
+export const OrdersPost = <P extends OrdersPostRequset, T = OrdersPostResponse>(
+  params: P,
+  options?: any
+): RequestTask<T> => {
+  // 创建一个订单
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178//orders`,
+    method: "post",
+    data: params,
+    ...options,
+  })
+}
+
+export const AdmincardsCardIdstatesPost = <
+  P extends AdmincardsCardIdstatesPostRequset,
+  T = AdmincardsCardIdstatesPostResponse
+>(
+  CardId: any,
+  params: P,
+  options?: any
+): RequestTask<T> => {
+  // 审核卡片
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178//admin/cards/${CardId}/states/{}`,
+    method: "post",
+    data: params,
+    ...options,
+  })
+}
+
+export const AdmincardsAsPageGet = <
+  P extends AdmincardsAsPageGetRequset,
+  T = AdmincardsAsPageGetResponse
 >(
   params: P,
   options?: any
 ): RequestTask<T> => {
-  // 员工拜访统计
+  // 获取卡片（分页）
   return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/visit/employee/statistics`,
+    url: `https://yapi.yashili.com/mock/178/admin/cards?_as_page`,
     method: "get",
-    params: params,
+    data: params,
+    ...options,
+  })
+}
+
+export const AdminordersAsPageGet = <
+  P extends AdminordersAsPageGetRequset,
+  T = AdminordersAsPageGetResponse
+>(
+  params: P,
+  options?: any
+): RequestTask<T> => {
+  // 获取订单列表（分页）
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178/admin/orders?_as_page`,
+    method: "get",
+    data: params,
+    ...options,
+  })
+}
+
+export const AdminexportCardGet = <
+  P extends AdminexportCardGetRequset,
+  T = AdminexportCardGetResponse
+>(
+  params: P,
+  options?: any
+): RequestTask<T> => {
+  // 导出卡片审核
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178/admin/export-card`,
+    method: "get",
+    data: params,
+    ...options,
+  })
+}
+
+export const AdminexportOrderGet = <
+  P extends AdminexportOrderGetRequset,
+  T = AdminexportOrderGetResponse
+>(
+  params: P,
+  options?: any
+): RequestTask<T> => {
+  // 导出发货订单
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178/admin/export-order`,
+    method: "get",
+    data: params,
+    ...options,
+  })
+}
+
+export const AdminordersOrderIdsendOutPost = <
+  P extends AdminordersOrderIdsendOutPostRequset,
+  T = AdminordersOrderIdsendOutPostResponse
+>(
+  OrderId: any,
+  params: P,
+  options?: any
+): RequestTask<T> => {
+  // 发货
+  return Taro.request({
+    url: `https://yapi.yashili.com/mock/178//admin/orders/${OrderId}/send-out`,
+    method: "post",
+    data: params,
     ...options,
   })
 }

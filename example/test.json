@@ -1,451 +1,57 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "业代端BIO",
-    "version": "last"
+    "title": "公众端CIO-奶卡",
+    "version": "last",
+    "description": "公众端CIO-奶卡"
   },
-  "basePath": "/",
+  "basePath": "/apis/card",
   "tags": [
     {
-      "name": "数据字典",
-      "description": "数据字典"
+      "name": "前台",
+      "description": "前台"
     },
     {
-      "name": "行政区划",
-      "description": "行政区划"
-    },
-    {
-      "name": "组织机构",
-      "description": "组织机构"
-    },
-    {
-      "name": "产品模块",
-      "description": "产品模块"
-    },
-    {
-      "name": "门店模块",
-      "description": "门店模块"
-    },
-    {
-      "name": "拜访模块",
-      "description": "拜访模块"
+      "name": "后台",
+      "description": "后台"
     }
   ],
   "schemes": [
     "http"
   ],
   "paths": {
-    "/dicts/{dict-id}/items": {
-      "get": {
+    "/login": {
+      "post": {
         "tags": [
-          "数据字典"
+          "前台"
         ],
-        "summary": "获取多个字典项目（列表）",
+        "summary": "登录",
         "description": "",
         "consumes": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "dict-id",
-            "in": "path",
-            "description": "字典标识",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "root",
             "in": "body",
             "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
               "type": "object",
+              "title": "empty object",
               "properties": {
-                "applicationCode": {
+                "mobile": {
                   "type": "string",
-                  "description": "应用编码"
+                  "description": "手机号"
                 },
-                "code": {
+                "verification": {
                   "type": "string",
-                  "description": "编码"
-                },
-                "text": {
-                  "type": "string",
-                  "description": "名称"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "描述"
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "状态"
-                },
-                "current": {
-                  "type": "integer",
-                  "description": "当前页"
-                },
-                "size": {
-                  "type": "integer",
-                  "description": "每页显示数目"
+                  "description": "验证码"
                 }
               },
               "required": [
-                "current",
-                "size"
+                "mobile",
+                "verification"
               ]
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "description": "字典项目标识"
-                  },
-                  "dictId": {
-                    "type": "integer",
-                    "description": "字典标识"
-                  },
-                  "code": {
-                    "type": "string",
-                    "description": "编码"
-                  },
-                  "type": {
-                    "type": "string",
-                    "description": "类型"
-                  },
-                  "text": {
-                    "type": "string",
-                    "description": "名称"
-                  },
-                  "scope": {
-                    "type": "string",
-                    "description": "有效范围"
-                  },
-                  "rank": {
-                    "type": "integer",
-                    "description": "排号"
-                  },
-                  "status": {
-                    "type": "integer",
-                    "description": "状态"
-                  },
-                  "parent": {
-                    "type": "integer",
-                    "description": "父亲"
-                  },
-                  "ancestors": {
-                    "type": "string",
-                    "description": "祖先"
-                  },
-                  "depth": {
-                    "type": "integer",
-                    "description": "深度"
-                  },
-                  "terminal": {
-                    "type": "boolean",
-                    "description": "叶子"
-                  },
-                  "deteled": {
-                    "type": "boolean",
-                    "description": "删除？"
-                  }
-                },
-                "required": []
-              },
-              "description": "字典项目列表"
-            }
-          }
-        }
-      }
-    },
-    "/dicts/{dict-code}/items?_by_code": {
-      "get": {
-        "tags": [
-          "数据字典"
-        ],
-        "summary": "获取多个字典项目（列表）",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "dict-code",
-            "in": "path",
-            "description": "字典项编码",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "applicationCode": {
-                  "type": "string",
-                  "description": "应用编码"
-                },
-                "code": {
-                  "type": "string",
-                  "description": "编码"
-                },
-                "text": {
-                  "type": "string",
-                  "description": "名称"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "描述"
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "状态"
-                },
-                "current": {
-                  "type": "integer",
-                  "description": "当前页"
-                },
-                "size": {
-                  "type": "integer",
-                  "description": "每页显示数目"
-                }
-              },
-              "required": [
-                "current",
-                "size"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "description": "字典项目标识"
-                  },
-                  "dictId": {
-                    "type": "integer",
-                    "description": "字典标识"
-                  },
-                  "code": {
-                    "type": "string",
-                    "description": "编码"
-                  },
-                  "type": {
-                    "type": "string",
-                    "description": "类型"
-                  },
-                  "text": {
-                    "type": "string",
-                    "description": "名称"
-                  },
-                  "scope": {
-                    "type": "string",
-                    "description": "有效范围"
-                  },
-                  "rank": {
-                    "type": "integer",
-                    "description": "排号"
-                  },
-                  "status": {
-                    "type": "integer",
-                    "description": "状态"
-                  },
-                  "parent": {
-                    "type": "integer",
-                    "description": "父亲"
-                  },
-                  "ancestors": {
-                    "type": "string",
-                    "description": "祖先"
-                  },
-                  "depth": {
-                    "type": "integer",
-                    "description": "深度"
-                  },
-                  "terminal": {
-                    "type": "boolean",
-                    "description": "叶子"
-                  },
-                  "deleted": {
-                    "type": "boolean",
-                    "description": "删除"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/dicts": {
-      "get": {
-        "tags": [
-          "数据字典"
-        ],
-        "summary": "获取多个数据字典（列表）",
-        "description": "",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "code",
-            "in": "query",
-            "required": false,
-            "description": "编码",
-            "type": "string"
-          },
-          {
-            "name": "text",
-            "in": "query",
-            "required": false,
-            "description": "名称",
-            "type": "string"
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "required": false,
-            "description": "状态",
-            "type": "string"
-          },
-          {
-            "name": "description",
-            "in": "query",
-            "required": false,
-            "description": "描述",
-            "type": "string"
-          },
-          {
-            "name": "deleted",
-            "in": "query",
-            "required": false,
-            "description": "删除？",
-            "type": "string"
-          },
-          {
-            "name": "root",
-            "in": "body",
-            "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
-              "type": "object",
-              "properties": {
-                "applicationCode": {
-                  "type": "string",
-                  "description": "应用编码"
-                },
-                "code": {
-                  "type": "string",
-                  "description": "编码"
-                },
-                "text": {
-                  "type": "string",
-                  "description": "名称"
-                },
-                "description": {
-                  "type": "string",
-                  "description": "描述"
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "状态"
-                },
-                "current": {
-                  "type": "integer",
-                  "description": "当前页"
-                },
-                "size": {
-                  "type": "integer",
-                  "description": "每页显示数目"
-                }
-              },
-              "required": [
-                "current",
-                "size"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "integer",
-                    "description": "标识"
-                  },
-                  "code": {
-                    "type": "string",
-                    "description": "编码"
-                  },
-                  "text": {
-                    "type": "string",
-                    "description": "名称"
-                  },
-                  "description": {
-                    "type": "string",
-                    "description": "描述"
-                  },
-                  "status": {
-                    "type": "integer",
-                    "description": "状态"
-                  },
-                  "deleted": {
-                    "type": "boolean",
-                    "description": "删除？"
-                  }
-                },
-                "description": "字典",
-                "required": [
-                  "id",
-                  "code",
-                  "text",
-                  "description",
-                  "status",
-                  "deleted"
-                ]
-              },
-              "description": "字典列表"
-            }
-          }
-        }
-      }
-    },
-    "/divisions/{id}": {
-      "get": {
-        "tags": [
-          "行政区划"
-        ],
-        "summary": "获取行政区划信息",
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
@@ -455,18 +61,100 @@
               "type": "object",
               "title": "empty object",
               "properties": {
-                "id": {
+                "accessToken": {
+                  "type": "string",
+                  "description": "凭证"
+                },
+                "expiresIn": {
+                  "type": "number",
+                  "description": "有效时长（秒）"
+                }
+              },
+              "required": [
+                "accessToken",
+                "expiresIn"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/verifications": {
+      "post": {
+        "tags": [
+          "前台"
+        ],
+        "summary": "新增验证码",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "channelName": {
                   "type": "integer",
-                  "description": "行政区ID",
-                  "minimum": 1
+                  "description": "渠道名。10:短信,20:邮箱"
+                },
+                "channelValue": {
+                  "type": "string",
+                  "description": "手机号"
+                }
+              },
+              "required": [
+                "channelName",
+                "channelValue"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "/regions?_as_tree": {
+      "get": {
+        "tags": [
+          "前台"
+        ],
+        "summary": "获取行政区域（树形）",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "id"
                 },
                 "code": {
                   "type": "string",
-                  "description": "行政区编码"
+                  "description": "编码"
                 },
-                "displayname": {
+                "name": {
                   "type": "string",
-                  "description": "行政区名称"
+                  "description": "名称"
+                },
+                "postfix": {
+                  "type": "string",
+                  "description": "名称后缀"
                 },
                 "shortname": {
                   "type": "string",
@@ -476,122 +164,140 @@
                   "type": "string",
                   "description": "全称"
                 },
-                "alias": {
-                  "type": "string",
-                  "description": "别名"
-                },
-                "parentId": {
-                  "type": "integer",
-                  "description": "行政区父Id",
-                  "minimum": 0
-                },
                 "hierarchy": {
                   "type": "string",
-                  "description": "层级",
-                  "enum": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6"
-                  ],
-                  "enumDesc": "1:国, 2:省, 3:市, 4:县, 5:镇, 6:村"
+                  "description": "层级。1:国, 2:省, 3:市, 4:县, 5:镇, 6:村"
                 },
                 "rank": {
                   "type": "integer",
-                  "description": "排位",
-                  "minimum": 1
+                  "description": "排序"
                 },
                 "status": {
                   "type": "integer",
-                  "description": "状态",
-                  "enum": [
-                    10,
-                    20
-                  ]
+                  "description": "状态0:禁用,1.正常"
                 },
-                "lng": {
-                  "type": "number",
-                  "description": "经度",
-                  "minimum": 0
-                },
-                "lat": {
-                  "type": "number",
-                  "description": "纬度",
-                  "minimum": 0
-                },
-                "description": {
+                "parent": {
                   "type": "string",
-                  "description": "描述"
+                  "description": "父级id"
                 },
-                "ancestors": {
-                  "type": "string",
-                  "description": "祖先"
-                },
-                "depth": {
-                  "type": "integer",
-                  "description": "深度",
-                  "minimum": 0
-                },
-                "terminal": {
-                  "type": "boolean",
-                  "description": "叶子",
-                  "default": false
+                "children": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {},
+                    "description": "与root属性一致"
+                  },
+                  "description": "子节点"
                 }
               },
-              "description": "行政区信息",
               "required": [
                 "id",
                 "code",
-                "parentId",
-                "displayname",
-                "hierarchy",
-                "status",
-                "rank",
-                "lng",
-                "lat",
-                "description",
+                "name",
+                "postfix",
                 "shortname",
                 "fullname",
-                "alias",
-                "ancestors",
-                "depth",
-                "terminal"
+                "hierarchy",
+                "rank",
+                "status",
+                "parent",
+                "children"
               ]
             }
           }
         }
       }
     },
-    "/divisions": {
-      "get": {
+    "/profiles": {
+      "post": {
         "tags": [
-          "行政区划"
+          "前台"
         ],
-        "summary": "获取行政区划列表",
+        "summary": "新增我的信息",
         "description": "",
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "code",
-            "in": "query",
-            "required": false,
-            "description": "行政区编码",
-            "type": "string"
-          },
-          {
-            "name": "parentId",
-            "in": "query",
-            "required": false,
-            "description": "行政区父Id",
-            "type": "string"
-          },
-          {
-            "name": "displayname",
-            "in": "query",
-            "required": false,
-            "description": "行政区名称",
-            "type": "string"
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "badies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "birthday": {
+                        "type": "string",
+                        "description": "生日"
+                      }
+                    },
+                    "description": "宝宝",
+                    "required": [
+                      "birthday"
+                    ]
+                  },
+                  "description": "宝宝列表"
+                },
+                "addresses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "contactsName": {
+                        "type": "string",
+                        "description": "收货人姓名"
+                      },
+                      "contactsPhone": {
+                        "type": "string",
+                        "description": "收货手机号"
+                      },
+                      "province": {
+                        "type": "string",
+                        "description": "省份编码"
+                      },
+                      "city": {
+                        "type": "string",
+                        "description": "城市编码"
+                      },
+                      "county": {
+                        "type": "string",
+                        "description": "区县编码"
+                      },
+                      "town": {
+                        "type": "string",
+                        "description": "街镇编码"
+                      },
+                      "tail": {
+                        "type": "string",
+                        "description": "详细地址"
+                      },
+                      "zipcode": {
+                        "type": "string",
+                        "description": "邮编"
+                      }
+                    },
+                    "description": "地址"
+                  },
+                  "description": "地址列表"
+                }
+              },
+              "required": [
+                "contactsName",
+                "contactsPhone",
+                "province",
+                "city",
+                "county",
+                "town",
+                "tail",
+                "badies",
+                "addresses"
+              ]
+            }
           }
         ],
         "responses": {
@@ -600,88 +306,78 @@
             "schema": {
               "type": "object",
               "title": "empty object",
-              "properties": {
-                "id": {
-                  "type": "integer",
-                  "description": "行政区ID",
-                  "minimum": 0
-                },
-                "code": {
-                  "type": "string",
-                  "description": "行政区编码"
-                },
-                "displayname": {
-                  "type": "string",
-                  "description": "行政区名称"
-                },
-                "parentId": {
-                  "type": "integer",
-                  "description": "行政区父Id",
-                  "minimum": 0
-                },
-                "hierarchy": {
-                  "type": "string",
-                  "description": "层级",
-                  "enum": [
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6"
-                  ],
-                  "enumDesc": "1:国, 2:省, 3:市, 4:县, 5:镇, 6:村"
-                },
-                "rank": {
-                  "type": "integer",
-                  "description": "排位",
-                  "minimum": 0
-                },
-                "status": {
-                  "type": "integer",
-                  "description": "状态",
-                  "enum": [
-                    10,
-                    20
-                  ]
-                }
-              },
-              "description": "行政区信息",
-              "required": [
-                "id",
-                "code",
-                "parentId",
-                "displayname",
-                "hierarchy",
-                "status",
-                "rank"
-              ]
+              "properties": {}
             }
           }
         }
       }
     },
-    "/organizations": {
+    "/addresses": {
       "get": {
         "tags": [
-          "组织机构"
+          "前台"
         ],
-        "summary": "组织列表",
+        "summary": "获取我的地址",
         "description": "",
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "code",
-            "in": "query",
-            "required": true,
-            "description": "销售组织编码",
-            "type": "string"
-          },
-          {
-            "name": "includeChild",
-            "in": "query",
-            "required": true,
-            "description": "是否包含所有子节点（0-否；1-是）",
-            "type": "string"
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "birthday": {
+                  "type": "string",
+                  "description": "宝宝出生日期"
+                },
+                "contactsName": {
+                  "type": "string",
+                  "description": "收货人姓名"
+                },
+                "contactsPhone": {
+                  "type": "string",
+                  "description": "收货手机号"
+                },
+                "province": {
+                  "type": "string",
+                  "description": "省份编码"
+                },
+                "city": {
+                  "type": "string",
+                  "description": "城市编码"
+                },
+                "country": {
+                  "type": "string",
+                  "description": "区县编码"
+                },
+                "town": {
+                  "type": "string",
+                  "description": "街镇编码"
+                },
+                "tail": {
+                  "type": "string",
+                  "description": "详细地址"
+                },
+                "zipcode": {
+                  "type": "string",
+                  "description": "邮编"
+                }
+              },
+              "required": [
+                "birthday",
+                "contactsName",
+                "contactsPhone",
+                "province",
+                "city",
+                "country",
+                "town",
+                "tail"
+              ]
+            }
           }
         ],
         "responses": {
@@ -692,104 +388,107 @@
               "items": {
                 "type": "object",
                 "properties": {
-                  "code": {
+                  "id": {
                     "type": "string",
-                    "description": "编码"
+                    "description": "主键"
                   },
-                  "name": {
+                  "contactsName": {
                     "type": "string",
-                    "description": "名称"
+                    "description": "收货人姓名"
                   },
-                  "hierarchy": {
+                  "contactsPhone": {
                     "type": "string",
-                    "description": "层级"
+                    "description": "收货手机号"
                   },
-                  "parentCode": {
+                  "province": {
                     "type": "string",
-                    "description": "父编码"
+                    "description": "省份编码"
                   },
-                  "ancestors": {
+                  "provinceName": {
                     "type": "string",
-                    "description": "所有祖先（英文逗号分割）"
+                    "description": "省份名称"
                   },
-                  "terminal": {
-                    "type": "integer",
-                    "description": "是否叶子（0-否；1-是）"
+                  "city": {
+                    "type": "string",
+                    "description": "城市编码"
                   },
-                  "status": {
-                    "type": "integer",
-                    "description": "状态"
+                  "cityName": {
+                    "type": "string",
+                    "description": "城市名称"
                   },
-                  "subOrganizationList": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "code": {
-                          "type": "string",
-                          "description": "编码"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "名称"
-                        },
-                        "hierarchy": {
-                          "type": "string",
-                          "description": "层级"
-                        },
-                        "parentCode": {
-                          "type": "string",
-                          "description": "父编码"
-                        },
-                        "ancestors": {
-                          "type": "string",
-                          "description": "所有祖先（英文逗号分割）"
-                        },
-                        "terminal": {
-                          "type": "integer",
-                          "description": "是否叶子（0-否；1-是）"
-                        },
-                        "status": {
-                          "type": "integer",
-                          "description": "状态"
-                        }
-                      },
-                      "required": [
-                        "code",
-                        "name",
-                        "hierarchy",
-                        "parentCode",
-                        "ancestors",
-                        "terminal",
-                        "status"
-                      ],
-                      "description": "组织对象"
-                    },
-                    "description": "子组织列表"
+                  "county": {
+                    "type": "string",
+                    "description": "区县编码"
+                  },
+                  "countyName": {
+                    "type": "string",
+                    "description": "区县名称"
+                  },
+                  "town": {
+                    "type": "string",
+                    "description": "街镇编码"
+                  },
+                  "townName": {
+                    "type": "string",
+                    "description": "街镇名称"
+                  },
+                  "tail": {
+                    "type": "string",
+                    "description": "详细地址"
+                  },
+                  "zipcode": {
+                    "type": "string",
+                    "description": "邮编"
                   }
                 },
+                "description": "地址",
                 "required": [
-                  "code",
-                  "name",
-                  "hierarchy",
-                  "parentCode",
-                  "ancestors",
-                  "terminal",
-                  "status",
-                  "subOrganizationList"
+                  "id"
                 ]
-              }
+              },
+              "description": "地址列表"
             }
           }
         }
       }
     },
-    "/products": {
+    "/cards/{card-code}/states": {
+      "post": {
+        "tags": [
+          "前台"
+        ],
+        "summary": "新增卡片状态？",
+        "description": "用于绑定卡片",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "name": "card-code",
+            "in": "path",
+            "description": "卡片编号",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "/cards": {
       "get": {
         "tags": [
-          "产品模块"
+          "前台"
         ],
-        "summary": "产品列表",
+        "summary": "获取我的卡片",
         "description": "",
         "parameters": [],
         "responses": {
@@ -801,27 +500,104 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "integer",
-                    "description": "产品ID"
+                    "type": "string",
+                    "description": "主键"
                   },
                   "code": {
                     "type": "string",
-                    "description": "产品编码"
+                    "description": "编号"
                   },
                   "name": {
                     "type": "string",
-                    "description": "产品名称"
+                    "description": "名称"
                   },
-                  "pictureUrl": {
+                  "denomination": {
                     "type": "string",
-                    "description": "产品图片"
+                    "description": "面值"
+                  },
+                  "expireInDays": {
+                    "type": "string",
+                    "description": "有效时长（天）"
+                  },
+                  "cover": {
+                    "type": "string",
+                    "description": "封面图片路径"
+                  },
+                  "category": {
+                    "type": "integer",
+                    "description": "类型。10:季卡, 20:半年卡, 30:年卡"
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "状态。10:待审核,20:已通过"
+                  },
+                  "account": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "description": "主键"
+                      },
+                      "code": {
+                        "type": "string",
+                        "description": "编号"
+                      },
+                      "name": {
+                        "type": "string",
+                        "description": "名称"
+                      },
+                      "balance": {
+                        "type": "integer",
+                        "description": "余额"
+                      },
+                      "activationDate": {
+                        "type": "string",
+                        "description": "激活日期"
+                      },
+                      "expirationDate": {
+                        "type": "string",
+                        "description": "截止日期"
+                      },
+                      "remainDays": {
+                        "type": "integer",
+                        "description": "剩余天数"
+                      },
+                      "status": {
+                        "type": "integer",
+                        "description": "状态"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "code",
+                      "cover",
+                      "denomination",
+                      "expireInDays",
+                      "name",
+                      "status",
+                      "balance",
+                      "activationDate",
+                      "expirationDate",
+                      "remainDays"
+                    ],
+                    "description": "账户"
                   }
                 },
                 "required": [
-                  "id",
                   "code",
                   "name",
-                  "pictureUrl"
+                  "remainDays",
+                  "balance",
+                  "activationDate",
+                  "expirationDate",
+                  "id",
+                  "status",
+                  "name",
+                  "category",
+                  "status",
+                  "denomination",
+                  "expireInDays",
+                  "cover"
                 ]
               }
             }
@@ -829,54 +605,19 @@
         }
       }
     },
-    "/shops": {
+    "/products": {
       "get": {
         "tags": [
-          "门店模块"
+          "前台"
         ],
-        "summary": "门店列表",
+        "summary": "获取商品列表（根据卡种主键）",
         "description": "",
         "parameters": [
           {
-            "name": "name",
-            "in": "query",
-            "required": false,
-            "description": "门店名称.模糊匹配.",
-            "type": "string"
-          },
-          {
-            "name": "lng",
+            "name": "cardId",
             "in": "query",
             "required": true,
-            "description": "经度",
-            "type": "string"
-          },
-          {
-            "name": "lat",
-            "in": "query",
-            "required": true,
-            "description": "纬度",
-            "type": "string"
-          },
-          {
-            "name": "distance",
-            "in": "query",
-            "required": true,
-            "description": "缩放距离",
-            "type": "string"
-          },
-          {
-            "name": "levels",
-            "in": "query",
-            "required": false,
-            "description": "门店等级列表  10:A, 20:B, 30:C, 40:D .多值以英文逗号分隔.",
-            "type": "string"
-          },
-          {
-            "name": "alarmStatuses",
-            "in": "query",
-            "required": false,
-            "description": "告警类型列表. 多值以英文逗号分隔. ",
+            "description": "卡种主键",
             "type": "string"
           }
         ],
@@ -889,520 +630,144 @@
                 "type": "object",
                 "properties": {
                   "id": {
-                    "type": "integer",
-                    "description": "门店ID",
-                    "minimum": 0
+                    "type": "string",
+                    "description": "主键"
                   },
                   "code": {
                     "type": "string",
-                    "description": "门店编码"
+                    "description": "编码"
                   },
                   "name": {
                     "type": "string",
-                    "description": "门店名称"
+                    "description": "名称"
                   },
-                  "provinceCode": {
+                  "category": {
                     "type": "string",
-                    "description": "省编码"
+                    "description": "类目"
                   },
-                  "provinceName": {
+                  "photos": {
                     "type": "string",
-                    "description": "省"
+                    "description": "图片"
                   },
-                  "cityCode": {
-                    "type": "string",
-                    "description": "城市编码"
-                  },
-                  "cityName": {
-                    "type": "string",
-                    "description": "城市"
-                  },
-                  "countyCode": {
-                    "type": "string",
-                    "description": "区县编码"
-                  },
-                  "countyName": {
-                    "type": "string",
-                    "description": "区县"
-                  },
-                  "address": {
-                    "type": "string",
-                    "description": "详细地址"
-                  },
-                  "lng": {
-                    "type": "number",
-                    "description": "经度",
-                    "minimum": 0
-                  },
-                  "lat": {
-                    "type": "number",
-                    "description": "纬度",
-                    "minimum": 0
-                  },
-                  "distance": {
+                  "status": {
                     "type": "integer",
-                    "description": "距离，单位米"
+                    "description": "状态"
                   },
-                  "level": {
-                    "type": "integer",
-                    "description": "门店等级 10:A, 20:B, 30:C, 40:D"
-                  },
-                  "alarmStatus": {
-                    "type": "integer",
-                    "description": "预警状态(0-7)  0：无预警；>0:有预警"
-                  },
-                  "alarmList": {
+                  "skus": {
                     "type": "array",
                     "items": {
                       "type": "object",
                       "properties": {
-                        "alarmCode": {
-                          "type": "integer",
-                          "description": "1.销量增幅大于50% 2.超过30天未拜访的门店  4.无动销门店"
-                        },
-                        "alarmDesc": {
+                        "id": {
                           "type": "string",
-                          "description": "预警描述"
+                          "description": "主键"
+                        },
+                        "code": {
+                          "type": "string",
+                          "description": "编码"
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": "名称"
+                        },
+                        "price": {
+                          "type": "number",
+                          "description": "价格"
+                        },
+                        "quantity": {
+                          "type": "integer",
+                          "description": "库存"
+                        },
+                        "photos": {
+                          "type": "string",
+                          "description": "图片"
+                        },
+                        "status": {
+                          "type": "integer",
+                          "description": "状态"
+                        },
+                        "properties": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "type": "string",
+                                "description": "主键"
+                              },
+                              "k": {
+                                "type": "string",
+                                "description": "键。milk_weight: 重量, milk_stage: 段位"
+                              },
+                              "v": {
+                                "type": "string",
+                                "description": "值"
+                              }
+                            },
+                            "required": [
+                              "k",
+                              "v",
+                              "id"
+                            ],
+                            "description": "属性"
+                          },
+                          "description": "属性列表"
                         }
                       },
                       "required": [
-                        "alarmCode"
-                      ]
+                        "id",
+                        "code",
+                        "name",
+                        "price",
+                        "quantity",
+                        "photos",
+                        "properties",
+                        "status"
+                      ],
+                      "description": "SKU"
                     },
-                    "description": "预警列表"
+                    "description": "SKU列表"
                   }
                 },
                 "required": [
                   "id",
-                  "name",
-                  "provinceCode",
-                  "provinceName",
-                  "cityCode",
-                  "cityName",
-                  "countyCode",
-                  "countyName",
-                  "address",
-                  "lng",
-                  "lat",
                   "code",
-                  "alarmStatus",
-                  "level",
-                  "distance"
-                ]
+                  "name",
+                  "skus",
+                  "photos",
+                  "category",
+                  "status"
+                ],
+                "description": "商品"
               }
             }
           }
         }
       }
     },
-    "/shops/{id}": {
+    "/orders?_as_page": {
       "get": {
         "tags": [
-          "门店模块"
+          "前台"
         ],
-        "summary": "门店详情",
+        "summary": "获取用户订单列表（分页）",
         "description": "",
+        "consumes": [
+          "multipart/form-data"
+        ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "",
+            "name": "number",
+            "in": "query",
             "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "baseInfo": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "integer",
-                      "description": "门店ID"
-                    },
-                    "code": {
-                      "type": "string",
-                      "description": "门店编码"
-                    },
-                    "name": {
-                      "type": "string",
-                      "description": "门店名称"
-                    },
-                    "provinceCode": {
-                      "type": "string",
-                      "description": "省份编码"
-                    },
-                    "province": {
-                      "type": "string",
-                      "description": "省份"
-                    },
-                    "cityCode": {
-                      "type": "string",
-                      "description": "城市编码"
-                    },
-                    "city": {
-                      "type": "string",
-                      "description": "城市"
-                    },
-                    "areaCode": {
-                      "type": "string",
-                      "description": "区县编码"
-                    },
-                    "area": {
-                      "type": "string",
-                      "description": "区县"
-                    },
-                    "address": {
-                      "type": "string",
-                      "description": "详细地址"
-                    },
-                    "level": {
-                      "type": "integer",
-                      "description": "门店等级。10:A, 20:B, 30:C, 40:D"
-                    },
-                    "effectiveDate": {
-                      "type": "string",
-                      "description": "合作时间"
-                    },
-                    "employeeCode": {
-                      "type": "string",
-                      "description": "关联经理员工编码"
-                    },
-                    "employeeName": {
-                      "type": "string",
-                      "description": "关联经理员工姓名"
-                    },
-                    "shoppingGuide": {
-                      "type": "string",
-                      "description": "导购员"
-                    },
-                    "shoppingGuidePhone": {
-                      "type": "string",
-                      "description": "导购员电话"
-                    }
-                  },
-                  "description": "门店基本信息",
-                  "required": [
-                    "id",
-                    "code",
-                    "name",
-                    "provinceCode",
-                    "province",
-                    "cityCode",
-                    "city",
-                    "areaCode",
-                    "area",
-                    "address",
-                    "level",
-                    "effectiveDate",
-                    "employeeCode",
-                    "employeeName",
-                    "shoppingGuide",
-                    "shoppingGuidePhone"
-                  ]
-                },
-                "memberInfo": {
-                  "type": "object",
-                  "properties": {
-                    "monthNewMemberNum": {
-                      "type": "integer",
-                      "description": "当月新客数"
-                    },
-                    "yearNewMemberNum": {
-                      "type": "integer",
-                      "description": "年累计新客数"
-                    }
-                  },
-                  "description": "会员信息",
-                  "required": [
-                    "monthNewMemberNum",
-                    "yearNewMemberNum"
-                  ]
-                },
-                "salesData": {
-                  "type": "object",
-                  "properties": {
-                    "montSalesData": {
-                      "type": "object",
-                      "properties": {
-                        "totalNum": {
-                          "type": "integer",
-                          "description": "总数"
-                        },
-                        "totalAmount": {
-                          "type": "number",
-                          "description": "总金额"
-                        },
-                        "productSalesDataList": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "productCode": {
-                                "type": "string",
-                                "description": "产品编码"
-                              },
-                              "productName": {
-                                "type": "string",
-                                "description": "产品名称"
-                              },
-                              "totalNum": {
-                                "type": "integer",
-                                "description": "总数"
-                              },
-                              "totalAmount": {
-                                "type": "number",
-                                "description": "总金额"
-                              }
-                            },
-                            "required": [
-                              "productCode",
-                              "productName",
-                              "totalNum",
-                              "totalAmount"
-                            ],
-                            "description": "产品销售数据"
-                          },
-                          "description": "产品销售数据列表"
-                        }
-                      },
-                      "required": [
-                        "totalNum",
-                        "totalAmount",
-                        "productSalesDataList"
-                      ],
-                      "description": "月销售数据"
-                    },
-                    "yearSalesData": {
-                      "type": "object",
-                      "properties": {
-                        "totalNum": {
-                          "type": "integer",
-                          "description": "总数"
-                        },
-                        "totalAmount": {
-                          "type": "number",
-                          "description": "总金额"
-                        },
-                        "productSalesDataList": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "productCode": {
-                                "type": "string",
-                                "description": "产品编码"
-                              },
-                              "productName": {
-                                "type": "string",
-                                "description": "产品名称"
-                              },
-                              "totalNum": {
-                                "type": "string",
-                                "description": "总数"
-                              },
-                              "totalAmount": {
-                                "type": "string",
-                                "description": "总金额"
-                              }
-                            },
-                            "description": "产品销售数据",
-                            "required": [
-                              "productCode",
-                              "productName",
-                              "totalNum",
-                              "totalAmount"
-                            ]
-                          },
-                          "description": "产品销售数据列表"
-                        }
-                      },
-                      "description": "年销售数据",
-                      "required": [
-                        "totalNum",
-                        "totalAmount",
-                        "productSalesDataList"
-                      ]
-                    }
-                  },
-                  "description": "销售数据",
-                  "required": [
-                    "montSalesData",
-                    "yearSalesData"
-                  ]
-                },
-                "activityInfo": {
-                  "type": "object",
-                  "properties": {
-                    "yearActivityNum": {
-                      "type": "string",
-                      "description": "年累计活动数"
-                    },
-                    "activityList": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "activityName": {
-                            "type": "string",
-                            "description": "活动名称"
-                          },
-                          "startTime": {
-                            "type": "string",
-                            "description": "开始时间"
-                          },
-                          "endTime": {
-                            "type": "string",
-                            "description": "结束时间"
-                          },
-                          "currentMonthActivity": {
-                            "type": "integer",
-                            "description": "是否为当月活动，1为当月活动，0为上个月活动"
-                          }
-                        },
-                        "required": [
-                          "activityName",
-                          "startTime",
-                          "endTime",
-                          "currentMonthActivity"
-                        ],
-                        "description": "活动对象"
-                      },
-                      "description": "活动列表"
-                    }
-                  },
-                  "description": "活动信息",
-                  "required": [
-                    "yearActivityNum",
-                    "activityList"
-                  ]
-                }
-              },
-              "required": [
-                "baseInfo",
-                "activityInfo",
-                "memberInfo",
-                "salesData"
-              ]
-            }
-          }
-        }
-      }
-    },
-    "/visit/summary/{employeeCode}": {
-      "get": {
-        "tags": [
-          "拜访模块"
-        ],
-        "summary": "获取某个用户的拜访汇总",
-        "description": "",
-        "parameters": [
-          {
-            "name": "employeeCode",
-            "in": "path",
-            "description": "",
-            "required": true,
+            "description": "当前页(默认0)",
             "type": "string"
           },
           {
-            "name": "year",
+            "name": "size",
             "in": "query",
             "required": true,
-            "description": "年",
-            "type": "string"
-          },
-          {
-            "name": "month",
-            "in": "query",
-            "required": true,
-            "description": "月",
-            "type": "string"
-          },
-          {
-            "name": "customerCategory",
-            "in": "query",
-            "required": true,
-            "description": "客户类别 10:门店, 20:经销商",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "employeeCode": {
-                  "type": "string",
-                  "description": "员工编号"
-                },
-                "employeeName": {
-                  "type": "string",
-                  "description": "员工名字"
-                },
-                "targetNumber": {
-                  "type": "integer",
-                  "description": "目标数"
-                },
-                "visitNumber": {
-                  "type": "integer",
-                  "description": "拜访数"
-                },
-                "completionRate": {
-                  "type": "number",
-                  "description": "完成率"
-                }
-              },
-              "required": [
-                "employeeCode",
-                "employeeName",
-                "targetNumber",
-                "visitNumber",
-                "completionRate"
-              ]
-            }
-          }
-        }
-      }
-    },
-    "/visit/detials/{employeeCode}?_as_page": {
-      "get": {
-        "tags": [
-          "拜访模块"
-        ],
-        "summary": "获取某个用户的拜访明细",
-        "description": "",
-        "parameters": [
-          {
-            "name": "employeeCode",
-            "in": "path",
-            "description": "",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "year",
-            "in": "query",
-            "required": true,
-            "description": "年",
-            "type": "string"
-          },
-          {
-            "name": "month",
-            "in": "query",
-            "required": true,
-            "description": "月",
-            "type": "string"
-          },
-          {
-            "name": "customerCategory",
-            "in": "query",
-            "required": true,
-            "description": "客户类别 10:门店, 20:经销商",
+            "description": "每页数量(默认10)",
             "type": "string"
           }
         ],
@@ -1416,266 +781,301 @@
                   "type": "integer",
                   "description": "每页数量"
                 },
-                "current": {
+                "first": {
                   "type": "integer",
-                  "description": "当前页码"
+                  "description": "是否首页"
                 },
-                "pages": {
-                  "type": "integer",
+                "last": {
+                  "type": "string",
+                  "description": "是否末页"
+                },
+                "number": {
+                  "type": "string",
+                  "description": "当前页"
+                },
+                "numberOfElements": {
+                  "type": "string",
+                  "description": "当前页的记录条数"
+                },
+                "totalPages": {
+                  "type": "string",
                   "description": "总页数"
                 },
-                "total": {
-                  "type": "integer",
+                "totalElements": {
+                  "type": "string",
                   "description": "总数量"
                 },
-                "records": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "employeeId": {
-                        "type": "integer",
-                        "description": "员工ID"
-                      },
-                      "customerId": {
-                        "type": "integer",
-                        "description": "客户ID"
-                      },
-                      "customerCode": {
-                        "type": "string",
-                        "description": "客户编码"
-                      },
-                      "customerName": {
-                        "type": "string",
-                        "description": "客户名称"
-                      },
-                      "customerCategory": {
-                        "type": "string",
-                        "description": "客户类别 10:门店, 20:经销商"
-                      },
-                      "visitDate": {
-                        "type": "string",
-                        "description": "拜访日期"
-                      },
-                      "startTime": {
-                        "type": "string",
-                        "description": "拜访时间"
-                      },
-                      "endTime": {
-                        "type": "string",
-                        "description": "离店时间"
-                      }
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "订单主键"
                     },
-                    "required": [
-                      "startTime",
-                      "endTime",
-                      "employeeId",
-                      "customerId",
-                      "customerCode",
-                      "customerName",
-                      "visitDate",
-                      "customerCategory"
-                    ]
+                    "username": {
+                      "type": "string",
+                      "description": "用户标识"
+                    },
+                    "accountId": {
+                      "type": "string",
+                      "description": "奶卡编号"
+                    },
+                    "code": {
+                      "type": "string",
+                      "description": "订单编号"
+                    },
+                    "bookTime": {
+                      "type": "string",
+                      "description": "下单时间"
+                    },
+                    "payTime": {
+                      "type": "string",
+                      "description": "支付时间"
+                    },
+                    "quantity": {
+                      "type": "integer",
+                      "description": "商品总数"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "状态。10:等待发货,20:部分发货,21:全部发货"
+                    },
+                    "skuPhotos": {
+                      "type": "string",
+                      "description": "sku图片"
+                    },
+                    "k": {
+                      "type": "string",
+                      "description": "键"
+                    },
+                    "v": {
+                      "type": "string",
+                      "description": "值"
+                    },
+                    "provinceName": {
+                      "type": "string",
+                      "description": "省份名称"
+                    },
+                    "cityName": {
+                      "type": "string",
+                      "description": "地市名称"
+                    },
+                    "countyName": {
+                      "type": "string",
+                      "description": "区县名称"
+                    },
+                    "townName": {
+                      "type": "string",
+                      "description": "街镇名称"
+                    },
+                    "tail": {
+                      "type": "string",
+                      "description": "尾巴地址"
+                    },
+                    "zipcode": {
+                      "type": "string",
+                      "description": "邮编"
+                    },
+                    "deliveryCompanyName": {
+                      "type": "string",
+                      "description": "快递公司名称"
+                    },
+                    "deliveryCode": {
+                      "type": "string",
+                      "description": "发货单号"
+                    },
+                    "deliveryTime": {
+                      "type": "string",
+                      "description": "发货时间"
+                    }
                   },
-                  "description": "字典列表"
+                  "required": [
+                    "id",
+                    "username",
+                    "accountId",
+                    "code",
+                    "payTime",
+                    "bookTime",
+                    "quantity",
+                    "status",
+                    "skuPhotos",
+                    "k",
+                    "v",
+                    "provinceName",
+                    "cityName",
+                    "tail",
+                    "townName",
+                    "countyName",
+                    "deliveryCode",
+                    "deliveryCompanyName",
+                    "zipcode",
+                    "deliveryTime"
+                  ]
                 }
               },
               "required": [
                 "size",
-                "current",
-                "pages",
-                "total",
-                "records"
+                "first",
+                "content",
+                "numberOfElements",
+                "number",
+                "last",
+                "totalPages",
+                "totalElements"
               ]
             }
           }
         }
       }
     },
-    "/visit/organization/statistics": {
-      "get": {
+    "/orders": {
+      "post": {
         "tags": [
-          "拜访模块"
+          "前台"
         ],
-        "summary": "销售组织拜访统计",
+        "summary": "创建一个订单",
         "description": "",
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
-            "name": "year",
-            "in": "query",
-            "required": true,
-            "description": "年",
-            "type": "string"
-          },
-          {
-            "name": "month",
-            "in": "query",
-            "required": true,
-            "description": "月",
-            "type": "string"
-          },
-          {
-            "name": "code",
-            "in": "query",
-            "required": true,
-            "description": "销售组织编码",
-            "type": "string"
-          },
-          {
-            "name": "hierarchy",
-            "in": "query",
-            "required": true,
-            "description": "销售组织层级",
-            "type": "string"
-          },
-          {
-            "name": "customerCategory",
-            "in": "query",
-            "required": true,
-            "description": "客户类别 10:门店, 20:经销商",
-            "type": "string"
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "accountCode": {
+                  "type": "string",
+                  "description": "账户编号"
+                },
+                "addressId": {
+                  "type": "string",
+                  "description": "地址主键"
+                },
+                "skus": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string",
+                        "description": "编码"
+                      },
+                      "quantity": {
+                        "type": "string",
+                        "description": "数量"
+                      }
+                    },
+                    "description": "SKU",
+                    "required": [
+                      "code",
+                      "quantity"
+                    ]
+                  },
+                  "description": "SKU列表"
+                },
+                "verification": {
+                  "type": "string",
+                  "description": "验证码"
+                }
+              },
+              "required": [
+                "accountCode",
+                "addressId",
+                "skus",
+                "verification"
+              ]
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "successful operation",
             "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "code": {
-                    "type": "string",
-                    "description": "销售组织编码"
-                  },
-                  "name": {
-                    "type": "string",
-                    "description": "销售组织名称"
-                  },
-                  "hierarchy": {
-                    "type": "string",
-                    "description": "销售组织层级"
-                  },
-                  "targetNumber": {
-                    "type": "integer",
-                    "description": "目标数"
-                  },
-                  "visitNumber": {
-                    "type": "integer",
-                    "description": "拜访数"
-                  },
-                  "completionRate": {
-                    "type": "number",
-                    "description": "完成率"
-                  },
-                  "terminal": {
-                    "type": "boolean",
-                    "description": "是否叶子节点"
-                  },
-                  "subOrgStatisticsList": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "code": {
-                          "type": "string",
-                          "description": "销售组织编码"
-                        },
-                        "name": {
-                          "type": "string",
-                          "description": "销售组织名称"
-                        },
-                        "hierarchy": {
-                          "type": "string",
-                          "description": "销售组织层级"
-                        },
-                        "terminal": {
-                          "type": "boolean",
-                          "description": "是否叶子节点"
-                        },
-                        "targetNumber": {
-                          "type": "integer",
-                          "description": "目标数"
-                        },
-                        "visitNumber": {
-                          "type": "integer",
-                          "description": "拜访数"
-                        },
-                        "completionRate": {
-                          "type": "number",
-                          "description": "完成率"
-                        }
-                      },
-                      "required": [
-                        "code",
-                        "name",
-                        "hierarchy",
-                        "targetNumber",
-                        "visitNumber",
-                        "completionRate",
-                        "terminal"
-                      ],
-                      "description": "组织拜访统计"
-                    },
-                    "description": "子组织拜访统计列表"
-                  }
-                },
-                "required": [
-                  "code",
-                  "name",
-                  "hierarchy",
-                  "targetNumber",
-                  "visitNumber",
-                  "completionRate",
-                  "terminal"
-                ]
-              }
+              "type": "object",
+              "properties": {}
             }
           }
         }
       }
     },
-    "/visit/employee/statistics": {
+    "/admin/cards/{card-id}/states/{}": {
+      "post": {
+        "tags": [
+          "后台"
+        ],
+        "summary": "审核卡片",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "card-id",
+            "in": "path",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "description": "状态。20:已通过,21:已拒绝,30:已退卡"
+                }
+              },
+              "required": [
+                "status"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "/admin/cards?_as_page": {
       "get": {
         "tags": [
-          "拜访模块"
+          "后台"
         ],
-        "summary": "员工拜访统计",
+        "summary": "获取卡片（分页）",
         "description": "",
         "parameters": [
           {
-            "name": "year",
+            "name": "number",
             "in": "query",
             "required": true,
-            "description": "年",
+            "description": "当前页码(默认0)",
             "type": "string"
           },
           {
-            "name": "month",
+            "name": "size",
             "in": "query",
             "required": true,
-            "description": "月",
+            "description": "每页数量(默认10)",
             "type": "string"
           },
           {
-            "name": "code",
+            "name": "status",
             "in": "query",
             "required": true,
-            "description": "销售组织编码",
-            "type": "string"
-          },
-          {
-            "name": "hierarchy",
-            "in": "query",
-            "required": true,
-            "description": "销售组织层级",
-            "type": "string"
-          },
-          {
-            "name": "customerCategory",
-            "in": "query",
-            "required": true,
-            "description": "客户类别 10:门店, 20:经销商",
+            "description": "状态",
             "type": "string"
           }
         ],
@@ -1686,82 +1086,387 @@
               "type": "object",
               "title": "empty object",
               "properties": {
-                "code": {
+                "size": {
                   "type": "string",
-                  "description": "销售组织编码"
+                  "description": "每页数量"
                 },
-                "name": {
+                "first": {
                   "type": "string",
-                  "description": "销售组织名称"
+                  "description": "是否首页"
                 },
-                "hierarchy": {
-                  "type": "integer",
-                  "description": "销售组织层级"
+                "last": {
+                  "type": "string",
+                  "description": "是否末页"
                 },
-                "targetNumber": {
-                  "type": "integer",
-                  "description": "目标数"
+                "number": {
+                  "type": "string",
+                  "description": "当前页"
                 },
-                "visitNumber": {
-                  "type": "integer",
-                  "description": "拜访数"
+                "numberOfElements": {
+                  "type": "string",
+                  "description": "当前页的记录条数"
                 },
-                "completionRate": {
-                  "type": "number",
-                  "description": "完成率"
+                "totalPages": {
+                  "type": "string",
+                  "description": "总页数"
                 },
-                "employeeStatisticsList": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "employeeCode": {
-                        "type": "string",
-                        "description": "员工编码"
-                      },
-                      "employeeName": {
-                        "type": "string",
-                        "description": "员工姓名"
-                      },
-                      "targetNumber": {
-                        "type": "integer",
-                        "description": "目标数"
-                      },
-                      "visitNumber": {
-                        "type": "integer",
-                        "description": "拜访数"
-                      },
-                      "completionRate": {
-                        "type": "number",
-                        "description": "完成率"
-                      },
-                      "employeeId": {
-                        "type": "string",
-                        "description": "员工ID"
-                      }
+                "totalElements": {
+                  "type": "string",
+                  "description": "总数量"
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "主键"
                     },
-                    "required": [
-                      "employeeCode",
-                      "employeeName",
-                      "targetNumber",
-                      "visitNumber",
-                      "completionRate",
-                      "employeeId"
-                    ],
-                    "description": "员工拜访统计"
+                    "code": {
+                      "type": "string",
+                      "description": "编号"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "名称"
+                    },
+                    "denomination": {
+                      "type": "string",
+                      "description": "面值"
+                    },
+                    "cover": {
+                      "type": "string",
+                      "description": "封面图片路径"
+                    },
+                    "category": {
+                      "type": "integer",
+                      "description": "类型。10:季卡, 20:半年卡, 30:年卡"
+                    },
+                    "status": {
+                      "type": "integer",
+                      "description": "状态。10:待审核,20:已通过,21:已拒绝,30:已退卡"
+                    },
+                    "statusTime": {
+                      "type": "string",
+                      "description": "状态时间"
+                    },
+                    "applyTime": {
+                      "type": "string",
+                      "description": "绑定时间。取创建时间"
+                    }
                   },
-                  "description": "员工拜访统计列表"
+                  "required": [
+                    "id",
+                    "code",
+                    "category",
+                    "creator",
+                    "mobile",
+                    "provinceName",
+                    "cityName",
+                    "county",
+                    "town",
+                    "tail",
+                    "zipcode",
+                    "creationTime",
+                    "activationDate",
+                    "status",
+                    "name",
+                    "applyTime",
+                    "statusTime"
+                  ]
+                },
+                "sort": {
+                  "type": "object",
+                  "properties": {},
+                  "description": "排序信息"
                 }
               },
               "required": [
-                "name",
-                "targetNumber",
-                "employeeStatisticsList",
-                "code",
-                "hierarchy",
-                "visitNumber",
-                "completionRate"
+                "size",
+                "first",
+                "last",
+                "number",
+                "numberOfElements",
+                "totalPages",
+                "totalElements",
+                "content",
+                "sort"
               ]
+            }
+          }
+        }
+      }
+    },
+    "/admin/orders?_as_page": {
+      "get": {
+        "tags": [
+          "后台"
+        ],
+        "summary": "获取订单列表（分页）",
+        "description": "",
+        "parameters": [
+          {
+            "name": "number",
+            "in": "query",
+            "required": true,
+            "description": "当前页(默认0)",
+            "type": "string"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": true,
+            "description": "每页数量(默认10)",
+            "type": "string"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": true,
+            "description": "状态",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "size": {
+                  "type": "string",
+                  "description": "每页数量"
+                },
+                "first": {
+                  "type": "string",
+                  "description": "是否首页"
+                },
+                "last": {
+                  "type": "string",
+                  "description": "是否末页"
+                },
+                "number": {
+                  "type": "string",
+                  "description": "当前页"
+                },
+                "numberOfElements": {
+                  "type": "string",
+                  "description": "当前页的记录条数"
+                },
+                "totalPages": {
+                  "type": "string",
+                  "description": "总页数"
+                },
+                "totalElements": {
+                  "type": "string",
+                  "description": "总数量"
+                },
+                "content": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "订单号"
+                    },
+                    "productName": {
+                      "type": "string",
+                      "description": "商品名称"
+                    },
+                    "skuAttr": {
+                      "type": "integer",
+                      "description": "段数"
+                    },
+                    "num": {
+                      "type": "string",
+                      "description": "数量"
+                    },
+                    "contactsName": {
+                      "type": "string",
+                      "description": "收货人姓名"
+                    },
+                    "contactsPhone": {
+                      "type": "string",
+                      "description": "手机号"
+                    },
+                    "provinceName": {
+                      "type": "string",
+                      "description": "省份名称"
+                    },
+                    "cityName": {
+                      "type": "string",
+                      "description": "城市名称"
+                    },
+                    "county": {
+                      "type": "string",
+                      "description": "区县名称"
+                    },
+                    "town": {
+                      "type": "string",
+                      "description": "街镇名称"
+                    },
+                    "tail": {
+                      "type": "string",
+                      "description": "详细地址"
+                    },
+                    "zipcode": {
+                      "type": "string",
+                      "description": "邮编"
+                    },
+                    "bookTime": {
+                      "type": "string",
+                      "description": "下单时间"
+                    },
+                    "expressTime": {
+                      "type": "string",
+                      "description": "发货时间"
+                    },
+                    "expressCompanyName": {
+                      "type": "string",
+                      "description": "快递公司名称"
+                    },
+                    "expressTicket": {
+                      "type": "string",
+                      "description": "快递单号"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "状态"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "productName",
+                    "skuAttr",
+                    "num",
+                    "contactsPhone",
+                    "provinceName",
+                    "cityName",
+                    "county",
+                    "town",
+                    "tail",
+                    "zipcode",
+                    "bookTime",
+                    "expressTime",
+                    "status",
+                    "contactsName",
+                    "expressCompanyName",
+                    "expressTicket"
+                  ]
+                },
+                "sort": {
+                  "type": "string",
+                  "description": "排序信息"
+                }
+              },
+              "required": [
+                "size",
+                "first",
+                "last",
+                "number",
+                "numberOfElements",
+                "totalPages",
+                "totalElements",
+                "content",
+                "sort"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/admin/export-card": {
+      "get": {
+        "tags": [
+          "后台"
+        ],
+        "summary": "导出卡片审核",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "/admin/export-order": {
+      "get": {
+        "tags": [
+          "后台"
+        ],
+        "summary": "导出发货订单",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "/admin/orders/{order-id}/send-out": {
+      "post": {
+        "tags": [
+          "后台"
+        ],
+        "summary": "发货",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "order-id",
+            "in": "path",
+            "description": "订单号",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "root",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {
+                "expressCompanyCode": {
+                  "type": "string",
+                  "description": "快递公司编码"
+                },
+                "expressCompanyName": {
+                  "type": "string",
+                  "description": "快递公司名称"
+                },
+                "expressTicket": {
+                  "type": "string",
+                  "description": "快递单号"
+                }
+              },
+              "required": [
+                "expressCompanyCode",
+                "expressCompanyName",
+                "expressTicket"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "title": "empty object",
+              "properties": {}
             }
           }
         }

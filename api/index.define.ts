@@ -6,162 +6,84 @@
  */
 
 export interface Api {
-  DictsDictIditemsGetResponse?: DictsDictIditemsGetResponse;
-  DictsDictIditemsGetRequset?: DictsDictIditemsGetRequset;
-  DictsDictCodeitemsByCodeGetResponse?: DictsDictCodeitemsByCodeGetResponse;
-  DictsDictCodeitemsByCodeGetRequset?: DictsDictCodeitemsByCodeGetRequset;
-  DictsGetResponse?: DictsGetResponse;
-  DictsGetRequset?: DictsGetRequset;
-  DivisionsIdGetResponse?: DivisionsIdGetResponse;
-  DivisionsIdGetRequset?: DivisionsIdGetRequset;
-  DivisionsGetResponse?: DivisionsGetResponse;
-  DivisionsGetRequset?: DivisionsGetRequset;
-  OrganizationsGetResponse?: OrganizationsGetResponse;
-  OrganizationsGetResponseSubOrganizationList?: OrganizationsGetResponseSubOrganizationList1;
-  OrganizationsGetRequset?: OrganizationsGetRequset;
+  LoginPostResponse?: LoginPostResponse;
+  LoginPostRequset?: LoginPostRequset;
+  VerificationsPostResponse?: VerificationsPostResponse;
+  VerificationsPostRequset?: VerificationsPostRequset;
+  RegionsAsTreeGetResponse?: RegionsAsTreeGetResponse;
+  RegionsAsTreeGetResponseChildren?: RegionsAsTreeGetResponseChildren1;
+  RegionsAsTreeGetRequset?: RegionsAsTreeGetRequset;
+  ProfilesPostResponse?: ProfilesPostResponse;
+  ProfilesPostRequset?: ProfilesPostRequset;
+  ProfilesPostRequsetBadies?: ProfilesPostRequsetBadies1;
+  ProfilesPostRequsetAddresses?: ProfilesPostRequsetAddresses1;
+  AddressesGetResponse?: AddressesGetResponse;
+  AddressesGetRequset?: AddressesGetRequset;
+  CardsCardCodestatesPostResponse?: CardsCardCodestatesPostResponse;
+  CardsGetResponse?: CardsGetResponse;
+  CardsGetResponseAccount?: CardsGetResponseAccount1;
+  CardsGetRequset?: CardsGetRequset;
   ProductsGetResponse?: ProductsGetResponse;
+  ProductsGetResponseSkus?: ProductsGetResponseSkus1;
   ProductsGetRequset?: ProductsGetRequset;
-  ShopsGetResponse?: ShopsGetResponse;
-  ShopsGetResponseAlarmList?: ShopsGetResponseAlarmList1;
-  ShopsGetRequset?: ShopsGetRequset;
-  ShopsIdGetResponse?: ShopsIdGetResponse;
-  ShopsIdGetResponseBaseInfo?: ShopsIdGetResponseBaseInfo1;
-  ShopsIdGetResponseMemberInfo?: ShopsIdGetResponseMemberInfo1;
-  ShopsIdGetResponseSalesData?: ShopsIdGetResponseSalesData1;
-  ShopsIdGetResponseSalesDataMontSalesData?: ShopsIdGetResponseSalesDataMontSalesData1;
-  ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList?: ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList1;
-  ShopsIdGetResponseSalesDataYearSalesData?: ShopsIdGetResponseSalesDataYearSalesData1;
-  ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList?: ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList1;
-  ShopsIdGetResponseActivityInfo?: ShopsIdGetResponseActivityInfo1;
-  ShopsIdGetResponseActivityInfoActivityList?: ShopsIdGetResponseActivityInfoActivityList1;
-  ShopsIdGetRequset?: ShopsIdGetRequset;
-  VisitsummaryEmployeeCodeGetResponse?: VisitsummaryEmployeeCodeGetResponse;
-  VisitsummaryEmployeeCodeGetRequset?: VisitsummaryEmployeeCodeGetRequset;
-  VisitdetialsEmployeeCodeAsPageGetResponse?: VisitdetialsEmployeeCodeAsPageGetResponse;
-  VisitdetialsEmployeeCodeAsPageGetResponseRecords?: VisitdetialsEmployeeCodeAsPageGetResponseRecords1;
-  VisitdetialsEmployeeCodeAsPageGetRequset?: VisitdetialsEmployeeCodeAsPageGetRequset;
-  VisitorganizationstatisticsGetResponse?: VisitorganizationstatisticsGetResponse;
-  VisitorganizationstatisticsGetResponseSubOrgStatisticsList?: VisitorganizationstatisticsGetResponseSubOrgStatisticsList1;
-  VisitorganizationstatisticsGetRequset?: VisitorganizationstatisticsGetRequset;
-  VisitemployeestatisticsGetResponse?: VisitemployeestatisticsGetResponse;
-  VisitemployeestatisticsGetResponseEmployeeStatisticsList?: VisitemployeestatisticsGetResponseEmployeeStatisticsList1;
-  VisitemployeestatisticsGetRequset?: VisitemployeestatisticsGetRequset;
+  OrdersAsPageGetResponse?: OrdersAsPageGetResponse;
+  OrdersAsPageGetResponseContent?: OrdersAsPageGetResponseContent1;
+  OrdersAsPageGetRequset?: OrdersAsPageGetRequset;
+  OrdersPostResponse?: OrdersPostResponse;
+  OrdersPostRequset?: OrdersPostRequset;
+  OrdersPostRequsetSkus?: OrdersPostRequsetSkus1;
+  AdmincardsCardIdstatesPostResponse?: AdmincardsCardIdstatesPostResponse;
+  AdmincardsCardIdstatesPostRequset?: AdmincardsCardIdstatesPostRequset;
+  AdmincardsAsPageGetResponse?: AdmincardsAsPageGetResponse;
+  AdmincardsAsPageGetResponseContent?: AdmincardsAsPageGetResponseContent1;
+  AdmincardsAsPageGetResponseSort?: AdmincardsAsPageGetResponseSort1;
+  AdmincardsAsPageGetRequset?: AdmincardsAsPageGetRequset;
+  AdminordersAsPageGetResponse?: AdminordersAsPageGetResponse;
+  AdminordersAsPageGetResponseContent?: AdminordersAsPageGetResponseContent1;
+  AdminordersAsPageGetRequset?: AdminordersAsPageGetRequset;
+  AdminexportCardGetResponse?: AdminexportCardGetResponse;
+  AdminexportCardGetRequset?: AdminexportCardGetRequset;
+  AdminexportOrderGetResponse?: AdminexportOrderGetResponse;
+  AdminexportOrderGetRequset?: AdminexportOrderGetRequset;
+  AdminordersOrderIdsendOutPostResponse?: AdminordersOrderIdsendOutPostResponse;
+  AdminordersOrderIdsendOutPostRequset?: AdminordersOrderIdsendOutPostRequset;
 }
-export interface DictsDictIditemsGetResponse {
+export interface LoginPostResponse {
   /**
-   * 字典项目标识
+   * 凭证
    */
-  id?: number;
+  accessToken: string;
   /**
-   * 字典标识
+   * 有效时长（秒）
    */
-  dictId?: number;
-  /**
-   * 编码
-   */
-  code?: string;
-  /**
-   * 类型
-   */
-  type?: string;
-  /**
-   * 名称
-   */
-  text?: string;
-  /**
-   * 有效范围
-   */
-  scope?: string;
-  /**
-   * 排号
-   */
-  rank?: number;
-  /**
-   * 状态
-   */
-  status?: number;
-  /**
-   * 父亲
-   */
-  parent?: number;
-  /**
-   * 祖先
-   */
-  ancestors?: string;
-  /**
-   * 深度
-   */
-  depth?: number;
-  /**
-   * 叶子
-   */
-  terminal?: boolean;
-  /**
-   * 删除？
-   */
-  deteled?: boolean;
+  expiresIn: number;
 }
-export interface DictsDictIditemsGetRequset {}
-export interface DictsDictCodeitemsByCodeGetResponse {
+export interface LoginPostRequset {
   /**
-   * 字典项目标识
+   * 手机号
    */
-  id?: number;
+  mobile: string;
   /**
-   * 字典标识
+   * 验证码
    */
-  dictId?: number;
-  /**
-   * 编码
-   */
-  code?: string;
-  /**
-   * 类型
-   */
-  type?: string;
-  /**
-   * 名称
-   */
-  text?: string;
-  /**
-   * 有效范围
-   */
-  scope?: string;
-  /**
-   * 排号
-   */
-  rank?: number;
-  /**
-   * 状态
-   */
-  status?: number;
-  /**
-   * 父亲
-   */
-  parent?: number;
-  /**
-   * 祖先
-   */
-  ancestors?: string;
-  /**
-   * 深度
-   */
-  depth?: number;
-  /**
-   * 叶子
-   */
-  terminal?: boolean;
-  /**
-   * 删除
-   */
-  deleted?: boolean;
+  verification: string;
 }
-export interface DictsDictCodeitemsByCodeGetRequset {}
-export interface DictsGetResponse {
+export interface VerificationsPostResponse {}
+export interface VerificationsPostRequset {
   /**
-   * 标识
+   * 渠道名。10:短信,20:邮箱
    */
-  id: number;
+  channelName: number;
+  /**
+   * 手机号
+   */
+  channelValue: string;
+}
+export interface RegionsAsTreeGetResponse {
+  /**
+   * id
+   */
+  id: string;
   /**
    * 编码
    */
@@ -169,55 +91,11 @@ export interface DictsGetResponse {
   /**
    * 名称
    */
-  text: string;
+  name: string;
   /**
-   * 描述
+   * 名称后缀
    */
-  description: string;
-  /**
-   * 状态
-   */
-  status: number;
-  /**
-   * 删除？
-   */
-  deleted: boolean;
-}
-export interface DictsGetRequset {
-  /**
-   * 编码
-   */
-  code?: string;
-  /**
-   * 名称
-   */
-  text?: string;
-  /**
-   * 状态
-   */
-  status?: string;
-  /**
-   * 描述
-   */
-  description?: string;
-  /**
-   * 删除？
-   */
-  deleted?: string;
-}
-export interface DivisionsIdGetResponse {
-  /**
-   * 行政区ID
-   */
-  id: number;
-  /**
-   * 行政区编码
-   */
-  code: string;
-  /**
-   * 行政区名称
-   */
-  displayname: string;
+  postfix: string;
   /**
    * 简称
    */
@@ -227,135 +105,192 @@ export interface DivisionsIdGetResponse {
    */
   fullname: string;
   /**
-   * 别名
-   */
-  alias: string;
-  /**
-   * 行政区父Id
-   */
-  parentId: number;
-  /**
-   * 层级
-   */
-  hierarchy: "1" | "2" | "3" | "4" | "5" | "6";
-  /**
-   * 排位
-   */
-  rank: number;
-  /**
-   * 状态
-   */
-  status: 10 | 20;
-  /**
-   * 经度
-   */
-  lng: number;
-  /**
-   * 纬度
-   */
-  lat: number;
-  /**
-   * 描述
-   */
-  description: string;
-  /**
-   * 祖先
-   */
-  ancestors: string;
-  /**
-   * 深度
-   */
-  depth: number;
-  /**
-   * 叶子
-   */
-  terminal: boolean;
-}
-export interface DivisionsIdGetRequset {}
-export interface DivisionsGetResponse {
-  /**
-   * 行政区ID
-   */
-  id: number;
-  /**
-   * 行政区编码
-   */
-  code: string;
-  /**
-   * 行政区名称
-   */
-  displayname: string;
-  /**
-   * 行政区父Id
-   */
-  parentId: number;
-  /**
-   * 层级
-   */
-  hierarchy: "1" | "2" | "3" | "4" | "5" | "6";
-  /**
-   * 排位
-   */
-  rank: number;
-  /**
-   * 状态
-   */
-  status: 10 | 20;
-}
-export interface DivisionsGetRequset {
-  /**
-   * 行政区编码
-   */
-  code?: string;
-  /**
-   * 行政区父Id
-   */
-  parentId?: string;
-  /**
-   * 行政区名称
-   */
-  displayname?: string;
-}
-export interface OrganizationsGetResponse {
-  /**
-   * 编码
-   */
-  code: string;
-  /**
-   * 名称
-   */
-  name: string;
-  /**
-   * 层级
+   * 层级。1:国, 2:省, 3:市, 4:县, 5:镇, 6:村
    */
   hierarchy: string;
   /**
-   * 父编码
+   * 排序
    */
-  parentCode: string;
+  rank: number;
   /**
-   * 所有祖先（英文逗号分割）
-   */
-  ancestors: string;
-  /**
-   * 是否叶子（0-否；1-是）
-   */
-  terminal: number;
-  /**
-   * 状态
+   * 状态0:禁用,1.正常
    */
   status: number;
   /**
-   * 子组织列表
+   * 父级id
    */
-  subOrganizationList: OrganizationsGetResponseSubOrganizationList[];
+  parent: string;
+  /**
+   * 子节点
+   */
+  children: RegionsAsTreeGetResponseChildren[];
 }
 /**
- * 组织对象
+ * 与root属性一致
  */
-export interface OrganizationsGetResponseSubOrganizationList {
+export interface RegionsAsTreeGetResponseChildren {}
+export interface RegionsAsTreeGetResponseChildren1 {}
+export interface RegionsAsTreeGetRequset {}
+export interface ProfilesPostResponse {}
+export interface ProfilesPostRequset {
   /**
-   * 编码
+   * 宝宝列表
+   */
+  badies: ProfilesPostRequsetBadies[];
+  /**
+   * 地址列表
+   */
+  addresses: ProfilesPostRequsetAddresses[];
+}
+/**
+ * 宝宝
+ */
+export interface ProfilesPostRequsetBadies {
+  /**
+   * 生日
+   */
+  birthday: string;
+}
+/**
+ * 地址
+ */
+export interface ProfilesPostRequsetAddresses {
+  /**
+   * 收货人姓名
+   */
+  contactsName?: string;
+  /**
+   * 收货手机号
+   */
+  contactsPhone?: string;
+  /**
+   * 省份编码
+   */
+  province?: string;
+  /**
+   * 城市编码
+   */
+  city?: string;
+  /**
+   * 区县编码
+   */
+  county?: string;
+  /**
+   * 街镇编码
+   */
+  town?: string;
+  /**
+   * 详细地址
+   */
+  tail?: string;
+  /**
+   * 邮编
+   */
+  zipcode?: string;
+}
+export interface ProfilesPostRequsetBadies1 {
+  /**
+   * 生日
+   */
+  birthday?: string;
+}
+export interface ProfilesPostRequsetAddresses1 {
+  /**
+   * 收货人姓名
+   */
+  contactsName?: string;
+  /**
+   * 收货手机号
+   */
+  contactsPhone?: string;
+  /**
+   * 省份编码
+   */
+  province?: string;
+  /**
+   * 城市编码
+   */
+  city?: string;
+  /**
+   * 区县编码
+   */
+  county?: string;
+  /**
+   * 街镇编码
+   */
+  town?: string;
+  /**
+   * 详细地址
+   */
+  tail?: string;
+  /**
+   * 邮编
+   */
+  zipcode?: string;
+}
+export interface AddressesGetResponse {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 收货人姓名
+   */
+  contactsName?: string;
+  /**
+   * 收货手机号
+   */
+  contactsPhone?: string;
+  /**
+   * 省份编码
+   */
+  province?: string;
+  /**
+   * 省份名称
+   */
+  provinceName?: string;
+  /**
+   * 城市编码
+   */
+  city?: string;
+  /**
+   * 城市名称
+   */
+  cityName?: string;
+  /**
+   * 区县编码
+   */
+  county?: string;
+  /**
+   * 区县名称
+   */
+  countyName?: string;
+  /**
+   * 街镇编码
+   */
+  town?: string;
+  /**
+   * 街镇名称
+   */
+  townName?: string;
+  /**
+   * 详细地址
+   */
+  tail?: string;
+  /**
+   * 邮编
+   */
+  zipcode?: string;
+}
+export interface AddressesGetRequset {}
+export interface CardsCardCodestatesPostResponse {}
+export interface CardsGetResponse {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 编号
    */
   code: string;
   /**
@@ -363,29 +298,37 @@ export interface OrganizationsGetResponseSubOrganizationList {
    */
   name: string;
   /**
-   * 层级
+   * 面值
    */
-  hierarchy: string;
+  denomination: string;
   /**
-   * 父编码
+   * 有效时长（天）
    */
-  parentCode: string;
+  expireInDays: string;
   /**
-   * 所有祖先（英文逗号分割）
+   * 封面图片路径
    */
-  ancestors: string;
+  cover: string;
   /**
-   * 是否叶子（0-否；1-是）
+   * 类型。10:季卡, 20:半年卡, 30:年卡
    */
-  terminal: number;
+  category: number;
   /**
-   * 状态
+   * 状态。10:待审核,20:已通过
    */
   status: number;
+  account?: CardsGetResponseAccount;
 }
-export interface OrganizationsGetResponseSubOrganizationList1 {
+/**
+ * 账户
+ */
+export interface CardsGetResponseAccount {
   /**
-   * 编码
+   * 主键
+   */
+  id: string;
+  /**
+   * 编号
    */
   code: string;
   /**
@@ -393,1032 +336,782 @@ export interface OrganizationsGetResponseSubOrganizationList1 {
    */
   name: string;
   /**
-   * 层级
+   * 余额
    */
-  hierarchy: string;
+  balance: number;
   /**
-   * 父编码
+   * 激活日期
    */
-  parentCode: string;
+  activationDate: string;
   /**
-   * 所有祖先（英文逗号分割）
+   * 截止日期
    */
-  ancestors: string;
+  expirationDate: string;
   /**
-   * 是否叶子（0-否；1-是）
+   * 剩余天数
    */
-  terminal: number;
+  remainDays: number;
   /**
    * 状态
    */
   status: number;
 }
-export interface OrganizationsGetRequset {
+export interface CardsGetResponseAccount1 {
   /**
-   * 销售组织编码
+   * 主键
+   */
+  id: string;
+  /**
+   * 编号
    */
   code: string;
   /**
-   * 是否包含所有子节点（0-否；1-是）
+   * 名称
    */
-  includeChild: string;
+  name: string;
+  /**
+   * 余额
+   */
+  balance: number;
+  /**
+   * 激活日期
+   */
+  activationDate: string;
+  /**
+   * 截止日期
+   */
+  expirationDate: string;
+  /**
+   * 剩余天数
+   */
+  remainDays: number;
+  /**
+   * 状态
+   */
+  status: number;
 }
+export interface CardsGetRequset {}
 export interface ProductsGetResponse {
   /**
-   * 产品ID
+   * 主键
    */
-  id: number;
+  id: string;
   /**
-   * 产品编码
-   */
-  code: string;
-  /**
-   * 产品名称
-   */
-  name: string;
-  /**
-   * 产品图片
-   */
-  pictureUrl: string;
-}
-export interface ProductsGetRequset {}
-export interface ShopsGetResponse {
-  /**
-   * 门店ID
-   */
-  id: number;
-  /**
-   * 门店编码
+   * 编码
    */
   code: string;
   /**
-   * 门店名称
+   * 名称
    */
   name: string;
   /**
-   * 省编码
+   * 类目
    */
-  provinceCode: string;
+  category: string;
   /**
-   * 省
+   * 图片
    */
-  provinceName: string;
+  photos: string;
   /**
-   * 城市编码
+   * 状态
    */
-  cityCode: string;
+  status: number;
   /**
-   * 城市
+   * SKU列表
    */
-  cityName: string;
-  /**
-   * 区县编码
-   */
-  countyCode: string;
-  /**
-   * 区县
-   */
-  countyName: string;
-  /**
-   * 详细地址
-   */
-  address: string;
-  /**
-   * 经度
-   */
-  lng: number;
-  /**
-   * 纬度
-   */
-  lat: number;
-  /**
-   * 距离，单位米
-   */
-  distance: number;
-  /**
-   * 门店等级 10:A, 20:B, 30:C, 40:D
-   */
-  level: number;
-  /**
-   * 预警状态(0-7)  0：无预警；>0:有预警
-   */
-  alarmStatus: number;
-  /**
-   * 预警列表
-   */
-  alarmList?: ShopsGetResponseAlarmList[];
-}
-export interface ShopsGetResponseAlarmList {
-  /**
-   * 1.销量增幅大于50% 2.超过30天未拜访的门店  4.无动销门店
-   */
-  alarmCode: number;
-  /**
-   * 预警描述
-   */
-  alarmDesc?: string;
-}
-export interface ShopsGetResponseAlarmList1 {
-  /**
-   * 1.销量增幅大于50% 2.超过30天未拜访的门店  4.无动销门店
-   */
-  alarmCode: number;
-  /**
-   * 预警描述
-   */
-  alarmDesc?: string;
-}
-export interface ShopsGetRequset {
-  /**
-   * 门店名称.模糊匹配.
-   */
-  name?: string;
-  /**
-   * 经度
-   */
-  lng: string;
-  /**
-   * 纬度
-   */
-  lat: string;
-  /**
-   * 缩放距离
-   */
-  distance: string;
-  /**
-   * 门店等级列表  10:A, 20:B, 30:C, 40:D .多值以英文逗号分隔.
-   */
-  levels?: string;
-  /**
-   * 告警类型列表. 多值以英文逗号分隔.
-   */
-  alarmStatuses?: string;
-}
-export interface ShopsIdGetResponse {
-  baseInfo: ShopsIdGetResponseBaseInfo;
-  memberInfo: ShopsIdGetResponseMemberInfo;
-  salesData: ShopsIdGetResponseSalesData;
-  activityInfo: ShopsIdGetResponseActivityInfo;
+  skus: ProductsGetResponseSkus[];
 }
 /**
- * 门店基本信息
+ * SKU
  */
-export interface ShopsIdGetResponseBaseInfo {
+export interface ProductsGetResponseSkus {
   /**
-   * 门店ID
+   * 主键
    */
-  id: number;
+  id: string;
   /**
-   * 门店编码
+   * 编码
    */
   code: string;
   /**
-   * 门店名称
+   * 名称
    */
   name: string;
   /**
-   * 省份编码
+   * 价格
    */
-  provinceCode: string;
+  price: number;
   /**
-   * 省份
+   * 库存
    */
-  province: string;
+  quantity: number;
   /**
-   * 城市编码
+   * 图片
    */
-  cityCode: string;
+  photos: string;
   /**
-   * 城市
+   * 状态
    */
-  city: string;
+  status: number;
   /**
-   * 区县编码
+   * 属性列表
    */
-  areaCode: string;
-  /**
-   * 区县
-   */
-  area: string;
-  /**
-   * 详细地址
-   */
-  address: string;
-  /**
-   * 门店等级。10:A, 20:B, 30:C, 40:D
-   */
-  level: number;
-  /**
-   * 合作时间
-   */
-  effectiveDate: string;
-  /**
-   * 关联经理员工编码
-   */
-  employeeCode: string;
-  /**
-   * 关联经理员工姓名
-   */
-  employeeName: string;
-  /**
-   * 导购员
-   */
-  shoppingGuide: string;
-  /**
-   * 导购员电话
-   */
-  shoppingGuidePhone: string;
-}
-/**
- * 会员信息
- */
-export interface ShopsIdGetResponseMemberInfo {
-  /**
-   * 当月新客数
-   */
-  monthNewMemberNum: number;
-  /**
-   * 年累计新客数
-   */
-  yearNewMemberNum: number;
-}
-/**
- * 销售数据
- */
-export interface ShopsIdGetResponseSalesData {
-  montSalesData: ShopsIdGetResponseSalesDataMontSalesData;
-  yearSalesData: ShopsIdGetResponseSalesDataYearSalesData;
-}
-/**
- * 月销售数据
- */
-export interface ShopsIdGetResponseSalesDataMontSalesData {
-  /**
-   * 总数
-   */
-  totalNum: number;
-  /**
-   * 总金额
-   */
-  totalAmount: number;
-  /**
-   * 产品销售数据列表
-   */
-  productSalesDataList: ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList[];
-}
-/**
- * 产品销售数据
- */
-export interface ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList {
-  /**
-   * 产品编码
-   */
-  productCode: string;
-  /**
-   * 产品名称
-   */
-  productName: string;
-  /**
-   * 总数
-   */
-  totalNum: number;
-  /**
-   * 总金额
-   */
-  totalAmount: number;
-}
-/**
- * 年销售数据
- */
-export interface ShopsIdGetResponseSalesDataYearSalesData {
-  /**
-   * 总数
-   */
-  totalNum: number;
-  /**
-   * 总金额
-   */
-  totalAmount: number;
-  /**
-   * 产品销售数据列表
-   */
-  productSalesDataList: ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList[];
-}
-/**
- * 产品销售数据
- */
-export interface ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList {
-  /**
-   * 产品编码
-   */
-  productCode: string;
-  /**
-   * 产品名称
-   */
-  productName: string;
-  /**
-   * 总数
-   */
-  totalNum: string;
-  /**
-   * 总金额
-   */
-  totalAmount: string;
-}
-/**
- * 活动信息
- */
-export interface ShopsIdGetResponseActivityInfo {
-  /**
-   * 年累计活动数
-   */
-  yearActivityNum: string;
-  /**
-   * 活动列表
-   */
-  activityList: ShopsIdGetResponseActivityInfoActivityList[];
-}
-/**
- * 活动对象
- */
-export interface ShopsIdGetResponseActivityInfoActivityList {
-  /**
-   * 活动名称
-   */
-  activityName: string;
-  /**
-   * 开始时间
-   */
-  startTime: string;
-  /**
-   * 结束时间
-   */
-  endTime: string;
-  /**
-   * 是否为当月活动，1为当月活动，0为上个月活动
-   */
-  currentMonthActivity: number;
-}
-export interface ShopsIdGetResponseBaseInfo1 {
-  /**
-   * 门店ID
-   */
-  id: number;
-  /**
-   * 门店编码
-   */
-  code: string;
-  /**
-   * 门店名称
-   */
-  name: string;
-  /**
-   * 省份编码
-   */
-  provinceCode: string;
-  /**
-   * 省份
-   */
-  province: string;
-  /**
-   * 城市编码
-   */
-  cityCode: string;
-  /**
-   * 城市
-   */
-  city: string;
-  /**
-   * 区县编码
-   */
-  areaCode: string;
-  /**
-   * 区县
-   */
-  area: string;
-  /**
-   * 详细地址
-   */
-  address: string;
-  /**
-   * 门店等级。10:A, 20:B, 30:C, 40:D
-   */
-  level: number;
-  /**
-   * 合作时间
-   */
-  effectiveDate: string;
-  /**
-   * 关联经理员工编码
-   */
-  employeeCode: string;
-  /**
-   * 关联经理员工姓名
-   */
-  employeeName: string;
-  /**
-   * 导购员
-   */
-  shoppingGuide: string;
-  /**
-   * 导购员电话
-   */
-  shoppingGuidePhone: string;
-}
-export interface ShopsIdGetResponseMemberInfo1 {
-  /**
-   * 当月新客数
-   */
-  monthNewMemberNum: number;
-  /**
-   * 年累计新客数
-   */
-  yearNewMemberNum: number;
-}
-export interface ShopsIdGetResponseSalesData1 {
-  /**
-   * 月销售数据
-   */
-  montSalesData: {
+  properties: {
     /**
-     * 总数
+     * 主键
      */
-    totalNum: number;
+    id: string;
     /**
-     * 总金额
+     * 键。milk_weight: 重量, milk_stage: 段位
      */
-    totalAmount: number;
+    k: string;
     /**
-     * 产品销售数据列表
+     * 值
      */
-    productSalesDataList: {
-      /**
-       * 产品编码
-       */
-      productCode: string;
-      /**
-       * 产品名称
-       */
-      productName: string;
-      /**
-       * 总数
-       */
-      totalNum: number;
-      /**
-       * 总金额
-       */
-      totalAmount: number;
-      [k: string]: unknown;
-    }[];
-    [k: string]: unknown;
-  };
-  /**
-   * 年销售数据
-   */
-  yearSalesData: {
-    /**
-     * 总数
-     */
-    totalNum: number;
-    /**
-     * 总金额
-     */
-    totalAmount: number;
-    /**
-     * 产品销售数据列表
-     */
-    productSalesDataList: {
-      /**
-       * 产品编码
-       */
-      productCode: string;
-      /**
-       * 产品名称
-       */
-      productName: string;
-      /**
-       * 总数
-       */
-      totalNum: string;
-      /**
-       * 总金额
-       */
-      totalAmount: string;
-      [k: string]: unknown;
-    }[];
-    [k: string]: unknown;
-  };
-}
-export interface ShopsIdGetResponseSalesDataMontSalesData1 {
-  /**
-   * 总数
-   */
-  totalNum: number;
-  /**
-   * 总金额
-   */
-  totalAmount: number;
-  /**
-   * 产品销售数据列表
-   */
-  productSalesDataList: {
-    /**
-     * 产品编码
-     */
-    productCode: string;
-    /**
-     * 产品名称
-     */
-    productName: string;
-    /**
-     * 总数
-     */
-    totalNum: number;
-    /**
-     * 总金额
-     */
-    totalAmount: number;
+    v: string;
     [k: string]: unknown;
   }[];
 }
-export interface ShopsIdGetResponseSalesDataMontSalesDataProductSalesDataList1 {
+export interface ProductsGetResponseSkus1 {
   /**
-   * 产品编码
+   * 主键
    */
-  productCode: string;
+  id: string;
   /**
-   * 产品名称
+   * 编码
    */
-  productName: string;
+  code: string;
   /**
-   * 总数
+   * 名称
    */
-  totalNum: number;
+  name: string;
   /**
-   * 总金额
+   * 价格
    */
-  totalAmount: number;
-}
-export interface ShopsIdGetResponseSalesDataYearSalesData1 {
+  price: number;
   /**
-   * 总数
+   * 库存
    */
-  totalNum: number;
+  quantity: number;
   /**
-   * 总金额
+   * 图片
    */
-  totalAmount: number;
+  photos: string;
   /**
-   * 产品销售数据列表
+   * 状态
    */
-  productSalesDataList: {
+  status: number;
+  /**
+   * 属性列表
+   */
+  properties: {
     /**
-     * 产品编码
+     * 主键
      */
-    productCode: string;
+    id: string;
     /**
-     * 产品名称
+     * 键。milk_weight: 重量, milk_stage: 段位
      */
-    productName: string;
+    k: string;
     /**
-     * 总数
+     * 值
      */
-    totalNum: string;
-    /**
-     * 总金额
-     */
-    totalAmount: string;
+    v: string;
     [k: string]: unknown;
   }[];
 }
-export interface ShopsIdGetResponseSalesDataYearSalesDataProductSalesDataList1 {
+export interface ProductsGetRequset {
   /**
-   * 产品编码
+   * 卡种主键
    */
-  productCode: string;
-  /**
-   * 产品名称
-   */
-  productName: string;
-  /**
-   * 总数
-   */
-  totalNum: string;
-  /**
-   * 总金额
-   */
-  totalAmount: string;
+  cardId: string;
 }
-export interface ShopsIdGetResponseActivityInfo1 {
-  /**
-   * 年累计活动数
-   */
-  yearActivityNum: string;
-  /**
-   * 活动列表
-   */
-  activityList: {
-    /**
-     * 活动名称
-     */
-    activityName: string;
-    /**
-     * 开始时间
-     */
-    startTime: string;
-    /**
-     * 结束时间
-     */
-    endTime: string;
-    /**
-     * 是否为当月活动，1为当月活动，0为上个月活动
-     */
-    currentMonthActivity: number;
-    [k: string]: unknown;
-  }[];
-}
-export interface ShopsIdGetResponseActivityInfoActivityList1 {
-  /**
-   * 活动名称
-   */
-  activityName: string;
-  /**
-   * 开始时间
-   */
-  startTime: string;
-  /**
-   * 结束时间
-   */
-  endTime: string;
-  /**
-   * 是否为当月活动，1为当月活动，0为上个月活动
-   */
-  currentMonthActivity: number;
-}
-export interface ShopsIdGetRequset {}
-export interface VisitsummaryEmployeeCodeGetResponse {
-  /**
-   * 员工编号
-   */
-  employeeCode: string;
-  /**
-   * 员工名字
-   */
-  employeeName: string;
-  /**
-   * 目标数
-   */
-  targetNumber: number;
-  /**
-   * 拜访数
-   */
-  visitNumber: number;
-  /**
-   * 完成率
-   */
-  completionRate: number;
-}
-export interface VisitsummaryEmployeeCodeGetRequset {
-  /**
-   * 年
-   */
-  year: string;
-  /**
-   * 月
-   */
-  month: string;
-  /**
-   * 客户类别 10:门店, 20:经销商
-   */
-  customerCategory: string;
-}
-export interface VisitdetialsEmployeeCodeAsPageGetResponse {
+export interface OrdersAsPageGetResponse {
   /**
    * 每页数量
    */
   size: number;
   /**
-   * 当前页码
+   * 是否首页
    */
-  current: number;
+  first: number;
+  /**
+   * 是否末页
+   */
+  last: string;
+  /**
+   * 当前页
+   */
+  number: string;
+  /**
+   * 当前页的记录条数
+   */
+  numberOfElements: string;
   /**
    * 总页数
    */
-  pages: number;
+  totalPages: string;
   /**
    * 总数量
    */
-  total: number;
-  /**
-   * 字典列表
-   */
-  records: VisitdetialsEmployeeCodeAsPageGetResponseRecords[];
+  totalElements: string;
+  content: OrdersAsPageGetResponseContent;
 }
-export interface VisitdetialsEmployeeCodeAsPageGetResponseRecords {
+export interface OrdersAsPageGetResponseContent {
   /**
-   * 员工ID
+   * 订单主键
    */
-  employeeId: number;
+  id: number;
   /**
-   * 客户ID
+   * 用户标识
    */
-  customerId: number;
+  username: string;
   /**
-   * 客户编码
+   * 奶卡编号
    */
-  customerCode: string;
+  accountId: string;
   /**
-   * 客户名称
-   */
-  customerName: string;
-  /**
-   * 客户类别 10:门店, 20:经销商
-   */
-  customerCategory: string;
-  /**
-   * 拜访日期
-   */
-  visitDate: string;
-  /**
-   * 拜访时间
-   */
-  startTime: string;
-  /**
-   * 离店时间
-   */
-  endTime: string;
-}
-export interface VisitdetialsEmployeeCodeAsPageGetResponseRecords1 {
-  /**
-   * 员工ID
-   */
-  employeeId: number;
-  /**
-   * 客户ID
-   */
-  customerId: number;
-  /**
-   * 客户编码
-   */
-  customerCode: string;
-  /**
-   * 客户名称
-   */
-  customerName: string;
-  /**
-   * 客户类别 10:门店, 20:经销商
-   */
-  customerCategory: string;
-  /**
-   * 拜访日期
-   */
-  visitDate: string;
-  /**
-   * 拜访时间
-   */
-  startTime: string;
-  /**
-   * 离店时间
-   */
-  endTime: string;
-}
-export interface VisitdetialsEmployeeCodeAsPageGetRequset {
-  /**
-   * 年
-   */
-  year: string;
-  /**
-   * 月
-   */
-  month: string;
-  /**
-   * 客户类别 10:门店, 20:经销商
-   */
-  customerCategory: string;
-}
-export interface VisitorganizationstatisticsGetResponse {
-  /**
-   * 销售组织编码
+   * 订单编号
    */
   code: string;
   /**
-   * 销售组织名称
+   * 下单时间
    */
-  name: string;
+  bookTime: string;
   /**
-   * 销售组织层级
+   * 支付时间
    */
-  hierarchy: string;
+  payTime: string;
   /**
-   * 目标数
+   * 商品总数
    */
-  targetNumber: number;
+  quantity: number;
   /**
-   * 拜访数
+   * 状态。10:等待发货,20:部分发货,21:全部发货
    */
-  visitNumber: number;
+  status: string;
   /**
-   * 完成率
+   * sku图片
    */
-  completionRate: number;
+  skuPhotos: string;
   /**
-   * 是否叶子节点
+   * 键
    */
-  terminal: boolean;
+  k: string;
   /**
-   * 子组织拜访统计列表
+   * 值
    */
-  subOrgStatisticsList?: VisitorganizationstatisticsGetResponseSubOrgStatisticsList[];
+  v: string;
+  /**
+   * 省份名称
+   */
+  provinceName: string;
+  /**
+   * 地市名称
+   */
+  cityName: string;
+  /**
+   * 区县名称
+   */
+  countyName: string;
+  /**
+   * 街镇名称
+   */
+  townName: string;
+  /**
+   * 尾巴地址
+   */
+  tail: string;
+  /**
+   * 邮编
+   */
+  zipcode: string;
+  /**
+   * 快递公司名称
+   */
+  deliveryCompanyName: string;
+  /**
+   * 发货单号
+   */
+  deliveryCode: string;
+  /**
+   * 发货时间
+   */
+  deliveryTime: string;
+}
+export interface OrdersAsPageGetResponseContent1 {
+  /**
+   * 订单主键
+   */
+  id: number;
+  /**
+   * 用户标识
+   */
+  username: string;
+  /**
+   * 奶卡编号
+   */
+  accountId: string;
+  /**
+   * 订单编号
+   */
+  code: string;
+  /**
+   * 下单时间
+   */
+  bookTime: string;
+  /**
+   * 支付时间
+   */
+  payTime: string;
+  /**
+   * 商品总数
+   */
+  quantity: number;
+  /**
+   * 状态。10:等待发货,20:部分发货,21:全部发货
+   */
+  status: string;
+  /**
+   * sku图片
+   */
+  skuPhotos: string;
+  /**
+   * 键
+   */
+  k: string;
+  /**
+   * 值
+   */
+  v: string;
+  /**
+   * 省份名称
+   */
+  provinceName: string;
+  /**
+   * 地市名称
+   */
+  cityName: string;
+  /**
+   * 区县名称
+   */
+  countyName: string;
+  /**
+   * 街镇名称
+   */
+  townName: string;
+  /**
+   * 尾巴地址
+   */
+  tail: string;
+  /**
+   * 邮编
+   */
+  zipcode: string;
+  /**
+   * 快递公司名称
+   */
+  deliveryCompanyName: string;
+  /**
+   * 发货单号
+   */
+  deliveryCode: string;
+  /**
+   * 发货时间
+   */
+  deliveryTime: string;
+}
+export interface OrdersAsPageGetRequset {
+  /**
+   * 当前页(默认0)
+   */
+  number: string;
+  /**
+   * 每页数量(默认10)
+   */
+  size: string;
+}
+export interface OrdersPostResponse {}
+export interface OrdersPostRequset {
+  /**
+   * 账户编号
+   */
+  accountCode: string;
+  /**
+   * 地址主键
+   */
+  addressId: string;
+  /**
+   * SKU列表
+   */
+  skus: OrdersPostRequsetSkus[];
+  /**
+   * 验证码
+   */
+  verification: string;
 }
 /**
- * 组织拜访统计
+ * SKU
  */
-export interface VisitorganizationstatisticsGetResponseSubOrgStatisticsList {
+export interface OrdersPostRequsetSkus {
   /**
-   * 销售组织编码
+   * 编码
    */
   code: string;
   /**
-   * 销售组织名称
+   * 数量
+   */
+  quantity: string;
+}
+export interface OrdersPostRequsetSkus1 {
+  /**
+   * 编码
+   */
+  code?: string;
+  /**
+   * 数量
+   */
+  quantity?: string;
+}
+export interface AdmincardsCardIdstatesPostResponse {}
+export interface AdmincardsCardIdstatesPostRequset {
+  /**
+   * 状态。20:已通过,21:已拒绝,30:已退卡
+   */
+  status: string;
+}
+export interface AdmincardsAsPageGetResponse {
+  /**
+   * 每页数量
+   */
+  size: string;
+  /**
+   * 是否首页
+   */
+  first: string;
+  /**
+   * 是否末页
+   */
+  last: string;
+  /**
+   * 当前页
+   */
+  number: string;
+  /**
+   * 当前页的记录条数
+   */
+  numberOfElements: string;
+  /**
+   * 总页数
+   */
+  totalPages: string;
+  /**
+   * 总数量
+   */
+  totalElements: string;
+  content: AdmincardsAsPageGetResponseContent;
+  sort: AdmincardsAsPageGetResponseSort;
+}
+export interface AdmincardsAsPageGetResponseContent {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 编号
+   */
+  code: string;
+  /**
+   * 名称
    */
   name: string;
   /**
-   * 销售组织层级
+   * 面值
    */
-  hierarchy: string;
+  denomination?: string;
   /**
-   * 是否叶子节点
+   * 封面图片路径
    */
-  terminal: boolean;
+  cover?: string;
   /**
-   * 目标数
+   * 类型。10:季卡, 20:半年卡, 30:年卡
    */
-  targetNumber: number;
+  category: number;
   /**
-   * 拜访数
+   * 状态。10:待审核,20:已通过,21:已拒绝,30:已退卡
    */
-  visitNumber: number;
+  status: number;
   /**
-   * 完成率
+   * 状态时间
    */
-  completionRate: number;
-}
-export interface VisitorganizationstatisticsGetResponseSubOrgStatisticsList1 {
+  statusTime: string;
   /**
-   * 销售组织编码
+   * 绑定时间。取创建时间
    */
-  code: string;
-  /**
-   * 销售组织名称
-   */
-  name: string;
-  /**
-   * 销售组织层级
-   */
-  hierarchy: string;
-  /**
-   * 是否叶子节点
-   */
-  terminal: boolean;
-  /**
-   * 目标数
-   */
-  targetNumber: number;
-  /**
-   * 拜访数
-   */
-  visitNumber: number;
-  /**
-   * 完成率
-   */
-  completionRate: number;
-}
-export interface VisitorganizationstatisticsGetRequset {
-  /**
-   * 年
-   */
-  year: string;
-  /**
-   * 月
-   */
-  month: string;
-  /**
-   * 销售组织编码
-   */
-  code: string;
-  /**
-   * 销售组织层级
-   */
-  hierarchy: string;
-  /**
-   * 客户类别 10:门店, 20:经销商
-   */
-  customerCategory: string;
-}
-export interface VisitemployeestatisticsGetResponse {
-  /**
-   * 销售组织编码
-   */
-  code: string;
-  /**
-   * 销售组织名称
-   */
-  name: string;
-  /**
-   * 销售组织层级
-   */
-  hierarchy: number;
-  /**
-   * 目标数
-   */
-  targetNumber: number;
-  /**
-   * 拜访数
-   */
-  visitNumber: number;
-  /**
-   * 完成率
-   */
-  completionRate: number;
-  /**
-   * 员工拜访统计列表
-   */
-  employeeStatisticsList: VisitemployeestatisticsGetResponseEmployeeStatisticsList[];
+  applyTime: string;
 }
 /**
- * 员工拜访统计
+ * 排序信息
  */
-export interface VisitemployeestatisticsGetResponseEmployeeStatisticsList {
+export interface AdmincardsAsPageGetResponseSort {}
+export interface AdmincardsAsPageGetResponseContent1 {
   /**
-   * 员工编码
+   * 主键
    */
-  employeeCode: string;
+  id: string;
   /**
-   * 员工姓名
-   */
-  employeeName: string;
-  /**
-   * 目标数
-   */
-  targetNumber: number;
-  /**
-   * 拜访数
-   */
-  visitNumber: number;
-  /**
-   * 完成率
-   */
-  completionRate: number;
-  /**
-   * 员工ID
-   */
-  employeeId: string;
-}
-export interface VisitemployeestatisticsGetResponseEmployeeStatisticsList1 {
-  /**
-   * 员工编码
-   */
-  employeeCode: string;
-  /**
-   * 员工姓名
-   */
-  employeeName: string;
-  /**
-   * 目标数
-   */
-  targetNumber: number;
-  /**
-   * 拜访数
-   */
-  visitNumber: number;
-  /**
-   * 完成率
-   */
-  completionRate: number;
-  /**
-   * 员工ID
-   */
-  employeeId: string;
-}
-export interface VisitemployeestatisticsGetRequset {
-  /**
-   * 年
-   */
-  year: string;
-  /**
-   * 月
-   */
-  month: string;
-  /**
-   * 销售组织编码
+   * 编号
    */
   code: string;
   /**
-   * 销售组织层级
+   * 名称
    */
-  hierarchy: string;
+  name: string;
   /**
-   * 客户类别 10:门店, 20:经销商
+   * 面值
    */
-  customerCategory: string;
+  denomination?: string;
+  /**
+   * 封面图片路径
+   */
+  cover?: string;
+  /**
+   * 类型。10:季卡, 20:半年卡, 30:年卡
+   */
+  category: number;
+  /**
+   * 状态。10:待审核,20:已通过,21:已拒绝,30:已退卡
+   */
+  status: number;
+  /**
+   * 状态时间
+   */
+  statusTime: string;
+  /**
+   * 绑定时间。取创建时间
+   */
+  applyTime: string;
+}
+export interface AdmincardsAsPageGetResponseSort1 {}
+export interface AdmincardsAsPageGetRequset {
+  /**
+   * 当前页码(默认0)
+   */
+  number: string;
+  /**
+   * 每页数量(默认10)
+   */
+  size: string;
+  /**
+   * 状态
+   */
+  status: string;
+}
+export interface AdminordersAsPageGetResponse {
+  /**
+   * 每页数量
+   */
+  size: string;
+  /**
+   * 是否首页
+   */
+  first: string;
+  /**
+   * 是否末页
+   */
+  last: string;
+  /**
+   * 当前页
+   */
+  number: string;
+  /**
+   * 当前页的记录条数
+   */
+  numberOfElements: string;
+  /**
+   * 总页数
+   */
+  totalPages: string;
+  /**
+   * 总数量
+   */
+  totalElements: string;
+  content: AdminordersAsPageGetResponseContent;
+  /**
+   * 排序信息
+   */
+  sort: string;
+}
+export interface AdminordersAsPageGetResponseContent {
+  /**
+   * 订单号
+   */
+  id: string;
+  /**
+   * 商品名称
+   */
+  productName: string;
+  /**
+   * 段数
+   */
+  skuAttr: number;
+  /**
+   * 数量
+   */
+  num: string;
+  /**
+   * 收货人姓名
+   */
+  contactsName: string;
+  /**
+   * 手机号
+   */
+  contactsPhone: string;
+  /**
+   * 省份名称
+   */
+  provinceName: string;
+  /**
+   * 城市名称
+   */
+  cityName: string;
+  /**
+   * 区县名称
+   */
+  county: string;
+  /**
+   * 街镇名称
+   */
+  town: string;
+  /**
+   * 详细地址
+   */
+  tail: string;
+  /**
+   * 邮编
+   */
+  zipcode: string;
+  /**
+   * 下单时间
+   */
+  bookTime: string;
+  /**
+   * 发货时间
+   */
+  expressTime: string;
+  /**
+   * 快递公司名称
+   */
+  expressCompanyName: string;
+  /**
+   * 快递单号
+   */
+  expressTicket: string;
+  /**
+   * 状态
+   */
+  status: string;
+}
+export interface AdminordersAsPageGetResponseContent1 {
+  /**
+   * 订单号
+   */
+  id: string;
+  /**
+   * 商品名称
+   */
+  productName: string;
+  /**
+   * 段数
+   */
+  skuAttr: number;
+  /**
+   * 数量
+   */
+  num: string;
+  /**
+   * 收货人姓名
+   */
+  contactsName: string;
+  /**
+   * 手机号
+   */
+  contactsPhone: string;
+  /**
+   * 省份名称
+   */
+  provinceName: string;
+  /**
+   * 城市名称
+   */
+  cityName: string;
+  /**
+   * 区县名称
+   */
+  county: string;
+  /**
+   * 街镇名称
+   */
+  town: string;
+  /**
+   * 详细地址
+   */
+  tail: string;
+  /**
+   * 邮编
+   */
+  zipcode: string;
+  /**
+   * 下单时间
+   */
+  bookTime: string;
+  /**
+   * 发货时间
+   */
+  expressTime: string;
+  /**
+   * 快递公司名称
+   */
+  expressCompanyName: string;
+  /**
+   * 快递单号
+   */
+  expressTicket: string;
+  /**
+   * 状态
+   */
+  status: string;
+}
+export interface AdminordersAsPageGetRequset {
+  /**
+   * 当前页(默认0)
+   */
+  number: string;
+  /**
+   * 每页数量(默认10)
+   */
+  size: string;
+  /**
+   * 状态
+   */
+  status: string;
+}
+export interface AdminexportCardGetResponse {}
+export interface AdminexportCardGetRequset {}
+export interface AdminexportOrderGetResponse {}
+export interface AdminexportOrderGetRequset {}
+export interface AdminordersOrderIdsendOutPostResponse {}
+export interface AdminordersOrderIdsendOutPostRequset {
+  /**
+   * 快递公司编码
+   */
+  expressCompanyCode: string;
+  /**
+   * 快递公司名称
+   */
+  expressCompanyName: string;
+  /**
+   * 快递单号
+   */
+  expressTicket: string;
 }

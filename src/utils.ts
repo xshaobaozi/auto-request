@@ -12,6 +12,7 @@ import {
   RequestGetProperties,
   RequestGetPropertiesObject,
 } from './define';
+import deepClone from 'deep-clone';
 
 // 读取入口文件
 export const readFileSync = (source) => {
@@ -108,7 +109,7 @@ export const renderTsPreImport = (prePath: string, preDefine: string) => {
   `
 }
 
-export const deepCopy = (json: any) => JSON.parse(JSON.stringify(json));
+export const deepCopy = (json: any) => deepClone(json);
 
 export const createTypeDefineObj = (title: string, properties: any, type: string, required?: any) => {
   return {
