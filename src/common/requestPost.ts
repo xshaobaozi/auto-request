@@ -133,7 +133,7 @@ class RequestPost extends BaseRequest {
         return `
             // ${summary}
             return Taro.request({
-                url: \`${host}/${url}\`,
+                url: \`${host}${url}\`,
                 method: '${method}',
                 data: params,
                 ...options, 

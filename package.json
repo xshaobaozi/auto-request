@@ -1,6 +1,6 @@
 {
   "name": "swagger-json-schema-request",
-  "version": "1.3.12",
+  "version": "1.3.13",
   "main": "dist/bundle.js",
   "description": "通过Yapi JSON Schema生成接口Axios或Taro接口",
   "license": "MIT",
