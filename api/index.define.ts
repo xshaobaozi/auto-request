@@ -6,205 +6,1112 @@
  */
 
 export interface Api {
-  MemberIdKeypathGetResponse?: MemberIdKeypathGetResponse;
-  MemberIdKeypathGetResponseAddress?: MemberIdKeypathGetResponseAddress1;
-  MemberIdKeypathGetResponseInfo?: MemberIdKeypathGetResponseInfo1;
-  MemberIdKeypathGetResponseInfoBody?: MemberIdKeypathGetResponseInfoBody1;
-  MemberIdKeypathGetRequset?: MemberIdKeypathGetRequset;
-  MemberupdatePostResponse?: MemberupdatePostResponse;
-  MemberupdatePostResponseAddress?: MemberupdatePostResponseAddress1;
-  MemberupdatePostResponseInfo?: MemberupdatePostResponseInfo1;
-  MemberupdatePostResponseInfoBody?: MemberupdatePostResponseInfoBody1;
-  MemberupdatePostRequset?: MemberupdatePostRequset;
+  LoginPostResponse?: LoginPostResponse;
+  LoginPostRequset?: LoginPostRequset;
+  VerificationsPostResponse?: VerificationsPostResponse;
+  VerificationsPostRequset?: VerificationsPostRequset;
+  RegionsAsTreeGetResponse?: RegionsAsTreeGetResponse;
+  RegionsAsTreeGetResponseChildren?: RegionsAsTreeGetResponseChildren1;
+  RegionsAsTreeGetRequset?: RegionsAsTreeGetRequset;
+  ProfilesPostResponse?: ProfilesPostResponse;
+  ProfilesPostRequset?: ProfilesPostRequset;
+  ProfilesPostRequsetBadies?: ProfilesPostRequsetBadies1;
+  ProfilesPostRequsetAddresses?: ProfilesPostRequsetAddresses1;
+  AddressesGetResponse?: AddressesGetResponse;
+  AddressesGetRequset?: AddressesGetRequset;
+  CardsCardCodestatesPostResponse?: CardsCardCodestatesPostResponse;
+  CardsGetResponse?: CardsGetResponse;
+  CardsGetResponseAccount?: CardsGetResponseAccount1;
+  CardsGetRequset?: CardsGetRequset;
+  ProductsGetResponse?: ProductsGetResponse;
+  ProductsGetResponseSkus?: ProductsGetResponseSkus1;
+  ProductsGetRequset?: ProductsGetRequset;
+  OrdersAsPageGetResponse?: OrdersAsPageGetResponse;
+  OrdersAsPageGetResponseContent?: OrdersAsPageGetResponseContent1;
+  OrdersAsPageGetRequset?: OrdersAsPageGetRequset;
+  OrdersPostResponse?: OrdersPostResponse;
+  OrdersPostRequset?: OrdersPostRequset;
+  OrdersPostRequsetSkus?: OrdersPostRequsetSkus1;
+  AdmincardsCardIdstatesPostResponse?: AdmincardsCardIdstatesPostResponse;
+  AdmincardsCardIdstatesPostRequset?: AdmincardsCardIdstatesPostRequset;
+  AdmincardsAsPageGetResponse?: AdmincardsAsPageGetResponse;
+  AdmincardsAsPageGetResponseContent?: AdmincardsAsPageGetResponseContent1;
+  AdmincardsAsPageGetResponseSort?: AdmincardsAsPageGetResponseSort1;
+  AdmincardsAsPageGetRequset?: AdmincardsAsPageGetRequset;
+  AdminordersAsPageGetResponse?: AdminordersAsPageGetResponse;
+  AdminordersAsPageGetResponseContent?: AdminordersAsPageGetResponseContent1;
+  AdminordersAsPageGetRequset?: AdminordersAsPageGetRequset;
+  AdminexportCardGetResponse?: AdminexportCardGetResponse;
+  AdminexportCardGetRequset?: AdminexportCardGetRequset;
+  AdminexportOrderGetResponse?: AdminexportOrderGetResponse;
+  AdminexportOrderGetRequset?: AdminexportOrderGetRequset;
+  AdminordersOrderIdsendOutPostResponse?: AdminordersOrderIdsendOutPostResponse;
+  AdminordersOrderIdsendOutPostRequset?: AdminordersOrderIdsendOutPostRequset;
 }
-export interface MemberIdKeypathGetResponse {
+export interface LoginPostResponse {
   /**
-   * 姓名
+   * 凭证
    */
-  name: string;
+  accessToken: string;
   /**
-   * 地址列表
+   * 有效时长（秒）
    */
-  address: MemberIdKeypathGetResponseAddress[];
-  info: MemberIdKeypathGetResponseInfo;
+  expiresIn: number;
 }
-export interface MemberIdKeypathGetResponseAddress {
+export interface LoginPostRequset {
   /**
-   * 城市
+   * 手机号
    */
-  city: string;
+  mobile: string;
   /**
-   * 区
+   * 验证码
    */
-  qu: string;
-  /**
-   * 门派
-   */
-  menpai: string;
+  verification: string;
 }
-export interface MemberIdKeypathGetResponseInfo {
+export interface VerificationsPostResponse {}
+export interface VerificationsPostRequset {
   /**
-   * 年龄
+   * 渠道名。10:短信,20:邮箱
    */
-  age: number;
-  body: MemberIdKeypathGetResponseInfoBody;
+  channelName: number;
+  /**
+   * 手机号
+   */
+  channelValue: string;
 }
-/**
- * 身体信息
- */
-export interface MemberIdKeypathGetResponseInfoBody {
+export interface RegionsAsTreeGetResponse {
   /**
-   * 身高
+   * id
    */
-  height: string;
-  /**
-   * 体重
-   */
-  体重: string;
-}
-export interface MemberIdKeypathGetResponseAddress1 {
-  /**
-   * 城市
-   */
-  city: string;
-  /**
-   * 区
-   */
-  qu: string;
-  /**
-   * 门派
-   */
-  menpai: string;
-}
-export interface MemberIdKeypathGetResponseInfo1 {
-  /**
-   * 年龄
-   */
-  age: number;
-  /**
-   * 身体信息
-   */
-  body: {
-    /**
-     * 身高
-     */
-    height: string;
-    /**
-     * 体重
-     */
-    体重: string;
-    [k: string]: unknown;
-  };
-}
-export interface MemberIdKeypathGetResponseInfoBody1 {
-  /**
-   * 身高
-   */
-  height: string;
-  /**
-   * 体重
-   */
-  体重: string;
-}
-export interface MemberIdKeypathGetRequset {
-  /**
-   * 姓名
-   */
-  name: string;
-  /**
-   * 密码
-   */
-  password: string;
-}
-export interface MemberupdatePostResponse {
-  /**
-   * 姓名
-   */
-  name: string;
-  /**
-   * 地址列表
-   */
-  address: MemberupdatePostResponseAddress[];
-  info: MemberupdatePostResponseInfo;
-}
-export interface MemberupdatePostResponseAddress {
-  /**
-   * 城市
-   */
-  city: string;
-  /**
-   * 区
-   */
-  qu: string;
-  /**
-   * 门派
-   */
-  menpai: string;
-}
-export interface MemberupdatePostResponseInfo {
-  /**
-   * 年龄
-   */
-  age: number;
-  body: MemberupdatePostResponseInfoBody;
-}
-/**
- * 身体信息
- */
-export interface MemberupdatePostResponseInfoBody {
-  /**
-   * 身高
-   */
-  height: string;
-  /**
-   * 体重
-   */
-  体重: string;
-}
-export interface MemberupdatePostResponseAddress1 {
-  /**
-   * 城市
-   */
-  city: string;
-  /**
-   * 区
-   */
-  qu: string;
-  /**
-   * 门派
-   */
-  menpai: string;
-}
-export interface MemberupdatePostResponseInfo1 {
-  /**
-   * 年龄
-   */
-  age: number;
-  /**
-   * 身体信息
-   */
-  body: {
-    /**
-     * 身高
-     */
-    height: string;
-    /**
-     * 体重
-     */
-    体重: string;
-    [k: string]: unknown;
-  };
-}
-export interface MemberupdatePostResponseInfoBody1 {
-  /**
-   * 身高
-   */
-  height: string;
-  /**
-   * 体重
-   */
-  体重: string;
-}
-export interface MemberupdatePostRequset {
   id: string;
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 名称后缀
+   */
+  postfix: string;
+  /**
+   * 简称
+   */
+  shortname: string;
+  /**
+   * 全称
+   */
+  fullname: string;
+  /**
+   * 层级。1:国, 2:省, 3:市, 4:县, 5:镇, 6:村
+   */
+  hierarchy: string;
+  /**
+   * 排序
+   */
+  rank: number;
+  /**
+   * 状态0:禁用,1.正常
+   */
+  status: number;
+  /**
+   * 父级id
+   */
+  parent: string;
+  /**
+   * 子节点
+   */
+  children: RegionsAsTreeGetResponseChildren[];
+}
+/**
+ * 与root属性一致
+ */
+export interface RegionsAsTreeGetResponseChildren {}
+export interface RegionsAsTreeGetResponseChildren1 {}
+export interface RegionsAsTreeGetRequset {}
+export interface ProfilesPostResponse {}
+export interface ProfilesPostRequset {
+  /**
+   * 宝宝列表
+   */
+  badies: ProfilesPostRequsetBadies[];
+  /**
+   * 地址列表
+   */
+  addresses: ProfilesPostRequsetAddresses[];
+}
+/**
+ * 宝宝
+ */
+export interface ProfilesPostRequsetBadies {
+  /**
+   * 生日
+   */
+  birthday: string;
+}
+/**
+ * 地址
+ */
+export interface ProfilesPostRequsetAddresses {
+  /**
+   * 收货人姓名
+   */
+  contactsName?: string;
+  /**
+   * 收货手机号
+   */
+  contactsPhone?: string;
+  /**
+   * 省份编码
+   */
+  province?: string;
+  /**
+   * 城市编码
+   */
+  city?: string;
+  /**
+   * 区县编码
+   */
+  county?: string;
+  /**
+   * 街镇编码
+   */
+  town?: string;
+  /**
+   * 详细地址
+   */
+  tail?: string;
+  /**
+   * 邮编
+   */
+  zipcode?: string;
+}
+export interface ProfilesPostRequsetBadies1 {
+  /**
+   * 生日
+   */
+  birthday?: string;
+}
+export interface ProfilesPostRequsetAddresses1 {
+  /**
+   * 收货人姓名
+   */
+  contactsName?: string;
+  /**
+   * 收货手机号
+   */
+  contactsPhone?: string;
+  /**
+   * 省份编码
+   */
+  province?: string;
+  /**
+   * 城市编码
+   */
+  city?: string;
+  /**
+   * 区县编码
+   */
+  county?: string;
+  /**
+   * 街镇编码
+   */
+  town?: string;
+  /**
+   * 详细地址
+   */
+  tail?: string;
+  /**
+   * 邮编
+   */
+  zipcode?: string;
+}
+export interface AddressesGetResponse {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 收货人姓名
+   */
+  contactsName?: string;
+  /**
+   * 收货手机号
+   */
+  contactsPhone?: string;
+  /**
+   * 省份编码
+   */
+  province?: string;
+  /**
+   * 省份名称
+   */
+  provinceName?: string;
+  /**
+   * 城市编码
+   */
+  city?: string;
+  /**
+   * 城市名称
+   */
+  cityName?: string;
+  /**
+   * 区县编码
+   */
+  county?: string;
+  /**
+   * 区县名称
+   */
+  countyName?: string;
+  /**
+   * 街镇编码
+   */
+  town?: string;
+  /**
+   * 街镇名称
+   */
+  townName?: string;
+  /**
+   * 详细地址
+   */
+  tail?: string;
+  /**
+   * 邮编
+   */
+  zipcode?: string;
+}
+export interface AddressesGetRequset {}
+export interface CardsCardCodestatesPostResponse {}
+export interface CardsGetResponse {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 编号
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 面值
+   */
+  denomination: string;
+  /**
+   * 有效时长（天）
+   */
+  expireInDays: string;
+  /**
+   * 封面图片路径
+   */
+  cover: string;
+  /**
+   * 类型。10:季卡, 20:半年卡, 30:年卡
+   */
+  category: number;
+  /**
+   * 状态。10:待审核,20:已通过
+   */
+  status: number;
+  account?: CardsGetResponseAccount;
+}
+/**
+ * 账户
+ */
+export interface CardsGetResponseAccount {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 编号
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 余额
+   */
+  balance: number;
+  /**
+   * 激活日期
+   */
+  activationDate: string;
+  /**
+   * 截止日期
+   */
+  expirationDate: string;
+  /**
+   * 剩余天数
+   */
+  remainDays: number;
+  /**
+   * 状态
+   */
+  status: number;
+}
+export interface CardsGetResponseAccount1 {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 编号
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 余额
+   */
+  balance: number;
+  /**
+   * 激活日期
+   */
+  activationDate: string;
+  /**
+   * 截止日期
+   */
+  expirationDate: string;
+  /**
+   * 剩余天数
+   */
+  remainDays: number;
+  /**
+   * 状态
+   */
+  status: number;
+}
+export interface CardsGetRequset {}
+export interface ProductsGetResponse {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 类目
+   */
+  category: string;
+  /**
+   * 图片
+   */
+  photos: string;
+  /**
+   * 状态
+   */
+  status: number;
+  /**
+   * SKU列表
+   */
+  skus: ProductsGetResponseSkus[];
+}
+/**
+ * SKU
+ */
+export interface ProductsGetResponseSkus {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 价格
+   */
+  price: number;
+  /**
+   * 库存
+   */
+  quantity: number;
+  /**
+   * 图片
+   */
+  photos: string;
+  /**
+   * 状态
+   */
+  status: number;
+  /**
+   * 属性列表
+   */
+  properties: {
+    /**
+     * 主键
+     */
+    id: string;
+    /**
+     * 键。milk_weight: 重量, milk_stage: 段位
+     */
+    k: string;
+    /**
+     * 值
+     */
+    v: string;
+    [k: string]: unknown;
+  }[];
+}
+export interface ProductsGetResponseSkus1 {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 价格
+   */
+  price: number;
+  /**
+   * 库存
+   */
+  quantity: number;
+  /**
+   * 图片
+   */
+  photos: string;
+  /**
+   * 状态
+   */
+  status: number;
+  /**
+   * 属性列表
+   */
+  properties: {
+    /**
+     * 主键
+     */
+    id: string;
+    /**
+     * 键。milk_weight: 重量, milk_stage: 段位
+     */
+    k: string;
+    /**
+     * 值
+     */
+    v: string;
+    [k: string]: unknown;
+  }[];
+}
+export interface ProductsGetRequset {
+  /**
+   * 卡种主键
+   */
+  cardId: string;
+}
+export interface OrdersAsPageGetResponse {
+  /**
+   * 每页数量
+   */
+  size: number;
+  /**
+   * 是否首页
+   */
+  first: number;
+  /**
+   * 是否末页
+   */
+  last: string;
+  /**
+   * 当前页
+   */
+  number: string;
+  /**
+   * 当前页的记录条数
+   */
+  numberOfElements: string;
+  /**
+   * 总页数
+   */
+  totalPages: string;
+  /**
+   * 总数量
+   */
+  totalElements: string;
+  content: OrdersAsPageGetResponseContent;
+}
+export interface OrdersAsPageGetResponseContent {
+  /**
+   * 订单主键
+   */
+  id: number;
+  /**
+   * 用户标识
+   */
+  username: string;
+  /**
+   * 奶卡编号
+   */
+  accountId: string;
+  /**
+   * 订单编号
+   */
+  code: string;
+  /**
+   * 下单时间
+   */
+  bookTime: string;
+  /**
+   * 支付时间
+   */
+  payTime: string;
+  /**
+   * 商品总数
+   */
+  quantity: number;
+  /**
+   * 状态。10:等待发货,20:部分发货,21:全部发货
+   */
+  status: string;
+  /**
+   * sku图片
+   */
+  skuPhotos: string;
+  /**
+   * 键
+   */
+  k: string;
+  /**
+   * 值
+   */
+  v: string;
+  /**
+   * 省份名称
+   */
+  provinceName: string;
+  /**
+   * 地市名称
+   */
+  cityName: string;
+  /**
+   * 区县名称
+   */
+  countyName: string;
+  /**
+   * 街镇名称
+   */
+  townName: string;
+  /**
+   * 尾巴地址
+   */
+  tail: string;
+  /**
+   * 邮编
+   */
+  zipcode: string;
+  /**
+   * 快递公司名称
+   */
+  deliveryCompanyName: string;
+  /**
+   * 发货单号
+   */
+  deliveryCode: string;
+  /**
+   * 发货时间
+   */
+  deliveryTime: string;
+}
+export interface OrdersAsPageGetResponseContent1 {
+  /**
+   * 订单主键
+   */
+  id: number;
+  /**
+   * 用户标识
+   */
+  username: string;
+  /**
+   * 奶卡编号
+   */
+  accountId: string;
+  /**
+   * 订单编号
+   */
+  code: string;
+  /**
+   * 下单时间
+   */
+  bookTime: string;
+  /**
+   * 支付时间
+   */
+  payTime: string;
+  /**
+   * 商品总数
+   */
+  quantity: number;
+  /**
+   * 状态。10:等待发货,20:部分发货,21:全部发货
+   */
+  status: string;
+  /**
+   * sku图片
+   */
+  skuPhotos: string;
+  /**
+   * 键
+   */
+  k: string;
+  /**
+   * 值
+   */
+  v: string;
+  /**
+   * 省份名称
+   */
+  provinceName: string;
+  /**
+   * 地市名称
+   */
+  cityName: string;
+  /**
+   * 区县名称
+   */
+  countyName: string;
+  /**
+   * 街镇名称
+   */
+  townName: string;
+  /**
+   * 尾巴地址
+   */
+  tail: string;
+  /**
+   * 邮编
+   */
+  zipcode: string;
+  /**
+   * 快递公司名称
+   */
+  deliveryCompanyName: string;
+  /**
+   * 发货单号
+   */
+  deliveryCode: string;
+  /**
+   * 发货时间
+   */
+  deliveryTime: string;
+}
+export interface OrdersAsPageGetRequset {
+  /**
+   * 当前页(默认0)
+   */
+  number: string;
+  /**
+   * 每页数量(默认10)
+   */
+  size: string;
+}
+export interface OrdersPostResponse {}
+export interface OrdersPostRequset {
+  /**
+   * 账户编号
+   */
+  accountCode: string;
+  /**
+   * 地址主键
+   */
+  addressId: string;
+  /**
+   * SKU列表
+   */
+  skus: OrdersPostRequsetSkus[];
+  /**
+   * 验证码
+   */
+  verification: string;
+}
+/**
+ * SKU
+ */
+export interface OrdersPostRequsetSkus {
+  /**
+   * 编码
+   */
+  code: string;
+  /**
+   * 数量
+   */
+  quantity: string;
+}
+export interface OrdersPostRequsetSkus1 {
+  /**
+   * 编码
+   */
+  code?: string;
+  /**
+   * 数量
+   */
+  quantity?: string;
+}
+export interface AdmincardsCardIdstatesPostResponse {}
+export interface AdmincardsCardIdstatesPostRequset {
+  /**
+   * 状态。20:已通过,21:已拒绝,30:已退卡
+   */
+  status: string;
+}
+export interface AdmincardsAsPageGetResponse {
+  /**
+   * 每页数量
+   */
+  size: string;
+  /**
+   * 是否首页
+   */
+  first: string;
+  /**
+   * 是否末页
+   */
+  last: string;
+  /**
+   * 当前页
+   */
+  number: string;
+  /**
+   * 当前页的记录条数
+   */
+  numberOfElements: string;
+  /**
+   * 总页数
+   */
+  totalPages: string;
+  /**
+   * 总数量
+   */
+  totalElements: string;
+  content: AdmincardsAsPageGetResponseContent;
+  sort: AdmincardsAsPageGetResponseSort;
+}
+export interface AdmincardsAsPageGetResponseContent {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 编号
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 面值
+   */
+  denomination?: string;
+  /**
+   * 封面图片路径
+   */
+  cover?: string;
+  /**
+   * 类型。10:季卡, 20:半年卡, 30:年卡
+   */
+  category: number;
+  /**
+   * 状态。10:待审核,20:已通过,21:已拒绝,30:已退卡
+   */
+  status: number;
+  /**
+   * 状态时间
+   */
+  statusTime: string;
+  /**
+   * 绑定时间。取创建时间
+   */
+  applyTime: string;
+}
+/**
+ * 排序信息
+ */
+export interface AdmincardsAsPageGetResponseSort {}
+export interface AdmincardsAsPageGetResponseContent1 {
+  /**
+   * 主键
+   */
+  id: string;
+  /**
+   * 编号
+   */
+  code: string;
+  /**
+   * 名称
+   */
+  name: string;
+  /**
+   * 面值
+   */
+  denomination?: string;
+  /**
+   * 封面图片路径
+   */
+  cover?: string;
+  /**
+   * 类型。10:季卡, 20:半年卡, 30:年卡
+   */
+  category: number;
+  /**
+   * 状态。10:待审核,20:已通过,21:已拒绝,30:已退卡
+   */
+  status: number;
+  /**
+   * 状态时间
+   */
+  statusTime: string;
+  /**
+   * 绑定时间。取创建时间
+   */
+  applyTime: string;
+}
+export interface AdmincardsAsPageGetResponseSort1 {}
+export interface AdmincardsAsPageGetRequset {
+  /**
+   * 当前页码(默认0)
+   */
+  number: string;
+  /**
+   * 每页数量(默认10)
+   */
+  size: string;
+  /**
+   * 状态
+   */
+  status: string;
+}
+export interface AdminordersAsPageGetResponse {
+  /**
+   * 每页数量
+   */
+  size: string;
+  /**
+   * 是否首页
+   */
+  first: string;
+  /**
+   * 是否末页
+   */
+  last: string;
+  /**
+   * 当前页
+   */
+  number: string;
+  /**
+   * 当前页的记录条数
+   */
+  numberOfElements: string;
+  /**
+   * 总页数
+   */
+  totalPages: string;
+  /**
+   * 总数量
+   */
+  totalElements: string;
+  content: AdminordersAsPageGetResponseContent;
+  /**
+   * 排序信息
+   */
+  sort: string;
+}
+export interface AdminordersAsPageGetResponseContent {
+  /**
+   * 订单号
+   */
+  id: string;
+  /**
+   * 商品名称
+   */
+  productName: string;
+  /**
+   * 段数
+   */
+  skuAttr: number;
+  /**
+   * 数量
+   */
+  num: string;
+  /**
+   * 收货人姓名
+   */
+  contactsName: string;
+  /**
+   * 手机号
+   */
+  contactsPhone: string;
+  /**
+   * 省份名称
+   */
+  provinceName: string;
+  /**
+   * 城市名称
+   */
+  cityName: string;
+  /**
+   * 区县名称
+   */
+  county: string;
+  /**
+   * 街镇名称
+   */
+  town: string;
+  /**
+   * 详细地址
+   */
+  tail: string;
+  /**
+   * 邮编
+   */
+  zipcode: string;
+  /**
+   * 下单时间
+   */
+  bookTime: string;
+  /**
+   * 发货时间
+   */
+  expressTime: string;
+  /**
+   * 快递公司名称
+   */
+  expressCompanyName: string;
+  /**
+   * 快递单号
+   */
+  expressTicket: string;
+  /**
+   * 状态
+   */
+  status: string;
+}
+export interface AdminordersAsPageGetResponseContent1 {
+  /**
+   * 订单号
+   */
+  id: string;
+  /**
+   * 商品名称
+   */
+  productName: string;
+  /**
+   * 段数
+   */
+  skuAttr: number;
+  /**
+   * 数量
+   */
+  num: string;
+  /**
+   * 收货人姓名
+   */
+  contactsName: string;
+  /**
+   * 手机号
+   */
+  contactsPhone: string;
+  /**
+   * 省份名称
+   */
+  provinceName: string;
+  /**
+   * 城市名称
+   */
+  cityName: string;
+  /**
+   * 区县名称
+   */
+  county: string;
+  /**
+   * 街镇名称
+   */
+  town: string;
+  /**
+   * 详细地址
+   */
+  tail: string;
+  /**
+   * 邮编
+   */
+  zipcode: string;
+  /**
+   * 下单时间
+   */
+  bookTime: string;
+  /**
+   * 发货时间
+   */
+  expressTime: string;
+  /**
+   * 快递公司名称
+   */
+  expressCompanyName: string;
+  /**
+   * 快递单号
+   */
+  expressTicket: string;
+  /**
+   * 状态
+   */
+  status: string;
+}
+export interface AdminordersAsPageGetRequset {
+  /**
+   * 当前页(默认0)
+   */
+  number: string;
+  /**
+   * 每页数量(默认10)
+   */
+  size: string;
+  /**
+   * 状态
+   */
+  status: string;
+}
+export interface AdminexportCardGetResponse {}
+export interface AdminexportCardGetRequset {}
+export interface AdminexportOrderGetResponse {}
+export interface AdminexportOrderGetRequset {}
+export interface AdminordersOrderIdsendOutPostResponse {}
+export interface AdminordersOrderIdsendOutPostRequset {
+  /**
+   * 快递公司编码
+   */
+  expressCompanyCode: string;
+  /**
+   * 快递公司名称
+   */
+  expressCompanyName: string;
+  /**
+   * 快递单号
+   */
+  expressTicket: string;
 }

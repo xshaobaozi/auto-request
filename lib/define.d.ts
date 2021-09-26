@@ -2,7 +2,6 @@ export interface SwaggerParamsTags {
     name: string;
     description: string;
 }
-
 export interface SwaggerParamsPathsMethodsParamsSchema {
     $schema: string;
     type: 'object';
@@ -17,8 +16,8 @@ export interface SwaggerParamsPathsMethodsParamsSchema {
                 };
                 required: string[];
                 description: string;
-            }
-        }
+            };
+        };
     };
     required: string[];
 }
@@ -28,9 +27,8 @@ export interface SwaggerParamsPathsMethodsParams {
     required?: boolean;
     description?: string;
     type?: string;
-    schema?: SwaggerParamsPathsMethodsParamsSchema
+    schema?: SwaggerParamsPathsMethodsParamsSchema;
 }
-
 export interface SwaggerParamsPathsMethodsResPropertiesString {
     type: 'string';
     description: string;
@@ -38,12 +36,12 @@ export interface SwaggerParamsPathsMethodsResPropertiesString {
 export interface SwaggerParamsPathsMethodsResPropertiesArray {
     type: 'array';
     items: {
-        type: 'object',
+        type: 'object';
         properties: {
-            [key: string]: SwaggerParamsPathsMethodsResPropertiesString
-        },
+            [key: string]: SwaggerParamsPathsMethodsResPropertiesString;
+        };
         $ref?: string;
-    }
+    };
     description: string;
 }
 export interface SwaggerParamsPathsMethodsResPropertiesObject {
@@ -54,14 +52,11 @@ export interface SwaggerParamsPathsMethodsResPropertiesObject {
     description: string;
     $ref?: string;
 }
-
 export interface SwaggerParamsPathsMethodsSchema {
     type: string;
     title: string;
     properties: {
-        [key: string]: SwaggerParamsPathsMethodsResPropertiesArray
-        | SwaggerParamsPathsMethodsResPropertiesString
-        | SwaggerParamsPathsMethodsResPropertiesObject;
+        [key: string]: SwaggerParamsPathsMethodsResPropertiesArray | SwaggerParamsPathsMethodsResPropertiesString | SwaggerParamsPathsMethodsResPropertiesObject;
     };
     required: string[];
 }
@@ -74,8 +69,8 @@ export interface SwaggerParamsPathsMethods {
         [key: string]: {
             description: string;
             schema: SwaggerParamsPathsMethodsSchema;
-        }
-    }
+        };
+    };
 }
 export interface SwaggerParamsPaths {
     [key: string]: {
@@ -83,9 +78,8 @@ export interface SwaggerParamsPaths {
         post: SwaggerParamsPathsMethods;
         delete: SwaggerParamsPathsMethods;
         put: SwaggerParamsPathsMethods;
-    }
+    };
 }
-
 export interface SwaggerParams {
     swagger: string;
     basePath: string;
@@ -98,8 +92,7 @@ export interface apiQueueParams {
     schema: SwaggerParamsPathsMethods;
     url: string;
 }
-export type CreateApiStateType = 'axios' | 'taro';
-
+export declare type CreateApiStateType = 'axios' | 'taro';
 export interface RequestGetState {
     methodName: string;
     url: string;
@@ -128,7 +121,6 @@ export interface RequestPostState {
     tsReq: RequestGetRenderTs;
     tsRes: RequestGetRenderTs;
 }
-
 export interface RequestGetPropertiesString {
     type: 'string';
     description: string;

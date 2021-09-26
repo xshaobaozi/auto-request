@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as prettier from 'prettier';
 import { compile } from 'json-schema-to-typescript';
-import { readFileSync, analysiAxiosRules, analysiYapiRules, rendeFetchPre, renderTsPreImport, log } from './utils';
+import { readFileSync, analysiAxiosRules, analysiYapiRules, rendeFetchPre, renderTsPreImport } from './utils';
 import RequestGet from './common/requestGet';
 import RequestPost from './common/requestPost';
 import {
@@ -21,10 +21,17 @@ interface CreateApiState {
   resultQueue: any[];
 }
 class CreateApi {
-  state: CreateApiState;
-  constructor(input: string, fetchType: CreateApiStateType = CreateApiStateType.AXIOS, options = { host: '' }) {
-    if (![CreateApiStateType.AXIOS, CreateApiStateType.TARO].includes(fetchType)) {
-      throw `${fetchType}字段出错, 必须是${CreateApiStateType.AXIOS}|${CreateApiStateType.TARO}`;
+  state: CreateApiState = {
+    input: '',
+    fetchType: 'axios',
+    inputStream: '',
+    options: { host: '' },
+    methodsQueue: [],
+    resultQueue: []
+  };
+  constructor(input: string, fetchType: CreateApiStateType = 'axios', options = { host: '' }) {
+    if (!['axios', 'taro'].includes(fetchType)) {
+      throw `${fetchType}字段出错, 必须是${'axios'}|${'taro'}`;
     }
     this.state = {
       input: input,
@@ -53,15 +60,15 @@ class CreateApi {
     })
   }
   // 解析规则
-  analysiRules(stream) {
-    if (this.state.fetchType === CreateApiStateType.AXIOS) {
+  analysiRules(stream: any) {
+    if (this.state.fetchType === 'axios') {
       return analysiAxiosRules(stream);
     }
     return analysiYapiRules(stream);
   }
   // 生成接口文件
   handleRenderApiFile() {
-    return this.state.resultQueue.reduce((pre, next) => {
+    return this.state.resultQueue.reduce((pre: string, next: any) => {
       pre = pre + `
         ${next.renderMethod()}
       `

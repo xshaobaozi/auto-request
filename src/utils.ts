@@ -1,21 +1,21 @@
 import * as fs from 'fs';
 const camelcase = require('camelcase')
 import {
-  SwaggerParamsTags,
+  // SwaggerParamsTags,
   SwaggerParamsPathsMethodsParams,
-  SwaggerParamsPathsMethods,
+  // SwaggerParamsPathsMethods,
   SwaggerParamsPaths,
   SwaggerParams,
   apiQueueParams,
   CreateApiStateType,
-  SwaggerParamsPathsMethodsParamsSchema,
-  RequestGetProperties,
+  // SwaggerParamsPathsMethodsParamsSchema,
+  // RequestGetProperties,
   RequestGetPropertiesObject,
 } from './define';
 const deepClone = require('deep-clone');
 
 // 读取入口文件
-export const readFileSync = (source) => {
+export const readFileSync = (source: any) => {
   try {
     return fs.readFileSync(source, 'utf8');
   } catch (err) {
@@ -24,7 +24,7 @@ export const readFileSync = (source) => {
   }
 };
 
-const parseJSON = (json) => {
+const parseJSON = (json: any) => {
   try {
     return JSON.parse(json);
   } catch (err) {
@@ -51,10 +51,10 @@ export const analysiYapiRules = (stream: SwaggerParams) => {
   return jsonStream;
 };
 
-export const pascalCase = (str) => {
+export const pascalCase = (str: any) => {
   return camelcase(str, { pascalCase: true });
 };
-export const pascalCaseReplaceString = (str) => {
+export const pascalCaseReplaceString = (str: any) => {
   return camelcase(str.replace(/[\/|\{|\}|\?\$]/g, ''), { pascalCase: true });
 };
 
@@ -82,7 +82,7 @@ export const filterPathParams = (parameters: SwaggerParamsPathsMethodsParams[] =
 }
 
 export const rendeFetchPre = (type: CreateApiStateType) => {
-  if (type === CreateApiStateType.TARO) {
+  if (type === 'taro') {
     return `import Taro, { RequestTask } from '@tarojs/taro';\n`;
   }
   return `import axios, {AxiosResponse} from 'axios';\n`;
@@ -97,7 +97,7 @@ export const formatRequireds = (reqParams: SwaggerParamsPathsMethodsParams[] = [
   return reqParams.filter((params) => params.required === true).map((params) => params.name)
 }
 export const formatProperties = (reqParams: SwaggerParamsPathsMethodsParams[] = []) => {
-  return reqParams.reduce((pre, next) => {
+  return reqParams.reduce((pre: any, next) => {
     pre[next.name] = next;
     return pre;
   }, {})
@@ -135,7 +135,7 @@ interface createTypeDefineObjParams {
 }
 // 处理response的properties
 export const deepFormatResponse = (preProperties: RequestGetPropertiesObject, schemas: any[] = [], createTypeDefineObjParams: createTypeDefineObjParams) => {
-  const { title, properties, type, required } = createTypeDefineObjParams;
+  const { title, type } = createTypeDefineObjParams;
   if (!preProperties.properties) { return; }
   for (const [key, value] of Object.entries(preProperties.properties)) {
     const pascalCaseKey = pascalCase(key);
@@ -155,7 +155,7 @@ export const deepFormatResponse = (preProperties: RequestGetPropertiesObject, sc
     if (value.type === 'array') {
       const schemaItem = createTypeDefineObj(refTitle, deepCopy(value.items.properties), type, value.items.required);
       schemas.push(schemaItem);
-      delete value.items.properties;
+      delete (value as any).items.properties;
       Object.assign(value.items, {
         $ref: `#/definitions/${refTitle}`
       })
@@ -163,4 +163,4 @@ export const deepFormatResponse = (preProperties: RequestGetPropertiesObject, sc
     }
   }
 };
-export const log = (data) => console.log(JSON.stringify(data));
+export const log = (data: any) => console.log(JSON.stringify(data));

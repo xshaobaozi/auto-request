@@ -20,12 +20,13 @@
 // host = 请求前缀
 const path = require('path');
 const swaggerJsonSchemaRequest = require('swagger-json-schema-request');
+const host = 'https://test'
+const source = path.join(__dirname, './../example/yapi.json');
+const apiPath = path.join(__dirname, './../api/');
+new SwaggerJsonSchemaRequest(source, 'axios', {
+  host: 'https://test/api',
+}).generateFile(apiPath)
 
-const source = path.join(__dirname, './example/yapi.json');
-const apiPath = path.join(__dirname, './api/');
-
-const SwaggerJsonSchemaRequest = new CreateApi(source, 'axios', {host: 'https://xxxx'});
-SwaggerJsonSchemaRequest.generateFile(apiPath);
 
 
 ```
