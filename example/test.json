@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "公众端CIO-奶卡",
+    "title": "测试",
     "version": "last",
-    "description": "公众端CIO-奶卡"
+    "description": "测试"
   },
   "basePath": "/apis/card",
   "tags": [
