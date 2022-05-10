@@ -26,32 +26,37 @@ class RequestPost extends BaseRequest {
     super(method, url, schema, fetchType, host);
   }
   renderTsDefineReqFeature() {
-    const { parameters = [] } = this.state.schema;
-    const reqParams = parameters.filter((params) => params.in === 'body');
-    if (reqParams.length === 0) {
-      return [];
-    }
-    const [firstParams] = reqParams;
-    const title = formatTsRequest(this.state.methodName);
-    const properties = firstParams.schema!.properties
-    const required = firstParams.schema!.required;
-    const reqList = [];
-    const req = createTypeDefineObj(title, properties, 'object', required)
-    reqList.push(req);
-    for (let [key, value] of Object.entries(firstParams.schema!.properties)) {
-      const pascalCaseKey = pascalCase(key);
-      if (value.type === 'array') {
-        reqList.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.items.properties), value.items.type));
-        delete (value as any).items.properties;
-        Object.assign(value.items, {
-          $ref: `#/definitions/${title}${pascalCaseKey}`
-        })
+    try{
+      const { parameters = [] } = this.state.schema;
+      const reqParams = parameters.filter((params) => params.in === 'body');
+      if (reqParams.length === 0) {
+        return [];
       }
-      // if (value.type === 'object') {
-      //     reqList.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.properties), value.type));
-      // }
+      const [firstParams] = reqParams;
+      const title = formatTsRequest(this.state.methodName);
+      const properties = firstParams.schema!.properties
+      const required = firstParams.schema!.required;
+      const reqList = [];
+      const req = createTypeDefineObj(title, properties, 'object', required)
+      reqList.push(req);
+      for (let [key, value] of Object.entries(firstParams.schema!.properties)) {
+        const pascalCaseKey = pascalCase(key);
+        if (value.type === 'array') {
+          reqList.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.items.properties), value.items.type));
+          delete (value as any).items.properties;
+          Object.assign(value.items, {
+            $ref: `#/definitions/${title}${pascalCaseKey}`
+          })
+        }
+        // if (value.type === 'object') {
+        //     reqList.push(createTypeDefineObj(`${title}${pascalCaseKey}`, deepCopy(value.properties), value.type));
+        // }
+      }
+      return reqList;
+    }catch(err) {
+      console.log(`解析错误：${this.state.url} request schema`)
+      return []
     }
-    return reqList;
   }
   renderTsDefineReq(): RequestGetRenderTs {
     const { parameters = [] } = this.state.schema;
@@ -96,24 +101,29 @@ class RequestPost extends BaseRequest {
     // }
 
     // return properties;
-    const schema = deepCopy(this.state.schema.responses['200'].schema) as RequestGetPropertiesObject;
-    const properties = [];
-    const title = formatTsResponse(this.state.methodName);
-    // if (schema.type === 'object') {
-    //     properties.push(createTypeDefineObj(title, schema.properties, schema.type, schema.required));
-    // }
-    // deepFormatResponse(schema, properties, { title: title, properties: schema.properties, type: schema.type });
-    if (['object'].includes(schema.type)) {
-      properties.push(createTypeDefineObj(title, schema.properties, schema.type, schema.required));
-      if (schema.properties === undefined) { return properties; }
-      deepFormatResponse(schema, properties, { title: title, properties: schema.properties, type: schema.type });
+    try{
+      const schema = deepCopy(this.state.schema.responses['200'].schema) as RequestGetPropertiesObject;
+      const properties = [];
+      const title = formatTsResponse(this.state.methodName);
+      // if (schema.type === 'object') {
+      //     properties.push(createTypeDefineObj(title, schema.properties, schema.type, schema.required));
+      // }
+      // deepFormatResponse(schema, properties, { title: title, properties: schema.properties, type: schema.type });
+      if (['object'].includes(schema.type)) {
+        properties.push(createTypeDefineObj(title, schema.properties, schema.type, schema.required));
+        if (schema.properties === undefined) { return properties; }
+        deepFormatResponse(schema, properties, { title: title, properties: schema.properties, type: schema.type });
+      }
+      if (['array'].includes(schema.type)) {
+        const schemaArray = (schema as any).items;
+        properties.push(createTypeDefineObj(title, schemaArray.properties, schemaArray.type, schemaArray.required));
+        deepFormatResponse(schemaArray, properties, { title: title, properties: schemaArray.properties, type: schemaArray.type });
+      }
+      return properties;
+    }catch(err) {
+      console.log(`解析错误：${this.state.url} response schema`)
+      return []
     }
-    if (['array'].includes(schema.type)) {
-      const schemaArray = (schema as any).items;
-      properties.push(createTypeDefineObj(title, schemaArray.properties, schemaArray.type, schemaArray.required));
-      deepFormatResponse(schemaArray, properties, { title: title, properties: schemaArray.properties, type: schemaArray.type });
-    }
-    return properties;
   }
   renderFetchRequest() {
     const { schema, host, url, method } = this.state;
