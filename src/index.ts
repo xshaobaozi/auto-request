@@ -19,6 +19,7 @@ interface CreateApiState {
   inputStream: string;
   options: {
     host: string;
+    preFix: string;
   };
   methodsQueue: apiQueueParams[];
   // resultQueue: RequestGet[] | RequestPost[];
@@ -29,7 +30,7 @@ class CreateApi {
     input: '',
     fetchType: 'axios',
     inputStream: '',
-    options: { host: '' },
+    options: { host: '', preFix: '' },
     methodsQueue: [],
     resultQueue: [],
     createCount: 0,
@@ -37,7 +38,7 @@ class CreateApi {
   constructor(
     input: string,
     fetchType: CreateApiStateType = 'axios',
-    options = { host: '' }
+    options = { host: '', preFix: '' }
   ) {
     if (!['axios', 'taro'].includes(fetchType)) {
       throw `${fetchType}字段出错, 必须是${'axios'}|${'taro'}`;
@@ -52,9 +53,7 @@ class CreateApi {
       createCount: 0,
     };
     this.state.inputStream = readFileSync(this.state.input);
-    this.state.options.host = this.state.options.host
-      ? this.state.options.host
-      : JSON.parse(this.state.inputStream).host || '';
+    this.state.options.host = this.state.options.host + this.state.options.preFix || '';
     console.log(`=====host:[${this.state.options.host}]=====\n`);
     this.state.methodsQueue = this.analysiRules(this.state.inputStream);
     this.state.resultQueue = this.generateMethod(this.state.methodsQueue);

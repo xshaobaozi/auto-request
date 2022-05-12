@@ -19,12 +19,13 @@
 // type = 'axios'|'taro'
 // host = 请求前缀
 const path = require('path');
-const swaggerJsonSchemaRequest = require('swagger-json-schema-request');
+const swaggerJsonSchemaRequest = require('auto-request');
 const host = 'https://test'
 const source = path.join(__dirname, './../example/yapi.json');
 const apiPath = path.join(__dirname, './../api/');
 new SwaggerJsonSchemaRequest(source, 'axios', {
   host: 'https://test/api',
+  preFix: ''
 }).generateFile(apiPath)
 
 

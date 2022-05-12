@@ -22,7 +22,7 @@ export const MemberIdKeypathGet = <
 ): RequestTask<T> => {
   // 多层级
   return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/member/${IdKey}/path`,
+    url: `https://yapi.yashili.com/mock/178/aa//member/${IdKey}/path`,
     method: "get",
     data: params,
     ...options,
@@ -38,7 +38,7 @@ export const MemberupdatePost = <
 ): RequestTask<T> => {
   // 多层级_post
   return Taro.request({
-    url: `https://yapi.yashili.com/mock/178/member/update`,
+    url: `https://yapi.yashili.com/mock/178/aa//member/update`,
     method: "post",
     data: params,
     ...options,
