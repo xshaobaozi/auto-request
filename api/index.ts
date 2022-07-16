@@ -27,31 +27,50 @@ import {
   VisitemployeestatisticsGetRequset,
 } from "./index.define"
 
+<<<<<<< Updated upstream
 export const DictsDictIditemsGet = <
   P extends DictsDictIditemsGetRequset,
   T = AxiosResponse<any>
+=======
+export const MemberIdKeypathGet = <
+  P extends MemberIdKeypathGetRequset,
+  T = AxiosResponse<MemberIdKeypathGetResponse>
+>>>>>>> Stashed changes
 >(
   DictId: any,
   params: P,
   options?: any
 ): Promise<T> => {
+<<<<<<< Updated upstream
   // 获取多个字典项目（列表）
   return axios.request({
     url: `https://yapi.yashili.com/mock/178/dicts/${DictId}/items`,
+=======
+  // 多层级
+  return axios.request({
+    url: `https://yapi.yashili.com/mock/178/aa//member/${IdKey}/path`,
+>>>>>>> Stashed changes
     method: "get",
     params: params,
     ...options,
   })
 }
 
+<<<<<<< Updated upstream
 export const DictsDictCodeitemsByCodeGet = <
   P extends DictsDictCodeitemsByCodeGetRequset,
   T = AxiosResponse<any>
+=======
+export const MemberupdatePost = <
+  P extends MemberupdatePostRequset,
+  T = AxiosResponse<MemberupdatePostResponse>
+>>>>>>> Stashed changes
 >(
   DictCode: any,
   params: P,
   options?: any
 ): Promise<T> => {
+<<<<<<< Updated upstream
   // 获取多个字典项目（列表）
   return axios.request({
     url: `https://yapi.yashili.com/mock/178/dicts/${DictCode}/items?_by_code`,
@@ -231,6 +250,13 @@ export const VisitemployeestatisticsGet = <
     url: `https://yapi.yashili.com/mock/178/visit/employee/statistics`,
     method: "get",
     params: params,
+=======
+  // 多层级_post
+  return axios.request({
+    url: `https://yapi.yashili.com/mock/178/aa//member/update`,
+    method: "post",
+    data: params,
+>>>>>>> Stashed changes
     ...options,
   })
 }
