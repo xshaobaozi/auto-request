@@ -21,7 +21,7 @@ export const readFileSync = (source) => {
   }
 };
 
-const parseJSON = (json) => {
+export const parseJSON = (json) => {
   try {
     return JSON.parse(json);
   } catch (err) {

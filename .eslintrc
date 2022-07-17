@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "extends": ["taro/react", "plugin:@typescript-eslint/recommended"],
+  "extends": ["plugin:@typescript-eslint/recommended"],
 
   "parserOptions": {
     "ecmaVersion": 2018, // Allows for the parsing of modern ECMAScript features
